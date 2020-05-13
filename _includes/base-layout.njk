@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./css/style.css"> -->
+</head>
+<body class="limit-width">
+  <a class="hidden-til-focus" href="#main">Skip to main content</a>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="">Now</a></li>
+        <li><a href="">About Me</a></li>
+        <li><a href="">Feed</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <time>{{ date }}</time>
+        <h1>{{ title }}</h1>
+      </header>
+      <div class="article-body">
+        {{ content | safe }}
+      </div>
+    </article>
+  </main>
+
+</body>
+</html>
