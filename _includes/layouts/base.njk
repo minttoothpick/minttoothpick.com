@@ -3,35 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Document</title>
+  <title>{{ metadata.title }}</title>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <!-- <link rel="stylesheet" href="./css/style.css"> -->
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
-<body class="limit-width">
+<body>
+
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
-  <header>
-    <nav>
+
+  <header class="site-header">
+    <em class="site-title"><a href="/">{{ metadata.title }}</a></em>
+    <nav class="site-nav">
       <ul>
-        <li><a href="">Now</a></li>
-        <li><a href="">About Me</a></li>
-        <li><a href="">Feed</a></li>
+        <li><a href="/notes">Notes</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <article>
-      <header>
-        <time>{{ date }}</time>
-        <h1>{{ title }}</h1>
-      </header>
-      <div class="article-body">
-        {{ content | safe }}
-      </div>
-    </article>
+  <main class="site-main">
+    {{ content | safe }}
   </main>
+
+  <footer class="site-footer">Site footer</footer>
 
 </body>
 </html>

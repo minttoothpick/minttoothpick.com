@@ -1,0 +1,15 @@
+{
+  "title": "minttoothpick",
+  "url": "https://minttoothpick.com",
+  "description": "Description",
+  "feed": {
+    "subtitle": "Feed subtitle",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://minttoothpick.com"
+  },
+  "author": {
+    "name": "Jeremy Jones",
+    "email": "minttoothpick@pm.me"
+  }
+}
