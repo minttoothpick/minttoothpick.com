@@ -21,6 +21,7 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/copy/
    */
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
 
 };

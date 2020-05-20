@@ -5,13 +5,18 @@ date: 2019-06-21
 
 Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>isicing elit. Quam suscipit nu<span style="color:red;">\*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat.
 
-<figure class="half-bleed">
+Lorem ipsum dolor, [sit amet consectetur](nowhere.com) adipisicing elit. Explicabo illum exercitationem placeat, unde nihil eos autem magni delectus. Saepe nostrum labore totam vero ducimus rem itaque placeat dolorum dolores velit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus repellendus, minus obcaecati vero repudiandae quasi ex id commodi quo deserunt ab impedit fugiat at aperiam laudantium, aliquid, dolorem sequi necessitatibus!
+
+<figure class="wide">
   <img alt="Abandoned mall entrance with stairs, escalators, and plants" src="/images/creepy-mall.jpg">
+  <figcaption>
+    <p>Abandoned mall entrance with stairs, escalators, and plants</p>
+  </figcaption>
 </figure>
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo illum exercitationem placeat, unde nihil eos autem magni delectus. Saepe nostrum labore totam vero ducimus rem itaque placeat dolorum dolores velit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus repellendus, minus obcaecati vero repudiandae quasi ex id commodi quo deserunt ab impedit fugiat at aperiam laudantium, aliquid, dolorem sequi necessitatibus!
 
-<figure class="float-right">
+<figure>
   <img alt="Collage with an almost intestinal-looking paper cutout on top of two hands holding a book" src="/images/collage01.jpg">
   <figcaption>
     <p>Caption here</p>

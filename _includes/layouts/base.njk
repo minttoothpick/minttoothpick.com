@@ -13,21 +13,35 @@
 
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
 
-  <header class="site-header">
-    <em class="site-title"><a href="/">{{ metadata.title }}</a></em>
-    <nav class="site-nav">
-      <ul>
-        <li><a href="/notes">Notes</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="page-wrap space-items-lg">
 
-  <main class="site-main">
-    {{ content | safe }}
-  </main>
+    {# <div class="gradient"> #}
 
-  <footer class="site-footer">Site footer</footer>
+      <header class="site-header gradient">
+        <p class="site-title"><em><a href="/">{{ metadata.title }}</a></em> <span class="site-byline">is Jeremy Robert Jones</span></p>
+        <nav class="site-nav">
+          <ul class="site-nav-list">
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {# <section class="page-intro">
+        <p><b>Notes</b> ⁓ these are like a microblog, social media feed surrogate... tumblr?</p>
+      </section> #}
+    
+    {# </div> #}
+
+    {# <hr> #}
+
+    <main class="site-main space-items-lg">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">Site footer</footer>
+
+  </div>
 
 </body>
 </html>
