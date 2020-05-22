@@ -420,7 +420,8 @@ a:hover {
 
 @media (min-width: 700px) {
   .article {
-    padding: 0 var(--space-lg);
+    padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-lg);
   }
 }
 
@@ -457,26 +458,8 @@ a:hover {
   margin-top: var(--space-md);
 }
 
-/* @media (min-width: 1000px) {
-  .article > figure + p {
-    margin-top: var(--space-lg);
-  }
-} */
-
 .article > figure > * + * {
   margin-top: var(--space-sm);
-}
-
-/* @media (min-width: 700px) {
-  .article {
-    padding: 0 var(--space-md);
-  }
-} */
-
-@media (min-width: 1200px) {
-  .article {
-    /* grid-template-columns: 1fr 4fr 1fr; */
-  }
 }
 
 @media (min-width: 1000px) {
