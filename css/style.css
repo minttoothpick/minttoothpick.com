@@ -340,6 +340,14 @@ a:hover {
   /* line-height: 0; */
 }
 
+@media (min-width: 700px) {
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-lg);
+  }
+}
+
 .site-header a {
   font-weight: 700;
 }
@@ -375,14 +383,6 @@ a:hover {
   padding-right: 0;
 }
 
-@media (min-width: 700px) {
-  .site-header {
-    display: flex;
-    justify-content: space-between;
-    padding: var(--space-lg);
-  }
-}
-
 /* Page
    ========================================================================== */
 
@@ -404,7 +404,8 @@ a:hover {
 .article {
   position: relative;
   padding: 0 var(--space-md);
-  margin-bottom: calc(var(--space-lg) * 2);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
 .article::after {
@@ -517,7 +518,14 @@ a:hover {
    ========================================================================== */
 
 .site-footer {
-  padding: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
   padding-top: 0;
   color: var(--color-gray-medium);
+}
+
+@media (min-width: 700px) {
+  .site-footer {
+    padding: var(--space-lg);
+    padding-top: 0;
+  }
 }
