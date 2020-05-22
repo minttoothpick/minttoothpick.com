@@ -12,6 +12,6 @@ When Nic and I reunited to play music after a few months’ hiatus due to quaran
 
 We had a great time performing, and this event served as a reminder that deadlines are conducive to last-minute productivity. We plan to produce another show soon, and *hopefully* Beau will be able to join us, reimbuing FurVur with its full cachet of participatory power.
 
-And a shout out to [Sly Grog Lounge](https://slygroglounge.com), our usual Asheville venue. Support them by [buying a face mask or t-shirt at this site!](https://slygrog.square.site/) Here’s hoping that they are able to safely resume operations in some capacity in the near future.
+And a shout out to [Sly Grog Lounge](https://slygroglounge.com), our usual Asheville venue. Support them by [buying a face mask or t-shirt at this site](https://slygrog.square.site/). Here’s hoping that they are able to safely resume operations in some capacity in the near future.
 
 PS - I don’t know how to download a high-quality version of the video from Facebook, so pardon the 360p.
