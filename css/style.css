@@ -218,13 +218,9 @@ img {
   height: auto;
 }
 
-figure {
-  /* margin-bottom: 1em; */
-}
-
 figcaption {
   color: var(--color-gray-medium);
-  font-size: 80%;
+  font-size: 0.8em;
 }
 
 time {
@@ -413,15 +409,21 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.125);
   position: absolute;
   bottom: 0;
-  left: var(--grid-gap);
-  right: var(--grid-gap);
   height: 2px;
+    left: var(--space-md);
+  right: var(--space-md);
 }
 
 @media (min-width: 700px) {
   .article {
+    padding: 0 var(--space-lg);
     padding-bottom: var(--space-lg);
     margin-bottom: var(--space-lg);
+  }
+
+  .article::after {
+    left: var(--space-lg);
+    right: var(--space-lg);
   }
 }
 
