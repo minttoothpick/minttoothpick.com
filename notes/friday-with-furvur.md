@@ -1,5 +1,5 @@
 ---
-title: Friday with FurVur
+title: 🎵 Friday with FurVur
 date: 2020-05-20
 tags: ["music", "video", "furvur"]
 ---
