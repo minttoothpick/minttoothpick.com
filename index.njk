@@ -9,7 +9,8 @@ pagination:
 {% for note in notes %}
   <article class="article note--{{ note.fileSlug }}">
     <header class="article-header">
-      <h1><a href="{{ note.url | url }}">{{ note.data.title }}</a></h1>
+      {# <h1><a href="{{ note.url | url }}">{{ note.data.title }}</a></h1> #}
+      <h1>{{ note.data.title }}</h1>
       <time datetime="{{ note.data.date | dateIso }}">{{ note.data.date | dateReadable }}</time>
     </header>
     {# <section class="article-body space-items-sm"> #}
