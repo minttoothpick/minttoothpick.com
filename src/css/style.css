@@ -1,0 +1,424 @@
+:root {
+  --font-sm: 0.8em;
+  --font-base: 1em;
+  --font-md: 1.2em;
+  --font-lg: 2em;
+
+  --font-size: 1.2em;
+  --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* --line-height: calc(1em + 10px); */
+  --line-height: 1.4;
+  /* --font-serif: Georgia, serif; */
+  /* --color-background: rgb(251, 255, 254); */
+  --color-background: blue;
+  --color-black: rgba(0, 0, 0, 0.95);
+  --color-text: rgba(0, 0, 0, 0.8);
+  --color-gray-medium: rgba(0, 0, 0, 0.55);
+  --color-gray-light: rgba(0, 0, 0, 0.25);
+  --color-links: var(--color-black);
+  /* --color-links: #0ba360; */
+  --color-underline: rgba(11, 163, 96, 0.35);
+  --color-underline-hover: rgba(11, 163, 96, 1);
+  /* --max-width: 34rem; */
+  --space-sm: 1em;
+  --space-md: 1em;
+  --space-lg: 2em;
+  --grid-gap: var(--space-md);
+  --border: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Reset (https://hankchizljaw.com/wrote/a-modern-css-reset/)
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: greyscale;
+  /* font-feature-settings: 'ss02'; */
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  /* overflow-x: hidden; */
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base styles
+   ========================================================================== */
+html {
+  /* font-size: 20px; */
+}
+
+body {
+  /* padding: var(--space-md) var(--space-lg); */
+  font-family: var(--font-sans);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1 {
+  font-size: 1em;
+  /* font-weight: 400; */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  color: var(--color-gray-medium);
+  font-size: 0.8em;
+}
+
+time {
+  /* display: block; */
+  /* margin-bottom: 1em; */
+  color: var(--color-gray-medium);
+}
+
+hr {
+  /* height: 3px;
+  min-height: 1px; */
+  /* height: 2px;
+  border-style: none;
+  background-color: currentColor; */
+  opacity: 0.125;
+  border-top: 2px solid currentColor;
+}
+
+a {
+  color: var(--color-links);
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-gray-medium);
+  transition: color 200ms ease;
+  /* text-decoration-color: var(--color-underline); */
+}
+
+a:hover {
+  /* text-decoration-color: var(--color-black); */
+  color: var(--color-gray-medium);
+  /* text-decoration-color: var(--color-underline-hover); */
+}
+
+/* Utilities
+   ========================================================================== */
+
+/**
+ * Nicked from Cloud Four
+ * https://cloudfour-patterns.netlify.app/patterns/utilities.html
+ */
+.hidden-til-focus:not(:focus) {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+/**
+ * The lobotomized owl
+ * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+ */
+.space-items-sm > * + * {
+  margin-top: var(--space-sm);
+}
+
+.space-items-lg > * + * {
+  margin-top: var(--space-lg);
+}
+
+/**
+ * Video embed
+ * https://css-tricks.com/fluid-width-video/
+ */
+.video-embed {
+  position: relative;
+  height: 0;
+  padding-bottom: calc(var(--aspect-ratio, 0.5625) * 100%);
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient {
+  /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
+  /* background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); */
+  /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
+  /* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); */
+  /* background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); */
+  /* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
+  /* background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%); */
+  /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  /* background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%); */
+  /* background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%); */
+  /* background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); */
+  /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
+  /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%); */
+  /* background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%); */
+  /* background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%); */
+  /* background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); */
+  /* background-image: linear-gradient(45deg, #ee9ca7 0%, #ffdde1 100%); */
+  /* background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%); */
+  /* background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%); */
+  /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
+  background-image: linear-gradient(-225deg, #d0fceb 0%, #fed4ea 100%);
+  /* background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%); */
+  /* background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); */
+  border-bottom: var(--border);
+  /* padding-bottom: var(--space-md); */
+}
+
+/* Site header
+   ========================================================================== */
+
+.site-header {
+  padding: var(--space-lg) var(--space-md);
+  /* line-height: 0; */
+}
+
+@media (min-width: 700px) {
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-lg);
+  }
+}
+
+.site-header a {
+  font-weight: 700;
+}
+
+.site-byline {
+  color: var(--color-gray-medium);
+  /* font-size: 80%; */
+}
+
+.site-nav {
+  margin-top: var(--space-md);
+}
+
+.site-nav-list {
+  display: flex;
+}
+
+@media (min-width: 700px) {
+  .site-nav {
+    margin-top: 0;
+  }
+}
+
+.site-nav-list > li > a {
+  padding-right: var(--space-md);
+}
+
+/* .site-nav-list > li:first-child > a {
+  padding-left: 0;
+} */
+
+.site-nav-list > li:last-child > a {
+  padding-right: 0;
+}
+
+/* Page
+   ========================================================================== */
+
+.page-intro {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-column-gap: var(--grid-gap);
+  margin-top: 8em;
+  padding: 0 var(--space-lg);
+}
+
+.page-intro > * {
+  grid-column: 1 / 3;
+}
+
+/* Article/post
+   ========================================================================== */
+
+.article {
+  position: relative;
+  padding: 0 var(--space-md);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.article::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.125);
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+    left: var(--space-md);
+  right: var(--space-md);
+}
+
+@media (min-width: 700px) {
+  .article {
+    padding: 0 var(--space-lg);
+    padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .article::after {
+    left: var(--space-lg);
+    right: var(--space-lg);
+  }
+}
+
+@media (min-width: 1000px) {
+  .article {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: var(--grid-gap);
+    /* padding: 0 var(--space-lg); */
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    /* border-bottom: var(--border); */
+  }
+}
+
+.article > * {
+  max-width: 54ch;
+}
+
+.article > p {
+  margin-top: var(--space-md);
+}
+
+.article > figure {
+  /* margin-top: var(--space-lg); */
+  /* Larger y-margins might work in article-length content */
+  margin-top: var(--space-md);
+}
+
+/* Paragraph following a figure */
+.article > figure + p {
+  /* margin-top: var(--space-lg); */
+  /* Larger y-margins might work in article-length content */
+  margin-top: var(--space-md);
+}
+
+.article > figure > * + * {
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 1000px) {
+  .article > * {
+    grid-column: 2;
+  }
+
+  .article-header {
+    grid-column: 1;
+    grid-row: span 3;
+  }
+
+  /* Undo lobotomized owl on first element following header */
+  .article-header + * {
+    margin-top: 0 !important;
+  }
+
+  /**
+  * Full-bleed figures
+  */
+  .wide {
+    display: grid;
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+    grid-column: 1 / 3;
+    max-width: 100%;
+  }
+
+  .wide img {
+    grid-column: 1 / 3;
+  }
+
+  .wide figcaption {
+    grid-column: 2;
+  }
+}
+
+/* Footer
+   ========================================================================== */
+
+.site-footer {
+  padding: var(--space-lg) var(--space-md);
+  padding-top: 0;
+  color: var(--color-gray-medium);
+}
+
+@media (min-width: 700px) {
+  .site-footer {
+    padding: var(--space-lg);
+    padding-top: 0;
+  }
+}

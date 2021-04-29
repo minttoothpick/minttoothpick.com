@@ -35,4 +35,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
 
+  /**
+   * Override default input/output directories
+   * https://www.11ty.dev/docs/config/
+   */
+  return {
+    dir: {
+      input: "src"
+    }
+  };
+
 };
