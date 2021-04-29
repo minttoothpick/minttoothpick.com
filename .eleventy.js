@@ -2,7 +2,11 @@ const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
 
-  // Merge all tags: https://www.11ty.dev/docs/data-deep-merge/
+  /**
+   * Merge all tags
+   *
+   * https://www.11ty.dev/docs/data-deep-merge/
+   */
   eleventyConfig.setDataDeepMerge(true);
 
   /**
@@ -17,6 +21,7 @@ module.exports = function(eleventyConfig) {
 
   /**
    * Additional folders to copy to output folder
+   *
    * https://www.11ty.dev/docs/copy/
    */
   eleventyConfig.addPassthroughCopy("./src/css");
@@ -25,6 +30,7 @@ module.exports = function(eleventyConfig) {
 
   /**
    * Override default input/output directories
+   *
    * https://www.11ty.dev/docs/config/
    */
   return {
