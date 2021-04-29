@@ -6,6 +6,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
   /**
+   * Format Dates and Times with Luxon
+   *
+   * https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
+   * https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
+   */
+   eleventyConfig.addFilter("readableDate", (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL dd, yyyy");
+  });
+
+  /**
    * Additional folders to copy to output folder
    * https://www.11ty.dev/docs/copy/
    */
