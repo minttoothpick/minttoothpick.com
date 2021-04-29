@@ -1,39 +1,17 @@
-const moment = require('moment');
-
-moment.locale('en');
+const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
 
-  /**
-   * Create Notes Collection
-   * https://www.pborenstein.com/posts/collections/
-   */
-  eleventyConfig.addCollection('notes',
-    collection => collection
-      .getAllSorted()
-      .filter(item => item.url
-        && !item.inputPath.includes('index.njk')
-        && item.inputPath.startsWith('./notes/')))
-
-  /**
-   * Format dates nicely with moment.js
-   * https://keepinguptodate.com/pages/2019/06/creating-blog-with-eleventy/
-   */
-  eleventyConfig.addFilter('dateIso', date => {
-    return moment(date).toISOString();
-  });
-
-  eleventyConfig.addFilter('dateReadable', date => {
-    return moment(date).format('LL');
-  });
+  // Merge all tags: https://www.11ty.dev/docs/data-deep-merge/
+  eleventyConfig.setDataDeepMerge(true);
 
   /**
    * Additional folders to copy to output folder
    * https://www.11ty.dev/docs/copy/
    */
-  eleventyConfig.addPassthroughCopy("css");
-  eleventyConfig.addPassthroughCopy("fonts");
-  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("./src/css");
+  eleventyConfig.addPassthroughCopy("./src/fonts");
+  eleventyConfig.addPassthroughCopy("./src/images");
 
   /**
    * Override default input/output directories

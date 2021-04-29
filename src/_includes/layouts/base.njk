@@ -3,47 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ metadata.title }}</title>
-  {# <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-    rel="stylesheet"> #}
+  <title>{{ site.title }}</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
 <body>
 
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
 
-  <div class="page-wrap space-items-lg">
+  <header>
+    <em class="logo"><a href="/">{{ site.title }}</a></em>
+    <nav>
+      {% set nav = site.navigation %}
+      <ul>
+        {%- for item in nav %}
+        <li class="{{ "active" if item.url == page.url }}"><a href="{{ item.url | url }}">{{ item.name }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </header>
 
-    {# <div class="gradient"> #}
+  <main>
+    {{ content | safe }}
+  </main>
 
-      <header class="site-header gradient">
-        <p class="site-title"><em><a href="/">{{ metadata.title }}</a></em> <span class="site-byline">is Jeremy Robert Jones</span></p>
-        {# <nav class="site-nav">
-          <ul class="site-nav-list">
-            <li><a href="/notes">Notes</a></li>
-            <li><a href="/about">About</a></li>
-          </ul>
-        </nav> #}
-      </header>
-
-      {# <section class="page-intro">
-        <p><b>Notes</b> ⁓ these are like a microblog, social media feed surrogate... tumblr?</p>
-      </section> #}
-    
-    {# </div> #}
-
-    {# <hr> #}
-
-    <main class="site-main">
-      {{ content | safe }}
-    </main>
-
-    <footer class="site-footer">
-      <p>⟢&nbsp;Made by Jeremy Robert Jones in 2020. ⟢&nbsp;There will be more here soon, I promise.</p>
-    </footer>
-
-  </div>
+  <footer>
+    <p>⟢ Made by Jeremy Robert Jones in 2021.&nbsp;&nbsp; ⟢ There will be more here soon.</p>
+  </footer>
 
 </body>
 </html>
