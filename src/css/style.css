@@ -4,7 +4,9 @@
   --size-base: 1em;
   --size-md: 1.2em;
   --size-lg: 2em;
-  --max-width: 34rem;
+  --size-xl: 5rem;
+  --width-text: 34rem;
+  --width-wide: 68rem;
 
   --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --line-height: 1.5;
@@ -12,6 +14,7 @@
   --color-bg: #fefdff;
   --color-black: rgba(0, 0, 0, 0.95);
   --color-ink: rgba(0, 0, 0, 0.8);
+  --color-gray-dark: rgba(0, 0, 0, 0.75);
   --color-gray-md: rgba(0, 0, 0, 0.55);
   --color-gray-light: rgba(0, 0, 0, 0.25);
   --color-links: var(--color-black);
@@ -64,17 +67,18 @@
 
 html {
   background-color: var(--color-bg);
-  color: var(--color-ink);
+  color: var(--color-black);
   font-family: var(--font-sans);
   font-size: 20px;
   line-height: var(--line-height);
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  padding: var(--size-md);
+  padding: var(--size-md) var(--size-lg);
 }
 
 img {
@@ -83,6 +87,8 @@ img {
 
 /* Typography
    ========================================================================== */
+
+h1, h2, h3, h4 { color: var(--color-ink); }
 
 h1 {
   font-size: var(--size-lg);
@@ -94,44 +100,154 @@ h2 {
   font-size: var(--size-md);
 }
 
+time,
+figcaption {
+  color: var(--color-gray-md);
+}
+
 /* Block elements
    ========================================================================== */
 
-/* header {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--max-width);
+figure {
+  margin: var(--size-lg) 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--color-gray-light);
+  margin-left: 1em;
+  padding-left: 1em;
+}
+
+/* For some reason this was display as 2x2 px? */
+hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background-color: var(--color-gray-light);
+}
+
+/* Site
+   ========================================================================== */
+
+.Site-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Site-header + * {
+  margin-top: var(--size-xl);
+}
+
+.Site-header ul {
+  display: flex;
+  margin: 0;
+}
+
+.Site-header a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+/* TODO: Need a way to check path fragment so Diary highlights at diary/post */
+/* .Site-header a.active {
+  text-decoration: underline;
 } */
 
-h1,
-h2,
-h3,
-h4 {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--max-width);
+.Site-header ul a {
+  padding-left: var(--size-md);
+}
+
+.Site-logo {
+  font-style: normal;
+  font-weight: bold;
 }
 
 /* Articles
    ========================================================================== */
 
-article header {
-  margin: 0 auto;
-  max-width: var(--max-width);
-}
-
 article header h1 {
   margin-top: 0.25em;
-  margin-bottom: var(--size-lg);
+  /* margin-bottom: var(--size-lg); */
 }
 
-article p,
-article ul,
-article ol {
-  margin: 0 auto;
-  max-width: var(--max-width);
+article header + * {
+  margin-top: var(--size-xl);
 }
 
-time {
-  color: var(--color-gray-md);
+/* Grid (https://cloudfour.com/thinks/breaking-out-with-css-grid-layout/)
+   ========================================================================== */
+
+.Grid {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(1em, 1fr)
+    [wide-start] minmax(1em, 1fr)
+    [text-start] minmax(0, var(--width-text)) [text-end]
+    minmax(1em, 1fr) [wide-end]
+    minmax(1em, 1fr) [full-end];
+}
+
+.Grid > * {
+  grid-column: text;
+}
+
+/* .Grid > * + * {
+  margin-top: var(--size-md);
+} */
+
+.Grid > figure {
+  display: inherit;
+  grid-column: full;
+  grid-template-columns: inherit;
+}
+
+figcaption {
+  grid-column: text;
+}
+
+/**
+ * Markdown-it wraps the `img` in a `p`...
+ */
+figure > p {
+  margin: 0;
+}
+
+figure > p {
+  display: inherit;
+  grid-column: inherit;
+  grid-template-columns: inherit;
+}
+
+figure > p > img {
+  grid-column: wide;
+}
+
+.full-width > p > img {
+  grid-column: full;
+}
+
+.text-width > p > img {
+  grid-column: text;
+}
+
+/* Utilities
+   ========================================================================== */
+
+/**
+ * Nicked from Cloud Four
+ * https://cloudfour-patterns.netlify.app/patterns/utilities.html
+ */
+.hidden-til-focus:not(:focus) {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
 }

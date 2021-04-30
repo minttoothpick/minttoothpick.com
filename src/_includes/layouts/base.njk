@@ -9,17 +9,17 @@
     rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
-<body>
+<body class="Site">
 
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
 
-  <header>
-    <em class="logo"><a href="/">{{ site.title }}</a></em>
+  <header class="Site-header">
+    <em class="Site-logo"><a href="/">{{ site.title }}</a></em>
     <nav>
       {% set nav = site.navigation %}
-      <ul>
+      <ul class="list-unstyled">
         {%- for item in nav %}
-        <li class="{{ "active" if item.url == page.url }}"><a href="{{ item.url | url }}">{{ item.name }}</a></li>
+        <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
         {%- endfor %}
       </ul>
     </nav>

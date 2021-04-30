@@ -20,6 +20,31 @@ module.exports = function(eleventyConfig) {
   });
 
   /**
+   * Markdown template processing
+   *
+   * https://www.11ty.dev/docs/languages/markdown/
+   * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
+   */
+  const markdownIt = require("markdown-it");
+  const markdownItReplaceLink = require("markdown-it-replace-link");
+  const markdownItOptions = {
+    html: true, // Enable HTML tags in source
+    linkify: true, // Autoconvert URL-like text to links
+    typographer: true, // Nice quotes, etc.
+    replaceLink: function (link, env) {
+      // Set image paths to absolute
+      if (link.startsWith("images")) {
+        // Prepend local image links with correct path
+        return "../../" + link;
+      } else {
+        return link;
+      }
+    }
+  };
+  const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
+  eleventyConfig.setLibrary("md", markdownLib);
+
+  /**
    * Additional folders to copy to output folder
    *
    * https://www.11ty.dev/docs/copy/

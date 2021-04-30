@@ -12,6 +12,7 @@
   "private": true,
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "luxon": "^1.24.1"
+    "luxon": "^1.24.1",
+    "markdown-it-replace-link": "^1.1.0"
   }
 }

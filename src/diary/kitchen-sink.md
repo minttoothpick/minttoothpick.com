@@ -6,11 +6,11 @@ Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>is
 
 <figure>
 
-![Close up of a medieval-era illustration of a hand holding a book](media/book.jpg)
+![Close up of a medieval-era illustration of a hand holding a book](images/book.jpg)
 
 <figcaption>
 
-Can I space out the elements and get a correct `figure` w/ Markdown image embed?
+`figure` elements should be wider than the article text by default.
 
 </figcaption>
 
@@ -20,18 +20,35 @@ Then we have a regular body paragraph underneath. With this, text can be **bold*
 
 There should be whitespace between paragraphs. What if we have a [link with some `code` in it?](nowhere)
 
-<figure>
-    <img alt="" src="/media/notes/Pasted%20image%2020210107164405.png">
-    <figcaption>
-        <p>Figures with captions will have to be hard-coded in the Markdown file.</p>
-    </figcaption>
+<figure class="full-width">
+
+![A creepy abandoned mall entrance](images/creepy-mall.jpg)
+
+<figcaption>
+
+This `figure` should stretch across the full width of the page; the `figcaption` should stay in alignment with the article text.
+
+</figcaption>
+
 </figure>
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+There should be whitespace between paragraphs. We recommend including a `README`, or a file with information about your project.
 
 ## This is a level 2 heading, check `code` in `h2`; also Making This Extra Long So That It'll Wrap and I Can Check the Line Height Value
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+<figure class="text-width">
+
+![](images/ambulance.jpg)
+
+<figcaption>
+
+This `figure` should be limited to the width of the article text.
+
+</figcaption>
+
+</figure>
 
 1. This ordered list is very exciting because it demonstrates ordered list items.
 2. Following the Tailwind Typography example, we've removed list styles and reapplied counters and bullets to the list items themselves. This allows us to change their color, and line them up with the left side of the text without guessing at the padding value.
