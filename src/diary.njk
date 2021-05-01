@@ -1,13 +1,10 @@
 ---
+title: Diary
 layout: layouts/base.njk
 ---
-<section class="Grid">
-  
-</section>
+{# <h1 class="constrain-and-center" style="font-size: 5em;">{{ title }}</h1> #}
 
 <section class="Grid space-items-xl">
-
-  {# <p class="font-md">Hi, I'm Jeremy. This is my website. I'm still working on it.</p> #}
 
   {% for item in collections.posts %}
     {% if item.data.status != "draft" %}

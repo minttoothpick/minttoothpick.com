@@ -4,34 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ site.title }}</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
 <body class="Site">
 
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
 
-  <header class="Site-header">
-    <em class="Site-logo"><a href="/">{{ site.title }}</a></em>
-    <nav>
-      {% set nav = site.navigation %}
-      <ul class="list-unstyled">
-        {%- for item in nav %}
-        <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  </header>
+  <div class="space-items-xl">
 
-  <main>
-    {{ content | safe }}
-  </main>
+    <header class="Site-header constrain-and-center">
+      <em class="Site-logo"><a href="/">{{ site.title }}</a></em>
+      <nav>
+        <ul class="list-unstyled mt-0">
+          {%- for item in site.navigation %}
+          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </header>
 
-  <footer>
-    <p>⟢ Made by Jeremy Robert Jones in 2021.&nbsp;&nbsp; ⟢ There will be more here soon.</p>
-  </footer>
+    {# <main class="space-items-lg"> #}
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <footer class="constrain-and-center border-top">
+      <p class="mt-lg">⟢ Made by Jeremy Robert Jones in 2021.&nbsp;&nbsp; ⟢ There will be more here soon.</p>
+    </footer>
+
+  </div>
 
 </body>
 </html>
