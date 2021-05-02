@@ -6,7 +6,7 @@ layout: layouts/base.njk
 
 <section class="Grid space-items-xl">
 
-  {% for item in collections.posts %}
+  {% for item in collections.posts | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
     {% endif %}

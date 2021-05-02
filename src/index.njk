@@ -9,7 +9,7 @@ layout: layouts/base.njk
 
   {# <p class="font-md">Hi, I'm Jeremy. This is my website. I'm still working on it.</p> #}
 
-  {% for item in collections.posts %}
+  {% for item in collections.posts | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
     {% endif %}
