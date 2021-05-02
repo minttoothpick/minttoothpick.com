@@ -12,7 +12,9 @@
   "private": true,
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
+    "dotenv": "^8.2.0",
     "luxon": "^1.24.1",
-    "markdown-it-replace-link": "^1.1.0"
+    "markdown-it-replace-link": "^1.1.0",
+    "node-fetch": "^2.6.1"
   }
 }

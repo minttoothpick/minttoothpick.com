@@ -1,4 +1,5 @@
 const { DateTime } = require("luxon");
+const dotenv = require("dotenv").config();
 
 module.exports = function(eleventyConfig) {
 
@@ -8,6 +9,9 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/data-deep-merge/
    */
   eleventyConfig.setDataDeepMerge(true);
+
+  /* Filters
+   ======================================================================== */
 
   /**
    * Format Dates and Times with Luxon
@@ -19,6 +23,33 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL dd, yyyy");
   });
 
+  /* Collections
+   ======================================================================== */
+
+  /**
+   * Finished books
+   */
+  eleventyConfig.addCollection("booksRead", (collection) => {
+    const myBooks = collection.getAll()[0].data.books.items;
+    // Include only books with a finish date
+    const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 1) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
+    // Sort books by date finished
+    return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
+  });
+
+  /**
+   * Books in progress
+   */
+  eleventyConfig.addCollection("booksReading", (collection) => {
+    const myBooks = collection.getAll()[0].data.books.items;
+    // Include only books currently marked "Reading"
+    const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
+    // Sort books by date started
+    return myBooksFiltered.sort((a, b) => (b.gsx$start.$t) > (a.gsx$start.$t) ? 1 : -1);
+  });
+
+  /* Plugins
+   ======================================================================== */
   /**
    * Markdown template processing
    *
@@ -44,6 +75,8 @@ module.exports = function(eleventyConfig) {
   const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
   eleventyConfig.setLibrary("md", markdownLib);
 
+  /* Misc.
+   ======================================================================== */
   /**
    * Additional folders to copy to output folder
    *
