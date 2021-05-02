@@ -20,7 +20,7 @@ module.exports = function(eleventyConfig) {
    * https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
    */
    eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL dd, yyyy");
+    return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL d, yyyy");
   });
 
   /* Collections
