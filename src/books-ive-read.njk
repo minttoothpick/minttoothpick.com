@@ -2,24 +2,28 @@
 layout: layouts/base.njk
 title: Books I've Read
 ---
-{#
- # 2. Making the books data into a collection
- #
- # https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
- #}
-{% for book in collections.booksReading %}
-  {% if loop.first %}<ol reversed>{% endif %}
-  <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t }}</li>
-  {% if loop.last %}</ol>{% endif %}
-{% endfor %}
+<section class="Grid">
 
-{#
- # 1. Simple list of books from Google Sheets JSON
- #}
-{# {% if books.items | length %}
-  {% for book in books.items %}
-    {% if loop.first %}<ol reversed>{% endif %}
+  {#
+  # 2. Making the books data into a collection
+  #
+  # https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
+  #}
+  {% for book in collections.booksReading %}
+    {% if loop.first %}<h2>What I'm reading now</h2><ol class="mt-0" reversed>{% endif %}
     <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t }}</li>
     {% if loop.last %}</ol>{% endif %}
   {% endfor %}
-{% endif %} #}
+
+  {#
+  # 1. Simple list of books from Google Sheets JSON
+  #}
+  {# {% if books.items | length %}
+    {% for book in books.items %}
+      {% if loop.first %}<ol reversed>{% endif %}
+      <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t }}</li>
+      {% if loop.last %}</ol>{% endif %}
+    {% endfor %}
+  {% endif %} #}
+
+</section>

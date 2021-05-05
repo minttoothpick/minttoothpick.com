@@ -101,6 +101,7 @@ h1 {
 
 h2 {
   font-size: var(--size-md);
+  font-weight: normal;
 }
 
 /* time,
@@ -117,7 +118,7 @@ figcaption {
 }
 
 figure {
-  margin: var(--size-lg) 0;
+  margin: var(--size-lg) 0 0 0;
 }
 
 blockquote {
