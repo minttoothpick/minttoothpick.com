@@ -1,7 +1,9 @@
 <article class="Article space-items-base">
   <header class="mb-lg">{# TODO: no bottom margins #}
     <time class="text-muted">{{ item.date | readableDate }}</time>
-    <h1 class="mt-xxs">{{ item.data.title }}</h1>
+    {% if item.data.display_title != false %}
+      <h1 class="mt-xxs">{{ item.data.title | markdown }}</h1>
+    {% endif %}
   </header>
   {{ item.templateContent | safe }}
 </article>

@@ -32,7 +32,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("booksRead", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
     // Include only books with a finish date
-    const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 1) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
+    const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
     // Sort books by date finished
     return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
   });
