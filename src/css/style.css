@@ -1,5 +1,5 @@
 :root {
-  /* --size-xxs: 2px; */
+  --size-xxs: 2px;
   --size-xs: 0.5em;
   --size-sm: 0.8em;
   --size-base: 1em;
@@ -190,9 +190,9 @@ hr {
   margin-top: var(--size-xl);
 } */
 
-/* .Article--front header + * {
-  margin-top: var(--size-base);
-} */
+.Home .Article header + * {
+  margin-top: var(--size-lg);
+}
 
 /* .Article--front header h1 {
   font-size: var(--size-lg);
@@ -391,31 +391,31 @@ hr {
  * Lobotomized owls
  */
 .space-items-xl > * + * {
-  margin-top: var(--size-xl) !important;
+  margin-top: var(--size-xl);
 }
 
 .space-items-lg > * + * {
-  margin-top: var(--size-lg) !important;
+  margin-top: var(--size-lg);
 }
 
 .space-items-md > * + * {
-  margin-top: var(--size-md) !important;
+  margin-top: var(--size-md);
 }
 
 .space-items-base > * + * {
-  margin-top: var(--size-base) !important;
+  margin-top: var(--size-base);
 }
 
 .space-items-sm > * + * {
-  margin-top: var(--size-sm) !important;
+  margin-top: var(--size-sm);
 }
 
 .space-items-xs > * + * {
-  margin-top: var(--size-xs) !important;
+  margin-top: var(--size-xs);
 }
 
 .space-items-xxs > * + * {
-  margin-top: var(--size-xxs) !important;
+  margin-top: var(--size-xxs);
 }
 
 /**

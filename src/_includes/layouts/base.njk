@@ -24,7 +24,7 @@
     </header>
 
     {# <main class="space-items-lg"> #}
-    <main>
+    <main{% if pageClass %} class="{{ pageClass }}"{% endif %}>
       {{ content | safe }}
     </main>
 

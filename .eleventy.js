@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 const dotenv = require("dotenv").config();
+const markdownIt = require("markdown-it");
+const markdownItReplaceLink = require("markdown-it-replace-link");
 
 module.exports = function(eleventyConfig) {
 
@@ -22,6 +24,14 @@ module.exports = function(eleventyConfig) {
    eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL d, yyyy");
   });
+
+  // // https://github.com/11ty/eleventy/issues/658
+  // const md = new markdownIt({
+  //   html: true
+  // });
+  // eleventyConfig.addFilter("markdown", (content) => {
+  //   return md.render(content);
+  // });
 
   /* Collections
    ======================================================================== */
@@ -56,8 +66,6 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/languages/markdown/
    * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
    */
-  const markdownIt = require("markdown-it");
-  const markdownItReplaceLink = require("markdown-it-replace-link");
   const markdownItOptions = {
     html: true, // Enable HTML tags in source
     linkify: true, // Autoconvert URL-like text to links
