@@ -15,23 +15,55 @@ title: I like to read books
       {% set yearFinished %}{{ book.gsx$finish_date.$t }}{% endset %}
       {% set imgSrc %}/images/books/{{ book.gsx$slug.$t }}.png{% endset %}
       {# New calculation #}
-      {% set width %}{{ book.gsx$width.$t }}{% endset %}
+      {% set widthPx %}{{ book.gsx$width.$t }}{% endset %}
       {# {% set width %}{{ (book.gsx$width.$t * 17) }}{% endset %} #}
       {# Percentage calculation #}
-      {# {% set width %}{{ ((book.gsx$width.$t * 1) + 3) | round(0, "ceil") }}{% endset %} #}
+      {% set widthPercent %}{{ ((book.gsx$width.$t * 1) + 3) | round(0, "ceil") }}{% endset %}
       <style>
-      .book { padding-right: 1em; }
-      .book-{{ loop.index }} {
-        width: calc({{ width }} * 10px);
+      .book { padding-right: 0.5em; }
+      .book--px.book-{{ loop.index }} {
+        width: calc({{ widthPx }} * 10px);
       }
-      @media (min-width: 1000px) {
-        .book-{{ loop.index }} {
-          width: calc({{ width }} * 17px);
+      {# .book--percent.book-{{ loop.index }} {
+        width: {{ widthPercent }}%;
+      } #}
+      .book--percent.book-{{ loop.index }} {
+        width: calc({{ widthPercent }} * 4%);
+      }
+      @media (min-width: 250px) {
+        .book--percent.book-{{ loop.index }} {
+          width: calc({{ widthPercent }} * 2%);
         }
       }
+      @media (min-width: 500px) {
+        .book--percent.book-{{ loop.index }} {
+          width: calc({{ widthPercent }} * 1.5%);
+        }
+      }
+      @media (min-width: 750px) {
+        .book--percent.book-{{ loop.index }} {
+          {# width: calc({{ widthPercent }} * 1%); #}
+          width: {{ widthPercent }}%;
+        }
+      }
+      {# @media (min-width: 650px) {
+        .book--percent.book-{{ loop.index }} {
+          width: calc({{ widthPercent }} * 2%);
+        }
+      } #}
+      @media (min-width: 1000px) {
+        .book { padding-right: 1em; }
+        .book--px.book-{{ loop.index }} {
+          width: calc({{ widthPx }} * 17px);
+        }
+        .book--percent.book-{{ loop.index }} {
+          width: {{ widthPercent }}%;
+        }
+      }
+      {# Then just set a max-width on the container so they don't get *too* big. #}
       </style>
-      <figure class="book book-{{ loop.index }}">
-        <!-- {{ width }} -->
+      <figure class="book book--percent book-{{ loop.index }}">
+        <!-- {{ widthPercent }} -->
         <img alt="" src="{{ imgSrc | url | safe }}">
       </figure>
     {% endif %}
