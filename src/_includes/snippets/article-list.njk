@@ -1,6 +1,6 @@
 <article class="Article space-items-base">
   <header class="">{# TODO: no bottom margins #}
-    <time class="text-muted">{{ item.date | readableDate }}</time>
+    <time class="text-muted">{{ item.data.dateCreated | readableDate }}</time>
     {% if item.data.display_title != false %}
       <h1 class="mt-xxs">{{ item.data.title | safe }}</h1>
     {% endif %}

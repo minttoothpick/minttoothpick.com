@@ -25,6 +25,17 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL d, yyyy");
   });
 
+  /**
+   * Sort by `dateCreated` field in front matter
+   *
+   * `date` uses `Last Modified`, in case I want to implement
+   * evergreen articles in the future.
+   */
+  eleventyConfig.addFilter("sortByDateCreated", arr => {
+    arr.sort((a, b) => (a.data.dateCreated) > (b.data.dateCreated) ? 1 : -1);
+    return arr;
+  });
+
   // // https://github.com/11ty/eleventy/issues/658
   // const md = new markdownIt({
   //   html: true
