@@ -1,8 +1,9 @@
 ---
 title: "<i>Dose Curves</i> by Sarah Pagé"
-display_title:
-display_meta:
-date: 2021-05-04
+displayTitle:
+displayMeta:
+date: Last Modified
+dateCreated: 2021-05-04
 tags:
   - music
   - things-i-like
