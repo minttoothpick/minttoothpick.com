@@ -22,7 +22,7 @@ module.exports = function(eleventyConfig) {
    * https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
    */
    eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toFormat("LLLL d, yyyy");
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLLL d, yyyy");
   });
 
   /**
@@ -104,6 +104,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/images");
+  eleventyConfig.addPassthroughCopy("./src/js");
 
   /**
    * Override default input/output directories
@@ -111,6 +112,7 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/config/
    */
   return {
+    markdownTemplateEngine: "njk",
     dir: {
       input: "src"
     }
