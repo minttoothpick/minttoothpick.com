@@ -14,9 +14,9 @@ module.exports = {
       name: "About",
       url: "/about/"
     },
-    {
-      name: "Tags",
-      url: "/tags/"
-    }
+    // {
+    //   name: "Tags",
+    //   url: "/tags/"
+    // }
   ]
 };

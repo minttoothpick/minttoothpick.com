@@ -2,6 +2,9 @@
 title: Hey, New Website
 date: Last Modified
 dateCreated: 2021-05-01
+tags:
+  - things-i-made
+  - video
 ---
 <p>In the spirit and acknolwedgement of the potential for personal websites to languish in the endless iterative loop of developmental limbo, here is a reinterpretation of a Geocities-era “under construction” GIF: ten frames rendered by hand with the pastels I still have from middle school art class.</p>
 <figure>

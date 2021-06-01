@@ -1,9 +1,11 @@
 ---
-title: Hello
+title: Celery Soak
+displayTitle: false
 date: Last Modified
 dateCreated: 2021-04-30
 tags:
   - video
+  - things-i-made
 ---
 <figure>
   <div class="ratio ratio--16x9">

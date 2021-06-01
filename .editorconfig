@@ -1,4 +1,4 @@
-[*.{css,scss,less,js,json,ts,sass,html,hbs,mustache,phtml,html.twig,md,yml}]
+[*.{css,scss,less,js,json,ts,sass,html,hbs,mustache,phtml,html.twig,md,yml,njk}]
 charset = utf-8
 indent_style = space
 indent_size = 2
