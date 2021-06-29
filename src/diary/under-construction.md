@@ -6,7 +6,8 @@ tags:
   - things-i-made
   - video
 ---
-<p>In the spirit and acknolwedgement of the potential for personal websites to languish in the endless iterative loop of developmental limbo, here is a reinterpretation of a Geocities-era “under construction” GIF: ten frames rendered by hand with the pastels I still have from middle school art class.</p>
+In the spirit of that tendency to let one's personal website languish in a limbo of endless iteration: here is a hand-rendered version of the good old Geocities-era "under construction" GIF.
+
 <figure>
   <div class="ratio ratio--square">
     <iframe src="https://player.vimeo.com/video/543968889?loop=1&amp;autoplay=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>

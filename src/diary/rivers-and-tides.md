@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Meanders and undulations"
 displayTitle:
 displayMeta:
 date: Last Modified
@@ -7,7 +7,7 @@ dateCreated: 2021-05-31
 tags:
   - things-i-like
 ---
-I revisited the documentary *Rivers and Tides: Working with Time,* about artist Andy Goldsworthy. It's a look at a kind of art that converses with nature, that collaborates with the strictures of uncertainty and ephemerality.
+I watched the documentary *Rivers and Tides: Working with Time,* about artist Andy Goldsworthy. It's a look at a mode of art that converses with nature, that collaborates with the strictures of uncertainty and ephemerality.
 
 <figure>
 
