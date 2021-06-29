@@ -12,7 +12,11 @@ title: I like to read books
 
 {# <h2>Flex version</h2> #}
 <section style="display: flex; flex-wrap: wrap; align-items: flex-end;">
+  {%- set currentYear -%}{{ 0 }}{%- endset -%}
   {%- for book in collections.booksRead -%}
+    {%- if book.gsx$finishDate.$t != currentYear -%}
+      {%- set currentYear -%}{{ book.gsx$finishDate.$t }}{%- endset -%}
+    {%- endif -%}
     {# See if the spreadsheet says this book has a drawing #}
     {%- if book.gsx$drawing.$t == "TRUE" -%}
       {%- set bookTitle -%}{{ book.gsx$title.$t }}{%- endset -%}
@@ -69,6 +73,7 @@ title: I like to read books
       <figure class="book book--percent book-{{ loop.index }}">
         <!-- {{ widthPercent }} -->
         <img alt="{{ bookTitle }}" src="{{ imgSrc | url | safe }}">
+        <figcaption>{{ currentYear }}</figcaption>
       </figure>
     {%- endif -%}
   {% endfor %}
