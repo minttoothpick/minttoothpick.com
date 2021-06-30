@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 title: I like to read books
 ---
+{# How do you list all posts grouped by year? - https://github.com/11ty/eleventy/issues/1284 #}
 <style>
 :-moz-broken { outline: solid red }
 </style>
@@ -11,11 +12,12 @@ title: I like to read books
 </section>
 
 {# <h2>Flex version</h2> #}
-<section style="display: flex; flex-wrap: wrap; align-items: flex-end;">
-  {%- set currentYear -%}{{ 0 }}{%- endset -%}
+<section style="display: flex; flex-wrap: wrap; align-items: flex-end; max-width: 90%; margin-left: auto; margin-right: auto; position: relative;">
+  {%- set currentYear = "" -%}
   {%- for book in collections.booksRead -%}
-    {%- if book.gsx$finishDate.$t != currentYear -%}
-      {%- set currentYear -%}{{ book.gsx$finishDate.$t }}{%- endset -%}
+    {%- if book.gsx$finishdate.$t != currentYear -%}
+      {%- set currentYear = book.gsx$finishdate.$t -%}
+      {# <h2 style="">{{ book.gsx$finishdate.$t }}</h2> #}
     {%- endif -%}
     {# See if the spreadsheet says this book has a drawing #}
     {%- if book.gsx$drawing.$t == "TRUE" -%}
@@ -73,26 +75,7 @@ title: I like to read books
       <figure class="book book--percent book-{{ loop.index }}">
         <!-- {{ widthPercent }} -->
         <img alt="{{ bookTitle }}" src="{{ imgSrc | url | safe }}">
-        <figcaption>{{ currentYear }}</figcaption>
       </figure>
     {%- endif -%}
   {% endfor %}
 </section>
-
-{#
- # 1. Grid version I had previously
- #}
-{# <h2>Grid version</h2>
-<section style="display: grid; grid-template-columns: repeat(100, 1fr); grid-column-gap: 8px; grid-row-gap: 0; align-items: end;">
-  {% for book in collections.booksRead %}
-    <!-- See if the spreadsheet says this book has a drawing -->
-    {% if book.gsx$drawing.$t == "TRUE" %}
-      {% set imgSrc %}/images/books/{{ book.gsx$slug.$t }}.png{% endset %}
-      {% set width %}{{ (book.gsx$width.$t * 1) + 3 }}{% endset %}
-      {% set width %}{{ width | round(0, "ceil") }}{% endset %}
-      <figure style="grid-column-end: span {{ width }};">
-        <img alt="" src="{{ imgSrc | url | safe }}">
-      </figure>
-    {% endif %}
-  {% endfor %}
-</section> #}
