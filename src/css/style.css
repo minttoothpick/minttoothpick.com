@@ -221,6 +221,21 @@ hr {
   grid-column: text;
 }
 
+.Grid > .full-bleed {
+  grid-column: full;
+}
+
+/* .Grid > .item-fullBleed {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column: text;
+} */
+/* .Grid > .item-fullBleed > * {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column: full;
+} */
+
 /**
  * Wide version
  */

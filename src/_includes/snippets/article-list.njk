@@ -1,9 +1,11 @@
-<article class="Article space-items-base">
+<article class="Article Grid space-items-base">
   <header class="">{# TODO: no bottom margins #}
     <time class="text-muted">{{ item.data.dateCreated | readableDate }}</time>
     {% if item.data.display_title != false %}
       <h1 class="mt-xxs">{{ item.data.title | safe }}</h1>
     {% endif %}
   </header>
+  {# <section class="Article-body Grid"> #}
   {{ item.templateContent | safe }}
+  {# </section> #}
 </article>
