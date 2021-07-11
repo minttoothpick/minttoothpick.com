@@ -19,10 +19,19 @@ module.exports = function(eleventyConfig) {
    * Format Dates and Times with Luxon
    *
    * https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-   * https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
+   * https://moment.github.io/luxon/#/formatting?id=table-of-tokens
    */
    eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLLL d, yyyy");
+  });
+
+  eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {
+    // return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("s");
+    return DateTime.fromISO(dateObj, { zone: "utc" }).toSeconds();
+  });
+
+  eleventyConfig.addFilter("simpleDateFromSeconds", (dateObj) => {
+    return DateTime.fromSeconds(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
 
   /**
@@ -43,6 +52,17 @@ module.exports = function(eleventyConfig) {
   // eleventyConfig.addFilter("markdown", (content) => {
   //   return md.render(content);
   // });
+
+  /**
+   * Pad numbers with leading zeros
+   *
+   * https://gist.github.com/endel/321925f6cafa25bbfbde
+   */
+  eleventyConfig.addFilter("padZeros", (myString, zeros) => {
+    var s = String(myString);
+    while (s.length < (zeros || 2)) { s = "0" + s; }
+    return s;
+  });
 
   /* Collections
    ======================================================================== */
@@ -93,6 +113,14 @@ module.exports = function(eleventyConfig) {
   };
   const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
   eleventyConfig.setLibrary("md", markdownLib);
+
+  /**
+   * Add YAML as custom data file format
+   *
+   * https://www.11ty.dev/docs/data-custom/
+   */
+   const yaml = require("js-yaml");
+   eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
 
   /* Misc.
    ======================================================================== */

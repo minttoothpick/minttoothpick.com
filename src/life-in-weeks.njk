@@ -1,0 +1,114 @@
+---
+layout: layouts/base.njk
+title: Life in Weeks
+start_date: 1985-02-11
+end_year: 2086
+comment: The below should be split from start_date
+start_year: 1985
+start_month: 02
+start_day: 11
+---
+{# TODO: Change font numeral settings to... equal height, whatever that is #}
+<style>
+.weeks {
+  display: flex;
+  flex-wrap: wrap;
+}
+.week {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 2em;
+  width: 2em;
+  margin: 2px;
+  padding: 2px 5px;
+  text-align: center;
+}
+.week--birthday {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+</style>
+
+{# {{ lifeInWeeks['1985-06-10'][0]['name'] }} #}
+
+{# {% for whatever in lifeInWeeks %}
+  {{ whatever['name'] }}
+{% endfor %} #}
+
+{# {{ lifeInWeeks | dump }} #}
+
+{% set start_month = start_month | padZeros(2) %}
+{% set start_day = start_day | padZeros(2) %}
+
+<section>
+  <h1>{{ title }}</h1>
+  <section>
+  {# <ol> #}
+  {# Loop through a hundred years of life #}
+  {% for year in range(start_year, end_year) %}
+    {% set this_year %}{{ year }}-{{ start_month }}-{{ start_day }}{% endset %}
+    {% set next_year %}{{ year + 1 }}-{{ start_month }}-{{ start_day }}{% endset %}
+
+    {% set age = year - start_year %}
+    {# Group by decade #}
+    {% if age % 10 == 0 %}
+      {% if age == 0 %}
+        <h2>My first ten years</h2>
+      {% elseif age == 10 %}
+        <h2>My teens</h2>
+      {% elseif age == 100 %}
+        <h2>A century!</h2>
+      {% else %}
+        <h2>My {{ age }}s</h2>
+      {% endif %}
+      {# Open flex container for this decade #}
+      <div class="weeks">
+    {% endif %}{# if age % 10 == 0 #}
+
+    {# Output birthday weeks #}
+    <div class="week week--birthday">{{ age }} in {{ year }}</div>
+    {# <li>{{ age }} in {{ year }}</li> #}
+
+    {% for week in range(0, 53) %}
+      {# Compute seconds in each week #}
+      {% set week_mod = 604800 * week %}
+      {# Convert this year to seconds #}
+      {% set this_week_date = this_year | simpleDateToSeconds %}
+      {# Take this week in seconds and add another week's worth #}
+      {% set this_week_date = (this_week_date + week_mod) | simpleDateFromSeconds %}
+      {% set end_year_date = this_week_date | simpleDateToSeconds %}
+      {% set end_year_date = (end_year_date + week_mod) | simpleDateFromSeconds %}
+      <div class="week">
+      {# <li> #}
+        {% for day in range(0, 7) %}
+          {% set day_modifier = 86400 * day %}
+          {% set specific_date = this_week_date | simpleDateToSeconds %}
+          {% set specific_date = (specific_date + day_modifier) | simpleDateFromSeconds %}
+          {% if specific_date < next_year %}
+            {% for event in lifeInWeeks[specific_date] %}
+              <a {% if event.link %}href="{{ event.link }}" {% endif %} target="_new" {% if event.desc %}data-toggle="popover" data-placement="auto" {% endif %}title="{{ specific_date }}" data-trigger="hover" data-content="{{ event.desc }}">{{ event.name }}</a>
+            {% endfor %}
+          {% endif %}{# if specific_date < next_year #}
+        {% endfor %}{# for day in range(0, 6) #}
+      </div>
+      {# </li> #}
+    {% endfor %}{# loop thru each year's weeks #}
+
+    {# Close flex container for this decade #}
+    {% if age % 10 == 9 %}</div>{% endif %}
+
+  {% endfor %}{# loop thru every year #}
+  </section>
+  {# </ol> #}
+</section>
+
+<script>
+$(document).ready(function () {
+  $(function () {
+    var today = new Date();
+    $( ".week" ).each(function( index ) {
+      if (today < Date.parse($( this ).attr('data-date'))) {
+        $( this ).addClass('future-date');
+      }
+    });
+  })
+});
+</script>
