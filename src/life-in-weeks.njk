@@ -13,17 +13,26 @@ start_day: 11
 .weeks {
   display: flex;
   flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.4em;
+  line-height: 1.2;
 }
 .week {
+  display: flex;
+  align-content: center;
+  align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  height: 2em;
-  width: 2em;
+  height: 2.2rem;
+  width: 2.2rem;
   margin: 2px;
-  padding: 2px 5px;
+  {# padding: 2px 5px; #}
   text-align: center;
 }
 .week--birthday {
   border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.week--future {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 </style>
 
@@ -67,7 +76,7 @@ start_day: 11
     <div class="week week--birthday">{{ age }} in {{ year }}</div>
     {# <li>{{ age }} in {{ year }}</li> #}
 
-    {% for week in range(0, 53) %}
+    {% for week in range(0, 52) %}
       {# Compute seconds in each week #}
       {% set week_mod = 604800 * week %}
       {# Convert this year to seconds #}
@@ -76,7 +85,7 @@ start_day: 11
       {% set this_week_date = (this_week_date + week_mod) | simpleDateFromSeconds %}
       {% set end_year_date = this_week_date | simpleDateToSeconds %}
       {% set end_year_date = (end_year_date + week_mod) | simpleDateFromSeconds %}
-      <div class="week">
+      <div class="week" data-date="{{ this_week_date }}">
       {# <li> #}
         {% for day in range(0, 7) %}
           {% set day_modifier = 86400 * day %}
@@ -84,7 +93,8 @@ start_day: 11
           {% set specific_date = (specific_date + day_modifier) | simpleDateFromSeconds %}
           {% if specific_date < next_year %}
             {% for event in lifeInWeeks[specific_date] %}
-              <a {% if event.link %}href="{{ event.link }}" {% endif %} target="_new" {% if event.desc %}data-toggle="popover" data-placement="auto" {% endif %}title="{{ specific_date }}" data-trigger="hover" data-content="{{ event.desc }}">{{ event.name }}</a>
+              {{ event.name }}
+              {# <a {% if event.link %}href="{{ event.link }}" {% endif %} target="_new" {% if event.desc %}data-toggle="popover" data-placement="auto" {% endif %}title="{{ specific_date }}" data-trigger="hover" data-content="{{ event.desc }}">{{ event.name }}</a> #}
             {% endfor %}
           {% endif %}{# if specific_date < next_year #}
         {% endfor %}{# for day in range(0, 6) #}
@@ -101,14 +111,19 @@ start_day: 11
 </section>
 
 <script>
-$(document).ready(function () {
-  $(function () {
-    var today = new Date();
-    $( ".week" ).each(function( index ) {
-      if (today < Date.parse($( this ).attr('data-date'))) {
-        $( this ).addClass('future-date');
-      }
-    });
-  })
-});
+if (document.readyState !== 'loading') {
+  dateStuff();
+} else {
+  document.addEventListener('DOMContentLoaded', dateStuff);
+}
+
+function dateStuff() {
+  let today = new Date();
+  let weeks = document.querySelectorAll(".week");
+  Array.prototype.forEach.call(weeks, function(el, i) {
+    if (today < Date.parse(el.getAttribute('data-date'))) {
+      el.classList.add('week--future');
+    }
+  });
+}
 </script>

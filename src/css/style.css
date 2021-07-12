@@ -11,6 +11,8 @@
   --width-wide: 68rem;
 
   --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --line-height: 1.5;
 
   --color-bg: #fefdff;
