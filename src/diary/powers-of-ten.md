@@ -14,7 +14,9 @@ tags:
 
 <figcaption>
 
-If [*Powers of Ten*](https://vimeo.com/220494102) started out 160× smaller
+<!-- If [*Powers of Ten*](https://vimeo.com/220494102) started out 160× smaller -->
+
+[Watch the original *Powers of Ten*](https://vimeo.com/220494102)
 
 </figcaption>
 

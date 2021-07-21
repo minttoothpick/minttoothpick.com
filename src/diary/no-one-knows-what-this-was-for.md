@@ -12,7 +12,7 @@ tags:
 
 <figcaption>
 
-*“No one knows what this was for.”*
+“No one knows what this was for.”
 
 </figcaption>
 
