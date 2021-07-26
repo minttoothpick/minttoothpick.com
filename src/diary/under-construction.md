@@ -1,5 +1,5 @@
 ---
-title: Hey, new website
+title: Hey, New Website
 date: Last Modified
 dateCreated: 2021-05-01
 tags:

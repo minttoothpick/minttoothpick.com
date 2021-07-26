@@ -1,5 +1,5 @@
 ---
-title: An impermanent collage
+title: An Impermanent Collage
 date: Last Modified
 dateCreated: 2021-05-13
 tags:

@@ -1,5 +1,5 @@
 ---
-title: "Meanders and undulations"
+title: "Meanders and Undulations"
 displayTitle:
 displayMeta:
 date: Last Modified
@@ -20,3 +20,5 @@ I watched the documentary *Rivers and Tides: Working with Time,* about artist An
 </figcaption>
 
 </figure>
+
+If art (craft as well) is characterized by the manipulation of materials, to what extent can you give up control and still call it art? What does that look like? (Is it even the case that “manipulation of materials” is a core definition of art?)
