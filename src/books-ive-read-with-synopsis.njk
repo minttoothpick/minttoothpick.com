@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Booooks
+---
+<section class="Grid Article space-items-lg">
+
+  <h1>{{ title }}</h1>
+  {% include "snippets/books-submenu.njk" %}
+
+</section>
+
+<section class="Grid Article space-items-xl">
+
+  {%- for book in collections.booksRead -%}
+    {# {%- if loop.first -%}<ul class="list-unstyled" style="">{%- endif -%} #}
+      {# <li> #}
+          <figure class="wide Grid--mediaObj">
+            {%- if book.gsx$drawing.$t == "TRUE" -%}
+              {%- set imgSrc -%}/images/books/{{ book.gsx$slug.$t }}.png{%- endset -%}
+              {# {%- set imgSrc = imgSrc | url | safe -%} #}
+              {# {%- set imgAlt -%}Drawing of “{{ book.gsx$title.$t }}!!!”{%- endset -%} #}
+              {# {% Image imgSrc, imgAlt %} #}
+              <img alt="Drawing of “{{ book.gsx$title.$t }}”" src="{{ imgSrc | url | safe }}">
+            {%- endif -%}{# check for drawing #}
+            <figcaption class="space-items-base">
+              <h2><i>{{ book.gsx$title.$t }}</i></h2>
+              <p class="text-muted mt-xxs">{{ book.gsx$author.$t }}</p>
+              {%- if book.gsx$text.$t -%}{{ book.gsx$text.$t | markdown | safe }}{%- endif -%}
+            </figcaption>
+          </figure>
+      {# </li> #}
+    {# {%- if loop.last -%}</ul>{%- endif -%} #}
+  {%- endfor -%}{# loop thru books #}
+
+</section>
