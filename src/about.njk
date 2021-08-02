@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+title: About Me and This Site
+---
+<div class="Grid Article">
+  {# <div class="Grid--aboutPage"> #}
+    <div style="grid-column: 2 / 4;">
+      <h1>{{ title }}</h1>
+      <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
+    </div>
+    <figure style="grid-column: 4 / 6;">
+      {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
+    </figure>
+  {# </div> #}
+</div>
+
+{# <div class="Grid Article space-items-lg">
+  <div class="Grid--aboutPage">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
+    </div>
+    <figure>
+      {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
+    </figure>
+  </div>
+</div> #}
+
+{#
+<section class="Grid--aboutPage">
+  <article class="Article">
+    <h1>{{ title }}</h1>
+    <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
+  </article>
+  <figure>
+    {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
+  </figure>
+</section> #}
