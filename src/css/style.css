@@ -160,8 +160,8 @@ figcaption > * {
 
 blockquote {
   border-left: 4px solid var(--color-gray-light);
-  margin-left: 1em;
-  padding-left: 1em;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 /* For some reason this was display as 2x2 px? */
