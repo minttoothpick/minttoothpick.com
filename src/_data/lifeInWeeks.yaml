@@ -1,20 +1,32 @@
-'1985-06-10':
-  - name: "A test thing."
+"1985-06-10":
+  - name: "A test."
     category: life
-    desc: 'A description is what shows up in popover.'
-    link: 'http://go-somewhere.anywhere'
+    desc: "A description is what shows up in popover."
+    link: "http://go-somewhere.anywhere"
 
-'1998-03-06':
-  - name: 'First time online'
-    desc: 'The first time I went online. Dial-up AOL.'
+# "1985-06-11":
+#   - name: "A test thing same week"
 
-'1998-04-11':
-  - name: 'Made first website'
-    desc: '“Today I made a home-page on the Web.”'
+"1985-06-17":
+  - name: "Test 2"
 
-'1998-10-13':
-  - name: '💔 Grandpa dies'
+"1985-06-25":
+  - name: "Doop"
 
-'2006-10-25':
-  - name: '🚚 Asheville'
-    desc: 'residence'
+"1998-03-06":
+  - name: "First time online"
+    desc: "The first time I went online. Dial-up AOL."
+
+"1998-04-11":
+  - name: "Made first website"
+    desc: "“Today I made a home-page on the Web.”"
+
+"1998-10-13":
+  - name: "💔 Grandpa dies"
+
+"2006-10-25":
+  - name: "🚚 Asheville"
+    desc: "residence"
+
+"2061-01-01":
+  - name: "☠️ Life expec­tancy" # Soft hyphen in there

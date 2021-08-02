@@ -21,12 +21,22 @@ start_day: 11
   display: flex;
   align-content: center;
   align-items: center;
+  {# flex-direction: column; #}
   border: 1px solid rgba(0, 0, 0, 0.25);
   height: 2.2rem;
   width: 2.2rem;
   margin: 2px;
   {# padding: 2px 5px; #}
   text-align: center;
+}
+.week-inner {
+  {# display: flex;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; #}
+  width: 100%;
+  {# flex-direction: column; #}
 }
 .week--birthday {
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -93,7 +103,7 @@ start_day: 11
           {% set specific_date = (specific_date + day_modifier) | simpleDateFromSeconds %}
           {% if specific_date < next_year %}
             {% for event in lifeInWeeks[specific_date] %}
-              {{ event.name }}
+              <span{% if event.desc %} data-toggle="popover" data-tippy-content="{{ event.desc }}"{% endif %} class="week-inner">{{ event.name }}</span>
               {# <a {% if event.link %}href="{{ event.link }}" {% endif %} target="_new" {% if event.desc %}data-toggle="popover" data-placement="auto" {% endif %}title="{{ specific_date }}" data-trigger="hover" data-content="{{ event.desc }}">{{ event.name }}</a> #}
             {% endfor %}
           {% endif %}{# if specific_date < next_year #}
