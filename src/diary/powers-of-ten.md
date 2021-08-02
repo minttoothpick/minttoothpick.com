@@ -10,11 +10,13 @@ tags:
 ---
 <figure>
 
-![](images/powers-of-ten.jpg)
+{# ![](images/powers-of-ten.jpg) #}
+
+{% image "./src/images/powers-of-ten.jpg", "Two tiny plastic human figures lying on a picnic blanket on the leaf of a houseplant" %}
 
 <figcaption>
 
-<!-- If [*Powers of Ten*](https://vimeo.com/220494102) started out 160× smaller -->
+{# If [*Powers of Ten*](https://vimeo.com/220494102) started out 160× smaller #}
 
 [Watch the original *Powers of Ten*](https://vimeo.com/220494102)
 

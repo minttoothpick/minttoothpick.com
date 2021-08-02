@@ -11,7 +11,9 @@ I watched the documentary *Rivers and Tides: Working with Time,* about artist An
 
 <figure>
 
-![](images/total-control-can-be-the-death-of-a-work.jpg)
+{# ![](images/total-control-can-be-the-death-of-a-work.jpg) #}
+
+{% image "./src/images/total-control-can-be-the-death-of-a-work.jpg", "Two stills from the film Rivers and Tides: a close up of a hand holding a rock, and a medium shot of Goldsworthy assembling a hanging lattice of reeds" %}
 
 <figcaption>
 

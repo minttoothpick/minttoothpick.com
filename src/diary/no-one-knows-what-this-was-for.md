@@ -8,7 +8,9 @@ tags:
 ---
 <figure>
 
-![](images/no-one-knows-what-this-was-for.jpg)
+{# ![](images/no-one-knows-what-this-was-for.jpg) #}
+
+{% image "./src/images/no-one-knows-what-this-was-for.jpg", "" %}
 
 <figcaption>
 

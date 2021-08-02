@@ -8,12 +8,8 @@ tags:
 ---
 <figure>
 
-![](images/emphasis-mine.jpg)
+{# ![](images/emphasis-mine.jpg) #}
 
-<!-- <figcaption>
-
-
-
-</figcaption> -->
+{% image "./src/images/emphasis-mine.jpg", "" %}
 
 </figure>

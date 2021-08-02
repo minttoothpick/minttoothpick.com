@@ -8,12 +8,7 @@ tags:
 ---
 <figure class="full-bleed">
 
-![Forty poorly-drawn self portraits](images/forty-self-portraits.jpg)
+{# ![Forty poorly-drawn self portraits](images/forty-self-portraits.jpg) #}
 
-<!-- <figcaption>
-
-
-
-</figcaption> -->
-
+{% image "./src/images/forty-self-portraits.jpg", "Forty poorly-drawn self portraits" %}
 </figure>

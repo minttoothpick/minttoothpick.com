@@ -8,12 +8,8 @@ tags:
 ---
 <figure>
 
-![](images/a-fifth-attempt-at-certainty.jpg)
+{# ![](images/a-fifth-attempt-at-certainty.jpg) #}
 
-<!-- <figcaption>
-
-*“No one knows what this was for.”*
-
-</figcaption> -->
+{% image "./src/images/a-fifth-attempt-at-certainty.jpg", "" %}
 
 </figure>

@@ -8,6 +8,8 @@ tags:
 ---
 <figure class="full-bleed">
 
-![](images/may-gwens.jpg)
+{# ![](images/may-gwens.jpg) #}
+
+{% image "./src/images/may-gwens.jpg", "" %}
 
 </figure>
