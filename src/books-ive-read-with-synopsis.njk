@@ -9,7 +9,7 @@ title: Booooks
 
 </section>
 
-<section class="Grid Article space-items-xl">
+<section class="Grid Article space-items-xl mt-xl">
 
   {%- for book in collections.booksRead -%}
     {# {%- if loop.first -%}<ul class="list-unstyled" style="">{%- endif -%} #}
@@ -24,7 +24,7 @@ title: Booooks
             {%- endif -%}{# check for drawing #}
             <figcaption class="space-items-base">
               <h2><i>{{ book.gsx$title.$t }}</i></h2>
-              <p class="text-muted mt-xxs">{{ book.gsx$author.$t }}</p>
+              <p class="text-muted mt-xxs">{{ book.gsx$author.$t | formatAuthor }}</p>
               {%- if book.gsx$text.$t -%}{{ book.gsx$text.$t | markdown | safe }}{%- endif -%}
             </figcaption>
           </figure>

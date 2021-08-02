@@ -13,7 +13,7 @@ title: Books I've Read
   #}
   {% for book in collections.booksReading %}
     {% if loop.first %}<h2>What I'm reading now</h2><ol class="mt-0" reversed>{% endif %}
-    <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t }}</li>
+    <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
     {% if loop.last %}</ol>{% endif %}
   {% endfor %}
 
