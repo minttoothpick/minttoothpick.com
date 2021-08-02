@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Image test
+---
+{# <img src="/images/powers-of-ten.jpg" alt=""> #}
+
+{# {% image "./_site/images/creepy-mall.jpg", "math is hard", "(min-width: 30em) 100vw, 100vw" %} #}
+{% image "./src/images/book.jpg", "photo of my cat" %}
+<div id="imgLogger" style="position: fixed; background: rgba(0,0,0,0.5); color: white; padding: 0.25em; bottom: 20px; right: 20px;">Hello I am the logger!</div>
+<script>
+(function() {
+  var currentSrc, oldSrc, imgEl;
+  var showPicSrc = function() {
+    oldSrc     = currentSrc;
+    imgEl      = document.querySelectorAll('img')[0];
+    currentSrc = imgEl.currentSrc || imgEl.src;
+
+    if (typeof oldSrc === 'undefined' || oldSrc !== currentSrc) {
+      document.getElementById('imgLogger').innerHTML = currentSrc;
+    }
+  };
+
+  // You may wish to debounce resize if you have performance concerns
+  window.addEventListener('resize', showPicSrc);
+  window.addEventListener('load', showPicSrc);
+})(window);
+</script>
