@@ -206,6 +206,11 @@ a {
   text-decoration: none;
 }
 
+.Site-header .active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* TODO: Need a way to check path fragment so Diary highlights at diary/post */
 /* .Site-header a.active {
   text-decoration: underline;
@@ -256,6 +261,14 @@ a {
 /* Because markdown-it wraps images in paragraphs... */
 .Article figure > p {
   max-width: initial;
+}
+
+.Article ul {
+  padding-left: 1rem;
+}
+
+.Article ul {
+  list-style-type: "– ";
 }
 
 /* Grid (https://cloudfour.com/thinks/breaking-out-with-css-grid-layout/)
@@ -389,7 +402,7 @@ a {
 }
 
 .BooksSubmenu .active {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 /* Utilities
@@ -410,12 +423,17 @@ a {
 }
 
 .list-unstyled {
-  list-style: none;
-  padding-left: 0;
+  list-style: none !important;
+  padding-left: 0 !important;
 }
 
 .text-muted {
   color: var(--color-gray-md);
+}
+
+.h-sm {
+  font-size: inherit;
+  font-weight: 700;
 }
 
 .ratio {
