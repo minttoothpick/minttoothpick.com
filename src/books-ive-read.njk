@@ -7,25 +7,31 @@ title: Books I've Read
   {% include "snippets/books-submenu.njk" %}
 
   {#
-  # 2. Making the books data into a collection
+  # Making the books data into a collection
   #
   # https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
   #}
-  {% for book in collections.booksReading %}
-    {% if loop.first %}<h2>What I'm reading now</h2><ol class="mt-0" reversed>{% endif %}
+  {# {% for book in collections.booksReading %}
+    {% if loop.first %}<h2 class="h-sm">What I'm reading now</h2><ul class="mt-base" reversed>{% endif %}
     <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
-    {% if loop.last %}</ol>{% endif %}
-  {% endfor %}
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %} #}
 
-  {#
-  # 1. Simple list of books from Google Sheets JSON
-  #}
-  {# {% if books.items | length %}
-    {% for book in books.items %}
-      {% if loop.first %}<ol reversed>{% endif %}
-      <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t }}</li>
-      {% if loop.last %}</ol>{% endif %}
-    {% endfor %}
-  {% endif %} #}
+  {% set currentYear = "" %}
+  {% for book in collections.booksRead %}
+    {% set bookFinishYear = book.gsx$finishdate.$t %}
+    {% if currentYear != bookFinishYear %}
+      {% set currentYear = bookFinishYear %}
+      {% if loop.first %}
+        {# <h2 class="h-sm">What I've read in the past</h2> #}
+      {% else %}
+        </ul>
+      {% endif %}
+      <h2 class="h-sm">{{ bookFinishYear }}</h2>
+      <ul class="mt-base" reversed>
+    {% endif %}
+    <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
 
 </section>
