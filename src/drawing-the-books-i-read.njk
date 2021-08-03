@@ -8,17 +8,18 @@ title: I like to read books
 </style>
 <section class="Grid Article space-items-lg">
   <h1>{{ title }}</h1>
-  <p>I’ve been drawing the books I read (or listen to) since the beginning of 2020. You can <a href="/books-ive-read/">view my reading list as plain text</a> if loading all these images is an issue.</p>
+  {# <p>I’ve been drawing the books I read (or listen to) since the beginning of 2020. You can <a href="/books-ive-read/">view my reading list as plain text</a> if loading all these images is an issue.</p> #}
   {% include "snippets/books-submenu.njk" %}
 </section>
 
 {# <h2>Flex version</h2> #}
-<section style="display: flex; flex-wrap: wrap; align-items: flex-end; max-width: 90%; margin-left: auto; margin-right: auto; position: relative;">
+<section class="mt-lg" style="display: flex; flex-wrap: wrap; align-items: flex-end; max-width: 90%; margin-left: auto; margin-right: auto; position: relative;">
   {%- set currentYear = "" -%}
   {%- for book in collections.booksRead -%}
     {%- if book.gsx$finishdate.$t != currentYear -%}
       {%- set currentYear = book.gsx$finishdate.$t -%}
-      {# <h2 style="">{{ book.gsx$finishdate.$t }}</h2> #}
+      {# {{ currentYear | dump }} #}
+      <h2 style="flex: 0 0 100%;">{{ book.gsx$finishdate.$t }}</h2>
     {%- endif -%}
     {# See if the spreadsheet says this book has a drawing #}
     {%- if book.gsx$drawing.$t == "TRUE" -%}
@@ -29,7 +30,8 @@ title: I like to read books
       {%- set widthPx -%}{{ book.gsx$width.$t }}{%- endset -%}
       {# {%- set width -%}{{ (book.gsx$width.$t * 17) }}{%- endset -%} #}
       {# Percentage calculation #}
-      {%- set widthPercent -%}{{ ((book.gsx$width.$t * 1) + 3) | round(0, "ceil") }}{%- endset -%}
+      {%- set widthPercent = book.gsx$width.$t | int -%}
+      {# {%- set widthPercent = widthPercent + 3 -%} #}
       <style>
       .book { padding-right: 0.5em; }
       .book--px.book-{{ loop.index }} {
@@ -57,25 +59,19 @@ title: I like to read books
           width: {{ widthPercent }}%;
         }
       }
-      {#- @media (min-width: 650px) {
-        .book--percent.book-{{ loop.index }} {
-          width: calc({{ widthPercent }} * 2%);
-        }
-      } #}
       @media (min-width: 1000px) {
         .book { padding-right: 1em; }
         .book--px.book-{{ loop.index }} {
           width: calc({{ widthPx }} * 17px);
         }
         .book--percent.book-{{ loop.index }} {
-          width: {{ widthPercent }}%;
+          width: calc(({{ widthPercent }} + 3) * 1%);
         }
       }
-      {#- Then just set a max-width on the container so they don't get *too* big. #}
       </style>
       <figure class="book book--percent book-{{ loop.index }}">
         <!-- {{ widthPercent }} -->
-        <img alt="{{ bookTitle }}" src="{{ imgSrc | url | safe }}">
+        <img alt="Drawing of “{{ book.gsx$title.$t }}”" src="{{ imgSrc | url | safe }}">
       </figure>
     {%- endif -%}
   {% endfor %}
