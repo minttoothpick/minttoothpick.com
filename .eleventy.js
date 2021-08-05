@@ -25,7 +25,7 @@ const Image = require("@11ty/eleventy-img");
 
 
 // This one's from https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
-async function imageShortcode(src, alt, sizes="680") {
+async function imageShortcode(src, alt, cls="", sizes="680") {
   let metadata = await Image(src, {
     // Actual widths generated
     widths: [680, 2000, null],
@@ -47,6 +47,7 @@ async function imageShortcode(src, alt, sizes="680") {
     sizes,
     loading: "lazy",
     decoding: "async",
+    class: cls,
   }
 
   return Image.generateHTML(metadata, imageAttributes, {
