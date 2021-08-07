@@ -3,7 +3,6 @@
   --size-xs: 0.5rem;
   --size-sm: 0.8rem;
   --size-base: 1rem;
-  /* --size-md: 1.2em; */
   --size-md: 1.5rem;
   --size-lg: 2rem;
   --size-xl: 5rem;
@@ -67,8 +66,8 @@
 
 * {
   -webkit-font-smoothing: antialiased;
-  /* See features: https://wakamaifondue.com/ */
-  font-feature-settings: "kern" 1,"liga" 1,"onum" 1;
+  /* TODO: See features: https://wakamaifondue.com/ */
+  /* font-feature-settings: "kern" 1,"liga" 1,"onum" 1; */
 }
 
 html {

@@ -43,11 +43,11 @@ async function imageShortcode(src, alt, cls="", sizes="680") {
   });
 
   let imageAttributes = {
+    class: cls,
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
-    class: cls,
   }
 
   return Image.generateHTML(metadata, imageAttributes, {

@@ -11,7 +11,7 @@ Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>is
 
 <figure>
 
-{% image "./src/images/book.jpg", "photo of my cat" %}
+{% image "./src/images/book.jpg", "photo of my cat", "myClass" %}
 
 <figcaption>
 
