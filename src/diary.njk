@@ -6,7 +6,7 @@ layout: layouts/base.njk
 
 <section class="space-items-xl"><!-- Grid -->
 
-  {% for item in collections.posts | reverse %}
+  {% for item in collections.posts | sortByDateCreated | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
     {% endif %}
