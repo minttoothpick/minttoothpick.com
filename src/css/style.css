@@ -235,7 +235,9 @@ a:focus {
   margin-top: var(--size-xl);
 } */
 
-/* That second line is b/c of `script` tags from the lite-youtube-embed plugin */
+/**
+ * That second line is b/c of `script` tags from the lite-youtube-embed plugin
+ */
 .Home .Article header + *,
 .Home .Article header + script + * {
   margin-top: var(--size-lg);
@@ -260,10 +262,21 @@ figure {
   /* margin-top: var(--size-lg); */
 }
 
-/* Because markdown-it wraps images in paragraphs... */
+/**
+ * Because markdown-it wraps images in paragraphs...
+ * #hacking-around-markdown
+ */
 /* .Article  */
-figure > p {
+/* figure > p {
   max-width: initial;
+} */
+
+/**
+ * Remove some extra space due to the MD `img` wrapped in `p`
+ * #hacking-around-markdown
+ */
+figure > p {
+  line-height: 0;
 }
 
 /* .Article  */
@@ -310,6 +323,35 @@ ul {
   .wide {
     grid-column: wide;
   }
+}
+
+/* Make figcaptions align to main grid */
+.Grid figure {
+  display: inherit;
+  grid-column-gap: inherit;
+  grid-template-columns: inherit;
+  grid-column: full;
+}
+
+.Page-about.Grid figure {
+  display: initial;
+}
+
+/* #hacking-around-markdown */
+.Grid figure > p {
+  grid-column: text;
+}
+
+.Grid .wide > p {
+  grid-column: wide;
+}
+
+.Grid .full-bleed > p {
+  grid-column: full;
+}
+
+.Grid figcaption {
+  grid-column: text;
 }
 
 /* Specific pages
