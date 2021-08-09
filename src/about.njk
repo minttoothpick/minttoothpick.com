@@ -4,10 +4,10 @@ title: About Me
 ---
 <div class="Grid Article">
   {# <div class="Grid--aboutPage"> #}
-    <figure style="grid-column: 3 / 4;">
+    <figure style="grid-column: 2 / 4;">
       {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
     </figure>
-    <div style="grid-column: 4 / 6;">
+    <div style="grid-column: 4 / 7;">
       <h1>{{ title }}</h1>
       <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
       {% for book in collections.booksReading %}
@@ -16,7 +16,7 @@ title: About Me
         {% if loop.last %}</ul>{% endif %}
       {% endfor %}
     </div>
-    <aside style="grid-column: 3 / 5;">
+    <aside style="grid-column: 2 / 6;">
       <h2 class="h-sm">A eudaimonic quote I like</h2>
       <blockquote>
         <p>Here is the hardest thing for many people about adulthood: Staying awake. That is, resisting the somnambulance that will grow like weeds over any state of habitual life. You have to actively invite experiences into your life that will interrupt the smallness of your story and the calcifying generalizations you make about the world based on your own private universe.</p>

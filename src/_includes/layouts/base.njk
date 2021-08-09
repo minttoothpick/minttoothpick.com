@@ -12,12 +12,12 @@
 
   <div class="space-items-xl">
 
-    <header class="Site-header constrain-and-center">
-      <em class="Site-logo"><a href="/">{{ site.title }}</a></em>
-      <nav>
-        <ul class="list-unstyled mt-0">
+    <header class="SiteHeader">
+      <nav class="Grid">
+        <ul class="list-unstyled">
+          <li><a href="/">{{ site.title }}</a></li>
           {%- for item in site.navigation %}
-          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
+            <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
           {%- endfor %}
         </ul>
       </nav>

@@ -6,8 +6,7 @@
   --size-md: 1.5rem;
   --size-lg: 2rem;
   --size-xl: 5rem;
-  --width-text: 36rem;
-  --width-wide: 68rem;
+  --width-text: 28rem;
 
   --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
@@ -74,11 +73,23 @@ html {
   background-color: var(--color-bg);
   color: var(--color-black);
   font-family: var(--font-sans);
-  font-size: 20px;
+  font-size: 18px;
   line-height: var(--line-height);
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: 22px;
+  }
 }
 
 /* smaller font size on sm screen */
@@ -86,13 +97,7 @@ html {
 body {
   margin: 0;
   /* padding: var(--size-md) var(--size-lg); */
-  padding: var(--size-base);
-}
-
-@media (min-width: 500px) {
-  body {
-    padding: var(--size-lg);
-  }
+  padding: var(--size-lg);
 }
 
 /* @media (min-width: 700px) {
@@ -174,54 +179,49 @@ hr {
 a {
   color: var(--color-black);
 }
+a:focus {
+  outline: 3px solid orange;
+}
 
 /* Site
    ========================================================================== */
 
-/* TODO: incorporate into .Grid? */
-.constrain-and-center {
-  max-width: calc(var(--width-text) + var(--grid-gap));
-  margin-left: auto;
-  margin-right: auto;
+.SiteHeader ul {
+  margin-top: 0;
+  grid-column: full;
 }
 
-.Site-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-/* This is now a utility class on entire page */
-/* .Site-header + * {
-  margin-top: var(--size-xl);
-} */
-
-.Site-header ul {
-  display: flex;
-  /* margin: 0; */
-}
-
-.Site-header a {
+.SiteHeader a {
   color: var(--color-ink);
   text-decoration: none;
 }
 
-.Site-header .active {
+.SiteHeader li:first-of-type {
+  padding-bottom: var(--size-base);
+}
+
+.SiteHeader li:first-of-type a {
+  font-weight: 700;
+}
+
+.SiteHeader a.active {
   font-weight: 700;
   text-decoration: underline;
 }
 
-/* TODO: Need a way to check path fragment so Diary highlights at diary/post */
-/* .Site-header a.active {
-  text-decoration: underline;
-} */
-
-.Site-header ul a {
-  padding-left: var(--size-md);
-}
-
-.Site-logo {
-  font-style: normal;
-  font-weight: bold;
+@media (min-width: 400px) {
+  .SiteHeader ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .SiteHeader li:not(:first-of-type) {
+    /* padding-left: var(--size-base); */
+    padding-inline-start: var(--size-base);
+  }
+  .SiteHeader li:first-of-type {
+    margin-right: auto;
+    padding-bottom: 0;
+  }
 }
 
 /* Articles
@@ -245,147 +245,71 @@ a {
   font-size: var(--size-lg);
 } */
 
-.Article h1 {
+/* .Article  */
+h1 {
   margin-top: 5px;
 }
 
-.Article p {
-  max-width: 70ch;
+/* .Article  */
+p {
+  /* max-width: 70ch; */
 }
 
-.Article figure {
+/* .Article  */
+figure {
   /* margin-top: var(--size-lg); */
 }
 
 /* Because markdown-it wraps images in paragraphs... */
-.Article figure > p {
+/* .Article  */
+figure > p {
   max-width: initial;
 }
 
-.Article ul {
+/* .Article  */
+ol,
+ul {
   padding-left: 1rem;
 }
 
-.Article ul {
+/* .Article  */
+ul {
   list-style-type: "– ";
 }
 
 /* Grid (https://cloudfour.com/thinks/breaking-out-with-css-grid-layout/)
    ========================================================================== */
 
-@media (min-width: 800px) {
-  .Grid {
-    display: grid;
-    grid-column-gap: var(--grid-gap);
-    grid-template-columns:
-      [full-start] minmax(1em, 1fr)
-      [wide-start] minmax(1em, 1fr)
-      /* [text-start] minmax(0, var(--width-text)) [text-end] */
-      [text-start] repeat(2, calc(var(--width-text)/2)) [text-end]
-      minmax(1em, 1fr) [wide-end]
-      minmax(1em, 1fr) [full-end];
-  }
+.Grid {
+  display: grid;
+  grid-column-gap: var(--grid-gap);
+  grid-template-columns:
+    [full-start] minmax(0, calc(var(--width-text)/2))
+    [wide-start] minmax(0, calc(var(--width-text)/2))
+    /* 100% wide with a maximum of 34rem */
+    /* [text-start] min(100%, 34rem) [text-end] */
+    [text-start] repeat(4, min(25%, calc(var(--width-text)/4))) [text-end]
+    minmax(0, calc(var(--width-text)/2)) [wide-end]
+    minmax(0, calc(var(--width-text)/2)) [full-end];
 }
 
+/* By default, put everything in the text column */
 .Grid > * {
   grid-column: text;
 }
 
-.Grid > .full-bleed {
+.full-bleed,
+.wide {
   grid-column: full;
+  /* width: 100%; */
+  /* max-width: 36rem; */
+  justify-self: center;
 }
 
-@media (min-width: 800px) {
-  .Grid > .wide {
+@media (min-width: 1000px) {
+  .wide {
     grid-column: wide;
   }
-}
-
-@media (min-width: 800px) {
-  .Grid--mediaObj {
-    display: grid;
-    grid-column-gap: var(--grid-gap);
-    grid-template-columns:
-      [media] minmax(150px, 250px)
-      [text] 1fr;
-  }
-  .Grid--mediaObj > img {
-    grid-column: media;
-  }
-  .Grid--mediaObj > figcaption {
-    grid-column: text;
-  }
-}
-
-@media (min-width: 800px) {
-  .Grid--aboutPage {
-    display: grid;
-    grid-column: wide;
-    grid-column-gap: var(--grid-gap);
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* .Grid > .item-fullBleed {
-  display: grid;
-  grid-template-columns: inherit;
-  grid-column: text;
-} */
-/* .Grid > .item-fullBleed > * {
-  display: grid;
-  grid-template-columns: inherit;
-  grid-column: full;
-} */
-
-/**
- * Wide version
- */
-
-/* TODO */
-/* .Grid > * + * {
-  margin-top: var(--size-md);
-} */
-
-.Grid--wide > figure {
-  display: inherit;
-  grid-column: full;
-  grid-template-columns: inherit;
-}
-
-.Grid--wide > figure > div {
-  grid-column: wide;
-}
-
-.Grid--wide figcaption {
-  grid-column: text;
-}
-
-/**
- * Markdown-it wraps the `img` in a `p`...
- */
-.Grid--wide figure > p {
-  margin: 0;
-}
-
-.Grid--wide figure > p {
-  display: inherit;
-  grid-column: inherit;
-  grid-template-columns: inherit;
-}
-
-.Grid--wide figure > p > img,
-.Grid--wide figure > p > iframe {
-  grid-column: wide;
-}
-
-.Grid--wide .full-width > p > img,
-.Grid--wide .full-width > p > iframe {
-  grid-column: full;
-}
-
-.Grid--wide .text-width > p > img,
-.Grid--wide .text-width > p > iframe {
-  grid-column: text;
 }
 
 /* Specific pages

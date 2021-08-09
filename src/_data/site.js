@@ -14,9 +14,13 @@ module.exports = {
       name: "About",
       url: "/about/"
     },
-    // {
-    //   name: "Tags",
-    //   url: "/tags/"
-    // }
+    {
+      name: "Stuff",
+      url: "/stuff/"
+    },
+    {
+      name: "Tags",
+      url: "/tags/"
+    },
   ]
 };
