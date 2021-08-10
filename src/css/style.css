@@ -338,15 +338,19 @@ ul {
 }
 
 /* #hacking-around-markdown */
-.Grid figure > p {
+/* Including `div` elems for vids using `.ratio` */
+.Grid figure > p,
+.Grid figure > div {
   grid-column: text;
 }
 
-.Grid .wide > p {
+.Grid .wide > p,
+.Grid .wide > div {
   grid-column: wide;
 }
 
-.Grid .full-bleed > p {
+.Grid .full-bleed > p,
+.Grid .full-bleed > div {
   grid-column: full;
 }
 
