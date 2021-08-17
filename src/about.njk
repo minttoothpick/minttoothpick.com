@@ -3,28 +3,24 @@ layout: layouts/base.njk
 title: About Me
 ---
 <div class="Grid Article Page-about">
-  {# <div class="Grid--aboutPage"> #}
-    <figure style="grid-column: 2 / 4;">
+  <div class="Grid--inner">
+    {# <figure style="grid-column: 1 / 3;"> #}
+    <figure>
       {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
     </figure>
-    <div style="grid-column: 4 / 7;">
+    {# <div style="grid-column: 3 / 7;"> #}
+    <div>
       <h1>{{ title }}</h1>
-      <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
+      <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
       {% for book in collections.booksReading %}
         {% if loop.first %}<h2 class="h-sm mt-lg">What I'm currently reading</h2><ul>{% endif %}
         <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
         {% if loop.last %}</ul>{% endif %}
       {% endfor %}
     </div>
-    <aside style="grid-column: 2 / 6;">
-      <h2 class="h-sm">A eudaimonic quote I like</h2>
-      <blockquote>
-        <p>Here is the hardest thing for many people about adulthood: Staying awake. That is, resisting the somnambulance that will grow like weeds over any state of habitual life. You have to actively invite experiences into your life that will interrupt the smallness of your story and the calcifying generalizations you make about the world based on your own private universe.</p>
-        <cite>— <a href="https://sarahendren.com/2018/03/06/not-in-any-particular-order-and-not-a-gospel-but/">Sarah Hendren, “not in any particular order, and not exactly a gospel, but”</a></cite>
-      </blockquote>
-    </aside>
-  {# </div> #}
+  </div>
 </div>
+<!-- .Article -->
 
 {# <div class="Grid Article space-items-lg">
   <div class="Grid--aboutPage">

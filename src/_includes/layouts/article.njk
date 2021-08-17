@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="Grid Grid--wide Article space-items-base">
-  <header class="mb-xl">{# TODO: no bottom margins #}
-    <time class="text-muted">{{ page.date | readableDate }}</time>
+<article class="Grid Article flow">
+  <header class="">{# TODO: no bottom margins (mb-xl) #}
     <h1 class="">{{ title }}</h1>
+    <time class="text-muted">{{ page.date | readableDate }}</time>
   </header>
   {{ content | safe }}
 </article>

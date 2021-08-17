@@ -23,7 +23,6 @@ const Image = require("@11ty/eleventy-img");
 //   console.log(stats);
 // })();
 
-
 // This one's from https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
 async function imageShortcode(src, alt, cls="", sizes="680") {
   let metadata = await Image(src, {
@@ -55,8 +54,63 @@ async function imageShortcode(src, alt, cls="", sizes="680") {
   });
 }
 
+/**
+ * Started with: https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
+ *
+ */
+async function imageFigShortcode(src, alt, figureClass="", figcaption="", sizes="680") {
+  let metadata = await Image(src, {
+    // Actual widths generated; `null` passes original through as well
+    widths: [680, 2000, null],
+    formats: ["jpeg", "webp"],
+    // What is output in HTML `src` and `srcset`
+    urlPath: "/images/",
+    // Where the generated files go
+    outputDir: "./_site/images/",
+    // Use original filename instead of hash
+    filenameFormat: function(id, src, width, format, options) {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}-${width}w.${format}`;
+    },
+  });
+
+  let imageAttributes = {
+    // class: cls,
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  }
+
+  let figureStrOpen = "<figure";
+  // If the `figureClass` parameter isn't empty, add it to `figure` code
+  if (figureClass.length > 0) {
+    figureStrOpen = `${figureStrOpen} class="${figureClass}">`;
+  } else {
+    figureStrOpen = `${figureStrOpen}>`;
+  }
+
+  // TODO: Yeah, limited to one paragraph... not ideal
+  if (figcaption.length > 0) {
+    figcaption = `<figcaption><p>${figcaption}</p></figcaption>`;
+  }
+
+  // TODO: probably a more template-y way to refactor, using just `figureString` w/ `myImg` injected in the middle?
+
+  // console.log(Image.generateHTML(metadata, imageAttributes));
+
+  let myImg = Image.generateHTML(metadata, imageAttributes, {
+    whitespaceMode: "inline"
+  });
+
+  // Switch statements to choose sizes, based on the class?
+
+  return `${figureStrOpen}${myImg}${figcaption}</figure>`;
+}
+
 // Slightly different, from https://github.com/11ty/eleventy-img/issues/66
-async function imageShortcode2(src, alt, sizes=[680, 800, 1200]) {
+async function imageShortcodeALT(src, alt, sizes=[680, 800, 1200]) {
   let metadata = await Image(src, {
     widths: sizes,
     formats: ["avif", "webp", "jpeg"],
@@ -92,6 +146,7 @@ async function imageShortcode2(src, alt, sizes=[680, 800, 1200]) {
 module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode("imageFig", imageFigShortcode);
 
   /**
    * Merge all tags

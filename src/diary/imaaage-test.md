@@ -9,12 +9,19 @@ tags:
 ---
 Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>isicing elit. Quam suscipit nu<span style="color:red;">\*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat.
 
+{% imageFig "./src/images/book.jpg", "Alt", "", "Shortcode generating a text-width figure" %}
+
+{% imageFig "./src/images/book.jpg", "Alt2", "wide", "Shortcode generating a wide figure" %}
+
+{% imageFig "./src/images/book.jpg", "Alt3", "full-bleed", "This one is a full-bleed figure" %}
+
 <!-- {% image "./src/images/book.jpg", "photo of my cat", "" %}
 
 {% image "./src/images/book.jpg", "photo of my cat", "wide" %}
 
 {% image "./src/images/book.jpg", "photo of my cat", "full-bleed" %} -->
 
+{#
 <figure>
 
 {% image "./src/images/book.jpg", "photo of my cat", "myClass" %}
@@ -50,3 +57,4 @@ Something3
 </figcaption>
 
 </figure>
+#}

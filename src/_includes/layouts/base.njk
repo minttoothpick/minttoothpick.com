@@ -23,13 +23,12 @@
       </nav>
     </header>
 
-    {# <main class="space-items-lg"> #}
-    <main{% if pageClass %} class="{{ pageClass }}"{% endif %}>
+    <main class="{% if pageClass %}{{ pageClass }} {% endif %}space-items-xl">
       {{ content | safe }}
     </main>
 
-    <footer class="constrain-and-center border-top">
-      <p class="mt-lg">{# ⟢ Made by Jeremy Robert Jones in 2021.&nbsp;&nbsp; #}⟢ 2021. There will be more here soon.</p>
+    <footer class="SiteFooter Grid">
+      <p class="border-top" style="padding-top: calc(var(--size-lg) * 2);">⟢ 2021. Thanks for visiting my site!</p>
     </footer>
 
   </div>

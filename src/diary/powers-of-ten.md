@@ -8,18 +8,6 @@ tags:
   - things-i-made
   - photo
 ---
-<figure>
+{% imageFig "./src/images/powers-of-ten.jpg", "Two tiny plastic human figures lying on a picnic blanket on the leaf of a houseplant" %}
 
-{# ![](images/powers-of-ten.jpg) #}
-
-{% image "./src/images/powers-of-ten.jpg", "Two tiny plastic human figures lying on a picnic blanket on the leaf of a houseplant" %}
-
-<figcaption>
-
-{# If [*Powers of Ten*](https://vimeo.com/220494102) started out 160× smaller #}
-
-[Watch the original *Powers of Ten*](https://vimeo.com/220494102)
-
-</figcaption>
-
-</figure>
+[Watch the original *Powers of Ten* here](https://vimeo.com/220494102)

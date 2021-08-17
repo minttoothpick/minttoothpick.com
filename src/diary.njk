@@ -4,7 +4,7 @@ layout: layouts/base.njk
 ---
 {# <h1 class="constrain-and-center" style="font-size: 5em;">{{ title }}</h1> #}
 
-<section class="space-items-xl"><!-- Grid -->
+{# <section class="space-items-xl"><!-- Grid --> #}
 
   {% for item in collections.posts | sortByDateCreated | reverse %}
     {% if item.data.status != "draft" %}
@@ -12,4 +12,4 @@ layout: layouts/base.njk
     {% endif %}
   {% endfor %}
 
-</section>
+{# </section> #}
