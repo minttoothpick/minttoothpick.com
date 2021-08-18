@@ -272,6 +272,10 @@ figcaption {
     /* [text-start] repeat(4, minmax(auto, 14ch)) [text-end] */
     minmax(0, 28ch) [wide-end]
     minmax(0, 28ch) [full-end];
+  /* TODO: Test this with images only being generated at like 2000px max */
+  max-width: max-content;
+  margin-inline: auto;
+  /* background-color: blue; */
 }
 
 /* By default, put everything in the text column */
@@ -302,20 +306,19 @@ figcaption {
 }
 
 /* On smaller screens, `wide` and `full-bleed` should be equal */
-.Grid > .full-bleed,
-.Grid > .wide {
+.Grid > .full-bleed > *:not(figcaption),
+.Grid > .wide > *:not(figcaption) {
   grid-column: full;
-  justify-self: center;
 }
 
 /* When the screen is wider, let `wide` get narrower (I know, right?) */
 @media (min-width: 1000px) {
-  .Grid .wide {
+  /* .Grid > .wide > * {
     grid-column: wide;
-  }
+  } */
 
-  .Grid--inner {
-
+  .Grid > .wide > *:not(figcaption) {
+    grid-column: wide;
   }
 }
 
@@ -324,21 +327,19 @@ figcaption {
   grid-column: text;
 }
 
-.Grid > .wide > *:not(figcaption) {
-  grid-column: wide;
-}
 
-.Grid > .full-bleed > *:not(figcaption) {
+
+/* .Grid > .full-bleed > *:not(figcaption) {
   grid-column: full;
-}
+} */
 
 .Grid > figure > figcaption {
   grid-column: text;
 }
 
-.Page-about.Grid figure {
+/* .Page-about.Grid figure {
   display: initial;
-}
+} */
 
 /* Specific pages
    ========================================================================== */
