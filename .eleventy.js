@@ -240,6 +240,8 @@ module.exports = function(eleventyConfig) {
 
   /**
    * Finished books
+   *
+   * https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
    */
     eleventyConfig.addCollection("booksRead", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
@@ -248,7 +250,7 @@ module.exports = function(eleventyConfig) {
     const myBooksFiltered = myBooks.filter((d) => ((d.c[7]) && ((d.c[7].f).length > 0) && ((d.c[7].f).length > 0) && (d.c[7].f) != "Reading") && ((d.c[7].f) != "Shelved") && ((d.c[7].f) != "0"));
     // Sort books by date finished
     // return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
-    return myBooksFiltered.sort((a, b) => (b.c[7].f) > (a.c[7].f) ? 1 : -1);
+    return myBooksFiltered.sort((a, b) => (b.c[7].m) > (a.c[7].m) ? 1 : -1);
   });
 
   /**
