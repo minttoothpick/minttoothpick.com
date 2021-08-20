@@ -23,7 +23,7 @@
       </nav>
     </header>
 
-    <main class="{% if pageClass %}{{ pageClass }} {% endif %}space-items-xl">
+    <main class="Page {% if pageClass %}{{ pageClass }} {% endif %}space-items-xl" style="--size-xl: 10rem;">
       {{ content | safe }}
     </main>
 

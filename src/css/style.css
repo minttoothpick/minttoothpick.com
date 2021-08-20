@@ -8,6 +8,9 @@
   --size-xl: 5rem;
   --width-text: 28rem;
 
+  --padding: var(--size-md);
+  --text-measure: 54ch;
+
   --flow-space: var(--size-md);
 
   --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -241,105 +244,59 @@ a {
 ol,
 ul {
   padding-left: var(--size-base);
+  margin-bottom: 0;
 }
 
 ul {
   list-style-type: "– ";
 }
 
+/* li:not(:first-of-type) {
+  margin-top: var(--size-sm);
+} */
+
 figcaption {
   margin-top: var(--size-sm);
 }
 
-/* Grid (https://cloudfour.com/thinks/breaking-out-with-css-grid-layout/)
+/* Grid
    ========================================================================== */
 
 .Grid {
   display: grid;
-  grid-column-gap: var(--grid-gap);
-  grid-column-gap: minmax(0, 1.75ch);
-  grid-column-gap: 1.75ch;
-  grid-column-gap: 0;
   grid-template-columns:
-    [full-start] minmax(0, 28ch)
-    [wide-start] minmax(0, 28ch)
-    /* 100% wide with a maximum of 34rem */
-    /* [text-start] min(100%, 34rem) [text-end] */
-    /* I can't use `min(1fr, ...)` */
-    /* `min(calc(25% - var(--grid-gap))` doesn't do anything either. */
-    /* But `min(calc(25% - 1rem))` does... */
-    [text-start] repeat(4, min(25%, 14ch)) [text-end]
-    /* [text-start] repeat(4, minmax(auto, 14ch)) [text-end] */
-    minmax(0, 28ch) [wide-end]
-    minmax(0, 28ch) [full-end];
-  /* TODO: Test this with images only being generated at like 2000px max */
-  max-width: max-content;
+    [full-start] minmax(var(--padding), 1fr)
+    [text-start] minmax(auto, var(--text-measure)) [text-end]
+    minmax(var(--padding), 1fr) [full-end];
   margin-inline: auto;
-  /* background-color: blue; */
+  max-width: calc(var(--text-measure) * 2);
 }
 
-/* By default, put everything in the text column */
+/* .Grid > *:not(.wide) { */
 .Grid > * {
-  grid-column: text;
+  grid-column: 2;
 }
 
-/* TODO: This is... not the best. What happens if you have this underneath the regular grid? It's not gonna span or match up perfectly. */
-.Grid--inner {
+.Grid > figure {
   display: inherit;
-  grid-column-gap: var(--grid-gap);
-  /* grid-template-columns: repeat(6, minmax(auto, 14ch)); */
-  grid-template-columns: 1fr 2fr;
-  max-width: 84ch;
-  grid-column: wide;
-  justify-self: center;
-}
-
-/**
- * Make figcaptions align to main grid
- */
- .Grid > figure {
-  display: inherit;
-  grid-column-gap: inherit;
   grid-template-columns: inherit;
   grid-column: full;
+  gap: inherit;
   justify-self: center;
 }
 
-/* On smaller screens, `wide` and `full-bleed` should be equal */
+.Grid > figure > * {
+  grid-column: 2;
+}
+
 .Grid > .full-bleed > *:not(figcaption),
 .Grid > .wide > *:not(figcaption) {
   grid-column: full;
 }
 
-/* When the screen is wider, let `wide` get narrower (I know, right?) */
-@media (min-width: 1000px) {
-  /* .Grid > .wide > * {
-    grid-column: wide;
-  } */
-
-  .Grid > .wide > *:not(figcaption) {
-    grid-column: wide;
-  }
+.Grid figcaption {
+  grid-column: 2;
 }
-
-/* These work w/ my shortcode (i.e., no wrapping paragraph) */
-.Grid > figure > * {
-  grid-column: text;
-}
-
-
-
-/* .Grid > .full-bleed > *:not(figcaption) {
-  grid-column: full;
-} */
-
-.Grid > figure > figcaption {
-  grid-column: text;
-}
-
-/* .Page-about.Grid figure {
-  display: initial;
-} */
 
 /* Specific pages
    ========================================================================== */

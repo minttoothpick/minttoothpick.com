@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 title: About Me
+pageClass: Page--about
 ---
 <div class="Grid Article Page-about">
   <div class="Grid--inner">
@@ -12,11 +13,7 @@ title: About Me
     <div>
       <h1>{{ title }}</h1>
       <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
-      {% for book in collections.booksReading %}
-        {% if loop.first %}<h2 class="h-sm mt-lg">What I'm currently reading</h2><ul>{% endif %}
-        <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
-        {% if loop.last %}</ul>{% endif %}
-      {% endfor %}
+      {% include "snippets/books-reading-list.njk" %}
     </div>
   </div>
 </div>

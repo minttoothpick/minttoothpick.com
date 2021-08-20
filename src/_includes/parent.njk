@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+<section class="Grid Article space-items-lg">
+  <h1>{{ title }}</h1>
+  {% block intro %}
+    <p>Default intro content.</p>
+  {% endblock %}
+</section>
+
+{% block content %}
+<section class="Grid Article space-items-lg">
+  <p>Default body content.</p>
+</section>
+{% endblock %}

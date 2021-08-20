@@ -241,23 +241,28 @@ module.exports = function(eleventyConfig) {
   /**
    * Finished books
    */
-  eleventyConfig.addCollection("booksRead", (collection) => {
+    eleventyConfig.addCollection("booksRead", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
     // Include only books with a finish date
-    const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
+    // const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
+    const myBooksFiltered = myBooks.filter((d) => ((d.c[7]) && ((d.c[7].f).length > 0) && ((d.c[7].f).length > 0) && (d.c[7].f) != "Reading") && ((d.c[7].f) != "Shelved") && ((d.c[7].f) != "0"));
     // Sort books by date finished
-    return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
+    // return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
+    return myBooksFiltered.sort((a, b) => (b.c[7].f) > (a.c[7].f) ? 1 : -1);
   });
 
   /**
    * Books in progress
    */
-  eleventyConfig.addCollection("booksReading", (collection) => {
+   eleventyConfig.addCollection("booksReading", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
     // Include only books currently marked "Reading"
-    const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
+    // const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
+    // (changed to "0" in next col over w/ new API)
+    const myBooksFiltered = myBooks.filter((d) => ((d.c[8]) && ((d.c[8].f)) == "0"));
     // Sort books by date started
-    return myBooksFiltered.sort((a, b) => (b.gsx$start.$t) > (a.gsx$start.$t) ? 1 : -1);
+    // return myBooksFiltered.sort((a, b) => (b.gsx$start.$t) > (a.gsx$start.$t) ? 1 : -1);
+    return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
   });
 
   /* Plugins
