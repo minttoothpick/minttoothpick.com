@@ -1,21 +1,11 @@
 ---
 layout: layouts/base.njk
-title: Books I've Read
+title: I like to read books
 ---
 <section class="Grid Article space-items-lg">
-  <h1>Books I've Read</h1>
-  {% include "snippets/books-submenu.njk" %}
+  <h1>{{ title }}</h1>
 
-  {#
-  # Making the books data into a collection
-  #
-  # https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
-  #}
-  {# {% for book in collections.booksReading %}
-    {% if loop.first %}<h2 class="h-sm">What I'm reading now</h2><ul class="mt-base" reversed>{% endif %}
-    <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
-    {% if loop.last %}</ul>{% endif %}
-  {% endfor %} #}
+  {% include "snippets/books-submenu.njk" %}
 
   {% include "snippets/books-reading-list.njk" %}
 

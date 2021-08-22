@@ -5,18 +5,7 @@ pageClass: Page--reading
 ---
 <section class="Grid Article space-items-lg">
   <h1>{{ title }}</h1>
-  {% include "snippets/books-submenu.njk" %}
-
-  {#
-  # Making the books data into a collection
-  #
-  # https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
-  #}
-  {# {% for book in collections.booksReading %}
-    {% if loop.first %}<h2 class="h-sm">What I'm reading now</h2><ul class="mt-base" reversed>{% endif %}
-    <li><i>{{ book.gsx$title.$t }}</i> by {{ book.gsx$author.$t | formatAuthor }}</li>
-    {% if loop.last %}</ul>{% endif %}
-  {% endfor %} #}
+  {# {% include "snippets/books-submenu.njk" %} #}
 
   {% include "snippets/books-reading-list.njk" %}
 
