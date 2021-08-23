@@ -15,11 +15,11 @@ Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>is
 
 {% imageFig "./src/images/book.jpg", "Alt3", "full-bleed", "This one is a full-bleed figure" %}
 
-<!-- {% image "./src/images/book.jpg", "photo of my cat", "" %}
+<!-- {% imageFig "./src/images/book.jpg", "photo of my cat", "" %}
 
-{% image "./src/images/book.jpg", "photo of my cat", "wide" %}
+{% imageFig "./src/images/book.jpg", "photo of my cat", "wide" %}
 
-{% image "./src/images/book.jpg", "photo of my cat", "full-bleed" %} -->
+{% imageFig "./src/images/book.jpg", "photo of my cat", "full-bleed" %} -->
 
 {#
 <figure>

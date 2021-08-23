@@ -6,16 +6,16 @@ tags:
   - collage
   - things-i-made
 ---
-<figure>
+<!-- <figure> -->
 
 {# ![](images/no-one-knows-what-this-was-for.jpg) #}
 
-{% image "./src/images/no-one-knows-what-this-was-for.jpg", "" %}
-
+{% imageFig "./src/images/no-one-knows-what-this-was-for.jpg", "" %}
+<!-- 
 <figcaption>
 
 “No one knows what this was for.”
 
 </figcaption>
 
-</figure>
+</figure> -->

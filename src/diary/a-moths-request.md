@@ -6,8 +6,8 @@ tags:
   - collage
   - things-i-made
 ---
-<figure class="wide">
+<!-- <figure class="wide"> -->
 
-{% image "./src/images/moth-knocking.jpg", "Three close-up photos of a moth, with the text “Excuse me... excuse me. Do you have a lamp I could bump up against?”" %}
+{% imageFig "./src/images/moth-knocking.jpg", "Three close-up photos of a moth, with the text “Excuse me... excuse me. Do you have a lamp I could bump up against?”" %}
 
-</figure>
+<!-- </figure> -->
