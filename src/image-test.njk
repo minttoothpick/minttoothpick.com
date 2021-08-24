@@ -2,10 +2,8 @@
 layout: layouts/base.njk
 title: Image test
 ---
-{# <img src="/images/powers-of-ten.jpg" alt=""> #}
+{% imageFull "./src/images/forty-self-portraits.jpg", "photo of my cat" %}
 
-{# {% image "./_site/images/creepy-mall.jpg", "math is hard", "(min-width: 30em) 100vw, 100vw" %} #}
-{% imageFig "./src/images/book.jpg", "photo of my cat" %}
 <div id="imgLogger" style="position: fixed; background: rgba(0,0,0,0.5); color: white; padding: 0.25em; bottom: 20px; right: 20px;">Hello I am the logger!</div>
 <script>
 (function() {

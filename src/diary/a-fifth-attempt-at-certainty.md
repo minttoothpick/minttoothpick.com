@@ -6,10 +6,4 @@ tags:
   - collage
   - things-i-made
 ---
-<!-- <figure> -->
-
-{# ![](images/a-fifth-attempt-at-certainty.jpg) #}
-
-{% imageFig "./src/images/a-fifth-attempt-at-certainty.jpg", "" %}
-
-<!-- </figure> -->
+{% image "./src/images/a-fifth-attempt-at-certainty.jpg", "" %}

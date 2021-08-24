@@ -6,10 +6,4 @@ tags:
   - collage
   - things-i-made
 ---
-<!-- <figure> -->
-
-{# ![](images/emphasis-mine.jpg) #}
-
-{% imageFig "./src/images/emphasis-mine.jpg", "" %}
-
-<!-- </figure> -->
+{% image "./src/images/emphasis-mine.jpg", "" %}

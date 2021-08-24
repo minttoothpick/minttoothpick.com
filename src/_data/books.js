@@ -10,12 +10,12 @@ const Cache = require("@11ty/eleventy-cache-assets");
 // module.exports = async function() {
 //   let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
 
-//   let text = await Cache(url, {
+//   var text = await Cache(url, {
 //     duration: "1s",
 //     type: "text"
 //   })
 //   .then(text => {
-//     let json = JSON.parse(text.substr(47).slice(0, -2));
+//     var json = JSON.parse(text.substr(47).slice(0, -2));
 //     console.log(json);
 //     return {
 //       items: json.table.rows

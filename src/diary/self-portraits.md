@@ -6,9 +6,4 @@ tags:
   - drawing
   - things-i-made
 ---
-<!-- <figure class="full-bleed"> -->
-
-{# ![Forty poorly-drawn self portraits](images/forty-self-portraits.jpg) #}
-
-{% imageFig "./src/images/forty-self-portraits.jpg", "Forty poorly-drawn self portraits" %}
-<!-- </figure> -->
+{% imageFull "./src/images/forty-self-portraits.jpg", "Forty poorly-drawn self portraits" %}

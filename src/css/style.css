@@ -189,7 +189,8 @@ a {
 
 .SiteHeader ul {
   margin-block: 0;
-  grid-column: text;
+  /* grid-column: text; */
+  grid-column: wide;
 }
 
 .SiteHeader a {
@@ -266,7 +267,9 @@ figcaption {
   display: grid;
   grid-template-columns:
     [full-start] minmax(var(--padding), 1fr)
+    [wide-start] minmax(0, 1fr)
     [text-start] minmax(auto, var(--text-measure)) [text-end]
+    minmax(0, 1fr) [wide-end]
     minmax(var(--padding), 1fr) [full-end];
   margin-inline: auto;
   max-width: calc(var(--text-measure) * 2);
@@ -274,7 +277,7 @@ figcaption {
 
 /* .Grid > *:not(.wide) { */
 .Grid > * {
-  grid-column: 2;
+  grid-column: text;
 }
 
 .Grid > figure {
@@ -286,16 +289,34 @@ figcaption {
 }
 
 .Grid > figure > * {
-  grid-column: 2;
+  grid-column: text;
 }
 
-.Grid > .full-bleed > *:not(figcaption),
+.Grid > .full-width > *:not(figcaption),
 .Grid > .wide > *:not(figcaption) {
   grid-column: full;
 }
 
 .Grid figcaption {
-  grid-column: 2;
+  grid-column: text;
+}
+
+/* .Grid--inner {
+  grid-column: wide;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+} */
+
+.Grid--about {
+  grid-column: wide;
+}
+
+@media (min-width: 600px) {
+  .Grid--about {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: var(--grid-gap);
+  }
 }
 
 /* Specific pages

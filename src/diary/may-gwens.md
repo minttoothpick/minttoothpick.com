@@ -6,10 +6,4 @@ tags:
   - drawing
   - things-i-made
 ---
-<!-- <figure class="full-bleed"> -->
-
-{# ![](images/may-gwens.jpg) #}
-
-{% imageFig "./src/images/may-gwens.jpg", "" %}
-
-<!-- </figure> -->
+{% imageFull "./src/images/may-gwens.jpg", "" %}

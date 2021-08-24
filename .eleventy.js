@@ -7,13 +7,13 @@ const Image = require("@11ty/eleventy-img");
 
 /**
  * Started with: https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
- *
+ * Then added a wrapping `figure` element and whatever else.
  */
-async function imageFigShortcode(src, alt, figureClass="", figcaption="", sizes="680") {
+async function imageShortcode(src, alt, figcaption="", figClass="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)") {
   let metadata = await Image(src, {
     // Actual widths generated; `null` passes original through as well
-    widths: [400, 600, 800, 1000, 1444],
-    formats: ["jpeg", "webp"],
+    widths: [600, 800, 1000, 1444, 1600, 1900],
+    formats: ["jpeg", "avif"],
     // What is output in HTML `src` and `srcset`
     urlPath: "/images/",
     // Where the generated files go
@@ -24,6 +24,9 @@ async function imageFigShortcode(src, alt, figureClass="", figcaption="", sizes=
       const name = path.basename(src, extension);
       return `${name}-${width}w.${format}`;
     },
+    sharpJpegOptions: {
+      quality: 80
+    }
   });
 
   let imageAttributes = {
@@ -35,14 +38,73 @@ async function imageFigShortcode(src, alt, figureClass="", figcaption="", sizes=
   }
 
   let figureStrOpen = "<figure";
-  // If the `figureClass` parameter isn't empty, add it to `figure` code
-  if (figureClass.length > 0) {
-    figureStrOpen = `${figureStrOpen} class="${figureClass}">`;
+  // If the `figClass` parameter isn't empty, add it to `figure` code
+  if (figClass.length > 0) {
+    figureStrOpen = `${figureStrOpen} class="${figClass}">`;
   } else {
     figureStrOpen = `${figureStrOpen}>`;
   }
 
-  // TODO: Yeah, limited to one paragraph... not ideal
+  // TODO: Yeah, limited to one paragraph... not ideal? Or fine?
+  if (figcaption.length > 0) {
+    figcaption = `<figcaption><p>${figcaption}</p></figcaption>`;
+  }
+
+  // TODO: probably a more template-y way to refactor, using just `figureString` w/ `myImg` injected in the middle?
+
+  // console.log(Image.generateHTML(metadata, imageAttributes));
+
+  let myImg = Image.generateHTML(metadata, imageAttributes, {
+    whitespaceMode: "inline"
+  });
+
+  // Switch statements to choose sizes, based on the class?
+
+  return `${figureStrOpen}${myImg}${figcaption}</figure>`;
+}
+
+/**
+ * And here's one for a full-width image... not ideal, b/c obv
+ * we are doubling all the code except for default `figure` class,
+ * and `sizes`... so, TODO: revisit and streamline.
+ */
+async function imageShortcodeFull(src, alt, figcaption="", figClass="full-width", sizes="(min-width: 1492px) 1444px, calc(100vw - 48px)") {
+  let metadata = await Image(src, {
+    // Actual widths generated; `null` passes original through as well
+    widths: [600, 800, 1000, 1444, 1600, 1900, 2200, 2400],
+    formats: ["jpeg", "avif"],
+    // What is output in HTML `src` and `srcset`
+    urlPath: "/images/",
+    // Where the generated files go
+    outputDir: "./_site/images/",
+    // Use original filename instead of hash
+    filenameFormat: function(id, src, width, format, options) {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}-${width}w.${format}`;
+    },
+    sharpJpegOptions: {
+      quality: 80
+    }
+  });
+
+  let imageAttributes = {
+    // class: cls,
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  }
+
+  let figureStrOpen = "<figure";
+  // If the `figClass` parameter isn't empty, add it to `figure` code
+  if (figClass.length > 0) {
+    figureStrOpen = `${figureStrOpen} class="${figClass}">`;
+  } else {
+    figureStrOpen = `${figureStrOpen}>`;
+  }
+
+  // TODO: Yeah, limited to one paragraph... not ideal? Or fine?
   if (figcaption.length > 0) {
     figcaption = `<figcaption><p>${figcaption}</p></figcaption>`;
   }
@@ -62,14 +124,11 @@ async function imageFigShortcode(src, alt, figureClass="", figcaption="", sizes=
 
 module.exports = function(eleventyConfig) {
 
-  eleventyConfig.addNunjucksAsyncShortcode("imageFig", imageFigShortcode);
+  /* Shortcodes
+   ======================================================================== */
 
-  /**
-   * Merge all tags
-   *
-   * https://www.11ty.dev/docs/data-deep-merge/
-   */
-  eleventyConfig.setDataDeepMerge(true);
+   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+   eleventyConfig.addNunjucksAsyncShortcode("imageFull", imageShortcodeFull);
 
   /* Filters
    ======================================================================== */
@@ -159,7 +218,7 @@ module.exports = function(eleventyConfig) {
    *
    * https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
    */
-    eleventyConfig.addCollection("booksRead", (collection) => {
+  eleventyConfig.addCollection("booksRead", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
     // Include only books with a finish date
     // const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
@@ -172,7 +231,7 @@ module.exports = function(eleventyConfig) {
   /**
    * Books in progress
    */
-   eleventyConfig.addCollection("booksReading", (collection) => {
+  eleventyConfig.addCollection("booksReading", (collection) => {
     const myBooks = collection.getAll()[0].data.books.items;
     // Include only books currently marked "Reading"
     // const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
@@ -183,8 +242,9 @@ module.exports = function(eleventyConfig) {
     return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
   });
 
-  /* Plugins
+  /* Markdown
    ======================================================================== */
+
   /**
    * Markdown template processing
    *
@@ -208,6 +268,16 @@ module.exports = function(eleventyConfig) {
   const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
   eleventyConfig.setLibrary("md", markdownLib);
 
+  /* Other options
+   ======================================================================== */
+
+  /**
+   * Merge all tags
+   *
+   * https://www.11ty.dev/docs/data-deep-merge/
+   */
+  eleventyConfig.setDataDeepMerge(true);
+
   /**
    * Add YAML as custom data file format
    *
@@ -216,22 +286,6 @@ module.exports = function(eleventyConfig) {
   const yaml = require("js-yaml");
   eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
 
-  /**
-   * Responsive images
-   *
-   * https://www.npmjs.com/package/eleventy-plugin-images-responsiver
-   */
-  // const imgResp = require('eleventy-plugin-images-responsiver');
-  // eleventyConfig.addPlugin(imgResp);
-
-  /**
-   * Responsive images
-   *
-   * https://www.mahmoudashraf.dev/blog/how-to-optimize-and-lazyloading-images-on-eleventy/
-   */
-
-  /* Misc.
-   ======================================================================== */
   /**
    * Additional folders to copy to output folder
    *
