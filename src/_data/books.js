@@ -24,22 +24,42 @@ const Cache = require("@11ty/eleventy-cache-assets");
 // };
 
 /**
+ * v2.1: new API endpoint, with Cache plugin
+ *
+ * https://stackoverflow.com/questions/68897803/how-can-i-cache-this-call-to-the-google-sheets-api
+ */
+module.exports = async function() {
+  let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
+
+  var text = await Cache(url, {
+    duration: "1d",
+    type: "text"
+  });
+
+  var json = JSON.parse(text.substr(47).slice(0, -2));
+  // console.log(json);
+  return {
+    items: json.table.rows
+  };
+}
+
+/**
  * v2.0: new API endpoint
  *
  * https://benborgers.com/posts/google-sheets-json
  */
-module.exports = async function() {
-  let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
-  console.log("Fetching from Google Sheets...");
-  return await fetch(url)
-    .then(res => res.text()) // node-fetch option to transform to json
-    .then(text => {
-      let json = JSON.parse(text.substr(47).slice(0, -2));
-      return {
-        items: json.table.rows
-      };
-    });
-}
+// module.exports = async function() {
+//   let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
+//   console.log("Fetching from Google Sheets...");
+//   return await fetch(url)
+//     .then(res => res.text()) // node-fetch option to transform to json
+//     .then(text => {
+//       let json = JSON.parse(text.substr(47).slice(0, -2));
+//       return {
+//         items: json.table.rows
+//       };
+//     });
+// }
 
 /**
  * v1.1: old API endpoint w/ 11ty Cache
