@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avo.kitchen grid</title>
+  <style>
+    :root {
+      /**
+       * Sizes
+       */
+      --text-measure: 42.5rem;
+      --container-max-width: 80rem; /* 1280px */
+      --size-0: 1rem; /* 16px */
+      --size-1: 1.25rem; /* 20px */
+      --size-2: 1.5rem; /* 24px */
+      --size-3: 2rem; /* 32px */
+      --size-5: 3rem; /* 48px */
+      --gap: var(--size-3);
+      --grid-gap: 4vw;
+      --space-block: 0.5rem;
+      --space-inline: 0.75rem;
+
+      /**
+       * Colors
+       */
+      --text-muted: rgba(0,0,0,0.65);
+    }
+
+    html { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+    html {
+      font-family: -apple-system, system-ui;
+    }
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+      margin: 0;
+    }
+    picture, img {
+      display: block;
+      max-width: 100%;
+    }
+    img {
+      height: auto;
+    }
+
+    .Grid {
+      display: grid;
+      column-gap: var(--grid-gap);
+      grid-template-columns:
+        [full-start] 0
+        [content-start hang-right-start aside-start extended-start wide-start hang-left-start meta-start] repeat(6, minmax(0, 1fr)) [extended-end wide-end hang-left-end content-end aside-end hang-right-end meta-end]
+        0 [full-end];
+    }
+    .Grid > * {
+      grid-column: content;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="Article">
+      <header class="Article__header gc-extended">
+        <h1 class="Header__title"></h1>
+        <figure class="o-media">
+          <img src="https://dummyimage.com/1986x958/666/fff" alt="" width="1986" height="958">
+        </figure>
+      </header>
+      <div class="Article__body Prose Grid">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio repudiandae inventore magnam accusamus, quibusdam nostrum reiciendis! Quidem a alias non nisi. Explicabo accusamus odit culpa perspiciatis eius quam fugiat ratione.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur magni facere vitae temporibus, aliquam est laborum, beatae aspernatur unde praesentium cumque ab quasi. Esse nisi autem perspiciatis culpa a eveniet.</p>
+        <div class="Prose">
+          <figure class="pull-right">
+            <img src="https://dummyimage.com/450x600/666/fff" alt="" width="450" height="600">
+          </figure>
+        </div>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
