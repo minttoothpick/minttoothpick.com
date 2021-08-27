@@ -5,38 +5,7 @@ pageClass: Page--reading
 ---
 <section class="Grid Article space-items-lg">
   <h1>{{ title }}</h1>
-  {# {% include "snippets/books-submenu.njk" %} #}
 
-  {% include "snippets/books-reading-list.njk" %}
-
-  {% set currentYear = "" %}
-  {% for book in collections.booksRead %}
-    {% set bookSlug = book.c[1].v %}
-    {% set bookTitle = book.c[2].v %}
-    {% set bookAuthor = book.c[3].v %}
-    {% set bookGenre = book.c[4].v %}
-    {% set bookYear = book.c[5].v %}
-    {% set bookStartDate = book.c[6].f %}
-    {% set bookFinishDate = book.c[7].f %}
-    {% set bookFinishYear = book.c[8].v %}
-    {% set bookMedia = book.c[9].v %}
-    {% set bookWidth = book.c[10].v %}
-    {% set bookHeight = book.c[11].v %}
-    {% set hasDrawing = book.c[12].f %}
-    {% set bookVia = book.c[13].v %}
-    {% set bookDesc = book.c[14].v %}
-
-    {% if currentYear != bookFinishYear %}
-      {% set currentYear = bookFinishYear %}
-      {% if loop.first %}
-      {% else %}
-        </ul>
-      {% endif %}
-      <h2 class="h-sm">{{ bookFinishYear }}</h2>
-      <ul>
-    {% endif %}
-    <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
-    {% if loop.last %}</ul>{% endif %}
-  {% endfor %}
+  {% include "snippets/books-submenu.njk" %}
 
 </section>

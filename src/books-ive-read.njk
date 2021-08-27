@@ -2,41 +2,72 @@
 layout: layouts/base.njk
 title: I like to read books
 ---
-<section class="Grid Article space-items-lg">
-  <h1>{{ title }}</h1>
+<section class="Grid space-items-xl">
+  <article class="AnotherGrid space-items-md">
+    <h1>Imagine this is an article</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odio corrupti consequatur est ratione qui alias maiores, eos accusantium repellat? Eius, commodi iusto? Numquam, at aperiam! Dicta voluptatem dolorem dolorum.</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et numquam exercitationem fugiat laudantium aperiam dolorem cum itaque facilis similique aut dignissimos hic quos libero alias, veniam mollitia vero consequuntur maiores!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo officiis nobis fugit sapiente amet quos, labore reprehenderit, recusandae harum neque dolorem soluta adipisci, itaque quam nihil impedit vitae blanditiis? Aperiam?</p>
+  </article>
 
-  {% include "snippets/books-submenu.njk" %}
+  {# <h1>{{ title }}</h1>
+  {% include "snippets/books-submenu.njk" %} #}
 
-  {% include "snippets/books-reading-list.njk" %}
+  <div class="BooksGrid">
 
-  {% set currentYear = "" %}
-  {% for book in collections.booksRead %}
-    {% set bookSlug = book.c[1].v %}
-    {% set bookTitle = book.c[2].v %}
-    {% set bookAuthor = book.c[3].v %}
-    {% set bookGenre = book.c[4].v %}
-    {% set bookYear = book.c[5].v %}
-    {% set bookStartDate = book.c[6].f %}
-    {% set bookFinishDate = book.c[7].f %}
-    {% set bookFinishYear = book.c[8].v %}
-    {% set bookMedia = book.c[9].v %}
-    {% set bookWidth = book.c[10].v %}
-    {% set bookHeight = book.c[11].v %}
-    {% set hasDrawing = book.c[12].f %}
-    {% set bookVia = book.c[13].v %}
-    {% set bookDesc = book.c[14].v %}
+    {# {% include "snippets/books-reading-list.njk" %} #}
+    {% for book in collections.booksReading %}
+      {% set bookSlug = book.c[1].v %}
+      {% set bookTitle = book.c[2].v %}
+      {% set bookAuthor = book.c[3].v %}
+      {% set bookGenre = book.c[4].v %}
+      {% set bookYear = book.c[5].v %}
+      {% set bookStartDate = book.c[6].f %}
+      {% set bookFinishDate = book.c[7].f %}
+      {% set bookFinishYear = book.c[8].v %}
+      {% set bookMedia = book.c[9].v %}
+      {% set bookWidth = book.c[10].v %}
+      {% set bookHeight = book.c[11].v %}
+      {% set hasDrawing = book.c[12].f %}
+      {% set bookVia = book.c[13].v %}
+      {% set bookDesc = book.c[14].v %}
 
-    {% if currentYear != bookFinishYear %}
-      {% set currentYear = bookFinishYear %}
       {% if loop.first %}
-      {% else %}
-        </ul>
+        <h2>What I'm currently reading</h2>
+        <ul class="flow" style="--flow-space: var(--size-xs);">
       {% endif %}
-      <h2 class="h-sm">{{ bookFinishYear }}</h2>
-      <ul>
-    {% endif %}
-    <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
-    {% if loop.last %}</ul>{% endif %}
-  {% endfor %}
+      <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+      {% if loop.last %}</ul>{% endif %}
+    {% endfor %}
 
+
+
+    {% set currentYear = "" %}
+    {% for book in collections.booksRead %}
+      {% set bookSlug = book.c[1].v %}
+      {% set bookTitle = book.c[2].v %}
+      {% set bookAuthor = book.c[3].v %}
+      {% set bookGenre = book.c[4].v %}
+      {% set bookYear = book.c[5].v %}
+      {% set bookStartDate = book.c[6].f %}
+      {% set bookFinishDate = book.c[7].f %}
+      {% set bookFinishYear = book.c[8].v %}
+      {% set bookMedia = book.c[9].v %}
+      {% set bookWidth = book.c[10].v %}
+      {% set bookHeight = book.c[11].v %}
+      {% set hasDrawing = book.c[12].f %}
+      {% set bookVia = book.c[13].v %}
+      {% set bookDesc = book.c[14].v %}
+
+      {% if currentYear != bookFinishYear %}
+        {% set currentYear = bookFinishYear %}
+        {% if loop.first %}{% else %}</ul>{% endif %}
+        <h2>{{ bookFinishYear }}</h2>
+        <ul class="flow" style="--flow-space: var(--size-xs);">
+      {% endif %}
+      <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+      {% if loop.last %}</ul>{% endif %}
+    {% endfor %}
+
+  </div>
 </section>
