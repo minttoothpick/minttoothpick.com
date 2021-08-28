@@ -12,6 +12,7 @@
        */
       --text-measure: 40rem; /* 640px */
       --container-max-width: 80rem; /* 1280px */
+      --size-05: 0.5rem;
       --size-0: 1rem; /* 16px */
       --size-1: 1.25rem; /* 20px */
       --size-2: 1.5rem; /* 24px */
@@ -50,6 +51,7 @@
     dd {
       margin: 0;
     }
+    ul, ol { margin-block-end: 0; }
     picture, img {
       display: block;
       max-width: 100%;
@@ -94,12 +96,12 @@
 
 
 
-    .PageGrid2__container {
+    .PageGrid__container {
       max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
       margin-inline: auto;
       padding-inline: var(--gap);
     }
-    .PageGrid2 {
+    .PageGrid {
       display: grid;
       /* Basically: 100% until screen width=800px, then 80vw */
       grid-template-columns: [content] minmax(min(100%, 800px), 80vw);
@@ -110,10 +112,10 @@
         [content-end];
       /* container-max-width: 80rem */
     }
-    .PageGrid2 > * {
+    .PageGrid > * {
       grid-column: content;
     }
-    /* .PageGrid2 > * + * {
+    /* .PageGrid > * + * {
       margin-block-start: calc(var(--gap) * 4);
     } */
 
@@ -152,7 +154,7 @@
       margin-block-start: calc(var(--gap) * 4) !important;
     }
 
-    .Prose2 {
+    .Prose {
       --flow-space: 1em;
       --list-display: list-item;
       font-size: var(--size-1);
@@ -161,53 +163,54 @@
       hyphens: auto;
       line-height: 1.5;
     }
-    .Prose2--contain > * {
+    .Prose--contain > * {
       max-width: var(--linear-measure);
     }
-    .Prose2 > * {
+    .Prose > * {
       word-break: break-word;
     }
-    .Prose2 * + * {
+    .Prose * + * {
       margin-block-start: var(--flow-space);
     }
-    .Prose2 h2,
-    .Prose2 h3 {
+    .Prose h2,
+    .Prose h3 {
       hanging-punctuation: first;
     }
-    .Prose2 h2 {
+    .Prose h2 {
       --flow-space: 2em;
-      line-height: 1.3;
+      /* line-height: 1.3; */
+      font-size: inherit;
     }
     /* Add extra top margin to a figure following anything else */
-    .Prose2 *:not(h2) + figure {
+    .Prose *:not(h2) + figure {
       /* margin-top: var(--gap); */
       margin-block-start: calc(var(--flow-space) * 2);
     }
     /* ...and to the item after a figure */
-    .Prose2 figure + *:not(h2) {
+    .Prose figure + *:not(h2) {
       /* margin-top: var(--gap); */
       margin-block-start: calc(var(--flow-space) * 2);
     }
-    .Prose2 .align-pull-end,
-    .Prose2 .align-pull-start {
+    .Prose .align-pull-end,
+    .Prose .align-pull-start {
       /* Less margin to make it align with text. */
       margin-top: var(--flow-space);
     }
     /* Remove top margin from heading next to floated fig */
-    .Prose2 .align-end + h2,
-    .Prose2 .align-start + h2,
-    .Prose2 .align-pull-end + h2,
-    .Prose2 .align-pull-start + h2 {
+    .Prose .align-end + h2,
+    .Prose .align-start + h2,
+    .Prose .align-pull-end + h2,
+    .Prose .align-pull-start + h2 {
       margin-top: 0;
     }
     /* Reset extra margin after floated figures */
-    .Prose2 .align-end + *,
-    .Prose2 .align-start + *,
-    .Prose2 .align-pull-end + *,
-    .Prose2 .align-pull-start + * {
+    .Prose .align-end + *,
+    .Prose .align-start + *,
+    .Prose .align-pull-end + *,
+    .Prose .align-pull-start + * {
       margin-top: var(--flow-space);
     }
-    .Prose2 figcaption {
+    .Prose figcaption {
       /* Below two lines only needed if more than one `p` in caption, I'm guessing? */
       /* --flow-space: 0.5em; */
       /* padding-top: var(--space-block); */
@@ -220,7 +223,7 @@
       margin-bottom: var(--gap);
     } */
     /* Avoid margin staggering on side-by-side photos */
-    .Prose2 img {
+    .Prose img {
       margin-top: 0;
     }
 
@@ -277,7 +280,8 @@
       grid-template-columns: repeat(var(--columns, 2), 1fr);
     }
     .flow > * + * {
-      margin-block-start: calc(var(--gap) * 2);
+      /* margin-block-start: calc(var(--gap) * 2); */
+      margin-block-start: var(--flow-space, 1em);
     }
     .visually-hidden {
       clip: rect(0 0 0 0);
@@ -289,35 +293,157 @@
       position: absolute;
       width: 1px;
     }
+
+    .BooksGrid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: calc(var(--gap) * 2) var(--gap);
+    }
+    .BooksGrid > h2 {
+      grid-column: 1;
+      margin-block-start: 0;
+    }
+    .BooksGrid > ul {
+      grid-column: 2;
+      margin-block-start: 0;
+      padding-inline-start: var(--size-2);
+    }
   </style>
 </head>
 <body class="flow">
 
-  <div class="PageGrid2__container">
-    <article class="Article PageGrid2 Prose2">
+  <style>
+  {# .Page__container {
+    display: grid;
+    grid-template-columns: [content] minmax(min(100%, 800px), 80vw);
+  } #}
+  .Page__container {
+    margin-inline: auto;
+    padding-top: var(--gap);
+    padding-bottom: calc(var(--gap) * 2);
+    padding-inline: var(--gap);
+    display: grid;
+    /* Content: 100% until screen is px wide, then max at 80vw */
+    grid-template-columns:
+      [content-start] minmax(0, var(--text-measure))
+      [measure] 1fr
+      [content-end];
+    /* Overall maximum width */
+    max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
+  }
+  .Page__container > * {
+    grid-column: content;
+  }
+  </style>
+  <div class="Page__container">
+    <article class="Prose">
+      <div class="BooksGrid">
+        {# {% include "snippets/books-reading-list.njk" %} #}
+        {% for book in collections.booksReading %}
+          {% set bookSlug = book.c[1].v %}
+          {% set bookTitle = book.c[2].v %}
+          {% set bookAuthor = book.c[3].v %}
+          {% set bookGenre = book.c[4].v %}
+          {% set bookYear = book.c[5].v %}
+          {% set bookStartDate = book.c[6].f %}
+          {% set bookFinishDate = book.c[7].f %}
+          {% set bookFinishYear = book.c[8].v %}
+          {% set bookMedia = book.c[9].v %}
+          {% set bookWidth = book.c[10].v %}
+          {% set bookHeight = book.c[11].v %}
+          {% set hasDrawing = book.c[12].f %}
+          {% set bookVia = book.c[13].v %}
+          {% set bookDesc = book.c[14].v %}
+          {% if loop.first %}
+            <h2>What I'm currently reading</h2>
+            <ul class="flow" style="--flow-space: var(--size-05);">
+          {% endif %}
+          <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+          {% if loop.last %}</ul>{% endif %}
+        {% endfor %}
+      </div>
+    </article>
+  </div>
 
+  <div class="PageGrid__container">
+    <article class="Article PageGrid Prose">
+      <div class="BooksGrid">
+
+        {# {% include "snippets/books-reading-list.njk" %} #}
+        {% for book in collections.booksReading %}
+          {% set bookSlug = book.c[1].v %}
+          {% set bookTitle = book.c[2].v %}
+          {% set bookAuthor = book.c[3].v %}
+          {% set bookGenre = book.c[4].v %}
+          {% set bookYear = book.c[5].v %}
+          {% set bookStartDate = book.c[6].f %}
+          {% set bookFinishDate = book.c[7].f %}
+          {% set bookFinishYear = book.c[8].v %}
+          {% set bookMedia = book.c[9].v %}
+          {% set bookWidth = book.c[10].v %}
+          {% set bookHeight = book.c[11].v %}
+          {% set hasDrawing = book.c[12].f %}
+          {% set bookVia = book.c[13].v %}
+          {% set bookDesc = book.c[14].v %}
+
+          {% if loop.first %}
+            <h2>What I'm currently reading</h2>
+            <ul class="flow" style="--flow-space: var(--size-05);">
+          {% endif %}
+          <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+          {% if loop.last %}</ul>{% endif %}
+        {% endfor %}
+
+        {% set currentYear = "" %}
+        {% for book in collections.booksRead %}
+          {% set bookSlug = book.c[1].v %}
+          {% set bookTitle = book.c[2].v %}
+          {% set bookAuthor = book.c[3].v %}
+          {% set bookGenre = book.c[4].v %}
+          {% set bookYear = book.c[5].v %}
+          {% set bookStartDate = book.c[6].f %}
+          {% set bookFinishDate = book.c[7].f %}
+          {% set bookFinishYear = book.c[8].v %}
+          {% set bookMedia = book.c[9].v %}
+          {% set bookWidth = book.c[10].v %}
+          {% set bookHeight = book.c[11].v %}
+          {% set hasDrawing = book.c[12].f %}
+          {% set bookVia = book.c[13].v %}
+          {% set bookDesc = book.c[14].v %}
+
+          {% if currentYear != bookFinishYear %}
+            {% set currentYear = bookFinishYear %}
+            {% if loop.first %}{% else %}</ul>{% endif %}
+            <h2>{{ bookFinishYear }}</h2>
+            <ul class="flow" style="--flow-space: var(--size-05);">
+          {% endif %}
+          <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+          {% if loop.last %}</ul>{% endif %}
+        {% endfor %}
+
+      </div>
     </article>
   </div>
 
   <hr>
 
-  <div class="PageGrid2__container">
-    <article class="Article PageGrid2 Prose2">
-      <div class="Prose2--contain" style="--linear-measure: calc(var(--text-measure) + 20%);">
+  <div class="PageGrid__container">
+    <article class="Article PageGrid Prose">
+      <div class="Prose--contain" style="--linear-measure: calc(var(--text-measure) + 20%);">
         <figure class="align-start" style="shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%); margin-top: -0.5em;">
           <img src="../../images/self-portrait-fast-ink.jpg" alt="">
         </figure>
         <h2>About Me</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odio corrupti consequatur est ratione qui alias maiores, eos accusantium repellat? Eius, commodi iusto? Numquam, at aperiam! Dicta voluptatem dolorem dolorum.</p>
       </div>
-      <!-- .Prose2--contain -->
+      <!-- .Prose--contain -->
     </article>
   </div>
 
   <hr>
 
-  <main class="PageGrid2__container">
-    <article class="Article PageGrid2 Prose2">
+  <main class="PageGrid__container">
+    <article class="Article PageGrid Prose">
       <dl class="Article__meta">
         <dt class="visually-hidden">Published on</dt><dd><time datetime="2021-08-24T13:00:00.000Z">August 24, 2021</time></dd><dt class="visually-hidden">Published in</dt><dd>Asheville, North Carolina, USA</dd>
       </dl>
@@ -325,7 +451,7 @@
       <div class="Article__summary">
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis totam ad nisi neque dolore, libero quod beatae et! Molestiae quos, ea numquam autem placeat commodi omnis nihil ratione vero. Ex!</p>
       </div>
-      <div class="Prose2--contain">
+      <div class="Prose--contain">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque incidunt repellendus tempore optio quos vitae, dignissimos voluptatum, nihil, eos odit dolore ea praesentium odio numquam? Ea, corrupti tempora. Illum, architecto.</p>
         <h2>This is the prose contained section</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta.</p>
@@ -371,7 +497,7 @@
           </figcaption>
         </figure>
       </div>
-      <!-- .Prose2--contain -->
+      <!-- .Prose--contain -->
     </article>
   </main>
 </body>

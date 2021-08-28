@@ -1,0 +1,494 @@
+:root {
+  /**
+   * Sizes
+   */
+   --size-05: 0.5rem;
+   --size-0: 1rem; /* 16px */
+   --size-1: 1.25rem; /* 20px */
+   --size-2: 1.5rem; /* 24px */
+   --size-3: 2rem; /* 32px */
+   --size-5: 3rem; /* 48px */
+   --space-block: var(--size-05);
+   --space-inline: 0.75rem;
+   --gap: var(--size-3);
+   --text-measure: 40rem; /* 640px */
+   --linear-measure: var(--text-measure); /* 42.5rem = 680px @ 16px base */
+   --container-max-width: 80rem; /* 1280px */
+
+  /**
+   * Colors
+   */
+  --text-muted: rgba(0,0,0,0.65);
+  --gray-light: rgba(0,0,0,0.25);
+
+  /**
+   *
+   */
+  --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+}
+
+/* Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Infini';
+  src: url('../fonts/infini/infini-bold.eot');
+  src: url('../fonts/infini/infini-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/infini/infini-bold.woff') format('woff'), url('../fonts/infini/infini-bold.woff2') format('woff2'), url('../fonts/infini/infini-bold.ttf') format('truetype'), url('../fonts/infini/infini-bold.svg#svgFontName') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Infini';
+  src: url('../fonts/infini/infini-italic.eot');
+  src: url('../fonts/infini/infini-italic.eot?#iefix') format('embedded-opentype'), url('../fonts/infini/infini-italic.woff') format('woff'), url('../fonts/infini/infini-italic.woff2') format('woff2'), url('../fonts/infini/infini-italic.ttf') format('truetype'), url('../fonts/infini/infini-italic.svg#svgFontName') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Infini';
+  src: url('../fonts/infini/infini-regular.eot');
+  src: url('../fonts/infini/infini-regular.eot?#iefix') format('embedded-opentype'), url('w../fonts/infini/infini-regular.woff') format('woff'), url('wo../fonts/infini/infini-regular.woff2') format('woff2'), url('../fonts/infini/infini-regular.ttf') format('truetype'), url('../fonts/infini/infini-regular.svg#svgFontName') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Reset
+   ========================================================================== */
+
+html { box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+}
+
+/* ol,
+ul {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-block: 0;
+} */
+
+picture, img {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base
+   ========================================================================== */
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: var(--size-1); /* Used to be only on .Prose */
+  line-height: 1.5;
+}
+
+/* https://www.zachleat.com/web/fluid-images/ */
+/* img { max-width: 100%; }
+img[width] { width: auto; }
+img[width][height] { height: auto; } */
+
+a {
+  color: currentColor;
+}
+
+ol,
+ul {
+  padding-inline-start: var(--size-2);
+  padding-inline-start: 0.79em;
+}
+
+li::marker {
+  content: "– ";
+  color: var(--color-gray-light);
+}
+
+
+
+
+
+
+
+
+
+.Page__container {
+  margin-inline: auto;
+  padding-top: var(--gap);
+  padding-bottom: calc(var(--gap) * 2);
+  padding-inline: var(--gap);
+  display: grid;
+  /* Content: 100% until screen is px wide, then max at 80vw */
+  grid-template-columns:
+    [content-start] minmax(0, var(--text-measure))
+    [measure] 1fr
+    [content-end];
+  /* Overall maximum width */
+  max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
+}
+
+.Page__container > * {
+  grid-column: content;
+}
+
+
+
+/* .PageGrid__container {
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--gap);
+}
+.PageGrid {
+  display: grid;
+  grid-template-columns:
+    [content-start] minmax(0, var(--text-measure))
+    [measure] 1fr
+    [content-end];
+}
+.PageGrid > * {
+  grid-column: content;
+} */
+/* .PageGrid > * + * {
+  margin-block-start: calc(var(--gap) * 4);
+} */
+
+
+.Header {
+
+}
+
+.Header a {
+  text-decoration: none;
+}
+
+.Header li:first-of-type a {
+  font-weight: 700;
+}
+
+.Header a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (min-width: 500px) {
+  .Header ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .Header li:not(:first-of-type) {
+    padding-inline-start: var(--size-2);
+  }
+
+  .Header li:first-of-type {
+    margin-right: auto;
+    padding-bottom: 0;
+  }
+}
+
+
+
+
+.Article__meta {
+  --flow-space: 0.25em;
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--text-muted);
+  font-size: var(--size-0);
+  font-variant: tabular-nums;
+}
+.Article__meta dd:not(:last-of-type)::after {
+  content: "/";
+  color: var(--gray-light);
+  /* display: inline; */
+  padding-inline: calc(var(--space-inline) / 2);
+}
+.Article__title {
+  font-feature-settings: "ss02" 1, "case" 1;
+  font-size: var(--size-5);
+  hanging-punctuation: first;
+  line-height: 1.1;
+}
+.Article__meta + .Article__title {
+  margin-block-start: var(--size-0);
+}
+.Article__summary {
+  color: var(--text-muted);
+  font-size: var(--size-2);
+  hanging-punctuation: first;
+  line-height: 1.4;
+}
+.Article__summary + * {
+  /* TODO: Not !important ! */
+  margin-block-start: calc(var(--gap) * 4) !important;
+}
+
+.Prose {
+  --flow-space: 1em;
+  --list-display: list-item;
+  /* font-variant: oldstyle-nums; */
+  hanging-punctuation: first;
+  hyphens: auto;
+  line-height: 1.5;
+}
+.Prose--contain > * {
+  max-width: var(--linear-measure);
+}
+.Prose > * {
+  word-break: break-word;
+}
+.Prose * + * {
+  margin-block-start: var(--flow-space);
+}
+.Prose h2,
+.Prose h3 {
+  hanging-punctuation: first;
+}
+.Prose h2 {
+  --flow-space: 2em;
+  line-height: inherit;
+  font-size: inherit;
+}
+/* Add extra top margin to a figure following anything else */
+.Prose *:not(h2) + figure {
+  /* margin-top: var(--gap); */
+  margin-block-start: calc(var(--flow-space) * 2);
+}
+/* ...and to the item after a figure */
+.Prose figure + *:not(h2) {
+  /* margin-top: var(--gap); */
+  margin-block-start: calc(var(--flow-space) * 2);
+}
+.Prose .align-pull-end,
+.Prose .align-pull-start {
+  /* Less margin to make it align with text. */
+  margin-top: var(--flow-space);
+}
+/* Remove top margin from heading next to floated fig */
+.Prose .align-end + h2,
+.Prose .align-start + h2,
+.Prose .align-pull-end + h2,
+.Prose .align-pull-start + h2 {
+  margin-top: 0;
+}
+/* Reset extra margin after floated figures */
+.Prose .align-end + *,
+.Prose .align-start + *,
+.Prose .align-pull-end + *,
+.Prose .align-pull-start + * {
+  margin-top: var(--flow-space);
+}
+.Prose figcaption {
+  /* Below two lines only needed if more than one `p` in caption, I'm guessing? */
+  /* --flow-space: 0.5em; */
+  /* padding-top: var(--space-block); */
+  color: var(--text-muted);
+  font-size: var(--size-0);
+  font-variant: tabular-nums;
+}
+/* and other selectors */
+/* .Prose figure:not(:last-child) {
+  margin-bottom: var(--gap);
+} */
+/* Avoid margin staggering on side-by-side photos */
+.Prose img {
+  margin-top: 0;
+}
+
+/* Limit width of regular figures to text width */
+/* .align-none {
+  max-width: var(--text-measure);
+} */
+.align-bleed {
+  /* Unset this width limitation from .Prose */
+  --linear-measure: auto;
+  display: grid;
+  grid-template-columns:
+    /* Add padding gap to align end right w/ .Prose text */
+    [bleed-start] minmax(0, calc(var(--text-measure) + var(--gap)))
+    [measure] 1fr
+    [bleed-end];
+  margin-inline: calc(var(--gap) * -1);
+}
+.align-bleed > :first-child {
+  grid-column: bleed;
+}
+.align-bleed > figcaption {
+  /* Add side padding to offset being full-width */
+  padding-inline: var(--gap);
+}
+/* Screen at least 440px */
+@media (min-width: 27.5em) {
+  .align-end,
+  .align-pull-end {
+    float: right;
+    margin-inline-start: var(--gap);
+    width: 33%;
+    /* Set minimum width of 200px */
+    width: max(200px, 33%);
+  }
+  .align-pull-end {
+    margin-inline-end: calc(var(--gap) * -1);
+  }
+  .align-start,
+  .align-pull-start {
+    float: left;
+    margin-inline-end: var(--gap);
+    /* Set minimum width of 200px */
+    width: max(200px, 33%);
+  }
+  .align-pull-start {
+    margin-inline-start: calc(var(--gap) * -1);
+  }
+}
+.photo-row {
+  display: grid;
+  gap: var(--space-inline);
+  /* Get --columns property from HTML to decide how many to display */
+  grid-template-columns: repeat(var(--columns, 2), 1fr);
+}
+.flow > * + * {
+  /* margin-block-start: calc(var(--gap) * 2); */
+  margin-block-start: var(--flow-space, 1em);
+}
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* Reading/Books
+   ========================================================================== */
+
+.BooksGrid {
+  display: grid;
+  column-gap: var(--gap);
+  grid-template-columns: 1fr 2fr;
+  margin-block-start: calc(var(--gap) * 4);
+}
+
+.BooksGrid > h2,
+.BooksGrid > ul {
+  /* --flow-space: 2em; */
+}
+
+.BooksGrid > h2,
+.BooksGrid > ul {
+  grid-column: span 2;
+}
+
+/* TODO: Can't use flow-space property... see appropriate spacing */
+.BooksGrid > ul {
+  margin-block-start: 1em;
+}
+
+/* TODO: Make this layout intrinsic... no media queries? */
+@media (min-width: 700px) {
+  /* Do we want to add top margins on both MQs, or use row gaps? */
+  .BooksGrid {
+    gap: calc(var(--gap) * 4) var(--gap);
+  }
+
+  .BooksGrid > h2,
+  .BooksGrid > ul {
+    margin-block-start: calc(var(--gap) * 2);
+    margin-block-start: 0;
+  }
+
+  .BooksGrid > h2 {
+    grid-column: 1;
+  }
+
+  .BooksGrid > ul {
+    grid-column: 2;
+  }
+}
+
+
+
+
+
+
+.Wide {
+  --linear-measure: auto;
+  display: grid;
+  grid-template-columns:
+    [bleed-start] minmax(0, var(--text-measure))
+    [measure] 1fr
+    [bleed-end];
+  margin-inline: calc(var(--gap) * -1);
+  border: 1px solid salmon;
+}
+.Flip {
+  /* Unset this width limitation from .Prose */
+  --linear-measure: auto;
+  display: grid;
+  grid-template-columns:
+    [bleed-start] 1fr
+    [measure] minmax(0, var(--text-measure))
+    [bleed-end];
+  /* margin-inline: calc(var(--gap) * -1); */
+}
+.Flip > * {
+  grid-column: measure;
+}
+.AboutGrid {
+  --linear-measure: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: var(--gap);
+}

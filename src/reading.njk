@@ -3,9 +3,48 @@ layout: layouts/base.njk
 title: I like to read books
 pageClass: Page--reading
 ---
-<section class="Grid Article space-items-lg">
-  <h1>{{ title }}</h1>
+<article class="Article Prose">
+  <header class="Article__header Prose--contain">
+    <h1 class="Article__title">{{ title }}</h1>
+    <p>And here is a list of what I’ve read. For the past couple years, I have been drawing all of them: <a href="/reading/and-drawing-the-books/">you can see a huge grid of them here</a>. I also have <a href="/reading/brief-thoughts-and-drawings">a page with brief notes alongside the drawing</a> of each book.</p>
+  </header>
 
-  {% include "snippets/books-submenu.njk" %}
+  {# {% include "snippets/books-submenu.njk" %} #}
 
-</section>
+  <div class="BooksGrid">
+    {##
+     # Books in progress
+     #}
+    {% include "snippets/books-reading-list.njk" %}
+
+    {##
+     # Books read, organized by year
+     #}
+    {% set currentYear = "" %}
+    {% for book in collections.booksRead %}
+      {% set bookSlug = book.c[1].v %}
+      {% set bookTitle = book.c[2].v %}
+      {% set bookAuthor = book.c[3].v %}
+      {% set bookGenre = book.c[4].v %}
+      {% set bookYear = book.c[5].v %}
+      {% set bookStartDate = book.c[6].f %}
+      {% set bookFinishDate = book.c[7].f %}
+      {% set bookFinishYear = book.c[8].v %}
+      {% set bookMedia = book.c[9].v %}
+      {% set bookWidth = book.c[10].v %}
+      {% set bookHeight = book.c[11].v %}
+      {% set hasDrawing = book.c[12].f %}
+      {% set bookVia = book.c[13].v %}
+      {% set bookDesc = book.c[14].v %}
+
+      {% if currentYear != bookFinishYear %}
+        {% set currentYear = bookFinishYear %}
+        {% if loop.first %}{% else %}</ul>{% endif %}
+        <h2>{{ bookFinishYear }}</h2>
+        <ul style="--flow-space: var(--size-05);">
+      {% endif %}
+      <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+      {% if loop.last %}</ul>{% endif %}
+    {% endfor %}
+  </div>
+</article>

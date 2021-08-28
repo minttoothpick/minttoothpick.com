@@ -6,41 +6,33 @@
   <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
   <link rel="stylesheet" href="{{ '/css/style2.css' | url }}">
-  <link rel="stylesheet" href="{{ '/css/utilities.css' | url }}">
 </head>
-<body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
+<body class="Site">
 
   <a class="hidden-til-focus" href="#main">Skip to main content</a>
 
-  <header class="Header Page__container">
-    <nav>
-      <ul class="list-unstyled">
-        <li><a href="/">{{ site.title }}</a></li>
-        {%- for item in site.navigation %}
-          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  </header>
+  <div class="space-items-xl">
 
-  {# <header class="SiteHeader">
-    <nav class="Grid">
-      <ul class="list-unstyled">
-        <li><a href="/">{{ site.title }}</a></li>
-        {%- for item in site.navigation %}
-          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  </header> #}
+    <header class="SiteHeader">
+      <nav class="Grid">
+        <ul class="list-unstyled">
+          <li><a href="/">{{ site.title }}</a></li>
+          {%- for item in site.navigation %}
+            <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </header>
 
-  <main class="Page__container">
-    {{ content | safe }}
-  </main>
+    <main class="Page {% if pageClass %}{{ pageClass }} {% endif %}space-items-xl">{#  style="--size-xl: 10rem;" #}
+      {{ content | safe }}
+    </main>
 
-  <footer class="SiteFooter Grid">
-    <p class="border-top" style="padding-top: calc(var(--size-lg) * 2);">© 2021. ⟢ Thanks for visiting!</p>
-  </footer>
+    <footer class="SiteFooter Grid">
+      <p class="border-top" style="padding-top: calc(var(--size-lg) * 2);">© 2021. ⟢ Thanks for visiting!</p>
+    </footer>
+
+  </div>
 
   <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
   <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
