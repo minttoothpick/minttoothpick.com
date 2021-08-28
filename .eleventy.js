@@ -205,13 +205,10 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/languages/markdown/
    * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
    */
-  const markdownIt = require("markdown-it");
-  const markdownItReplaceLink = require("markdown-it-replace-link");
-  const markdownItAnchor = require("markdown-it-anchor");
-  const markdownItOptions = {
-    html: true, // Enable HTML tags in source
-    linkify: true, // Autoconvert URL-like text to links
-    typographer: true, // Nice quotes, etc.
+  const markdownLibrary = require("markdown-it")({
+    html: true,
+    linkify: true,
+    typographer: true,
     replaceLink: function (link, env) {
       // Set image paths to absolute
       if (link.startsWith("images")) {
@@ -221,9 +218,12 @@ module.exports = function(eleventyConfig) {
         return link;
       }
     }
-  };
-  const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink).use(markdownItAnchor);
-  eleventyConfig.setLibrary("md", markdownLib);
+  })
+  .use(require("markdown-it-replace-link"))
+  .use(require("markdown-it-anchor"), {
+    "level": [2, 3]
+  });
+  eleventyConfig.setLibrary("md", markdownLibrary);
 
   /* Other options
    ======================================================================== */
