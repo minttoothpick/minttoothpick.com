@@ -2,18 +2,18 @@
   /**
    * Sizes
    */
-   --size-05: 0.5rem;
-   --size-0: 1rem; /* 16px */
-   --size-1: 1.25rem; /* 20px */
-   --size-2: 1.5rem; /* 24px */
-   --size-3: 2rem; /* 32px */
-   --size-5: 3rem; /* 48px */
-   --space-block: var(--size-05);
-   --space-inline: 0.75rem;
-   --gap: var(--size-3);
-   --text-measure: 40rem; /* 640px */
-   --linear-measure: var(--text-measure); /* 42.5rem = 680px @ 16px base */
-   --container-max-width: 80rem; /* 1280px */
+  --size-05: 0.5rem;
+  --size-0: 1rem; /* 16px */
+  --size-1: 1.25rem; /* 20px */
+  --size-2: 1.5rem; /* 24px */
+  --size-3: 2rem; /* 32px */
+  --size-5: 3rem; /* 48px */
+  --space-block: var(--size-05);
+  --space-inline: 0.75rem;
+  --gap: var(--size-3);
+  --text-measure: 40rem; /* 640px */
+  --linear-measure: var(--text-measure); /* 42.5rem = 680px @ 16px base */
+  --container-max-width: 80rem; /* 1280px */
 
   /**
    * Colors
@@ -69,6 +69,10 @@ html { box-sizing: border-box; }
 
 html:focus-within {
   scroll-behavior: smooth;
+}
+
+:focus {
+  outline: 2px dashed;
 }
 
 body,
@@ -141,6 +145,10 @@ a {
   color: currentColor;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 ol,
 ul {
   padding-inline-start: var(--size-2);
@@ -157,16 +165,18 @@ li::marker {
 
 
 
+.Page > *:not(script) + * {
+  margin-block-start: calc(var(--gap) * 4);
+}
 
-
-
-.Page__container {
+.Page__grid {
   margin-inline: auto;
-  padding-top: var(--gap);
-  padding-bottom: calc(var(--gap) * 2);
+  /* padding-top: var(--gap); */
+  /* padding-bottom: calc(var(--gap) * 2); */
+  padding-block: var(--gap);
   padding-inline: var(--gap);
   display: grid;
-  /* Content: 100% until screen is px wide, then max at 80vw */
+  /* Content = 100% until screen is px wide, then max at 80vw */
   grid-template-columns:
     [content-start] minmax(0, var(--text-measure))
     [measure] 1fr
@@ -175,10 +185,9 @@ li::marker {
   max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
 }
 
-.Page__container > * {
+.Page__grid > * {
   grid-column: content;
 }
-
 
 
 /* .PageGrid__container {
@@ -234,7 +243,17 @@ li::marker {
   }
 }
 
+.SkipNav {
+  text-decoration: underline;
+}
 
+.SkipNav:hover {
+  text-decoration: none;
+}
+
+.SkipNav::after {
+  content: " ↷";
+}
 
 
 .Article__meta {

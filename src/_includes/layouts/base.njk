@@ -10,9 +10,8 @@
 </head>
 <body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
 
-  <a class="hidden-til-focus" href="#main">Skip to main content</a>
-
-  <header class="Header Page__container">
+  <header class="Header Page__grid">
+    <a class="SkipNav hidden-til-focus" href="#main" style="text-decoration: underline;">Skip to main content</a>
     <nav>
       <ul class="list-unstyled">
         <li><a href="/">{{ site.title }}</a></li>
@@ -34,12 +33,12 @@
     </nav>
   </header> #}
 
-  <main class="Page__container">
+  <main class="Page__grid" id="main">
     {{ content | safe }}
   </main>
 
-  <footer class="SiteFooter Grid">
-    <p class="border-top" style="padding-top: calc(var(--size-lg) * 2);">© 2021. ⟢ Thanks for visiting!</p>
+  <footer class="SiteFooter Page__grid">
+    <p class="border-top"><!-- style="padding-top: calc(var(-\-size-lg) * 2);"-->© 2021. ⟢ Thanks for visiting!</p>
   </footer>
 
   <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
