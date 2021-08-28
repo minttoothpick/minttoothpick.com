@@ -11,6 +11,10 @@ module.exports = {
       url: "/diary/"
     },
     {
+      name: "Reading",
+      url: "/reading/"
+    },
+    {
       name: "About",
       url: "/about/"
     },

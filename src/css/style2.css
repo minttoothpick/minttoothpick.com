@@ -71,10 +71,6 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
-:focus {
-  outline: 2px dashed;
-}
-
 body,
 h1,
 h2,
@@ -128,12 +124,21 @@ a {
 /* Base
    ========================================================================== */
 
+:focus {
+  outline: 2px dashed;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.99);
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
   font-size: var(--size-1); /* Used to be only on .Prose */
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* https://www.zachleat.com/web/fluid-images/ */
@@ -163,7 +168,10 @@ li::marker {
 
 
 
-
+.Page {
+  /* padding-block: var(--gap);  */
+  /* padding-inline: var(--gap); */
+}
 
 .Page > *:not(script) + * {
   margin-block-start: calc(var(--gap) * 4);
@@ -218,13 +226,13 @@ li::marker {
   text-decoration: none;
 }
 
-.Header li:first-of-type a {
-  font-weight: 700;
+.Header a[aria-current] {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-.Header a.active {
-  font-weight: 700;
-  text-decoration: underline;
+.Header li:first-of-type a {
+  font-weight: bold;
 }
 
 @media (min-width: 500px) {
@@ -245,6 +253,7 @@ li::marker {
 
 .SkipNav {
   text-decoration: underline;
+  /* margin-block-end: var(--flow-space); */
 }
 
 .SkipNav:hover {
@@ -253,6 +262,10 @@ li::marker {
 
 .SkipNav::after {
   content: " ↷";
+}
+
+.SkipNav + * {
+  /* margin-block-start: var(--flow-space); */
 }
 
 
@@ -294,10 +307,9 @@ li::marker {
 .Prose {
   --flow-space: 1em;
   --list-display: list-item;
-  /* font-variant: oldstyle-nums; */
   hanging-punctuation: first;
   hyphens: auto;
-  line-height: 1.5;
+  line-height: inherit;
 }
 .Prose--contain > * {
   max-width: var(--linear-measure);

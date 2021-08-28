@@ -16,7 +16,7 @@
       <ul class="list-unstyled">
         <li><a href="/">{{ site.title }}</a></li>
         {%- for item in site.navigation %}
-          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
+          <li><a {{ "aria-current=page " if item.url == page.url }}href="{{ item.url | url }}">{{ item.name }}</a></li>
         {%- endfor %}
       </ul>
     </nav>
