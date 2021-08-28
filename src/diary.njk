@@ -1,15 +1,12 @@
 ---
 title: Diary
 layout: layouts/base.njk
+pageClass: Page--diary
 ---
-{# <h1 class="constrain-and-center" style="font-size: 5em;">{{ title }}</h1> #}
-
-{# <section class="space-items-xl"><!-- Grid --> #}
-
+<div class="Article__list">
   {% for item in collections.posts | sortByDateCreated | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
     {% endif %}
   {% endfor %}
-
-{# </section> #}
+</div>

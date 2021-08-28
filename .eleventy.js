@@ -78,7 +78,6 @@ module.exports = function(eleventyConfig) {
    ======================================================================== */
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imgShortcode);
-  // eleventyConfig.addNunjucksAsyncShortcode("imageFull", imageShortcodeFull);
 
   /* Filters
    ======================================================================== */
