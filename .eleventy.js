@@ -1,7 +1,5 @@
 const { DateTime } = require("luxon");
 const dotenv = require("dotenv").config();
-const markdownIt = require("markdown-it");
-const markdownItReplaceLink = require("markdown-it-replace-link");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
 
@@ -92,8 +90,8 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLLL d, yyyy");
   });
 
-  eleventyConfig.addFilter("toISO", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toISO();
+  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
 
   eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {
@@ -144,8 +142,11 @@ module.exports = function(eleventyConfig) {
     return newString;
   });
 
-  // https://github.com/11ty/eleventy/issues/658
-  const md = new markdownIt({
+  /**
+   * This is... I forget... I think for Google Sheets MD content?
+   * https://github.com/11ty/eleventy/issues/658
+   */
+  const md = require("markdown-it")({
     html: true
   });
   eleventyConfig.addFilter("markdown", (content) => {
@@ -204,6 +205,9 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/languages/markdown/
    * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
    */
+  const markdownIt = require("markdown-it");
+  const markdownItReplaceLink = require("markdown-it-replace-link");
+  const markdownItAnchor = require("markdown-it-anchor");
   const markdownItOptions = {
     html: true, // Enable HTML tags in source
     linkify: true, // Autoconvert URL-like text to links
@@ -218,7 +222,7 @@ module.exports = function(eleventyConfig) {
       }
     }
   };
-  const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
+  const markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink).use(markdownItAnchor);
   eleventyConfig.setLibrary("md", markdownLib);
 
   /* Other options
