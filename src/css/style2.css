@@ -165,8 +165,8 @@ li::marker {
   color: var(--color-gray-light);
 }
 
-
-
+/* Pages
+   ========================================================================== */
 
 .Page {
   /* padding-block: var(--gap);  */
@@ -197,7 +197,6 @@ li::marker {
   grid-column: content;
 }
 
-
 /* .PageGrid__container {
   max-width: var(--container-max-width);
   margin-inline: auto;
@@ -216,7 +215,6 @@ li::marker {
 /* .PageGrid > * + * {
   margin-block-start: calc(var(--gap) * 4);
 } */
-
 
 .Header {
 
@@ -268,37 +266,45 @@ li::marker {
   /* margin-block-start: var(--flow-space); */
 }
 
+.Article__list > * + * {
+  margin-block-start: calc(var(--gap) * 4);
+}
 
 .Article__meta {
   --flow-space: 0.25em;
-  align-items: baseline;
+  /* align-items: baseline; */
   display: flex;
   flex-wrap: wrap;
   color: var(--text-muted);
   font-size: var(--size-0);
-  font-variant: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
+
 .Article__meta dd:not(:last-of-type)::after {
   content: "/";
   color: var(--gray-light);
   /* display: inline; */
   padding-inline: calc(var(--space-inline) / 2);
 }
+
 .Article__title {
-  font-feature-settings: "ss02" 1, "case" 1;
+  font-feature-settings: "case" on;
   font-size: var(--size-5);
   hanging-punctuation: first;
   line-height: 1.1;
 }
+
 .Article__meta + .Article__title {
   margin-block-start: var(--size-0);
 }
+
 .Article__summary {
   color: var(--text-muted);
   font-size: var(--size-2);
   hanging-punctuation: first;
   line-height: 1.4;
 }
+
 .Article__summary + * {
   /* TODO: Not !important ! */
   margin-block-start: calc(var(--gap) * 4) !important;
@@ -364,7 +370,7 @@ li::marker {
   /* padding-top: var(--space-block); */
   color: var(--text-muted);
   font-size: var(--size-0);
-  font-variant: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 /* and other selectors */
 /* .Prose figure:not(:last-child) {
@@ -379,7 +385,7 @@ li::marker {
 /* .align-none {
   max-width: var(--text-measure);
 } */
-.align-bleed {
+.align-full-bleed {
   /* Unset this width limitation from .Prose */
   --linear-measure: auto;
   display: grid;
@@ -390,10 +396,10 @@ li::marker {
     [bleed-end];
   margin-inline: calc(var(--gap) * -1);
 }
-.align-bleed > :first-child {
+.align-full-bleed > :first-child {
   grid-column: bleed;
 }
-.align-bleed > figcaption {
+.align-full-bleed > figcaption {
   /* Add side padding to offset being full-width */
   padding-inline: var(--gap);
 }

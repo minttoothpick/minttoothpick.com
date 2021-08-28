@@ -2,14 +2,10 @@
 layout: layouts/base.njk
 pageClass: Page--home
 ---
-{# <section class=""><!-- Grid --><!-- space-items-xl --> #}
-
-  {# <p class="font-md">Hi, I'm Jeremy. This is my website. I'm still working on it.</p> #}
-
+<div class="Article__list">
   {% for item in collections.posts | sortByDateCreated | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
     {% endif %}
   {% endfor %}
-
-{# </section> #}
+</div>

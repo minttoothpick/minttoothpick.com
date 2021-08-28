@@ -2,6 +2,7 @@
 title: Hey, New Website
 date: Last Modified
 dateCreated: 2021-05-01
+location: Asheville, NC, USA
 tags:
   - things-i-made
   - video

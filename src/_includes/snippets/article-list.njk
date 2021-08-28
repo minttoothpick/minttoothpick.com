@@ -1,9 +1,11 @@
-<article class="Grid Article space-items-lg">
-  <header class="">{# TODO: no bottom margins #}
+<article class="Article Prose Prose--contain">
+  <header class="Article__header">
     {% if item.data.display_title != false %}
-      <h1 class="">{{ item.data.title | safe }}</h1>{# mt-xxs #}
+      <h1 class="Article__title">{{ item.data.title | safe }}</h1>{# mt-xxs #}
     {% endif %}
-    <time class="text-muted">{{ item.data.dateCreated | readableDate }}</time>
+    <dl class="Article__meta">
+      <dt class="visually-hidden">Published on</dt><dd><time datetime="{{ item.data.dateCreated }}">{{ item.data.dateCreated | readableDate }}</time></dd><dt class="visually-hidden">Published in</dt><dd>Asheville, North Carolina, USA</dd>
+    </dl>
   </header>
   {{ item.templateContent | safe }}
 </article>

@@ -4,6 +4,7 @@ displayTitle:
 displayMeta:
 date: Last Modified
 dateCreated: 2021-05-04
+location: Asheville, NC, USA
 tags:
   - music
   - things-i-like
