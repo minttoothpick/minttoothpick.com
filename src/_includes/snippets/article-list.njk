@@ -5,7 +5,7 @@
     {% endif %}
     <dl class="Article__meta">
       <dt class="visually-hidden">Published on</dt>
-      <dd><time datetime="{{ item.data.dateCreated }}">{{ item.data.dateCreated | readableDate }}</time></dd>
+      <dd><time datetime="{{ item.data.dateCreated | toISO }}">{{ item.data.dateCreated | readableDate }}</time></dd>
       {% if item.data.location %}
         <dt class="visually-hidden">Published in</dt>
         <dd>{{ item.data.location }}</dd>

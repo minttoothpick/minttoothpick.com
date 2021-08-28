@@ -92,6 +92,10 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLLL d, yyyy");
   });
 
+  eleventyConfig.addFilter("toISO", (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toISO();
+  });
+
   eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {
     // return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("s");
     return DateTime.fromISO(dateObj, { zone: "utc" }).toSeconds();
