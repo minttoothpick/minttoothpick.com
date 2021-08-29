@@ -9,7 +9,9 @@ Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>is
 
 Lorem ipsum dolor sit amet, **bold consectetur adipiscing elit**, sed do eiusmod tempor incididunt ut [link labore et dolore magna](#0) aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris *italic nisi ut aliquip ex ea commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-!["An image"](images/book.jpg)
+<!-- !["An image"](images/book.jpg) -->
+
+{% image "", "./src/images/book.jpg", "Alt", "Shortcode generating a text-width figure" %}
 
 ## Heading level two
 

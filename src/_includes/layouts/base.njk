@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
-  <link rel="stylesheet" href="{{ '/css/style2.css' | url }}">
   <link rel="stylesheet" href="{{ '/css/utilities.css' | url }}">
 </head>
 <body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
@@ -22,23 +21,12 @@
     </nav>
   </header>
 
-  {# <header class="SiteHeader">
-    <nav class="Grid">
-      <ul class="list-unstyled">
-        <li><a href="/">{{ site.title }}</a></li>
-        {%- for item in site.navigation %}
-          <li><a class="{{ "active" if item.url == page.url }}" href="{{ item.url | url }}">{{ item.name }}</a></li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  </header> #}
-
-  <main class="Page__grid" id="main">
+  <main class="Page__grid mt-10" id="main">
     {{ content | safe }}
   </main>
 
   <footer class="SiteFooter Page__grid">
-    <p class="border-top"><!-- style="padding-top: calc(var(-\-size-lg) * 2);"-->© 2021. ⟢ Thanks for visiting!</p>
+    <p class="border-top">© 2021. ⟢ Thanks for visiting!</p>
   </footer>
 
   <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>

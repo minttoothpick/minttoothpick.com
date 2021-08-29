@@ -1,11 +1,19 @@
 ---
 layout: layouts/base.njk
 ---
-Still needs layout
-{# <article class="Grid Article flow">
-  <header class="">
-    <h1 class="">{{ title }}</h1>
-    <time class="text-muted">{{ page.date | readableDate }}</time>
+<article class="Article Prose Prose--contain">
+  <header class="Article__header">
+    {% if display_title != false %}
+      <h1 class="Article__title">{{ title | safe }}</h1>{# mt-xxs #}
+    {% endif %}
+    <dl class="Article__meta">
+      <dt class="visually-hidden">Published on</dt>
+      <dd><time datetime="{{ dateCreated | htmlDateString }}">{{ dateCreated | readableDate }}</time></dd>
+      {% if location %}
+        <dt class="visually-hidden">Published in</dt>
+        <dd>{{ location }}</dd>
+      {% endif %}
+    </dl>
   </header>
   {{ content | safe }}
-</article> #}
+</article>
