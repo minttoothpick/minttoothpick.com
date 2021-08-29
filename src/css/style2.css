@@ -29,6 +29,24 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
+@media (min-width: 1600px) {
+  :root {
+    --size-05: 0.5rem;
+    --size-05: 1rem; /* 16px */
+    --size-0: 1.25rem; /* 20px */
+    --size-1: 1.5rem; /* 24px */
+    --size-2: 2rem; /* 32px */
+    --size-3: 3rem; /* 48px */
+    --size-5: 5rem; /* 80px */
+    --space-block: var(--size-05);
+    --space-inline: 0.75rem;
+    --gap: var(--size-3);
+    --text-measure: 45rem; /* 720px */
+    --linear-measure: var(--text-measure); /* 45rem = 720px @ 16px base */
+    --container-max-width: 90rem; /* 1440px */
+  }
+}
+
 /* Fonts
    ========================================================================== */
 
