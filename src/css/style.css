@@ -16,7 +16,7 @@
   --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
   --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
   --text-measure: 40rem; /* 640px */
-  --linear-measure: var(--text-measure); /* 42.5rem = 680px @ 16px base */
+  --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
   --container-max-width: 80rem; /* 1280px */
 
   /**
@@ -196,7 +196,7 @@ ul {
 }
 
 li::marker {
-  content: "– ";
+  content: var(--list-marker-content, "– ");
   color: var(--gray-light);
 }
 
@@ -286,12 +286,18 @@ hr {
   content: " ↷";
 }
 
-.Article__list > * + * {
+.Articles__list > * + * {
   margin-block-start: var(--gap-4);
 }
 
+/* Extra margin on first element following article header */
 .Article__header + * {
   --flow-space: var(--gap-2);
+}
+
+/* We don't want that extra margin on article lists, though */
+.Articles__list .Article__header + * {
+  --flow-space: 0.5em;
 }
 
 .Article__meta {
@@ -396,12 +402,14 @@ hr {
 }
 
 .Prose figcaption {
-  /* Below two lines only needed if more than one `p` in caption, I'm guessing? */
-  /* --flow-space: 0.5em; */
-  /* padding-top: var(--space-block); */
+  --flow-space: 0.5em;
+  padding-top: var(--space-block);
+  font-variant-numeric: lining-nums;
+}
+
+.Prose [class^="align-"] figcaption {
   color: var(--text-muted);
   font-size: var(--size-0);
-  font-variant-numeric: lining-nums;
 }
 
 /* .Prose figure:not(:last-child) {
@@ -441,7 +449,7 @@ hr {
   .align-pull-end {
     float: right;
     margin-inline-start: var(--gap);
-    width: 33%;
+    /* width: 33%; */
     /* Set minimum width of 200px */
     width: max(200px, 33%);
   }
@@ -486,7 +494,8 @@ hr {
   --flow-space: 2em;
 } */
 
-.BooksGrid > h2 {
+.BooksGrid h2,
+.BooksDrawingGrid h2 {
   font-variant-numeric: lining-nums;
 }
 
@@ -514,17 +523,50 @@ hr {
     margin-block-start: 0;
   }
 
-  .BooksGrid > h2 {
+  .BooksGrid > h2,
+  .BooksGrid > img {
     grid-column: 1;
   }
 
-  .BooksGrid > ul {
+  .BooksGrid > ul,
+  .BooksGrid > figcaption {
     grid-column: 2;
   }
 
 }
 
+.BooksSubmenu {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.BooksSubmenu li:not(:last-of-type):not(:first-of-type)::after {
+  content: "/";
+  color: var(--gray-light);
+  padding-inline: calc(var(--space-inline) / 2);
+}
+
+.BooksSubmenu li:first-of-type {
+  padding-inline-end: calc(var(--space-inline) / 2);
+}
+
+.BooksSubmenu li {
+  /* padding-right: var(--size-1); */
+}
+
+.BooksSubmenu .active {
+  font-weight: 700;
+}
+
+/* About
+   ========================================================================== */
+
+.Page--about figure {
+  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
+  margin-top: -0.5em;
+  padding-right: 1em;
+  /* width: 50%; */
+}
 
 
 
@@ -558,12 +600,7 @@ hr {
   grid-column: measure;
 }
 
-.AboutGrid {
-  --linear-measure: auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: var(--gap);
-}
+
 
 
 

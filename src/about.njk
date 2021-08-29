@@ -3,51 +3,8 @@ layout: layouts/base.njk
 title: About Me
 pageClass: Page--about
 ---
-<div class="Grid">
-  <div class="SectionAbout" style="grid-column: wide;">
-    <figure class="align-pull-start" style="shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%); margin-top: -0.5em; width: 50%; float: left; padding-right: 1em; margin-left: -2em;">
-      <img src="../../images/self-portrait-fast-ink.jpg" alt="">
-    </figure>
-    <h1>About Me</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odio corrupti consequatur est ratione qui alias maiores, eos accusantium repellat? Eius, commodi iusto? Numquam, at aperiam! Dicta voluptatem dolorem dolorum.</p>
-  </div>
-
-  <div class="Grid--about">
-    {# <div style="grid-column: span 1;"> #}
-    <div>
-    {# <figure> #}
-      {% image "", "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
-    {# </figure> #}
-    </div>
-    {# <div style="grid-column: span 2;"> #}
-    <div>
-      <h1>{{ title }}</h1>
-      <p>Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">*</span>isicing elit. Quam suscipit nu<span style="color:red;">*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
-      {% include "snippets/books-reading-list.njk" %}
-    </div>
-  </div>
-</div>
-<!-- .Grid -about -->
-
-{# <div class="Grid Article space-items-lg">
-  <div class="Grid--aboutPage">
-    <div>
-      <h1>{{ title }}</h1>
-      <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
-    </div>
-    <figure>
-      {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
-    </figure>
-  </div>
-</div> #}
-
-{#
-<section class="Grid--aboutPage">
-  <article class="Article">
-    <h1>{{ title }}</h1>
-    <p>I am a person based in Asheville, North Carolina, USA. Lately I have been: <a href="/drawing-the-books-i-read/">drawing all the books I read</a>, <a href="/diary/">making random doodles and whatnot</a>, navigating the juddery exhaustions and potent joys of new parenthood, and that’s about it.</p>
-  </article>
-  <figure>
-    {% image "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
-  </figure>
-</section> #}
+<article class="Prose Prose--contain" style="--linear-measure: 55rem;">
+  {% image "align-start", "./src/images/self-portrait-fast-ink.jpg", "Sloppy drawing of myself" %}
+  <h1 class="Article__title mt-none">About Me</h1>
+  <p>I am a person based in Asheville, North Carolina, USA. Lately I have been <a href="/reading/and-drawing-all-the-books/">drawing all the books I read</a>.</p>
+</article>

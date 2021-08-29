@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+title: I like to read books
+pageClass: Page--readingNotes
+permalink: "reading/brief-notes-and-drawings/"
+fakeUrl: "/reading/"
+---
+<article class="Article Prose">
+  <header class="Article__header Prose--contain">
+    <h1 class="Article__title">{{ title }}</h1>
+    <p>And here you can see some brief notes and a drawing of each book I’ve read. Most recently finished books are at the top. <a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p>
+    <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
+  </header>
+
+  {##
+   # Books read, sorted by year
+   #}
+  {% set currentYear = "" %}
+  {% for book in collections.booksRead %}
+    {% set isFavorite = book.c[0].v %}
+    {% set bookSlug = book.c[1].v %}
+    {% set bookTitle = book.c[2].v %}
+    {% set bookAuthor = book.c[3].v %}
+    {% set bookGenre = book.c[4].v %}
+    {% set bookYear = book.c[5].v %}
+    {% set bookStartDate = book.c[6].f %}
+    {% set bookFinishDate = book.c[7].f %}
+    {% set bookFinishYear = book.c[8].v %}
+    {% set bookMedia = book.c[9].v %}
+    {% set bookWidth = book.c[10].v %}
+    {% set bookHeight = book.c[11].v %}
+    {% set hasDrawing = book.c[12].f %}
+    {% set bookVia = book.c[13].v %}
+    {% set bookDesc = book.c[14].v %}
+
+    <figure class="BooksGrid mt-10" style="max-width: 64rem;">
+      {% if hasDrawing %}
+        {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %}
+        <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}">
+      {% endif %}{# check for drawing #}
+      <figcaption class="">
+        <h2 style="font-weight: normal;"><i>{{ bookTitle }}</i></h2>
+        <p class="text-small mt-none">{{ bookAuthor | formatAuthor }}</p>
+        {% if bookDesc %}{{ bookDesc | markdown | safe }}{% endif %}
+      </figcaption>
+    </figure>
+{#
+    {% if currentYear != bookFinishYear %}
+      {% set currentYear = bookFinishYear %}
+      {% if loop.first %}{% else %}</ul>{% endif %}
+      <h2>{{ bookFinishYear }}</h2>
+      <ul style="--flow-space: var(--size-05);">
+    {% endif %}
+    <li{% if isFavorite %} style="--list-marker-content: '✺ ';"{% endif %}>{% if isFavorite %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+    {% if loop.last %}</ul>{% endif %} #}
+  {% endfor %}
+
+</article>
+
+{# <section class="Grid Article space-items-lg">
+
+  <h1>{{ title }}</h1>
+  {% include "snippets/books-submenu.njk" %}
+
+</section> #}
+
+

@@ -3,7 +3,7 @@ title: Diary
 layout: layouts/base.njk
 pageClass: Page--diary
 ---
-<div class="Article__list">
+<div class="Articles__list">
   {% for item in collections.posts | sortByDateCreated | reverse %}
     {% if item.data.status != "draft" %}
       {% include "snippets/article-list.njk" %}
