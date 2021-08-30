@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 title: I like to read books
 pageClass: Page--readingDrawings
-permalink: "reading/and-drawing-all-the-books/"
+permalink: "reading/and-drawing-the-books/"
 fakeUrl: "/reading/"
 ---
 <style>
@@ -16,7 +16,9 @@ fakeUrl: "/reading/"
   </header>
 </section>
 
-<section class="BooksDrawingGrid" style="--flow-space: 0.5em; display: flex; flex-wrap: wrap; align-items: flex-end;">
+{# just say... 100-250px? #}
+
+<section class="BooksDrawingGrid mt-5" style="--flow-space: 0.5em; display: flex; flex-wrap: wrap; align-items: flex-end;">
   {% set currentYear = "" %}
   {% for book in collections.booksRead %}
     {% set bookSlug = book.c[1].v %}
@@ -40,13 +42,16 @@ fakeUrl: "/reading/"
     {% endif %}
     {# See if the spreadsheet says this book has a drawing #}
     {% if hasDrawing %}
-      {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %}
+      {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
+      {# so, you can't pass the below var into the shortcode... should be okay, as long as there aren't any special characters in slug #}
+      {# {% set imgSrcUrl = imgSrc | url | safe %} #}
       {# New calculation #}
       {% set widthPx %}{{ bookWidth }}{% endset %}
       {# {% set width %}{{ (bookWidth * 17) }}{% endset %} #}
       {# Percentage calculation #}
       {% set widthPercent = bookWidth | int %}
       {# {% set widthPercent = widthPercent + 3 %} #}
+      {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
       <style>
       .book { padding-right: 0.5em; }
       .book--px.book-{{ loop.index }} {
@@ -82,9 +87,11 @@ fakeUrl: "/reading/"
         }
       }
       </style>
+
       <figure class="book book--percent book-{{ loop.index }}">
-        <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}">
+        {% bookImg { src: imgSrc, alt: altText } %}{% endbookImg %}
       </figure>
+
     {% endif %}
   {% endfor %}
 </section>

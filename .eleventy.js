@@ -79,12 +79,76 @@ async function imgShortcode(figClass="", src, alt, figcaption="", sizes="(min-wi
   return `${figureStrOpen}${myImg}${figcaption}</figure>`;
 }
 
+async function bookDrawingShortcode(content, src, alt, sizes="100vw") {
+
+  let metadata = await Image(src, {
+    // Actual widths generated; `null` passes original through as well
+    widths: [100, 200, 300, 400, 500],
+    formats: ["png", "avif"],
+    // What is output in HTML `src` and `srcset`
+    urlPath: "/images/books/",
+    // Where the generated files go
+    outputDir: "./_site/images/books/",
+    // Use original filename instead of hash
+    filenameFormat: function(id, src, width, format, options) {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}-${width}w.${format}`;
+    }
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  }
+
+  let myImg = Image.generateHTML(metadata, imageAttributes, {
+    whitespaceMode: "inline"
+  });
+
+  return myImg;
+}
+
 module.exports = function(eleventyConfig) {
 
   /* Shortcodes
    ======================================================================== */
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imgShortcode);
+  // eleventyConfig.addPairedNunjucksAsyncShortcode("bookDrawing", bookDrawingShortcode);
+
+  /* Thanks: https://www.youtube.com/watch?v=nUlB8SR039w */
+  eleventyConfig.addPairedNunjucksAsyncShortcode("bookImg", async function(content, options = {}) {
+    const { src = "", alt="defaultAlt", sizes="100vw" } = options;
+
+    let metadata = await Image(src, {
+      widths: [200, 400, 600],
+      formats: ["png", "avif"],
+      // What is output in HTML `src` and `srcset`
+      urlPath: "/images/books/",
+      // Where the generated files go
+      outputDir: "./_site/images/books/",
+      filenameFormat: function(id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      },
+    });
+
+    let imageAttributes = {
+      // class: cls,
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    }
+
+    return myImg = Image.generateHTML(metadata, imageAttributes, {
+      whitespaceMode: "inline"
+    });
+  });
 
   /* Filters
    ======================================================================== */
@@ -260,7 +324,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/fonts");
   // If you leave this out, you won't have original copied over.
-  eleventyConfig.addPassthroughCopy("./src/images");
+  // eleventyConfig.addPassthroughCopy("./src/images");
   eleventyConfig.addPassthroughCopy("./src/js");
 
   /**

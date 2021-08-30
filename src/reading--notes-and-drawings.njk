@@ -35,8 +35,14 @@ fakeUrl: "/reading/"
 
     <figure class="BooksGrid mt-10" style="max-width: 64rem;">
       {% if hasDrawing %}
-        {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %}
-        <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}">
+        {# old #}
+        {# {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %} #}
+        {# <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}"> #}
+
+        {# new #}
+        {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
+        {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
+        {% bookImg { src: imgSrc, alt: altText } %}{% endbookImg %}
       {% endif %}{# check for drawing #}
       <figcaption class="">
         <h2 style="font-weight: normal;"><i>{{ bookTitle }}</i></h2>

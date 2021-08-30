@@ -13,8 +13,8 @@
   --space-block: var(--size-05);
   --space-inline: 0.75rem;
   --gap: var(--size-3); /* 2rem = 32px */
-  --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
-  --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
+  --gap-2: calc(var(--gap) * 1.5); /* 4rem = 64px */
+  --gap-4: calc(var(--gap) * 2); /* 8rem = 128px */
   --text-measure: 40rem; /* 640px */
   --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
   --container-max-width: 80rem; /* 1280px */
@@ -33,6 +33,14 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
+@media (min-width: 800px) {
+  :root {
+    --gap: var(--size-3); /* 2rem = 32px */
+    --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
+    --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
+  }
+}
+
 @media (min-width: 1600px) {
   :root {
     --size-05: 0.5rem;
@@ -44,7 +52,9 @@
     --size-5: 5rem; /* 80px */
     --space-block: var(--size-05);
     --space-inline: 0.75rem;
-    --gap: var(--size-3);
+    --gap: var(--size-3); /* 2rem = 32px */
+    --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
+    --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
     --text-measure: 45rem; /* 720px */
     --linear-measure: var(--text-measure); /* 45rem = 720px @ 16px base */
     --container-max-width: 90rem; /* 1440px */
