@@ -6,8 +6,10 @@ pageClass: Page--reading
 <article class="Article Prose">
   <header class="Article__header Prose--contain">
     <h1 class="Article__title">{{ title }}</h1>
-    <p>And here is a list of what I’ve read. For the past couple years, I have been drawing all of them: <a href="/reading/and-drawing-the-books/">you can see a huge grid of them here</a>. I also have <a href="/reading/brief-notes-and-drawings/">a page with brief notes alongside the drawing</a> of each book.</p>
+    <p>And here is a list of them.</p>
+    {# <p>And here is a list of what I’ve read. For the past couple years, I have been drawing all of them: <a href="/reading/and-drawing-the-books/">you can see a huge grid of them here</a>. I also have <a href="/reading/brief-notes-and-drawings/">a page with brief notes alongside the drawing</a> of each book.</p> #}
     <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
+    {% include "snippets/books-submenu.njk" %}
   </header>
 
   {# {% include "snippets/books-submenu.njk" %} #}

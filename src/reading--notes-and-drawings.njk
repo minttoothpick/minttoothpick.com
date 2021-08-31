@@ -8,8 +8,10 @@ fakeUrl: "/reading/"
 <article class="Article Prose">
   <header class="Article__header Prose--contain">
     <h1 class="Article__title">{{ title }}</h1>
-    <p>And here you can see some brief notes and a drawing of each book I’ve read. Most recently finished books are at the top. <a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p>
+    <p>And here you can see a drawing and some brief notes on each book I’ve read. Most recently finished books are at the top.</p>
+    {# <p><a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p> #}
     <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
+    {% include "snippets/books-submenu.njk" %}
   </header>
 
   {##

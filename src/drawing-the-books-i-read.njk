@@ -1,21 +1,24 @@
 ---
 layout: layouts/base.njk
-title: I like to read books
+title: I draw every book I read
+pageClass: Page--readingDrawings
+permalink: "drawing-the-books-i-read/"
+# fakeUrl: "/reading/"
 ---
 <style>
 :-moz-broken { outline: solid red }
 </style>
-<section class="Grid Article space-items-lg">
-  <h1>{{ title }}</h1>
-  <p>And I’ve been drawing all of them for the past couple years. Here they are. If all these images are too much, you can see them as a <a href="/books-ive-read/">plain text list</a>. I also have a page with <a href="/books-ive-read-with-notes/">the drawings and some notes</a>.</p>
-  {# <p>I’ve been drawing the books I read (or listen to) since the beginning of 2020. You can <a href="/books-ive-read/">view my reading list as plain text</a> if loading all these images is an issue.</p> #}
-  {# {% include "snippets/books-submenu.njk" %} #}
+<article class="Article Prose">
+  <header class="Article__header Prose--contain">
+    <h1 class="Article__title">{{ title }}</h1>
+    <p>I've been doing this for the past couple years. Here they are.</p>
+    {% include "snippets/books-submenu.njk" %}
+  </header>
 </section>
 
-{# <h2>Flex version</h2> #}
-<section class="mt-lg space-items-md" style="display: flex; flex-wrap: wrap; align-items: flex-end; max-width: 90%; margin-left: auto; margin-right: auto; position: relative;">
-  {%- set currentYear = "" -%}
-  {%- for book in collections.booksRead -%}
+<section class="BooksDrawingGrid mt-5" style="--flow-space: 0.5em; display: flex; flex-wrap: wrap; align-items: flex-end;">
+  {% set currentYear = "" %}
+  {% for book in collections.booksRead %}
     {% set bookSlug = book.c[1].v %}
     {% set bookTitle = book.c[2].v %}
     {% set bookAuthor = book.c[3].v %}
@@ -31,45 +34,45 @@ title: I like to read books
     {% set bookVia = book.c[13].v %}
     {% set bookDesc = book.c[14].v %}
 
-    {%- if bookFinishYear != currentYear -%}
-      {%- set currentYear = bookFinishYear -%}
-      {# {{ currentYear | dump }} #}
-      <h2 style="flex: 0 0 100%;">{{ bookFinishYear }}</h2>
-    {%- endif -%}
+    {% if bookFinishYear != currentYear %}
+      {% set currentYear = bookFinishYear %}
+      {# <h2 class="mt-5" style="flex: 0 0 100%;">{{ bookFinishYear }}</h2> #}
+    {% endif %}
     {# See if the spreadsheet says this book has a drawing #}
-    {%- if hasDrawing == "TRUE" -%}
-      {%- set imgSrc -%}/images/books/{{ bookSlug }}.png{%- endset -%}
+    {% if hasDrawing %}
+      {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
+      {# so, you can't pass the below var into the shortcode... should be okay, as long as there aren't any special characters in slug #}
+      {# {% set imgSrcUrl = imgSrc | url | safe %} #}
       {# New calculation #}
-      {%- set widthPx -%}{{ bookWidth }}{%- endset -%}
-      {# {%- set width -%}{{ (bookWidth * 17) }}{%- endset -%} #}
+      {% set widthPx %}{{ bookWidth }}{% endset %}
+      {# {% set width %}{{ (bookWidth * 17) }}{% endset %} #}
       {# Percentage calculation #}
-      {%- set widthPercent = bookWidth | int -%}
-      {# {%- set widthPercent = widthPercent + 3 -%} #}
+      {% set widthPercent = bookWidth | int %}
+      {# {% set widthPercent = widthPercent + 3 %} #}
+      {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
       <style>
       .book { padding-right: 0.5em; }
       .book--px.book-{{ loop.index }} {
         width: calc({{ widthPx }} * 10px);
       }
-      {# .book--percent.book-{{ loop.index }} {
-        width: {{ widthPercent }}%;
-      } #}
       .book--percent.book-{{ loop.index }} {
         width: calc({{ widthPercent }} * 4%);
       }
-      @media (min-width: 250px) {
+      @media (min-width: 300px) {
         .book--percent.book-{{ loop.index }} {
-          width: calc({{ widthPercent }} * 2%);
+          width: calc({{ widthPercent }} * 3%);
         }
       }
       @media (min-width: 500px) {
         .book--percent.book-{{ loop.index }} {
-          width: calc({{ widthPercent }} * 1.5%);
+          width: calc({{ widthPercent }} * 2%);
         }
       }
       @media (min-width: 750px) {
         .book--percent.book-{{ loop.index }} {
           {#- width: calc({{ widthPercent }} * 1%); #}
-          width: {{ widthPercent }}%;
+          {# width: calc(({{ widthPercent }} + 3) * 1%); #}
+          width: calc({{ widthPercent }} * 1.5%);
         }
       }
       @media (min-width: 1000px) {
@@ -82,10 +85,11 @@ title: I like to read books
         }
       }
       </style>
+
       <figure class="book book--percent book-{{ loop.index }}">
-        <!-- {{ widthPercent }} -->
-        <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}">
+        {% bookImg { src: imgSrc, alt: altText } %}{% endbookImg %}
       </figure>
-    {%- endif -%}
+
+    {% endif %}
   {% endfor %}
 </section>
