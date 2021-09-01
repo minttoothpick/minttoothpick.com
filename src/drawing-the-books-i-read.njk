@@ -87,7 +87,7 @@ permalink: "drawing-the-books-i-read/"
       </style>
 
       <figure class="book book--percent book-{{ loop.index }}">
-        {% bookImg { src: imgSrc, alt: altText } %}{% endbookImg %}
+        {% bookImg { src: imgSrc, alt: altText, sizes: "100vw" } %}{% endbookImg %}
       </figure>
 
     {% endif %}
