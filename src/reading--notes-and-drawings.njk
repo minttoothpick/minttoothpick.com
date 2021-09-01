@@ -47,8 +47,8 @@ fakeUrl: "/reading/"
         {% bookImg { src: imgSrc, alt: altText, sizes: "(min-width: 1600px) 325px, (min-width: 700px) calc(33vw - 96px), (min-width: 314px) 250px, calc(100vw-64px)" } %}{% endbookImg %}
       {% endif %}{# check for drawing #}
       <figcaption class="">
-        <h2 style="font-weight: normal;"><i>{{ bookTitle }}</i></h2>
-        <p class="text-small mt-none">{{ bookAuthor | formatAuthor }}</p>
+        <h2 style="font-weight: normal;">{% if isFavorite %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ bookTitle }}</i></h2>
+        <p class="mt-none" style="color: var(--text-muted);">{{ bookAuthor | formatAuthor }}</p>
         {% if bookDesc %}{{ bookDesc | markdown | safe }}{% endif %}
       </figcaption>
     </figure>
