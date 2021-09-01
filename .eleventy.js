@@ -269,6 +269,29 @@ module.exports = function(eleventyConfig) {
     return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
   });
 
+  /**
+   * Tags collection
+   *
+   * Enable us to iterate over all the tags, excluding some
+   * https://github.com/kohrongying/11ty-blog-starter/blob/master/.eleventy.js
+   */
+     eleventyConfig.addCollection("tagList", collection => {
+      const tagsSet = new Set()
+      // Loop through everything
+      collection.getAll().forEach(item => {
+        // Don't include items without tags
+        if (!item.data.tags) return
+        item.data.tags
+          // Don't include items with these tags...
+          .filter(tag => !["posts"].includes(tag))
+          // ...or with empty tags
+          .filter(tag => !tag.length < 1)
+          // Now add the filtered tags to the set
+          .forEach(tag => tagsSet.add(tag))
+      })
+      return Array.from(tagsSet).sort();
+    });
+
   /* Markdown
    ======================================================================== */
 

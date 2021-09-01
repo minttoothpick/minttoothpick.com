@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+pageClass: Page--tags Page--tagsSingle
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag }}/
+eleventyComputed:
+  title: "things tagged “{{ tag }}”"
+---
+<section class="Prose">
+  {% set postsList = collections[tag] %}
+  {% include "snippets/posts-list.njk" %}
+
+  <a href="/tags/">View all tags</a>
+</section>

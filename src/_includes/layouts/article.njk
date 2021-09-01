@@ -1,10 +1,11 @@
 ---
 layout: layouts/base.njk
 ---
+{# {% set article = page %} #}
 <article class="Article Prose Prose--contain">
   <header class="Article__header">
     {% if display_title != false %}
-      <h1 class="Article__title">{{ title | safe }}</h1>{# mt-xxs #}
+      <h1 class="Article__title">{{ title | safe }}</h1>
     {% endif %}
     <dl class="Article__meta">
       <dt class="visually-hidden">Published on</dt>
@@ -16,4 +17,7 @@ layout: layouts/base.njk
     </dl>
   </header>
   {{ content | safe }}
+  <footer class="Article__footer">
+    {% include "snippets/tags-list.njk" %}
+  </footer>
 </article>

@@ -1,0 +1,17 @@
+---
+title: Tags
+layout: layouts/base.njk
+pageClass: Page--tags
+---
+<h1>{{ title }}</h1>
+{# TODO: Add count to each item #}
+{# https://github.com/kohrongying/11ty-blog-starter/blob/master/src/tags.md #}
+<ul class="list-unstyled" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 0.5em;">
+{%- for tag in collections.tagList %}
+  <li>
+    <a href="{{ tag | url }}" style="background: rgba(0,0,0,0.1); padding: 0.5em; display: block;">{{ tag }}</a>
+  </li>
+  {# {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+  <a href="{{ tagUrl | url }}">{{ tag }}</a> #}
+{%- endfor %}
+</ul>

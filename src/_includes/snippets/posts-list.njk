@@ -1,0 +1,19 @@
+{#
+ # postsList is a collection that is set in the file that includes this one.
+ # Default sorting order is ascending by date
+ # (https://www.11ty.dev/docs/collections/#sorting)
+ #}
+{% for post in postsList | reverse %}
+  {% if loop.first %}<h1>There are {{ postsList | length }} {{ title }}</h1><ul class="PostsList flow" style="--flow-space: 2em;">{% endif %}
+  <li>
+    <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
+    <dl class="Article__meta">
+      <dt class="visually-hidden">Published on</dt>
+      <dd><time datetime="{{ post.data.dateCreated | htmlDateString }}">{{ post.data.dateCreated | readableDate }}</time></dd>
+    </dl>
+    {% include "snippets/tags-list.njk" %}
+  </li>
+  {% if loop.last %}</ul>{% endif %}
+{% else %}
+  <p>Nothing here!</p>
+{% endfor %}
