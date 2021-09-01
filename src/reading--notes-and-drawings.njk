@@ -35,7 +35,7 @@ fakeUrl: "/reading/"
     {% set bookVia = book.c[13].v %}
     {% set bookDesc = book.c[14].v %}
 
-    <figure class="BooksGrid mt-10" style="max-width: 64rem;">
+    <figure class="BooksNotesGrid mt-10" style="max-width: 64rem;">
       {% if hasDrawing %}
         {# old #}
         {# {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %} #}
@@ -44,7 +44,7 @@ fakeUrl: "/reading/"
         {# new #}
         {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
         {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
-        {% bookImg { src: imgSrc, alt: altText } %}{% endbookImg %}
+        {% bookImg { src: imgSrc, alt: altText, sizes: "(min-width: 1600px) 325px, (min-width: 700px) calc(33vw - 96px), (min-width: 314px) 250px, calc(100vw-64px)" } %}{% endbookImg %}
       {% endif %}{# check for drawing #}
       <figcaption class="">
         <h2 style="font-weight: normal;"><i>{{ bookTitle }}</i></h2>

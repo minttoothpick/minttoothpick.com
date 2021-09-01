@@ -15,7 +15,6 @@
   {% set bookDesc = book.c[14].v %}
 
   {% if loop.first %}
-    <h2>What I'm currently reading</h2>
     <ul style="--flow-space: var(--size-05);">
   {% endif %}
   <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>

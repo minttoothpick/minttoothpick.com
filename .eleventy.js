@@ -83,7 +83,7 @@ async function bookDrawingShortcode(content, src, alt, sizes="100vw") {
 
   let metadata = await Image(src, {
     // Actual widths generated; `null` passes original through as well
-    widths: [100, 200, 300, 400, 500],
+    widths: [300, 400, 600, 800],
     formats: ["png", "avif"],
     // What is output in HTML `src` and `srcset`
     urlPath: "/images/books/",
@@ -121,7 +121,7 @@ module.exports = function(eleventyConfig) {
 
   /* Thanks: https://www.youtube.com/watch?v=nUlB8SR039w */
   eleventyConfig.addPairedNunjucksAsyncShortcode("bookImg", async function(content, options = {}) {
-    const { src = "", alt="defaultAlt", sizes="100vw" } = options;
+    const { src = "", alt="", sizes="" } = options;
 
     let metadata = await Image(src, {
       widths: [200, 400, 600],

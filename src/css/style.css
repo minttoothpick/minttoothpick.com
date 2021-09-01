@@ -421,7 +421,7 @@ hr {
 .Prose figcaption {
   --flow-space: 0.5em;
   padding-top: var(--space-block);
-  font-variant-numeric: lining-nums;
+  /* font-variant-numeric: lining-nums; */
 }
 
 .Prose [class^="align-"] figcaption {
@@ -499,7 +499,9 @@ hr {
 /* Reading/Books
    ========================================================================== */
 
-.BooksGrid {
+/* TODO: Better naming, reusability */
+.BooksGrid,
+.BooksNotesGrid {
   column-gap: var(--gap);
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -516,9 +518,17 @@ hr {
   font-variant-numeric: lining-nums;
 }
 
+.BooksNotesGrid > *:first-child,
+.BooksNotesGrid > figcaption,
 .BooksGrid > h2,
 .BooksGrid > ul {
   grid-column: span 2;
+}
+
+.BooksNotesGrid > *:first-child {
+  /* Set minimum width of 200px */
+  /* max-width: min(250px, 100%); */
+  max-width: 250px;
 }
 
 /* TODO: Can't use flow-space property... see appropriate spacing */
@@ -541,12 +551,17 @@ hr {
   }
 
   .BooksGrid > h2,
-  .BooksGrid > img {
+  .BooksNotesGrid > *:first-child {
     grid-column: 1;
   }
 
+  .BooksNotesGrid > *:first-child {
+    /* Set minimum width of 200px */
+    max-width: 100%;
+  }
+
   .BooksGrid > ul,
-  .BooksGrid > figcaption {
+  .BooksNotesGrid > figcaption {
     grid-column: 2;
   }
 
@@ -575,10 +590,10 @@ hr {
   font-weight: 700;
 }
 
-/* About
+/* Now
    ========================================================================== */
 
-.Page--about figure:first-of-type {
+.Page--now figure:first-of-type {
   shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
   margin-top: -0.5em;
   padding-right: 1em;

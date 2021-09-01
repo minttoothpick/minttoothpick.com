@@ -1,7 +1,7 @@
 <article class="Article Prose Prose--contain">
   <header class="Article__header">
     {% if item.data.display_title != false %}
-      <h1 class="Article__title">{{ item.data.title | safe }}</h1>{# mt-xxs #}
+      <h1 class="Article__title"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h1>
     {% endif %}
     <dl class="Article__meta">
       <dt class="visually-hidden">Published on</dt>
