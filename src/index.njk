@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 pageClass: Page--home
+fakeUrl: home
 ---
 <div class="Articles__list">
   {% for item in collections.posts | sortByDateCreated | reverse %}

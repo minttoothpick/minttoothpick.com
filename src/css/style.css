@@ -52,9 +52,9 @@
     --size-5: 5rem; /* 80px */
     --space-block: var(--size-05);
     --space-inline: 0.75rem;
-    --gap: var(--size-3); /* 2rem = 32px */
-    --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
-    --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
+    --gap: var(--size-3); /* 3rem = 48px */
+    --gap-2: calc(var(--gap) * 2); /* 6rem = 96px */
+    --gap-4: calc(var(--gap) * 4); /* 12rem = 192px */
     --text-measure: 45rem; /* 720px */
     --linear-measure: var(--text-measure); /* 45rem = 720px @ 16px base */
     --container-max-width: 90rem; /* 1440px */
@@ -345,6 +345,10 @@ hr {
   line-height: 1.1;
 }
 
+.Article__title a {
+  text-decoration: none;
+}
+
 .Article__meta + .Article__title {
   margin-block-start: var(--size-0);
 }
@@ -467,7 +471,6 @@ hr {
 
 /* Screen at least 440px */
 @media (min-width: 27.5em) {
-
   .align-end,
   .align-pull-end {
     float: right;
@@ -492,7 +495,6 @@ hr {
   .align-pull-start {
     margin-inline-start: calc(var(--gap) * -1);
   }
-
 }
 
 .photo-row {
@@ -544,7 +546,6 @@ hr {
 
 /* TODO: Make this layout intrinsic... no media queries? */
 @media (min-width: 700px) {
-
   /* Do we want to add top margins on both MQs, or use row gaps? */
   .BooksGrid {
     gap: var(--gap-4) var(--gap);
@@ -570,7 +571,6 @@ hr {
   .BooksNotesGrid > figcaption {
     grid-column: 2;
   }
-
 }
 
 .BooksSubmenu {
