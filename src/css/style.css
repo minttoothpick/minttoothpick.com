@@ -193,6 +193,7 @@ img[width][height] { height: auto; } */
 
 a {
   color: currentColor;
+  text-decoration-color: var(--gray-light);
 }
 
 a:hover {
@@ -260,12 +261,17 @@ hr {
 }
 
 .Header a {
-  text-decoration: none;
+  /* text-decoration: none; */
+  /* We don't want bolded `active` links having a thicker underline */
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.16em;
 }
 
 .Header a[aria-current] {
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration-color: currentColor;
+  /* text-decoration: underline; */
+  /* text-decoration-color: var(--gray-light); */
 }
 
 .Header li:first-of-type a {
@@ -568,6 +574,7 @@ hr {
 }
 
 .BooksSubmenu {
+  align-items: baseline;
   display: flex;
   flex-wrap: wrap;
 }
@@ -586,8 +593,15 @@ hr {
   /* padding-right: var(--size-1); */
 }
 
+/* Normalize underline styles for bold and normal weight */
+.BooksSubmenu a {
+  text-decoration-thickness: 0.065em;
+  text-underline-offset: 0.16em;
+}
+
 .BooksSubmenu .active {
-  font-weight: 700;
+  font-weight: bold;
+  text-decoration-color: currentColor;
 }
 
 /* Now
