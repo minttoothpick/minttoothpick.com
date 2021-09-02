@@ -7,52 +7,60 @@
   --size-05: 0.5rem;
   --size-0: 1rem; /* 16px */
   --size-1: 1.25rem; /* 20px */
-  --size-2: 1.5rem; /* 24px */
-  --size-3: 2rem; /* 32px */
+  --size-2: 1.375rem; /* 22px */
+  --size-3: 1.5rem; /* 24px */
+  --size-4: 2rem; /* 32px */
   --size-5: 3rem; /* 48px */
   --space-block: var(--size-05);
   --space-inline: 0.75rem;
-  --gap: var(--size-3); /* 2rem = 32px */
+  --gap: var(--size-4); /* 2rem = 32px */
   --gap-2: calc(var(--gap) * 1.5); /* 4rem = 64px */
   --gap-4: calc(var(--gap) * 2); /* 8rem = 128px */
   --text-measure: 40rem; /* 640px */
   --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
   --container-max-width: 80rem; /* 1280px */
+  --font-size-small: var(--size-0);
+  --font-size-body: var(--size-1);
+  --font-size-title: var(--size-4);
 
   /**
    * Colors
    */
-  --text-muted: rgba(0,0,0,0.65);
-  --gray-light: rgba(0,0,0,0.25);
+  --text-muted: rgba(0, 0, 0, 0.65);
+  --gray-light: rgba(0, 0, 0, 0.25);
 
   /**
-   *
+   * Fonts
    */
-  --font-sans: "Infini", "Lato", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Infini", "Lato", serif, -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+
   /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
 @media (min-width: 800px) {
   :root {
-    --gap: var(--size-3); /* 2rem = 32px */
+    --gap: var(--size-4); /* 2rem = 32px */
     --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
     --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
+    --font-size-small: var(--size-1);
+    --font-size-body: var(--size-2);
+    --font-size-title: var(--size-5);
   }
 }
 
 @media (min-width: 1600px) {
   :root {
-    --size-05: 0.5rem;
+    /* --size-05: 0.5rem; */
     --size-05: 1rem; /* 16px */
     --size-0: 1.25rem; /* 20px */
     --size-1: 1.5rem; /* 24px */
-    --size-2: 2rem; /* 32px */
-    --size-3: 3rem; /* 48px */
+    --size-3: 2rem; /* 32px */
+    --size-4: 3rem; /* 48px */
     --size-5: 5rem; /* 80px */
     --space-block: var(--size-05);
     --space-inline: 0.75rem;
-    --gap: var(--size-3); /* 3rem = 48px */
+    --gap: var(--size-4); /* 3rem = 48px */
     --gap-2: calc(var(--gap) * 2); /* 6rem = 96px */
     --gap-4: calc(var(--gap) * 4); /* 12rem = 192px */
     --text-measure: 45rem; /* 720px */
@@ -120,14 +128,8 @@ ul {
   margin: 0;
 }
 
-/* ol,
-ul {
-  margin-block-end: 0;
-  margin-block-start: 0;
-  margin-block: 0;
-} */
-
-picture, img {
+picture,
+img {
   display: block;
   max-width: 100%;
 }
@@ -136,13 +138,9 @@ img {
   height: auto;
 }
 
-a {
-  text-decoration-skip-ink: auto;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
 
   *,
@@ -171,7 +169,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
-  font-size: var(--size-1);
+  font-size: var(--font-size-body);
   line-height: 1.6;
 }
 
@@ -186,14 +184,9 @@ h2 {
   font-weight: bold;
 }
 
-/* https://www.zachleat.com/web/fluid-images/ */
-/* img { max-width: 100%; }
-img[width] { width: auto; }
-img[width][height] { height: auto; } */
-
 a {
   color: currentColor;
-  text-decoration-color: var(--gray-light);
+  text-decoration-skip-ink: auto;
 }
 
 a:hover {
@@ -202,13 +195,9 @@ a:hover {
 
 ol,
 ul {
-  padding-inline-start: var(--size-2);
+  padding-inline-start: var(--size-3);
   padding-inline-start: 0.79em;
 }
-
-/* Avoid weird padding issue when floated on About page */
-/* ...except then we get asterisks cut off on Reading page */
-/* ul { overflow: hidden; } */
 
 li::marker {
   content: var(--list-marker-content, "– ");
@@ -231,27 +220,18 @@ hr {
 /* Pages
    ========================================================================== */
 
-/* .Page {
-  padding-block: var(--gap);
-  padding-inline: var(--gap);
-} */
-
-/* .Page > *:not(script) + * {
-  margin-block-start: var(--gap-4);
-} */
-
 .Page__grid {
   margin-inline: auto;
-  /* padding-top: var(--gap); */
-  /* padding-bottom: var(--gap-2); */
   padding-block: var(--gap);
   padding-inline: var(--gap);
   display: grid;
+
   /* Content = 100% until screen is px wide, then max at 80vw */
   grid-template-columns:
     [content-start] minmax(0, var(--text-measure))
     [measure] 1fr
     [content-end];
+
   /* Overall maximum width */
   max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
 }
@@ -260,21 +240,11 @@ hr {
   grid-column: content;
 }
 
-.Header a {
-  /* text-decoration: none; */
-  /* We don't want bolded `active` links having a thicker underline */
-  text-decoration-thickness: 0.09em;
-  text-underline-offset: 0.16em;
-}
-
 .Header a[aria-current] {
   font-weight: bold;
-  text-decoration-color: currentColor;
-  /* text-decoration: underline; */
-  /* text-decoration-color: var(--gray-light); */
 }
 
-.Header li:first-of-type a {
+.Header li:first-of-type {
   font-weight: bold;
 }
 
@@ -288,7 +258,7 @@ hr {
   }
 
   .Header li:not(:first-of-type) {
-    padding-inline-start: var(--size-2);
+    padding-inline-start: var(--size-3);
   }
 
   .Header li:first-of-type {
@@ -333,6 +303,7 @@ hr {
   flex-wrap: wrap;
   color: var(--text-muted);
   font-size: var(--size-0);
+  font-size: var(--font-size-small);
   font-variant-numeric: lining-nums;
 }
 
@@ -345,6 +316,7 @@ hr {
 .Article__title {
   font-feature-settings: "case" on;
   font-size: var(--size-5);
+  font-size: var(--font-size-title);
   hanging-punctuation: first;
   line-height: 1.2;
 }
@@ -359,14 +331,9 @@ hr {
 
 .Article__summary {
   color: var(--text-muted);
-  font-size: var(--size-2);
+  font-size: var(--size-3);
   hanging-punctuation: first;
   line-height: 1.4;
-}
-
-.Article__summary + * {
-  /* TODO: Not !important ! */
-  margin-block-start: var(--gap-4) !important;
 }
 
 .Prose {
@@ -439,12 +406,12 @@ hr {
 .Prose figcaption {
   --flow-space: 0.5em;
   padding-top: var(--space-block);
-  /* font-variant-numeric: lining-nums; */
 }
 
 .Prose [class^="align-"] figcaption {
   color: var(--text-muted);
   font-size: var(--size-0);
+  font-size: var(--font-size-small);
 }
 
 /* .Prose figure:not(:last-child) {
@@ -481,7 +448,7 @@ hr {
 @media (min-width: 27.5em) {
   .align-end,
   .align-pull-end {
-    float: right;
+    float: inline-end;
     margin-inline-start: var(--gap);
     /* width: 33%; */
     /* Set minimum width of 200px */
@@ -494,7 +461,7 @@ hr {
 
   .align-start,
   .align-pull-start {
-    float: left;
+    float: inline-start;
     margin-inline-end: var(--gap);
     /* Set minimum width of 200px */
     width: max(200px, 33%);
@@ -597,19 +564,8 @@ hr {
   padding-inline-end: calc(var(--space-inline) / 2);
 }
 
-.BooksSubmenu li {
-  /* padding-right: var(--size-1); */
-}
-
-/* Normalize underline styles for bold and normal weight */
-.BooksSubmenu a {
-  text-decoration-thickness: 0.065em;
-  text-underline-offset: 0.16em;
-}
-
 .BooksSubmenu .active {
   font-weight: bold;
-  text-decoration-color: currentColor;
 }
 
 /* Now
@@ -622,13 +578,9 @@ hr {
   /* width: 50%; */
 }
 
-
-
-
 /**
  * Maybe not
  */
-
 .Wide {
   --linear-measure: auto;
   display: grid;
@@ -639,6 +591,7 @@ hr {
   margin-inline: calc(var(--gap) * -1);
   border: 1px solid salmon;
 }
+
 .Flip {
   /* Unset this width limitation from .Prose */
   --linear-measure: auto;
@@ -680,6 +633,7 @@ hr {
   /* grid-template-columns: minmax(auto, 56ch) minmax(0, 1fr); */
   column-gap: var(--size-4);
 }
+
 .AnotherGrid > * {
   grid-column: 1;
 }

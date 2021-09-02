@@ -4,7 +4,7 @@
  # (https://www.11ty.dev/docs/collections/#sorting)
  #}
 {% for post in postsList | reverse %}
-  {% if loop.first %}<h1>There are {{ postsList | length }} {{ title }}</h1><ul class="PostsList flow" style="--flow-space: 2em;">{% endif %}
+  {% if loop.first %}<h1 class="Article__title">There are {{ postsList | length }} {{ title }}</h1><ul class="PostsList flow" style="--flow-space: 2em;">{% endif %}
   <li>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
     <dl class="Article__meta">
