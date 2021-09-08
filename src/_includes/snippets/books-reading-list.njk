@@ -15,7 +15,7 @@
   {% set bookDesc = book.c[14].v %}
 
   {% if loop.first %}
-    <ul style="--flow-space: var(--size-05);">
+    <ul>{#  style="--flow-space: var(--size-05); --flow-space: 1em;" #}
   {% endif %}
   <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
   {% if loop.last %}</ul>{% endif %}

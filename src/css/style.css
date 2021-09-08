@@ -160,10 +160,10 @@ img {
   outline: 2px dashed;
 }
 
-::selection {
+/* ::selection {
   color: #fff;
   background: rgba(0, 0, 0, 0.99);
-}
+} */
 
 body {
   background-color: var(--bg-color);
@@ -244,26 +244,41 @@ hr {
   font-weight: bold;
 }
 
+.Header ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Header li:not(:last-of-type) {
+  padding-inline-end: var(--size-3);
+}
+
 .Header li:first-of-type {
   font-weight: bold;
+  padding-inline: 0;
+}
+
+.Header li:first-of-type::after {
+  content: "/";
+  color: var(--gray-light);
+  padding-inline: calc(var(--space-inline));
 }
 
 /**
  * TODO: Make this not need a media query
  */
-@media (min-width: 500px) {
+@media (min-width: 600px) {
   .Header ul {
-    display: flex;
     justify-content: flex-end;
   }
 
-  .Header li:not(:first-of-type) {
-    padding-inline-start: var(--size-3);
+  .Header li:first-of-type {
+    margin-inline-end: auto;
+    padding-block-end: 0;
   }
 
-  .Header li:first-of-type {
-    margin-right: auto;
-    padding-bottom: 0;
+  .Header li:first-of-type::after {
+    content: none;
   }
 }
 
@@ -288,14 +303,14 @@ hr {
 }
 
 /* Extra margin on first element following article header */
-.Article__header + * {
+.Page--article .Article__header + * {
   --flow-space: var(--gap-2);
 }
 
-/* We don't want that extra margin on article lists, though */
-.Articles__list .Article__header + * {
+/* We don't want that extra margin on article lists or Now page, though */
+/* .Articles__list .Article__header + * {
   --flow-space: 0.5em;
-}
+} */
 
 .Article__meta {
   --flow-space: 0.5em;
@@ -305,6 +320,12 @@ hr {
   font-size: var(--size-0);
   font-size: var(--font-size-small);
   font-variant-numeric: lining-nums;
+}
+
+/* If meta label is not `visually-hidden`, we need a space after it */
+.Article__meta dt:not([class="visually-hidden"])::after {
+  /* padding-inline: calc(var(--space-inline) / 2); */
+  content: "\00a0";
 }
 
 .Article__meta dd:not(:last-of-type)::after {
@@ -421,6 +442,11 @@ hr {
 /* Avoid margin staggering on side-by-side photos */
 .Prose img {
   margin-top: 0;
+}
+
+.Prose ul > * + * {
+  --flow-space: calc(var(--size-05) / 2);
+  margin-block-start: var(--flow-space);
 }
 
 .align-full-bleed {
