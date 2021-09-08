@@ -22,13 +22,13 @@ module.exports = {
       name: "Now",
       url: "/now/"
     },
-    {
-      name: "Stuff",
-      url: "/stuff/"
-    },
-    {
-      name: "Tags",
-      url: "/tags/"
-    },
+    // {
+    //   name: "Stuff",
+    //   url: "/stuff/"
+    // },
+    // {
+    //   name: "Tags",
+    //   url: "/tags/"
+    // },
   ]
 };
