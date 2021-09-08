@@ -3,6 +3,8 @@
     {# {% set tagUrl %}/tags/{{ tag }}/{% endset %} #}
     {# <a href="{{ tagUrl | url }}" class="Tag">{{ tag }}</a> #}
   {# <i><a href="/tags/{{ tag }}">#{{ tag }}</a>&nbsp;&nbsp;</i> #}
-  <i>#{{ tag }}&nbsp;&nbsp;</i>
+  {% if tag != "posts" %}
+    <i>#{{ tag }}&nbsp;&nbsp;</i>
+  {% endif %}
   {# {% endif %} #}
 {% else %}{% endfor %}
