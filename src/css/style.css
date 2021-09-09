@@ -271,7 +271,9 @@ hr {
 .Header li:first-of-type::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline: calc(var(--space-inline));
+  /* padding-inline: calc(var(--space-inline)); */
+  padding-inline-start: calc(var(--space-inline));
+  padding-inline-end: calc(var(--space-inline));
 }
 
 /**
