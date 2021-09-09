@@ -4,7 +4,7 @@
   "description": "Personal website with Eleventy",
   "scripts": {
     "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve",
+    "serve": "npx @11ty/eleventy --serve --quiet",
     "debug": "DEBUG=* npx @11ty/eleventy"
   },
   "author": "Jeremy Jones <minttoothpick@pm.me>",

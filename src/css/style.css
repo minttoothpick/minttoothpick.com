@@ -203,6 +203,10 @@ ul {
   padding-left: 0.79em;
 }
 
+li {
+  list-style-type: var(--list-marker-content, "– ");
+}
+
 li::marker {
   content: var(--list-marker-content, "– ");
   color: var(--gray-light);

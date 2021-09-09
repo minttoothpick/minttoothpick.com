@@ -6,6 +6,10 @@
   padding-left: 0 !important;
 }
 
+.list-unstyled li {
+  list-style-type: none !important;
+}
+
 .list-unstyled li::marker {
   content: none !important;
 }
