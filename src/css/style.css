@@ -198,8 +198,9 @@ a:hover {
 
 ol,
 ul {
-  padding-inline-start: var(--size-3);
+  /* padding-inline-start: var(--size-3); */
   padding-inline-start: 0.79em;
+  padding-left: 0.79em;
 }
 
 li::marker {
@@ -225,15 +226,19 @@ hr {
 
 .Page__grid {
   margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
+
   /* padding-block: var(--gap); */
   /* padding-inline: var(--gap); */
-  /* TODO: Does Safari just not like shorthand? */
-  padding-block-start: var(--gap);
+
+  /* TODO: Does Safari just not like shorthand? Seems to be the case... */
+  /* padding-block-start: var(--gap);
   padding-block-end: var(--gap);
   padding-inline-start: var(--gap);
-  padding-inline-end: var(--gap);
-  /* TODO: Does Safari not like the above? */
-  /* padding: var(--gap); */
+  padding-inline-end: var(--gap); */
+
+  padding: var(--gap);
   display: grid;
 
   /* Content = 100% until screen is px wide, then max at 80vw */
@@ -261,19 +266,22 @@ hr {
 
 .Header li:not(:last-of-type) {
   padding-inline-end: var(--size-3);
+  padding-right: var(--size-3);
 }
 
 .Header li:first-of-type {
   font-weight: bold;
   padding-inline: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .Header li:first-of-type::after {
   content: "/";
   color: var(--gray-light);
-  /* padding-inline: calc(var(--space-inline)); */
-  padding-inline-start: calc(var(--space-inline));
-  padding-inline-end: calc(var(--space-inline));
+  padding-inline: calc(var(--space-inline));
+  padding-left: calc(var(--space-inline));
+  padding-right: calc(var(--space-inline));
 }
 
 /**
@@ -286,7 +294,9 @@ hr {
 
   .Header li:first-of-type {
     margin-inline-end: auto;
+    margin-right: auto;
     padding-block-end: 0;
+    padding-bottom: 0;
   }
 
   .Header li:first-of-type::after {
@@ -308,10 +318,12 @@ hr {
 
 .Articles__list > * + * {
   margin-block-start: var(--gap-4);
+  margin-top: var(--gap-4);
 }
 
 .Article__header > * + * {
   margin-block-start: var(--flow-space);
+  margin-top: var(--flow-space);
 }
 
 /* Extra margin on first element following article header */
@@ -344,6 +356,8 @@ hr {
   content: "/";
   color: var(--gray-light);
   padding-inline: calc(var(--space-inline) / 2);
+  padding-left: calc(var(--space-inline) / 2);
+  padding-right: calc(var(--space-inline) / 2);
 }
 
 .Article__title {
@@ -360,6 +374,7 @@ hr {
 
 .Article__meta + .Article__title {
   margin-block-start: var(--size-0);
+  margin-top: var(--size-0);
 }
 
 .Article__summary {
@@ -387,6 +402,7 @@ hr {
 
 .Prose > * + * {
   margin-block-start: var(--flow-space);
+  margin-top: var(--flow-space);
 }
 
 .Prose h2,
@@ -402,12 +418,14 @@ hr {
 .Prose * + blockquote,
 .Prose *:not(h2) + figure {
   margin-block-start: calc(var(--flow-space) * 2);
+  margin-top: calc(var(--flow-space) * 2);
 }
 
 /* ...and to the item that follows them. */
 .Prose blockquote + *,
 .Prose figure + *:not(h2) {
   margin-block-start: calc(var(--flow-space) * 2);
+  margin-top: calc(var(--flow-space) * 2);
 }
 
 /* Less margin to make floated fig align with text. */
@@ -434,6 +452,7 @@ hr {
 
 .Prose figure > * + * {
   margin-block-start: var(--flow-space);
+  margin-top: var(--flow-space);
 }
 
 .Prose figcaption {
@@ -459,6 +478,7 @@ hr {
 .Prose ul > * + * {
   --flow-space: calc(var(--size-05) / 2);
   margin-block-start: var(--flow-space);
+  margin-top: var(--flow-space);
 }
 
 .align-full-bleed {
@@ -471,6 +491,8 @@ hr {
     [measure] 1fr
     [bleed-end];
   margin-inline: calc(var(--gap) * -1);
+  margin-left: calc(var(--gap) * -1);
+  margin-right: calc(var(--gap) * -1);
 }
 
 .align-full-bleed > :first-child {
@@ -480,6 +502,8 @@ hr {
 .align-full-bleed > figcaption {
   /* Add side padding to offset being full-width */
   padding-inline: var(--gap);
+  padding-left: var(--gap);
+  padding-right: var(--gap);
 }
 
 /* Screen at least 440px */
@@ -487,7 +511,9 @@ hr {
   .align-end,
   .align-pull-end {
     float: inline-end;
+    float: right;
     margin-inline-start: var(--gap);
+    margin-left: var(--gap);
     /* width: 33%; */
     /* Set minimum width of 200px */
     width: max(200px, 33%);
@@ -495,18 +521,22 @@ hr {
 
   .align-pull-end {
     margin-inline-end: calc(var(--gap) * -1);
+    margin-right: calc(var(--gap) * -1);
   }
 
   .align-start,
   .align-pull-start {
     float: inline-start;
+    float: left;
     margin-inline-end: var(--gap);
+    margin-right: var(--gap);
     /* Set minimum width of 200px */
     width: max(200px, 33%);
   }
 
   .align-pull-start {
     margin-inline-start: calc(var(--gap) * -1);
+    margin-left: calc(var(--gap) * -1);
   }
 }
 
@@ -527,6 +557,7 @@ hr {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-block-start: var(--gap-4);
+  margin-top: var(--gap-4);
 }
 
 /* .BooksGrid > h2,
@@ -555,6 +586,7 @@ hr {
 /* TODO: Can't use flow-space property... see appropriate spacing */
 .BooksGrid > ul {
   margin-block-start: 1em;
+  margin-top: 1em;
 }
 
 /* TODO: Make this layout intrinsic... no media queries? */
@@ -566,8 +598,10 @@ hr {
 
   .BooksGrid > h2,
   .BooksGrid > ul {
-    margin-block-start: var(--gap-2);
+    /* margin-block-start: var(--gap-2); */
+    /* TODO: Incorrect */
     margin-block-start: 0;
+    margin-top: 0;
   }
 
   .BooksGrid > h2,
@@ -596,10 +630,13 @@ hr {
   content: "/";
   color: var(--gray-light);
   padding-inline: calc(var(--space-inline) / 2);
+  padding-left: calc(var(--space-inline) / 2);
+  padding-right: calc(var(--space-inline) / 2);
 }
 
 .BooksSubmenu li:first-of-type {
   padding-inline-end: calc(var(--space-inline) / 2);
+  padding-right: calc(var(--space-inline) / 2);
 }
 
 .BooksSubmenu .active {
@@ -627,6 +664,8 @@ hr {
     [measure] 1fr
     [bleed-end];
   margin-inline: calc(var(--gap) * -1);
+  margin-left: calc(var(--gap) * -1);
+  margin-right: calc(var(--gap) * -1);
   border: 1px solid salmon;
 }
 
