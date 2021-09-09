@@ -207,10 +207,10 @@ li {
   list-style-type: var(--list-marker-content, "– ");
 }
 
-li::marker {
+/* li::marker {
   content: var(--list-marker-content, "– ");
   color: var(--gray-light);
-}
+} */
 
 blockquote {
   border-left: 4px solid var(--gray-light);
