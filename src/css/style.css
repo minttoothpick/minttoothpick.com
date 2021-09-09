@@ -225,10 +225,15 @@ hr {
 
 .Page__grid {
   margin-inline: auto;
-  padding-block: var(--gap);
-  padding-inline: var(--gap);
+  /* padding-block: var(--gap); */
+  /* padding-inline: var(--gap); */
+  /* TODO: Does Safari just not like shorthand? */
+  padding-block-start: var(--gap);
+  padding-block-end: var(--gap);
+  padding-inline-start: var(--gap);
+  padding-inline-end: var(--gap);
   /* TODO: Does Safari not like the above? */
-  padding: var(--gap);
+  /* padding: var(--gap); */
   display: grid;
 
   /* Content = 100% until screen is px wide, then max at 80vw */
