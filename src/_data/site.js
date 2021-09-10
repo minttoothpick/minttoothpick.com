@@ -11,17 +11,21 @@ module.exports = {
       url: "/diary/"
     },
     {
+      name: "Music",
+      url: "/music/"
+    },
+    {
       name: "Reading",
       url: "/reading/"
+    },
+    {
+      name: "Now",
+      url: "/now/"
     },
     // {
     //   name: "About",
     //   url: "/about/"
     // },
-    {
-      name: "Now",
-      url: "/now/"
-    },
     // {
     //   name: "Stuff",
     //   url: "/stuff/"

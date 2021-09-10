@@ -662,6 +662,19 @@ hr {
   /* width: 50%; */
 }
 
+.MusicGrid { margin-top: 1em; }
+
+@media (min-width: 450px) {
+  .MusicGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+
+
+
 /**
  * Maybe not
  */

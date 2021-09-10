@@ -1,0 +1,23 @@
+---
+title: Music
+layout: layouts/base.njk
+pageClass: Page--music
+---
+<article class="Article">
+  <header class="Article__header">
+    <h1 class="Article__title">{{ title }}</h1>
+  </header>
+
+  <section class="MusicGrid">
+    {% image "align-none", "./src/images/returner-commence-album-cover.jpg", "" %}
+
+    {# No album art #}
+    <iframe style="border: 0; width: 100%; height: 406px;" src="https://bandcamp.com/EmbeddedPlayer/album=2538551780/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/" seamless><a href="https://minttoothpick.bandcamp.com/album/returner-commence">Returner, Commence by minttoothpick</a></iframe>
+  </section>
+
+  {# Fluid-ish, w/ tracks #}
+  {# <iframe style="border: 0; width: 700px; height: 406px; max-width: 100%;" src="https://bandcamp.com/EmbeddedPlayer/album=2538551780/size=large/bgcol=ffffff/linkcol=333333/artwork=small/transparent=true/" seamless><a href="https://minttoothpick.bandcamp.com/album/returner-commence">Returner, Commence by minttoothpick</a></iframe> #}
+
+  {# Fluid #}
+  {# <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2538551780/size=large/bgcol=ffffff/linkcol=333333/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://minttoothpick.bandcamp.com/album/returner-commence">Returner, Commence by minttoothpick</a></iframe> #}
+</article>
