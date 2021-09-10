@@ -664,7 +664,7 @@ hr {
 
 .MusicGrid { margin-top: 1em; }
 
-@media (min-width: 450px) {
+@media (min-width: 600px) {
   .MusicGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
