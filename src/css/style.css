@@ -587,6 +587,10 @@ hr {
   max-width: 250px;
 }
 
+.BooksGrid > h2:not(:first-child) {
+  margin-top: 2em;
+}
+
 /* TODO: Can't use flow-space property... see appropriate spacing */
 .BooksGrid > ul {
   margin-block-start: 1em;
@@ -600,7 +604,8 @@ hr {
     gap: var(--gap-4) var(--gap);
   }
 
-  .BooksGrid > h2,
+  /* TODO: This sucks too! */
+  .BooksGrid > h2:not(:first-child),
   .BooksGrid > ul {
     /* margin-block-start: var(--gap-2); */
     /* TODO: Incorrect */
