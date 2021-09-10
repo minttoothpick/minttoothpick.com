@@ -216,6 +216,13 @@ module.exports = function(eleventyConfig) {
   });
 
   /**
+   * Return book title before colon (subtitle)
+   */
+  eleventyConfig.addFilter("removeSubtitle", (str) => {
+    return str.split(":", 1);
+  });
+
+  /**
    * This is... I forget... I think for Google Sheets MD content?
    * https://github.com/11ty/eleventy/issues/658
    */

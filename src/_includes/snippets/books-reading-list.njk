@@ -1,6 +1,9 @@
 {% for book in collections.booksReading %}
   {% set bookSlug = book.c[1].v %}
   {% set bookTitle = book.c[2].v %}
+  {% if noSubtitle == "true" %}
+    {% set bookTitle = bookTitle | removeSubtitle %}
+  {% endif %}
   {% set bookAuthor = book.c[3].v %}
   {% set bookGenre = book.c[4].v %}
   {% set bookYear = book.c[5].v %}
