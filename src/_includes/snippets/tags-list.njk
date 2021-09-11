@@ -1,10 +1,11 @@
 {% for tag in tags %}
-  {# {% if collections.tagList.indexOf(tag) != -1 %} #}
-    {# {% set tagUrl %}/tags/{{ tag }}/{% endset %} #}
-    {# <a href="{{ tagUrl | url }}" class="Tag">{{ tag }}</a> #}
-  {# <i><a href="/tags/{{ tag }}">#{{ tag }}</a>&nbsp;&nbsp;</i> #}
-  {% if tag != "posts" %}
-    <i>#{{ tag }}&nbsp;&nbsp;</i>
-  {% endif %}
-  {# {% endif %} #}
+  {% if tag != "posts" %}<i>#{{ tag }}&nbsp;&nbsp;</i>{% endif %}
 {% else %}{% endfor %}
+{#- Previous code... forget what this did -#}
+{#- {% for tag in post.data.tags %}
+  {% if collections.tagList.indexOf(tag) != -1 %}
+    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+    <a href="{{ tagUrl | url }}" class="Tag">{{ tag }}</a>
+    {{ tag }}
+  {% endif %}
+{% endfor %} -#}
