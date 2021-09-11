@@ -13,9 +13,9 @@
     <a class="SkipNav hidden-til-focus" href="#main" style="text-decoration: underline;">Skip to main content</a>
     <nav>
       <ul class="list-unstyled">
-        <li><a {{ "aria-current=page " if ("/" == page.url) or ("home" == fakeUrl) }}href="/">{{ site.title }}</a></li>
+        <li><a {% if (page.url === "/") or (fakeUrl === "home") %}aria-current="page" {% endif %}href="/">{{ site.title }}</a></li>
         {%- for item in site.navigation %}
-          <li><a {{ "aria-current=page " if (item.url == page.url) or (item.url == fakeUrl) }}href="{{ item.url | url }}">{{ item.name }}</a></li>
+          <li><a {% if (page.url === item.url) or (fakeUrl === item.url) %}aria-current="page" {% endif %}href="{{ item.url | url }}">{{ item.name }}</a></li>
         {%- endfor %}
       </ul>
     </nav>
