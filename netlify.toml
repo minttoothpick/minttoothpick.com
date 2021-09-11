@@ -1,4 +1,7 @@
 [[plugins]]
-    package = "netlify-plugin-11ty"
-    [plugins.inputs]
-      cache_img = './images'
+  package = "netlify-plugin-11ty"
+  [plugins.inputs]
+    cache_img = './images'
+
+[[plugins]]
+  package = "netlify-plugin-subfont"
