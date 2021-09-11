@@ -32,7 +32,7 @@ module.exports = async function() {
   let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
 
   var text = await Cache(url, {
-    duration: "1h",
+    duration: "1d",
     type: "text"
   });
 
