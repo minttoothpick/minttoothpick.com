@@ -10,7 +10,7 @@
 <body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
 
   <header class="Header Page__grid">
-    <a class="SkipNav hidden-til-focus" href="#main" style="text-decoration: underline;">Skip to main content</a>
+    <a class="SkipNav hidden-til-focus" href="#main">Skip to main content</a>
     <nav>
       <ul class="list-unstyled">
         <li><a {% if (page.url === "/") or (fakeUrl === "home") %}aria-current="page" {% endif %}href="/">{{ site.title }}</a></li>
