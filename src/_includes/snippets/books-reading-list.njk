@@ -1,49 +1,5 @@
 {% for book in collections.booksReading %}
-  {% set bookSlug = book.c[1].v %}
-  {% set bookTitle = book.c[2].v %}
-  {% if noSubtitle == "true" %}
-    {% set bookTitle = bookTitle | removeSubtitle %}
-  {% endif %}
-  {% set bookAuthor = book.c[3].v %}
-  {% set bookGenre = book.c[4].v %}
-  {% set bookYear = book.c[5].v %}
-  {% set bookStartDate = book.c[6].f %}
-  {% set bookFinishDate = book.c[7].f %}
-  {% set bookFinishYear = book.c[8].v %}
-  {% set bookMedia = book.c[9].v %}
-  {% set bookWidth = book.c[10].v %}
-  {% set bookHeight = book.c[11].v %}
-  {% set hasDrawing = book.c[12].f %}
-  {% set bookVia = book.c[13].v %}
-  {% set bookDesc = book.c[14].v %}
-
-  {% if loop.first %}
-    <ul>{#  style="--flow-space: var(--size-05); --flow-space: 1em;" #}
-  {% endif %}
-  <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+  {% if loop.first %}<ul>{% endif %}
+  <li><em>{{ book.title | removeSubtitle if noSubtitle else book.title }}</em> by {{ book.author | formatAuthor }}</li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}
-
-{# {% for book in collections.booksReading %}
-  {% set bookSlug = book.c[1].v %}
-  {% set bookTitle = book.c[2].v %}
-  {% set bookAuthor = book.c[3].v %}
-  {% set bookGenre = book.c[4].v %}
-  {% set bookYear = book.c[5].v %}
-  {% set bookStartDate = book.c[6].f %}
-  {% set bookFinishDate = book.c[7].f %}
-  {% set bookFinishYear = book.c[8].v %}
-  {% set bookMedia = book.c[9].v %}
-  {% set bookWidth = book.c[10].v %}
-  {% set bookHeight = book.c[11].v %}
-  {% set hasDrawing = book.c[12].f %}
-  {% set bookVia = book.c[13].v %}
-  {% set bookDesc = book.c[14].v %}
-
-  {% if loop.first %}
-    <h2 class="h-sm">What I'm currently reading</h2>
-    <ul class="flow mt-xs" style="--flow-space: var(--size-xs);">
-  {% endif %}
-  <li><i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
-  {% if loop.last %}</ul>{% endif %}
-{% endfor %} #}

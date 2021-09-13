@@ -3,5 +3,5 @@
   [plugins.inputs]
     cache_img = './images'
 
-[[plugins]]
-  package = "netlify-plugin-subfont"
+# [[plugins]]
+#   package = "netlify-plugin-subfont"

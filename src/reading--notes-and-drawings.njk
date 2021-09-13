@@ -18,58 +18,19 @@ fakeUrl: "/reading/"
    # Books read, sorted by year
    #}
   {% set currentYear = "" %}
-  {% for book in collections.booksRead %}
-    {% set isFavorite = book.c[0].v %}
-    {% set bookSlug = book.c[1].v %}
-    {% set bookTitle = book.c[2].v %}
-    {% set bookAuthor = book.c[3].v %}
-    {% set bookGenre = book.c[4].v %}
-    {% set bookYear = book.c[5].v %}
-    {% set bookStartDate = book.c[6].f %}
-    {% set bookFinishDate = book.c[7].f %}
-    {% set bookFinishYear = book.c[8].v %}
-    {% set bookMedia = book.c[9].v %}
-    {% set bookWidth = book.c[10].v %}
-    {% set bookHeight = book.c[11].v %}
-    {% set hasDrawing = book.c[12].f %}
-    {% set bookVia = book.c[13].v %}
-    {% set bookDesc = book.c[14].v %}
-
+  {% for book in collections.booksFinished %}
     <figure class="BooksNotesGrid mt-10" style="max-width: 64rem;">
-      {% if hasDrawing %}
-        {# old #}
-        {# {% set imgSrc %}/images/books/{{ bookSlug }}.png{% endset %} #}
-        {# <img alt="Drawing of “{{ bookTitle }}”" src="{{ imgSrc | url | safe }}"> #}
-
-        {# new #}
-        {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
-        {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
+      {% if book.drawing %}
+        {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
+        {% set altText %}Drawing of “{{ book.title }}”{% endset %}
         {% bookImg { src: imgSrc, alt: altText, sizes: "(min-width: 1600px) 325px, (min-width: 700px) calc(33vw - 96px), (min-width: 314px) 250px, calc(100vw-64px)" } %}{% endbookImg %}
       {% endif %}{# check for drawing #}
       <figcaption class="">
-        <h2 style="font-weight: normal;">{% if isFavorite %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ bookTitle }}</i></h2>
-        <p class="mt-none" style="color: var(--text-muted);">{{ bookAuthor | formatAuthor }}</p>
-        {% if bookDesc %}{{ bookDesc | markdown | safe }}{% endif %}
+        <h2 style="font-weight: normal;">{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
+        <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
+        {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
       </figcaption>
     </figure>
-{#
-    {% if currentYear != bookFinishYear %}
-      {% set currentYear = bookFinishYear %}
-      {% if loop.first %}{% else %}</ul>{% endif %}
-      <h2>{{ bookFinishYear }}</h2>
-      <ul style="--flow-space: var(--size-05);">
-    {% endif %}
-    <li{% if isFavorite %} style="--list-marker-content: '✺ ';"{% endif %}>{% if isFavorite %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
-    {% if loop.last %}</ul>{% endif %} #}
   {% endfor %}
 
 </article>
-
-{# <section class="Grid Article space-items-lg">
-
-  <h1>{{ title }}</h1>
-  {% include "snippets/books-submenu.njk" %}
-
-</section> #}
-
-

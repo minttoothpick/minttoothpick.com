@@ -23,30 +23,14 @@ pageClass: Page--reading
      # Books read, sorted by year
      #}
     {% set currentYear = "" %}
-    {% for book in collections.booksRead %}
-      {% set isFavorite = book.c[0].v %}
-      {% set bookSlug = book.c[1].v %}
-      {% set bookTitle = book.c[2].v %}
-      {% set bookAuthor = book.c[3].v %}
-      {% set bookGenre = book.c[4].v %}
-      {% set bookYear = book.c[5].v %}
-      {% set bookStartDate = book.c[6].f %}
-      {% set bookFinishDate = book.c[7].f %}
-      {% set bookFinishYear = book.c[8].v %}
-      {% set bookMedia = book.c[9].v %}
-      {% set bookWidth = book.c[10].v %}
-      {% set bookHeight = book.c[11].v %}
-      {% set hasDrawing = book.c[12].f %}
-      {% set bookVia = book.c[13].v %}
-      {% set bookDesc = book.c[14].v %}
-
-      {% if currentYear != bookFinishYear %}
-        {% set currentYear = bookFinishYear %}
+    {% for book in collections.booksFinished %}
+      {% if currentYear != book.finish_date %}
+        {% set currentYear = book.finish_date %}
         {% if loop.first %}{% else %}</ul>{% endif %}
-        <h2>{{ bookFinishYear }}</h2>
+        <h2>{{ book.finish_date }}</h2>
         <ul style="--flow-space: var(--size-05);">
       {% endif %}
-      <li{% if isFavorite %} style="--list-marker-content: '✺ ';"{% endif %}>{% if isFavorite %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ bookTitle }}</i> by {{ bookAuthor | formatAuthor }}</li>
+      <li{% if isFavorite %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ book.title }}</i> by {{ book.author | formatAuthor }}</li>
       {% if loop.last %}</ul>{% endif %}
     {% endfor %}
   </div>

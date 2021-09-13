@@ -252,28 +252,45 @@ module.exports = function(eleventyConfig) {
    *
    * https://11ty.rocks/eleventyjs/collections/#collections-from-custom-data
    */
-  eleventyConfig.addCollection("booksRead", (collection) => {
-    const myBooks = collection.getAll()[0].data.books.items;
+  eleventyConfig.addCollection("booksFinished", (collection) => {
+    const myBooks = collection.getAll()[0].data.books;
     // Include only books with a finish date
+
+    // This one is the old Google Sheets API
     // const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
-    const myBooksFiltered = myBooks.filter((d) => ((d.c[7]) && ((d.c[7].f).length > 0) && ((d.c[7].f).length > 0) && (d.c[7].f) != "Reading") && ((d.c[7].f) != "Shelved") && ((d.c[7].f) != "0"));
-    // Sort books by date finished
+
+    // This one is the new Google Sheets API
+    // const myBooksFiltered = myBooks.filter((d) => ((d.c[7]) && ((d.c[7].f).length > 0) && ((d.c[7].f).length > 0) && (d.c[7].f) != "Reading") && ((d.c[7].f) != "Shelved") && ((d.c[7].f) != "0"));
+
+    // This one is CSV from Google Sheets
+    const myBooksFiltered = myBooks.filter((d) => (d.finish.length > 0) && (d.finish != "Reading") && (d.finish != "Shelved") && (d.finish != "0"));
+
+    // Sort books by finish date
     // return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
-    return myBooksFiltered.sort((a, b) => (b.c[7].f) > (a.c[7].f) ? 1 : -1);
+    return myBooksFiltered.sort((a, b) => (b.finish) > (a.finish) ? 1 : -1);
   });
 
   /**
    * Books in progress
    */
   eleventyConfig.addCollection("booksReading", (collection) => {
-    const myBooks = collection.getAll()[0].data.books.items;
+    const myBooks = collection.getAll()[0].data.books;
     // Include only books currently marked "Reading"
+
+    // This one is the old Google Sheets API
     // const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
-    // (changed to "0" in next col over w/ new API)
-    const myBooksFiltered = myBooks.filter((d) => ((d.c[8]) && ((d.c[8].f)) == "0"));
-    // Sort books by date started
     // return myBooksFiltered.sort((a, b) => (b.gsx$start.$t) > (a.gsx$start.$t) ? 1 : -1);
-    return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
+
+    // This one is the new Google Sheets API
+    // (changed to "0" in next col over w/ new API)
+    // const myBooksFiltered = myBooks.filter((d) => ((d.c[8]) && ((d.c[8].f)) == "0"));
+    // return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
+
+    // This one is CSV from Google Sheets
+    const myBooksFiltered = myBooks.filter((d) => (d.finish == "Reading"));
+
+    // Sort books by start date
+    return myBooksFiltered.sort((a, b) => (b.start) > (a.start) ? 1 : -1);
   });
 
   /**
@@ -347,6 +364,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
 
   /**
+   * Add CSV as custom data file format
+   *
+   * https://maxkoehler.com/posts/eleventy-csv/
+   */
+  const parse = require("csv-parse/lib/sync");
+  eleventyConfig.addDataExtension("csv", (contents) => {
+    console.log("Parsing CSV...");
+    const records = parse(contents, {
+      columns: true,
+      skip_empty_lines: true,
+    });
+    return records;
+  });
+
+  /**
    * Additional folders to copy to output folder
    *
    * https://www.11ty.dev/docs/copy/
@@ -358,12 +390,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/js");
 
   /**
-   * Override default input/output directories
+   * Config
    *
    * https://www.11ty.dev/docs/config/
    */
   return {
+    // Use Nunjucks
     markdownTemplateEngine: "njk",
+    // Override default input/output directories
     dir: {
       input: "src"
     }

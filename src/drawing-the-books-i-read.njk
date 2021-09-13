@@ -18,38 +18,20 @@ permalink: "drawing-the-books-i-read/"
 
 <section class="BooksDrawingGrid mt-5" style="--flow-space: 0.5em; display: flex; flex-wrap: wrap; align-items: flex-end;">
   {% set currentYear = "" %}
-  {% for book in collections.booksRead %}
-    {% set bookSlug = book.c[1].v %}
-    {% set bookTitle = book.c[2].v %}
-    {% set bookAuthor = book.c[3].v %}
-    {% set bookGenre = book.c[4].v %}
-    {% set bookYear = book.c[5].v %}
-    {% set bookStartDate = book.c[6].f %}
-    {% set bookFinishDate = book.c[7].f %}
-    {% set bookFinishYear = book.c[8].v %}
-    {% set bookMedia = book.c[9].v %}
-    {% set bookWidth = book.c[10].v %}
-    {% set bookHeight = book.c[11].v %}
-    {% set hasDrawing = book.c[12].f %}
-    {% set bookVia = book.c[13].v %}
-    {% set bookDesc = book.c[14].v %}
-
-    {% if bookFinishYear != currentYear %}
-      {% set currentYear = bookFinishYear %}
-      {# <h2 class="mt-5" style="flex: 0 0 100%;">{{ bookFinishYear }}</h2> #}
+  {% for book in collections.booksFinished %}
+    {% if book.finish_year != currentYear %}
+      {% set currentYear = book.finish_year %}
+      {# <h2 class="mt-5" style="flex: 0 0 100%;">{{ book.finish_year }}</h2> #}
     {% endif %}
-    {# See if the spreadsheet says this book has a drawing #}
-    {% if hasDrawing %}
-      {% set imgSrc %}./src/images/books/{{ bookSlug }}.png{% endset %}
-      {# so, you can't pass the below var into the shortcode... should be okay, as long as there aren't any special characters in slug #}
-      {# {% set imgSrcUrl = imgSrc | url | safe %} #}
+    {% if book.drawing %}
+      {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
       {# New calculation #}
-      {% set widthPx %}{{ bookWidth }}{% endset %}
-      {# {% set width %}{{ (bookWidth * 17) }}{% endset %} #}
+      {% set widthPx %}{{ book.w }}{% endset %}
+      {# {% set width %}{{ (book.w * 17) }}{% endset %} #}
       {# Percentage calculation #}
-      {% set widthPercent = bookWidth | int %}
+      {% set widthPercent = book.w | int %}
       {# {% set widthPercent = widthPercent + 3 %} #}
-      {% set altText %}Drawing of “{{ bookTitle }}”{% endset %}
+      {% set altText %}Drawing of “{{ book.title }}”{% endset %}
 
       <style>
       .book { padding-right: 0.5em; }

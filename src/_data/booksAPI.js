@@ -1,8 +1,29 @@
 const fetch = require("node-fetch");
 const Cache = require("@11ty/eleventy-cache-assets");
+const fs = require("fs");
 
 /**
- * v2.1: new API endpoint, using 11ty Cache
+ * v2.1: new API endpoint, with Cache plugin
+ *
+ * https://stackoverflow.com/questions/68897803/how-can-i-cache-this-call-to-the-google-sheets-api
+ */
+// module.exports = async function() {
+//   let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
+
+//   var text = await Cache(url, {
+//     duration: "1d",
+//     type: "text"
+//   });
+
+//   var json = JSON.parse(text.substr(47).slice(0, -2));
+//   // console.log(json);
+//   return {
+//     items: json.table.rows
+//   };
+// }
+
+/**
+ * v2.1: (My failed attempt at a) new API endpoint, using 11ty Cache
  *
  * TODO: Dunno how to make it work. Console logs the JSON, but 11ty
  *       says it can't "read property 'items' of undefined"
@@ -22,26 +43,6 @@ const Cache = require("@11ty/eleventy-cache-assets");
 //     };
 //   });
 // };
-
-/**
- * v2.1: new API endpoint, with Cache plugin
- *
- * https://stackoverflow.com/questions/68897803/how-can-i-cache-this-call-to-the-google-sheets-api
- */
-module.exports = async function() {
-  let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json`;
-
-  var text = await Cache(url, {
-    duration: "1d",
-    type: "text"
-  });
-
-  var json = JSON.parse(text.substr(47).slice(0, -2));
-  // console.log(json);
-  return {
-    items: json.table.rows
-  };
-}
 
 /**
  * v2.0: new API endpoint
