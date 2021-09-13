@@ -5,7 +5,8 @@
   "scripts": {
     "build": "npx @11ty/eleventy",
     "serve": "npx @11ty/eleventy --serve",
-    "debug": "DEBUG=* npx @11ty/eleventy"
+    "debug": "DEBUG=* npx @11ty/eleventy",
+    "debugimg": "DEBUG=EleventyImg npx @11ty/eleventy"
   },
   "author": "Jeremy Jones <minttoothpick@pm.me>",
   "license": "UNLICENSED",
@@ -13,7 +14,6 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-cache-assets": "^2.3.0",
-    "@11ty/eleventy-img": "^0.9.0",
     "csv-parse": "^4.16.3",
     "dotenv": "^8.2.0",
     "js-yaml": "^3.13.1",
@@ -25,5 +25,8 @@
     "path": "^0.12.7",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "github:zeroby0/eleventy-img#cache"
   }
 }

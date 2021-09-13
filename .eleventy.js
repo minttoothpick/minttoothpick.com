@@ -8,6 +8,7 @@ const Image = require("@11ty/eleventy-img");
  * Then added a wrapping `figure` element and whatever else.
  */
 async function imgShortcode(figClass="", src, alt, figcaption="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)", style="") {
+  console.log("Calling `imgShortcode`");
   var widths = [];
   // sizes is already defaulted in func param;
   if (figClass == "align-full-bleed") {
@@ -121,6 +122,7 @@ module.exports = function(eleventyConfig) {
 
   /* Thanks: https://www.youtube.com/watch?v=nUlB8SR039w */
   eleventyConfig.addPairedNunjucksAsyncShortcode("bookImg", async function(content, options = {}) {
+    console.log("Calling `bookImg`");
     const { src = "", alt="", sizes="" } = options;
 
     let metadata = await Image(src, {
@@ -299,22 +301,22 @@ module.exports = function(eleventyConfig) {
    * Enable us to iterate over all the tags, excluding some
    * https://github.com/kohrongying/11ty-blog-starter/blob/master/.eleventy.js
    */
-     eleventyConfig.addCollection("tagList", collection => {
-      const tagsSet = new Set()
-      // Loop through everything
-      collection.getAll().forEach(item => {
-        // Don't include items without tags
-        if (!item.data.tags) return
-        item.data.tags
-          // Don't include items with these tags...
-          .filter(tag => !["posts"].includes(tag))
-          // ...or with empty tags
-          .filter(tag => !tag.length < 1)
-          // Now add the filtered tags to the set
-          .forEach(tag => tagsSet.add(tag))
-      })
-      return Array.from(tagsSet).sort();
-    });
+  eleventyConfig.addCollection("tagList", collection => {
+    const tagsSet = new Set()
+    // Loop through everything
+    collection.getAll().forEach(item => {
+      // Don't include items without tags
+      if (!item.data.tags) return
+      item.data.tags
+        // Don't include items with these tags...
+        .filter(tag => !["posts"].includes(tag))
+        // ...or with empty tags
+        .filter(tag => !tag.length < 1)
+        // Now add the filtered tags to the set
+        .forEach(tag => tagsSet.add(tag))
+    })
+    return Array.from(tagsSet).sort();
+  });
 
   /* Markdown
    ======================================================================== */
@@ -329,15 +331,15 @@ module.exports = function(eleventyConfig) {
     html: true,
     linkify: true,
     typographer: true,
-    replaceLink: function (link, env) {
-      // Set image paths to absolute
-      if (link.startsWith("images")) {
-        // Prepend local image links with correct path
-        return "../../" + link;
-      } else {
-        return link;
-      }
-    }
+    // replaceLink: function (link, env) {
+    //   // Set image paths to absolute
+    //   if (link.startsWith("images")) {
+    //     // Prepend local image links with correct path
+    //     return "../../" + link;
+    //   } else {
+    //     return link;
+    //   }
+    // }
   })
   .use(require("markdown-it-replace-link"))
   .use(require("markdown-it-anchor"), {
