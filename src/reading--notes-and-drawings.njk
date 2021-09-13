@@ -17,13 +17,21 @@ fakeUrl: "/reading/"
   {##
    # Books read, sorted by year
    #}
-  {% set currentYear = "" %}
+  {%- set currentYear = "" -%}
   {% for book in collections.booksFinished %}
     <figure class="BooksNotesGrid mt-10" style="max-width: 64rem;">
       {% if book.drawing %}
         {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
         {% set altText %}Drawing of “{{ book.title }}”{% endset %}
-        {% bookImg { src: imgSrc, alt: altText, sizes: "(min-width: 1600px) 325px, (min-width: 700px) calc(33vw - 96px), (min-width: 314px) 250px, calc(100vw-64px)" } %}{% endbookImg %}
+        {%- bookImg {
+          src: imgSrc,
+          alt: altText,
+          sizes: "(min-width: 1600px) 325px,
+                  (min-width: 700px) calc(33vw - 96px),
+                  (min-width: 314px) 250px,
+                  calc(100vw-64px)"
+          }
+        -%}{%- endbookImg -%}
       {% endif %}{# check for drawing #}
       <figcaption class="">
         <h2 style="font-weight: normal;">{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>

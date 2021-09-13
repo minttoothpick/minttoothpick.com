@@ -12,7 +12,7 @@
   <header class="Header Page__grid">
     <a class="SkipNav hidden-til-focus" href="#main">Skip to main content</a>
     <nav>
-      <ul class="list-unstyled">
+      <ul class="list-unstyled" role="list">
         <li><a {% if (page.url === "/") or (fakeUrl === "home") %}aria-current="page" {% endif %}href="/">{{ site.title }}</a></li>
         {%- for item in site.navigation %}
           <li><a {% if (page.url === item.url) or (fakeUrl === item.url) %}aria-current="page" {% endif %}href="{{ item.url | url }}">{{ item.name }}</a></li>
@@ -27,6 +27,7 @@
 
   <footer class="SiteFooter Page__grid">
     <p class="border-top" style="padding-top: 64px;">© 2021. ⟢ Thanks for visiting!</p>
+    <!--<p>Last built on {{ site.buildTime }}</p>-->
   </footer>
 
 </body>
