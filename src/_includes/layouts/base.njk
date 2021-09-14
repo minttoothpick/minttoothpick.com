@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-us">
+{%- set pageTitle %}{% if title %}{{ title }} / {% endif %}{{ site.title }}{% endset -%}
+{%- set pageDescription %}{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}{% endset -%}
+{# {%- set pageSocialImg %}{{ meta.url }}/previews/{% if title %}{{ title | slug }}{% else %}home{% endif %}.png{% endset -%} #}
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
-  <link rel="stylesheet" href="{{ '/css/utilities.css' | url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {# Styles #}
+  <link href="{{ '/css/style.css' | url }}" rel="stylesheet">
+  <link href="{{ '/css/utilities.css' | url }}" rel="stylesheet">
+  {# Primary meta #}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <meta name="author" content="{{ site.authorName }}">
+  <link rel="canonical" href="{{ site.url }}">
+  {# Twitter #}
+  <meta name="twitter:card" content="summary_large_image">
+  {%- if site.twitterUsername %}
+  <meta name="twitter:creator" content="@{{ site.twitterUsername }}">
+  {%- endif %}
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDescription }}">
+  {# <meta name="twitter:image" content="{{ pageSocialImg }}"> #}
+  {# Open Graph #}
+  <meta name="og:title" content="{{ pageTitle }}">
+  <meta name="og:description" content="{{ pageDescription }}">
+  {# <meta property="og:image" content="{{ pageSocialImg }}"> #}
 </head>
 <body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
 

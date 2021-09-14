@@ -1,9 +1,10 @@
 module.exports = {
   title: "minttoothpick",
-  description: "A personal website",
-  url: "https://minttoothpick.com",
+  description: "Jeremy Robert Jones’ personal website: art, music, musings",
+  url: process.env.URL || "http://localhost:8080",
   authorName: "Jeremy Robert Jones",
   authorEmail: "minttoothpick@protonmail.com",
+  twitterUsername: "minttoothpick",
   buildTime: new Date(),
   navigation: [
     {
