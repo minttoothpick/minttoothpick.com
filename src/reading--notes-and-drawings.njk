@@ -33,7 +33,7 @@ fakeUrl: "/reading/"
           }
         -%}{%- endbookImg -%}
       {% endif %}{# check for drawing #}
-      <figcaption class="">
+      <figcaption class="flow">
         <h2 style="font-weight: normal;">{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
         <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
         {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
