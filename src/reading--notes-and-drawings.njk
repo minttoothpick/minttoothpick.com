@@ -15,30 +15,30 @@ fakeUrl: "/reading/"
   </header>
 
   {##
-   # Books read, sorted by year
+   # Books read, w/ drawing, sorted by year
    #}
   {%- set currentYear = "" -%}
   {% for book in collections.booksFinished %}
+    {% if book.drawing %}
     <figure class="BooksNotesGrid mt-10" style="max-width: 64rem;">
-      {% if book.drawing %}
-        {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
-        {% set altText %}Drawing of “{{ book.title }}”{% endset %}
-        {%- bookImg {
-          src: imgSrc,
-          alt: altText,
-          sizes: "(min-width: 1600px) 325px,
-                  (min-width: 700px) calc(33vw - 96px),
-                  (min-width: 314px) 250px,
-                  calc(100vw-64px)"
-          }
-        -%}{%- endbookImg -%}
-      {% endif %}{# check for drawing #}
+      {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
+      {% set altText %}Drawing of “{{ book.title }}”{% endset %}
+      {%- bookImg {
+        src: imgSrc,
+        alt: altText,
+        sizes: "(min-width: 1600px) 325px,
+                (min-width: 700px) calc(33vw - 96px),
+                (min-width: 314px) 250px,
+                calc(100vw-64px)"
+        }
+      -%}{%- endbookImg -%}
       <figcaption class="flow">
         <h2 style="font-weight: normal;">{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
         <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
         {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
       </figcaption>
     </figure>
+    {% endif %}{# check for drawing #}
   {% endfor %}
 
 </article>
