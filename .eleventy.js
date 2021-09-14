@@ -370,10 +370,10 @@ module.exports = function(eleventyConfig) {
    *
    * https://maxkoehler.com/posts/eleventy-csv/
    */
-  const parse = require("csv-parse/lib/sync");
+  const csvParse = require("csv-parse/lib/sync");
   eleventyConfig.addDataExtension("csv", (contents) => {
     console.log("Parsing CSV...");
-    const records = parse(contents, {
+    const records = csvParse(contents, {
       columns: true,
       skip_empty_lines: true,
     });
