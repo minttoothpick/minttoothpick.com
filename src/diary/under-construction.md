@@ -11,7 +11,7 @@ In the spirit of that tendency to let one's personal website languish in a limbo
 
 <figure>
   <div class="ratio ratio--square">
-    <iframe 
+    <iframe
         src="https://player.vimeo.com/video/543968889?loop=1&amp;autoplay=1&amp;muted=1"
         loading="lazy"
         frameborder="0"
