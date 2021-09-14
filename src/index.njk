@@ -5,7 +5,8 @@ fakeUrl: home
 ---
 <div class="Articles__list">
   {% for item in collections.posts | sortByDateCreated | reverse %}
-    {% if item.data.status != "draft" %}
+    {#- Show draft items on "dev" #}
+    {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
       {% include "snippets/article-list.njk" %}
     {% endif %}
   {% endfor %}

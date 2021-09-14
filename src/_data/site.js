@@ -1,4 +1,5 @@
 module.exports = {
+  env: process.env.ELEVENTY_ENV,
   title: "minttoothpick",
   description: "Jeremy Robert Jones’ personal website: art, music, musings",
   url: process.env.URL || "http://localhost:8080",
