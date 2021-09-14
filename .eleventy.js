@@ -1,116 +1,13 @@
 const { DateTime } = require("luxon");
 const dotenv = require("dotenv").config();
-const path = require("path");
-const Image = require("@11ty/eleventy-img");
+const markdownIt = require("markdown-it");
 
-/**
- * https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
- * Then added a wrapping `figure` element and whatever else.
- */
-async function imgShortcode(figClass="", src, alt, figcaption="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)", style="") {
-  console.log("Calling `imgShortcode`");
-  var widths = [];
-  // sizes is already defaulted in func param;
-  if (figClass == "align-full-bleed") {
-    sizes = "(min-width: 1492px) 1444px, calc(100vw - 48px)";
-    widths = [600, 800, 1000, 1444, 1600, 1900, 2200, 2400];
-  } else {
-    widths = [600, 800, 1000, 1444, 1600, 1900];
-  }
+// Import filters
+const formatAuthor = require("./_eleventy/filters/formatAuthor.js");
 
-  if (!figClass) figClass = "align-none";
-
-  let metadata = await Image(src, {
-    // Actual widths generated; `null` passes original through as well
-    widths: widths,
-    formats: ["jpeg", "avif"],
-    // What is output in HTML `src` and `srcset`
-    urlPath: "/images/",
-    // Where the generated files go
-    outputDir: "./_site/images/",
-    // Use original filename instead of hash
-    filenameFormat: function(id, src, width, format, options) {
-      const extension = path.extname(src);
-      const name = path.basename(src, extension);
-      return `${name}-${width}w.${format}`;
-    },
-    sharpJpegOptions: {
-      quality: 80
-    }
-  });
-
-  let imageAttributes = {
-    // class: cls,
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  }
-
-  let figureStrOpen = "<figure";
-  // If the `figClass` parameter isn't empty, add it to `figure` code
-  if (figClass.length > 0) {
-    figureStrOpen = `${figureStrOpen} class="${figClass}"`;
-  } else {
-    figureStrOpen = `${figureStrOpen}`;
-  }
-
-  // TODO: This style 'injection' is sloppy.
-  if (style.length > 0) {
-    figureStrOpen = `${figureStrOpen} style="${style}">`;
-  } else {
-    figureStrOpen = `${figureStrOpen}>`;
-  }
-
-  // TODO: Yeah, limited to one paragraph... not ideal? Or fine?
-  if (figcaption.length > 0) {
-    figcaption = `<figcaption><p>${figcaption}</p></figcaption>`;
-  }
-
-  // TODO: probably a more template-y way to refactor, using just `figureString` w/ `myImg` injected in the middle?
-
-  // console.log(Image.generateHTML(metadata, imageAttributes));
-
-  let myImg = Image.generateHTML(metadata, imageAttributes, {
-    whitespaceMode: "inline"
-  });
-
-  // Switch statements to choose sizes, based on the class?
-
-  return `${figureStrOpen}${myImg}${figcaption}</figure>`;
-}
-
-async function bookDrawingShortcode(content, src, alt, sizes="100vw") {
-
-  let metadata = await Image(src, {
-    // Actual widths generated; `null` passes original through as well
-    widths: [300, 400, 600, 800],
-    formats: ["png", "avif"],
-    // What is output in HTML `src` and `srcset`
-    urlPath: "/images/books/",
-    // Where the generated files go
-    outputDir: "./_site/images/books/",
-    // Use original filename instead of hash
-    filenameFormat: function(id, src, width, format, options) {
-      const extension = path.extname(src);
-      const name = path.basename(src, extension);
-      return `${name}-${width}w.${format}`;
-    }
-  });
-
-  let imageAttributes = {
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  }
-
-  let myImg = Image.generateHTML(metadata, imageAttributes, {
-    whitespaceMode: "inline"
-  });
-
-  return myImg;
-}
+// Import shortcodes
+const imgShortcode = require("./_eleventy/shortcodes/imgShortcode.js");
+const bookImg = require("./_eleventy/shortcodes/bookImg.js");
 
 module.exports = function(eleventyConfig) {
 
@@ -118,39 +15,7 @@ module.exports = function(eleventyConfig) {
    ======================================================================== */
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imgShortcode);
-  // eleventyConfig.addPairedNunjucksAsyncShortcode("bookDrawing", bookDrawingShortcode);
-
-  /* Thanks: https://www.youtube.com/watch?v=nUlB8SR039w */
-  eleventyConfig.addPairedNunjucksAsyncShortcode("bookImg", async function(content, options = {}) {
-    console.log("Calling `bookImg`");
-    const { src = "", alt="", sizes="" } = options;
-
-    let metadata = await Image(src, {
-      widths: [200, 400, 600],
-      formats: ["png", "avif"],
-      // What is output in HTML `src` and `srcset`
-      urlPath: "/images/books/",
-      // Where the generated files go
-      outputDir: "./_site/images/books/",
-      filenameFormat: function(id, src, width, format, options) {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
-        return `${name}-${width}w.${format}`;
-      },
-    });
-
-    let imageAttributes = {
-      // class: cls,
-      alt,
-      sizes,
-      loading: "lazy",
-      decoding: "async",
-    }
-
-    return myImg = Image.generateHTML(metadata, imageAttributes, {
-      whitespaceMode: "inline"
-    });
-  });
+  eleventyConfig.addPairedNunjucksAsyncShortcode("bookImg", bookImg);
 
   /* Filters
    ======================================================================== */
@@ -170,7 +35,6 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {
-    // return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("s");
     return DateTime.fromISO(dateObj, { zone: "utc" }).toSeconds();
   });
 
@@ -192,30 +56,7 @@ module.exports = function(eleventyConfig) {
   /**
    * Format author string
    */
-  eleventyConfig.addFilter("formatAuthor", (string) => {
-    var newString = "";
-    let arr = string.split(";");
-    arr.forEach((item, index, arr) => {
-      // If there's only one author, do nothing
-      if (arr.length === 1) {
-        return newString = item;
-      }
-      // If this is last item, do nothing
-      if (index === arr.length - 1) {
-        newString += item;
-      // If this is penultimate item and there are only two, don't add comma
-      } else if (index === arr.length - 2 && arr.length === 2) {
-        newString += item + " and ";
-      // If this is penultimate item, add "and"
-      } else if (index === arr.length - 2 && arr.length > 2) {
-        newString += item + ", and ";
-      // Otherwise, add a comma
-      } else {
-        newString += item + ", ";
-      }
-    });
-    return newString;
-  });
+  eleventyConfig.addFilter("formatAuthor", formatAuthor);
 
   /**
    * Return book title before colon (subtitle)
@@ -225,14 +66,15 @@ module.exports = function(eleventyConfig) {
   });
 
   /**
-   * This is... I forget... I think for Google Sheets MD content?
+   * This is to parse Markdown in a CSV field
    * https://github.com/11ty/eleventy/issues/658
    */
-  const md = require("markdown-it")({
-    html: true
-  });
   eleventyConfig.addFilter("markdown", (content) => {
-    return md.render(content);
+    return markdownIt({
+      html: true,
+      linkify: true,
+      typographer: true,
+    }).render(content);
   });
 
   /**
@@ -257,18 +99,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("booksFinished", (collection) => {
     const myBooks = collection.getAll()[0].data.books;
     // Include only books with a finish date
-
-    // This one is the old Google Sheets API
-    // const myBooksFiltered = myBooks.filter((d) => (((d.gsx$finish.$t).length > 0) && (d.gsx$finish.$t) != "Reading") && ((d.gsx$finish.$t) != "Shelved"));
-
-    // This one is the new Google Sheets API
-    // const myBooksFiltered = myBooks.filter((d) => ((d.c[7]) && ((d.c[7].f).length > 0) && ((d.c[7].f).length > 0) && (d.c[7].f) != "Reading") && ((d.c[7].f) != "Shelved") && ((d.c[7].f) != "0"));
-
-    // This one is CSV from Google Sheets
     const myBooksFiltered = myBooks.filter((d) => (d.finish.length > 0) && (d.finish != "Reading") && (d.finish != "Shelved") && (d.finish != "0"));
-
     // Sort books by finish date
-    // return myBooksFiltered.sort((a, b) => (b.gsx$finish.$t) > (a.gsx$finish.$t) ? 1 : -1);
     return myBooksFiltered.sort((a, b) => (b.finish) > (a.finish) ? 1 : -1);
   });
 
@@ -278,19 +110,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("booksReading", (collection) => {
     const myBooks = collection.getAll()[0].data.books;
     // Include only books currently marked "Reading"
-
-    // This one is the old Google Sheets API
-    // const myBooksFiltered = myBooks.filter((d) => (d.gsx$finish.$t) == "Reading");
-    // return myBooksFiltered.sort((a, b) => (b.gsx$start.$t) > (a.gsx$start.$t) ? 1 : -1);
-
-    // This one is the new Google Sheets API
-    // (changed to "0" in next col over w/ new API)
-    // const myBooksFiltered = myBooks.filter((d) => ((d.c[8]) && ((d.c[8].f)) == "0"));
-    // return myBooksFiltered.sort((a, b) => (b.c[6].f) > (a.c[6].f) ? 1 : -1);
-
-    // This one is CSV from Google Sheets
     const myBooksFiltered = myBooks.filter((d) => (d.finish == "Reading"));
-
     // Sort books by start date
     return myBooksFiltered.sort((a, b) => (b.start) > (a.start) ? 1 : -1);
   });
@@ -327,25 +147,14 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/languages/markdown/
    * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
    */
-  const markdownLibrary = require("markdown-it")({
+  eleventyConfig.setLibrary("md", markdownIt({
     html: true,
     linkify: true,
     typographer: true,
-    // replaceLink: function (link, env) {
-    //   // Set image paths to absolute
-    //   if (link.startsWith("images")) {
-    //     // Prepend local image links with correct path
-    //     return "../../" + link;
-    //   } else {
-    //     return link;
-    //   }
-    // }
   })
-  .use(require("markdown-it-replace-link"))
   .use(require("markdown-it-anchor"), {
     "level": [2, 3]
-  });
-  eleventyConfig.setLibrary("md", markdownLibrary);
+  }));
 
   /* Other options
    ======================================================================== */
@@ -397,9 +206,7 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/config/
    */
   return {
-    // Use Nunjucks
     markdownTemplateEngine: "njk",
-    // Override default input/output directories
     dir: {
       input: "src"
     }
