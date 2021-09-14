@@ -10,7 +10,7 @@ module.exports = async function() {
   let url = `https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:csv`;
 
   var text = await Cache(url, {
-    duration: "10s",
+    duration: "1h",
     type: "text"
   });
 
