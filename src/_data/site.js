@@ -3,7 +3,7 @@ module.exports = {
   description: "A personal website",
   url: "https://minttoothpick.com",
   authorName: "Jeremy Robert Jones",
-  authorEmail: "minttoothpick@pm.me",
+  authorEmail: "minttoothpick@protonmail.com",
   buildTime: new Date(),
   navigation: [
     {
