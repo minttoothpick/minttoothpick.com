@@ -8,7 +8,7 @@
     "debug": "DEBUG=* npx @11ty/eleventy",
     "debugimg": "DEBUG=EleventyImg npx @11ty/eleventy"
   },
-  "author": "Jeremy Jones <minttoothpick@pm.me>",
+  "author": "Jeremy Jones <minttoothpick@protonmail.com>",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
