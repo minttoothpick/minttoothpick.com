@@ -56,7 +56,7 @@ This `figure` should be limited to the width of the article text.
 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ## Another level 2 heading
-### With a level 3 heading right after it; Also Making This Extra Long So That It'll Wrap and I Can Check the Line Height Value
+## With a level 3 heading right after it; Also Making This Extra Long So That It'll Wrap and I Can Check the Line Height Value
 
 This is a normal paragraph following a list. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
@@ -99,8 +99,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-### Header 3
-
 ```js
 // Javascript code with syntax highlighting.
 var fun = function lang(l) {
@@ -116,7 +114,7 @@ GitHubPages::Dependencies.gems.each do |gem, version|
 end
 ```
 
-#### Header 4 `with code not transformed`
+## Header 2 `with code not transformed`
 
 * This is an unordered list following a header.
 * This is an unordered list following a header.
@@ -135,13 +133,11 @@ Here we have a table, aren't those fun!
 | ok           | good `oreos`      | hmm   |
 | ok           | good `zoute` drop | yumm  |
 
-### And a nested list:
+## And a nested list:
 
 - level 1 item
   - level 2 item
   - level 2 item
-    - level 3 item
-    - level 3 item
 - level 1 item
   - level 2 item
   - level 2 item
@@ -150,82 +146,21 @@ Here we have a table, aren't those fun!
   - level 2 item
   - level 2 item
 - level 1 item
-
-### Nesting an `ol` in `ul` in an `ol`
-
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-
-<!-- ### And a task list
-
-- [ ] Hello, this is a TODO item
-- [ ] Hello, this is another TODO item
-- [x] Goodbye, this item is done -->
-
-### Small image
-
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
-
-<!-- ### Definition lists can be used with HTML syntax.
 
 <dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl> -->
+  <dt>This is a list</dt>
+  <dd>A definition list</dd>
+  <dt>Name</dt>
+  <dd>Godzilla</dd>
+  <dt>Born</dt>
+  <dd>1952</dd>
+  <dt>Birthplace</dt>
+  <dd>Japan</dd>
+  <dt>Color</dt>
+  <dd>Green</dd>
+</dl>
 
-<!-- #### Multiple description terms and values
-
-Term
-: Brief description of Term
-
-Longer Term
-: Longer description of Term,
-  possibly more than one line
-
-Term
-: First description of Term,
-  possibly more than one line
-
-: Second description of Term,
-  possibly more than one line
-
-Term1
-Term2
-: Single description of Term1 and Term2,
-  possibly more than one line
-
-Term1
-Term2
-: First description of Term1 and Term2,
-  possibly more than one line
-
-: Second description of Term1 and Term2,
-  possibly more than one line -->
-
-### More code
+## More code
 
 ```
 Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
