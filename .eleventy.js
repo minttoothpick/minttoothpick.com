@@ -1,6 +1,13 @@
 const { DateTime } = require("luxon");
 const dotenv = require("dotenv").config();
 const markdownIt = require("markdown-it");
+const markdownOptions = {
+  html: true,
+  linkify: true,
+  typographer: true,
+};
+const markdownItAnchor = require("markdown-it-anchor");
+const yaml = require("js-yaml");
 
 // Import filters
 const formatAuthor = require("./_eleventy/filters/formatAuthor.js");
@@ -71,11 +78,7 @@ module.exports = function(eleventyConfig) {
    * https://github.com/11ty/eleventy/issues/658
    */
   eleventyConfig.addFilter("markdown", (content) => {
-    return markdownIt({
-      html: true,
-      linkify: true,
-      typographer: true,
-    }).render(content);
+    return markdownIt(markdownOptions).render(content);
   });
 
   /**
@@ -148,12 +151,8 @@ module.exports = function(eleventyConfig) {
    * https://www.11ty.dev/docs/languages/markdown/
    * https://github.com/markdown-it/markdown-it#init-with-presets-and-options
    */
-  eleventyConfig.setLibrary("md", markdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
-  })
-  .use(require("markdown-it-anchor"), {
+  eleventyConfig.setLibrary("md", markdownIt(markdownOptions)
+  .use(markdownItAnchor, {
     "level": [2, 3]
   }));
 
@@ -172,7 +171,6 @@ module.exports = function(eleventyConfig) {
    *
    * https://www.11ty.dev/docs/data-custom/
    */
-  const yaml = require("js-yaml");
   eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
 
   /**
