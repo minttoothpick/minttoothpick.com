@@ -28,6 +28,7 @@
    */
   --text-muted: rgba(0, 0, 0, 0.65);
   --gray-light: rgba(0, 0, 0, 0.25);
+  --gray-medium: rgba(0, 0, 0, 0.5);
 
   /**
    * Fonts
@@ -203,13 +204,16 @@ ul {
   padding-left: 0.79em;
 }
 
-li {
+li::marker {
+  color: var(--gray-medium);
+}
+
+ul li {
   list-style-type: var(--list-marker-content, "– ");
 }
 
-li::marker {
+ul li::marker {
   content: var(--list-marker-content, "– ");
-  color: var(--gray-light);
 }
 
 blockquote {
