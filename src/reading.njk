@@ -30,7 +30,7 @@ pageClass: Page--reading
         <h2>{{ book.finish_date }}</h2>
         <ul style="--flow-space: var(--size-05);">
       {% endif %}
-      <li{% if isFavorite %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ book.title }}</i> by {{ book.author | formatAuthor }}</li>
+      <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ book.title }}</i> by {{ book.author | formatAuthor }}</li>
       {% if loop.last %}</ul>{% endif %}
     {% endfor %}
   </div>
