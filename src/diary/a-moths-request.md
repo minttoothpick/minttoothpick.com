@@ -1,7 +1,6 @@
 ---
 title: A Moth's Request
-date: Last Modified
-dateCreated: 2021-07-26
+date: 2021-07-26
 location: Asheville, NC, USA
 tags:
   - collage

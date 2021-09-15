@@ -1,7 +1,6 @@
 ---
 title: I made music!
-date: Last Modified
-dateCreated: 2021-09-10
+date: 2021-09-10
 location: Daphne, AL, USA
 tags:
   - music

@@ -1,7 +1,6 @@
 ---
 title: A Fifth Attempt at Certainty
-date: Last Modified
-dateCreated: 2021-03-06
+date: 2021-03-06
 location: Asheville, NC, USA
 tags:
   - collage

@@ -24,14 +24,15 @@ module.exports = function(eleventyConfig) {
    * Format Dates and Times with Luxon
    *
    * https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-   * https://moment.github.io/luxon/#/formatting?id=table-of-tokens
+   * https://moment.github.io/luxon/#/formatting
    */
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLLL d, yyyy");
-  });
-
-  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
+  eleventyConfig.addFilter("date", (dateObj, type) => {
+    // ISO is like "2021-09-15"
+    if (type === "iso") return DateTime.fromJSDate(dateObj).toISODate();
+    // DATE_FULL is like "September 15, 2021"
+    if (type === "nice") return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_FULL);
+    // If no parameter is specified, just return unformatted date
+    return dateObj;
   });
 
   eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {

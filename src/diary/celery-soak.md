@@ -1,8 +1,7 @@
 ---
 title: Celery Having a Soak (With Onlooker)
 displayTitle: false
-date: Last Modified
-dateCreated: 2020-12-17
+date: 2020-12-17
 location: Daphne, AL, USA
 tags:
   - video

@@ -11,7 +11,7 @@ location: Daphne, Alabama, USA
     <h1 class="Article__title mt-none">{{ title }}</h1>
     <dl class="Article__meta">
       <dt>Updated on</dt>
-      <dd><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></dd>
+      <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
       {% if location %}
         <dt class="visually-hidden">Published in</dt>
         <dd>{{ location }}</dd>

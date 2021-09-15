@@ -9,7 +9,7 @@ pageClass: Page--article
     {% endif %}
     <dl class="Article__meta">
       <dt class="visually-hidden">Published on</dt>
-      <dd><time datetime="{{ dateCreated | htmlDateString }}">{{ dateCreated | readableDate }}</time></dd>
+      <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
       {% if location %}
         <dt class="visually-hidden">Published in</dt>
         <dd>{{ location }}</dd>

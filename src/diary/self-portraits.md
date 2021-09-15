@@ -1,7 +1,6 @@
 ---
 title: Forty Self Portraits Between March and June 2021
-date: Last Modified
-dateCreated: 2021-07-20
+date: 2021-07-20
 location: Asheville, NC, USA
 tags:
   - drawing

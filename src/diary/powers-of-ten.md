@@ -2,8 +2,7 @@
 title: "If <i>Powers of Ten</i> Started out 160× Smaller"
 displayTitle: false
 displayMeta:
-date: Last Modified
-dateCreated: 2021-03-18
+date: 2021-03-18
 location: Asheville, NC, USA
 tags:
   - things-i-made

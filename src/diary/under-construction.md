@@ -1,7 +1,6 @@
 ---
 title: Under Construction
-date: Last Modified
-dateCreated: 2021-08-31
+date: 2021-08-31
 location: Daphne, AL, USA
 tags:
   - things-i-made

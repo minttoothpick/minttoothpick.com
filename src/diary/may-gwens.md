@@ -1,7 +1,6 @@
 ---
 title: Many May Gwens
-date: Last Modified
-dateCreated: 2021-05-31
+date: 2021-05-31
 location: Asheville, NC, USA
 tags:
   - drawing

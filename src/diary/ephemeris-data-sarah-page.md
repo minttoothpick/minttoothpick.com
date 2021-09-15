@@ -3,8 +3,7 @@ title: "“Ephemeris Data” by Sarah Pagé"
 displayTitle:
 displayMeta:
 status: draft
-date: Last Modified
-dateCreated: 2021-05-04
+date: 2021-05-04
 location: Asheville, NC, USA
 tags:
   - music

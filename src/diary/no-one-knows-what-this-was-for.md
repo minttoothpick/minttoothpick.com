@@ -1,7 +1,6 @@
 ---
 title: An Impermanent Collage
-date: Last Modified
-dateCreated: 2021-05-13
+date: 2021-05-13
 location: Asheville, NC, USA
 tags:
   - collage

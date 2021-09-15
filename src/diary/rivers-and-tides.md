@@ -2,8 +2,7 @@
 title: "Meanders and Undulations"
 displayTitle:
 displayMeta:
-date: Last Modified
-dateCreated: 2021-05-24
+date: 2021-05-24
 location: Asheville, NC, USA
 tags:
   - things-i-like

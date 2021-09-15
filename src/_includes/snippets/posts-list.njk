@@ -9,7 +9,7 @@
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
     <dl class="Article__meta">
       <dt class="visually-hidden">Published on</dt>
-      <dd><time datetime="{{ post.data.dateCreated | htmlDateString }}">{{ post.data.dateCreated | readableDate }}</time></dd>
+      <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
     </dl>
     {% include "snippets/tags-list.njk" %}
   </li>
