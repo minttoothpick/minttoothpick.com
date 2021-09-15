@@ -1,10 +1,11 @@
-{#
- # postsList is a collection that is set in the file that includes this one.
- # Default sorting order is ascending by date
- # (https://www.11ty.dev/docs/collections/#sorting)
- #}
+{# postsList is a collection that is set in the file that includes this one. #}
 {% for post in postsList | reverse %}
-  {% if loop.first %}<h1 class="Article__title">There are {{ postsList | length }} {{ title }}</h1><ul class="PostsList flow" style="--flow-space: 2em;">{% endif %}
+  {% if loop.first %}
+    {% if not noTitle %}
+      <h1 class="Article__title">There are {{ postsList | length }} {{ title }}</h1>
+    {% endif %}
+    <ul class="PostsList">
+  {% endif %}
   <li>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
     <dl class="Article__meta">

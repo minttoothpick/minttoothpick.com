@@ -3,11 +3,5 @@ title: Diary
 layout: layouts/base.njk
 pageClass: Page--diary
 ---
-<div class="Articles__list">
-  {% for item in collections.posts %}
-    {#- Show draft items on "dev" #}
-    {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
-      {% include "snippets/article-list.njk" %}
-    {% endif %}
-  {% endfor %}
-</div>
+{% set collection = collections.posts %}
+{% include "snippets/article-list.njk" %}

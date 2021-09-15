@@ -1,20 +1,28 @@
-<article class="Article Prose Prose--contain">
-  <header class="Article__header">
-    {% if item.data.display_title != false %}
-      <h1 class="Article__title"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h1>
+{% if not collection %}{% set collection = collections.posts %}{% endif %}
+<div class="Articles__list">
+  {% for item in collection | reverse %}
+    {#- Show draft items when on dev environment #}
+    {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
+    <article class="Article Prose Prose--contain">
+      <header class="Article__header">
+        {% if item.data.display_title != false %}
+          <h1 class="Article__title"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h1>
+        {% endif %}
+        <dl class="Article__meta">
+          <dt class="visually-hidden">Published on</dt>
+          <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
+          {% if item.data.location %}
+            <dt class="visually-hidden">Published in</dt>
+            <dd>{{ item.data.location }}</dd>
+          {% endif %}
+        </dl>
+      </header>
+      {{ item.templateContent | safe }}
+      <footer class="Article__footer">
+        {% set tags = item.data.tags %}
+        {% include "snippets/tags-list.njk" %}
+      </footer>
+    </article>
     {% endif %}
-    <dl class="Article__meta">
-      <dt class="visually-hidden">Published on</dt>
-      <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
-      {% if item.data.location %}
-        <dt class="visually-hidden">Published in</dt>
-        <dd>{{ item.data.location }}</dd>
-      {% endif %}
-    </dl>
-  </header>
-  {{ item.templateContent | safe }}
-  <footer class="Article__footer">
-    {% set tags = item.data.tags %}
-    {% include "snippets/tags-list.njk" %}
-  </footer>
-</article>
+  {% endfor %}
+</div>

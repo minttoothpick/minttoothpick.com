@@ -1,5 +1,5 @@
 {% for tag in tags %}
-  {% if tag != "posts" %}<i>#{{ tag }}&nbsp;&nbsp;</i>{% endif %}
+  {% if tag != "posts" %}<i><span style="color: var(--gray-light);">#</span>{{ tag }}&nbsp;&nbsp;</i>{% endif %}
 {% else %}{% endfor %}
 {#- Previous code... forget what this did -#}
 {#- {% for tag in post.data.tags %}

@@ -9,7 +9,7 @@ permalink: /tags/{{ tag }}/
 eleventyComputed:
   title: "things tagged “{{ tag }}”"
 ---
-<section class="Prose">
+<section>
   {% set postsList = collections[tag] %}
   {% include "snippets/posts-list.njk" %}
 
