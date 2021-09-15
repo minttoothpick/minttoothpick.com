@@ -1,6 +1,6 @@
 module.exports = {
   layout: "layouts/article.njk",
-  tags: [ "posts", "dev" ],
+  tags: [ "dev" ],
   date: "Created",
   // permalink: "/{{ page.fileSlug }}/",
   // fakeUrl: "/diary/"

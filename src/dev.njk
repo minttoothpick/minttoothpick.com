@@ -1,0 +1,11 @@
+---
+title: Dev
+layout: layouts/base.njk
+pageClass: Page--dev
+---
+{% set postsList = collections.dev %}
+{% set noTitle = true %}
+{% include "snippets/posts-list.njk" %}
+
+{# {% set collection = collections.dev %}
+{% include "snippets/article-list.njk" %} #}
