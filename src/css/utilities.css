@@ -60,10 +60,6 @@
   width: 1px;
 }
 
-.flow > * + * {
-  margin-block-start: var(--flow-space, 1em);
-}
-
 .border-top {
   border-top: 2px solid var(--gray-light);
 }
@@ -71,6 +67,39 @@
 .text-small {
   color: var(--text-muted);
   font-size: var(--size-0);
+}
+
+/* .flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+} */
+
+/**
+ * The lobotomized owl
+ * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+ */
+
+.space-items-0 > * + * {
+  margin-top: var(--size-0);
+}
+
+.space-items-1 > * + * {
+  margin-top: var(--size-1);
+}
+
+.space-items-2 > * + * {
+  margin-top: var(--size-2);
+}
+
+.space-items-3 > * + * {
+  margin-top: var(--size-3);
+}
+
+.space-items-4 > * + * {
+  margin-top: var(--size-4);
+}
+
+.space-items-5 > * + * {
+  margin-top: var(--size-5);
 }
 
 /**

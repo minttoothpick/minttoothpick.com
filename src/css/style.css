@@ -28,7 +28,6 @@
    */
   --text-muted: rgba(0, 0, 0, 0.65);
   --gray-light: rgba(0, 0, 0, 0.25);
-  --gray-medium: rgba(0, 0, 0, 0.5);
 
   /**
    * Fonts
@@ -142,6 +141,10 @@ img {
   height: auto;
 }
 
+pre {
+  overflow-x: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -199,13 +202,18 @@ a:hover {
 
 ol,
 ul {
-  /* padding-inline-start: var(--size-3); */
-  padding-inline-start: 0.79em;
-  padding-left: 0.79em;
+  padding-left: 1em;
+}
+
+ul > * + *,
+ol > * + * {
+  --flow-space: calc(var(--size-05) * 1);
+  margin-block-start: var(--flow-space);
+  margin-top: var(--flow-space);
 }
 
 li::marker {
-  color: var(--gray-medium);
+  color: var(--text-muted);
 }
 
 ul li {
@@ -227,25 +235,17 @@ hr {
   border: none;
   height: 2px;
   background-color: var(--gray-light);
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Pages
    ========================================================================== */
 
-.Page__grid {
+.PageGrid {
   margin-inline: auto;
   margin-left: auto;
   margin-right: auto;
-
-  /* padding-block: var(--gap); */
-  /* padding-inline: var(--gap); */
-
-  /* TODO: Does Safari just not like shorthand? Seems to be the case... */
-  /* padding-block-start: var(--gap);
-  padding-block-end: var(--gap);
-  padding-inline-start: var(--gap);
-  padding-inline-end: var(--gap); */
-
   padding: var(--gap);
   display: grid;
 
@@ -259,32 +259,27 @@ hr {
   max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
 }
 
-.Page__grid > * {
+.PageGrid > * {
   grid-column: content;
 }
 
-.Header a[aria-current] {
-  font-weight: bold;
-}
-
-.Header ul {
+.PageHeader__navList {
   display: flex;
   flex-wrap: wrap;
 }
 
-.Header li:not(:last-of-type) {
-  padding-inline-end: var(--size-3);
-  padding-right: var(--size-3);
+.PageHeader__navListItem {
+  margin-top: 0;
 }
 
-.Header li:first-of-type {
+.PageHeader__navListItem:first-of-type {
   font-weight: bold;
   padding-inline: 0;
   padding-left: 0;
   padding-right: 0;
 }
 
-.Header li:first-of-type::after {
+.PageHeader__navListItem:first-of-type::after {
   content: "/";
   color: var(--gray-light);
   padding-inline: calc(var(--space-inline));
@@ -292,22 +287,32 @@ hr {
   padding-right: calc(var(--space-inline));
 }
 
+/* Padding on every item except for last */
+.PageHeader__navListItem:not(:last-of-type) {
+  padding-inline-end: var(--size-3);
+  padding-right: var(--size-3);
+}
+
+.PageHeader__navLink[aria-current] {
+  font-weight: bold;
+}
+
 /**
  * TODO: Make this not need a media query
  */
 @media (min-width: 600px) {
-  .Header ul {
+  .PageHeader__navList {
     justify-content: flex-end;
   }
 
-  .Header li:first-of-type {
+  .PageHeader__navListItem:first-of-type {
     margin-inline-end: auto;
     margin-right: auto;
     padding-block-end: 0;
     padding-bottom: 0;
   }
 
-  .Header li:first-of-type::after {
+  .PageHeader__navListItem:first-of-type::after {
     content: none;
   }
 }
@@ -336,7 +341,8 @@ hr {
 
 /* Extra margin on first element following article header */
 .Page--article .Article__header + * {
-  --flow-space: var(--gap-2);
+  /* --flow-space: var(--gap-2); */
+  margin-top: var(--gap-2);
 }
 
 /* We don't want that extra margin on article lists or Now page, though */
@@ -368,7 +374,7 @@ hr {
   padding-right: calc(var(--space-inline) / 2);
 }
 
-.Article__title {
+h1 {
   font-feature-settings: "case" on;
   font-size: var(--size-5);
   font-size: var(--font-size-title);
@@ -376,20 +382,12 @@ hr {
   line-height: 1.2;
 }
 
-.Article__title a {
+h1 a {
   text-decoration: none;
 }
 
-.Article__meta + .Article__title {
-  margin-block-start: var(--size-0);
-  margin-top: var(--size-0);
-}
-
-.Article__summary {
-  color: var(--text-muted);
-  font-size: var(--size-3);
-  hanging-punctuation: first;
-  line-height: 1.4;
+h1 + * {
+  margin-top: var(--gap);
 }
 
 .Prose {
@@ -411,6 +409,14 @@ hr {
 .Prose > * + * {
   margin-block-start: var(--flow-space);
   margin-top: var(--flow-space);
+}
+
+.Prose hr {
+  margin-top: var(--gap-2);
+}
+
+.Prose hr + * {
+  margin-top: var(--gap-2);
 }
 
 .Prose h2,
@@ -481,12 +487,6 @@ hr {
 /* Avoid margin staggering on side-by-side photos */
 .Prose img {
   margin-top: 0;
-}
-
-.Prose ul > * + * {
-  --flow-space: calc(var(--size-05) / 2);
-  margin-block-start: var(--flow-space);
-  margin-top: var(--flow-space);
 }
 
 .align-full-bleed {
