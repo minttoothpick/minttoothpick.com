@@ -202,17 +202,16 @@ a:hover {
 
 ol,
 ul {
-  padding-left: 1em;
+  padding-inline-start: 1em;
 }
 
-ul > * + *,
-ol > * + * {
+ol > * + *,
+ul > * + * {
   --flow-space: calc(var(--size-05) * 1);
   margin-block-start: var(--flow-space);
-  margin-top: var(--flow-space);
 }
 
-li::marker {
+ol li::marker {
   color: var(--text-muted);
 }
 
@@ -221,13 +220,14 @@ ul li {
 }
 
 ul li::marker {
+  color: var(--gray-light);
   content: var(--list-marker-content, "– ");
 }
 
 blockquote {
-  border-left: 4px solid var(--gray-light);
-  margin-left: var(--size-0);
-  padding-left: var(--size-0);
+  border-inline-start: 4px solid var(--gray-light);
+  margin-inline-start: var(--size-0);
+  padding-inline-start: var(--size-0);
 }
 
 hr {
@@ -235,17 +235,16 @@ hr {
   border: none;
   height: 2px;
   background-color: var(--gray-light);
-  margin-left: 0;
-  margin-right: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 /* Pages
    ========================================================================== */
 
 .PageGrid {
-  margin-inline: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
   padding: var(--gap);
   display: grid;
 
@@ -272,25 +271,22 @@ hr {
   margin-top: 0;
 }
 
-.PageHeader__navListItem:first-of-type {
-  font-weight: bold;
-  padding-inline: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .PageHeader__navListItem:first-of-type::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline: calc(var(--space-inline));
-  padding-left: calc(var(--space-inline));
-  padding-right: calc(var(--space-inline));
+  padding-inline-start: calc(var(--space-inline));
+  padding-inline-end: calc(var(--space-inline));
 }
 
 /* Padding on every item except for last */
 .PageHeader__navListItem:not(:last-of-type) {
   padding-inline-end: var(--size-3);
-  padding-right: var(--size-3);
+}
+
+.PageHeader__navListItem:first-of-type {
+  font-weight: bold;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
 }
 
 .PageHeader__navLink[aria-current] {
@@ -307,9 +303,7 @@ hr {
 
   .PageHeader__navListItem:first-of-type {
     margin-inline-end: auto;
-    margin-right: auto;
     padding-block-end: 0;
-    padding-bottom: 0;
   }
 
   .PageHeader__navListItem:first-of-type::after {
@@ -331,18 +325,16 @@ hr {
 
 .Articles__list > * + * {
   margin-block-start: var(--gap-4);
-  margin-top: var(--gap-4);
 }
 
 .Article__header > * + * {
   margin-block-start: var(--flow-space);
-  margin-top: var(--flow-space);
 }
 
 /* Extra margin on first element following article header */
 .Page--article .Article__header + * {
   /* --flow-space: var(--gap-2); */
-  margin-top: var(--gap-2);
+  margin-block-start: var(--gap-2);
 }
 
 /* We don't want that extra margin on article lists or Now page, though */
@@ -369,9 +361,8 @@ hr {
 .Article__meta dd:not(:last-of-type)::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline: calc(var(--space-inline) / 2);
-  padding-left: calc(var(--space-inline) / 2);
-  padding-right: calc(var(--space-inline) / 2);
+  padding-inline-start: calc(var(--space-inline) / 2);
+  padding-inline-end: calc(var(--space-inline) / 2);
 }
 
 h1 {
@@ -408,7 +399,6 @@ h1 + * {
 
 .Prose > * + * {
   margin-block-start: var(--flow-space);
-  margin-top: var(--flow-space);
 }
 
 .Prose hr {
@@ -432,20 +422,18 @@ h1 + * {
 .Prose * + blockquote,
 .Prose *:not(h2) + figure {
   margin-block-start: calc(var(--flow-space) * 2);
-  margin-top: calc(var(--flow-space) * 2);
 }
 
 /* ...and to the item that follows them. */
 .Prose blockquote + *,
 .Prose figure + *:not(h2) {
   margin-block-start: calc(var(--flow-space) * 2);
-  margin-top: calc(var(--flow-space) * 2);
 }
 
 /* Less margin to make floated fig align with text. */
 .Prose .align-pull-end,
 .Prose .align-pull-start {
-  margin-top: var(--flow-space);
+  margin-block-start: var(--flow-space);
 }
 
 /* Remove top margin from heading next to floated fig */
@@ -453,7 +441,7 @@ h1 + * {
 .Prose .align-start + h2,
 .Prose .align-pull-end + h2,
 .Prose .align-pull-start + h2 {
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
 /* Reset extra margin after floated figures */
@@ -466,12 +454,11 @@ h1 + * {
 
 .Prose figure > * + * {
   margin-block-start: var(--flow-space);
-  margin-top: var(--flow-space);
 }
 
 /* .Prose figcaption {
   --flow-space: 0.5em;
-  padding-top: var(--space-block);
+  padding-block-start: var(--space-block);
 } */
 
 .Prose [class^="align-"] figcaption {
@@ -498,9 +485,8 @@ h1 + * {
     [bleed-start] minmax(0, calc(var(--text-measure) + var(--gap)))
     [measure] 1fr
     [bleed-end];
-  margin-inline: calc(var(--gap) * -1);
-  margin-left: calc(var(--gap) * -1);
-  margin-right: calc(var(--gap) * -1);
+  margin-inline-start: calc(var(--gap) * -1);
+  margin-inline-end: calc(var(--gap) * -1);
 }
 
 .align-full-bleed > :first-child {
@@ -509,9 +495,8 @@ h1 + * {
 
 .align-full-bleed > figcaption {
   /* Add side padding to offset being full-width */
-  padding-inline: var(--gap);
-  padding-left: var(--gap);
-  padding-right: var(--gap);
+  padding-inline-start: var(--gap);
+  padding-inline-end: var(--gap);
 }
 
 /* Screen at least 440px */
@@ -519,9 +504,7 @@ h1 + * {
   .align-end,
   .align-pull-end {
     float: inline-end;
-    float: right;
     margin-inline-start: var(--gap);
-    margin-left: var(--gap);
     /* width: 33%; */
     /* Set minimum width of 200px */
     width: max(200px, 33%);
@@ -529,22 +512,18 @@ h1 + * {
 
   .align-pull-end {
     margin-inline-end: calc(var(--gap) * -1);
-    margin-right: calc(var(--gap) * -1);
   }
 
   .align-start,
   .align-pull-start {
     float: inline-start;
-    float: left;
     margin-inline-end: var(--gap);
-    margin-right: var(--gap);
     /* Set minimum width of 200px */
     width: max(200px, 33%);
   }
 
   .align-pull-start {
     margin-inline-start: calc(var(--gap) * -1);
-    margin-left: calc(var(--gap) * -1);
   }
 }
 
@@ -565,7 +544,6 @@ h1 + * {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-block-start: var(--gap-4);
-  margin-top: var(--gap-4);
 }
 
 /* .BooksGrid > h2,
@@ -598,7 +576,6 @@ h1 + * {
 /* TODO: Can't use flow-space property... see appropriate spacing */
 .BooksGrid > ul {
   margin-block-start: 1em;
-  margin-top: 1em;
 }
 
 /* TODO: Make this layout intrinsic... no media queries? */
@@ -614,7 +591,6 @@ h1 + * {
     /* margin-block-start: var(--gap-2); */
     /* TODO: Incorrect */
     margin-block-start: 0;
-    margin-top: 0;
   }
 
   .BooksGrid > h2,
@@ -642,14 +618,12 @@ h1 + * {
 .BooksSubmenu li:not(:last-of-type):not(:first-of-type)::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline: calc(var(--space-inline) / 2);
-  padding-left: calc(var(--space-inline) / 2);
-  padding-right: calc(var(--space-inline) / 2);
+  padding-inline-start: calc(var(--space-inline) / 2);
+  padding-inline-end: calc(var(--space-inline) / 2);
 }
 
 .BooksSubmenu li:first-of-type {
   padding-inline-end: calc(var(--space-inline) / 2);
-  padding-right: calc(var(--space-inline) / 2);
 }
 
 .BooksSubmenu .active {
@@ -661,12 +635,14 @@ h1 + * {
 
 .Page--now figure:first-of-type {
   shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
-  margin-top: -0.5em;
-  padding-right: 1em;
+  margin-block-start: -0.5em;
+  padding-inline-end: 1em;
   /* width: 50%; */
 }
 
-.MusicGrid { margin-top: 1em; }
+.MusicGrid {
+  margin-block-start: 1em;
+}
 
 @media (min-width: 600px) {
   .MusicGrid {
@@ -689,9 +665,8 @@ h1 + * {
     [bleed-start] minmax(0, var(--text-measure))
     [measure] 1fr
     [bleed-end];
-  margin-inline: calc(var(--gap) * -1);
-  margin-left: calc(var(--gap) * -1);
-  margin-right: calc(var(--gap) * -1);
+  margin-inline-start: calc(var(--gap) * -1);
+  margin-inline-end: calc(var(--gap) * -1);
   border: 1px solid salmon;
 }
 
