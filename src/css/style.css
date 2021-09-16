@@ -185,7 +185,6 @@ h1 {
 }
 
 h2 {
-  --flow-space: 2em;
   line-height: inherit;
   font-size: inherit;
   font-weight: bold;
@@ -198,17 +197,6 @@ a {
 
 a:hover {
   text-decoration: none;
-}
-
-ol,
-ul {
-  padding-inline-start: 1em;
-}
-
-ol > * + *,
-ul > * + * {
-  --flow-space: calc(var(--size-05) * 1);
-  margin-block-start: var(--flow-space);
 }
 
 ol li::marker {
@@ -265,10 +253,6 @@ hr {
 .PageHeader__navList {
   display: flex;
   flex-wrap: wrap;
-}
-
-.PageHeader__navListItem {
-  margin-top: 0;
 }
 
 .PageHeader__navListItem:first-of-type::after {
@@ -328,19 +312,19 @@ hr {
 }
 
 .Article__header > * + * {
-  margin-block-start: var(--flow-space);
+  margin-block-start: var(--size-05);
 }
 
-/* Extra margin on first element following article header */
-.Page--article .Article__header + * {
-  /* --flow-space: var(--gap-2); */
-  margin-block-start: var(--gap-2);
+.Article__title {
+  font-feature-settings: "case" on;
+  font-size: var(--font-size-title);
+  hanging-punctuation: first;
+  line-height: 1.2;
 }
 
-/* We don't want that extra margin on article lists or Now page, though */
-/* .Articles__list .Article__header + * {
-  --flow-space: 0.5em;
-} */
+.Article__title > a {
+  text-decoration: none;
+}
 
 .Article__meta {
   --flow-space: 0.5em;
@@ -354,7 +338,6 @@ hr {
 
 /* If meta label is not `visually-hidden`, we need a space after it */
 .Article__meta dt:not([class="visually-hidden"])::after {
-  /* padding-inline: calc(var(--space-inline) / 2); */
   content: "\00a0";
 }
 
@@ -365,118 +348,82 @@ hr {
   padding-inline-end: calc(var(--space-inline) / 2);
 }
 
-h1 {
-  font-feature-settings: "case" on;
-  font-size: var(--size-5);
-  font-size: var(--font-size-title);
-  hanging-punctuation: first;
-  line-height: 1.2;
-}
-
-h1 a {
-  text-decoration: none;
-}
-
-h1 + * {
-  margin-top: var(--gap);
-}
-
 .Prose {
-  --flow-space: 1em;
-  --list-display: list-item;
+  /* --flow-space: 1em; */
+  /* --list-display: list-item; */
   hanging-punctuation: first;
   hyphens: auto;
   line-height: inherit;
+  word-break: break-word;
 }
 
 .Prose--contain > * {
   max-width: var(--linear-measure);
 }
 
-.Prose > * {
-  word-break: break-word;
-}
-
 .Prose > * + * {
-  margin-block-start: var(--flow-space);
+  margin-block-start: var(--size-1);
 }
 
-.Prose hr {
-  margin-top: var(--gap-2);
-}
-
-.Prose hr + * {
-  margin-top: var(--gap-2);
-}
-
-.Prose h2,
-.Prose h3 {
+.Prose > h2,
+.Prose > h3 {
   hanging-punctuation: first;
 }
 
-.Prose h2 {
-  --flow-space: 2em;
+.Prose > h2 {
+  margin-block-start: var(--size-5);
 }
 
-/* Add extra top margin to these... */
-.Prose * + blockquote,
-.Prose *:not(h2) + figure {
-  margin-block-start: calc(var(--flow-space) * 2);
+.Prose ol,
+.Prose ul {
+  padding-inline-start: 1em;
 }
 
-/* ...and to the item that follows them. */
-.Prose blockquote + *,
-.Prose figure + *:not(h2) {
-  margin-block-start: calc(var(--flow-space) * 2);
+.Prose li:not(:first-child),
+.Prose li > ul,
+.Prose li > ol {
+  margin-block-start: var(--size-05);
 }
 
-/* Less margin to make floated fig align with text. */
-.Prose .align-pull-end,
-.Prose .align-pull-start {
-  margin-block-start: var(--flow-space);
+.Prose li > * + * {
+  margin-block-start: var(--size-05);
 }
 
-/* Remove top margin from heading next to floated fig */
-.Prose .align-end + h2,
-.Prose .align-start + h2,
-.Prose .align-pull-end + h2,
-.Prose .align-pull-start + h2 {
-  margin-block-start: 0;
+/* Add extra block margin on figures, blockquotes, hrules */
+.Prose > blockquote,
+.Prose > figure,
+.Prose > hr,
+.Prose > blockquote + *,
+.Prose > figure + *,
+.Prose > hr + * {
+  margin-block-start: var(--size-5);
 }
 
-/* Reset extra margin after floated figures */
-.Prose .align-end + *,
-.Prose .align-start + *,
-.Prose .align-pull-end + *,
-.Prose .align-pull-start + * {
-  margin-top: var(--flow-space);
-}
-
-.Prose figure > * + * {
-  margin-block-start: var(--flow-space);
-}
-
-/* .Prose figcaption {
-  --flow-space: 0.5em;
-  padding-block-start: var(--space-block);
-} */
-
-.Prose [class^="align-"] figcaption {
+.Prose figcaption {
   color: var(--text-muted);
-  font-size: var(--size-0);
   font-size: var(--font-size-small);
+  line-height: 1.5;
+  margin-block-start: var(--size-0);
 }
 
-/* .Prose figure:not(:last-child) {
-  margin-bottom: var(--gap);
-} */
+/* Reset block margin on floated figs */
+.Prose > .align-pull-end,
+.Prose > .align-pull-end + *,
+.Prose > .align-pull-start,
+.Prose > .align-pull-start + * {
+  margin-block-start: var(--size-2);
+}
+
+/* TODO: Do we need a flow util on `figcaption`, in case of multi paras? */
+
+/* TODO: Implement multi image rows */
 
 /* Avoid margin staggering on side-by-side photos */
-.Prose img {
-  margin-top: 0;
-}
+/* .Prose img {
+  margin-block-start: 0;
+} */
 
-.align-full-bleed {
+.Prose > .align-full-bleed {
   /* Unset this width limitation from .Prose */
   --linear-measure: auto;
   display: grid;
@@ -489,11 +436,11 @@ h1 + * {
   margin-inline-end: calc(var(--gap) * -1);
 }
 
-.align-full-bleed > :first-child {
+.Prose > .align-full-bleed > :first-child {
   grid-column: bleed;
 }
 
-.align-full-bleed > figcaption {
+.Prose > .align-full-bleed > figcaption {
   /* Add side padding to offset being full-width */
   padding-inline-start: var(--gap);
   padding-inline-end: var(--gap);
@@ -501,33 +448,34 @@ h1 + * {
 
 /* Screen at least 440px */
 @media (min-width: 27.5em) {
-  .align-end,
-  .align-pull-end {
+  .Prose > .align-end,
+  .Prose > .align-pull-end {
     float: inline-end;
     margin-inline-start: var(--gap);
     /* width: 33%; */
-    /* Set minimum width of 200px */
-    width: max(200px, 33%);
+    /* Set minimum width of 250px */
+    width: max(250px, 33%);
   }
 
-  .align-pull-end {
+  .Prose > .align-pull-end {
     margin-inline-end: calc(var(--gap) * -1);
   }
 
-  .align-start,
-  .align-pull-start {
+  .Prose > .align-start,
+  .Prose > .align-pull-start {
     float: inline-start;
     margin-inline-end: var(--gap);
-    /* Set minimum width of 200px */
-    width: max(200px, 33%);
+    /* Set minimum width of 250px */
+    width: max(250px, 33%);
   }
 
-  .align-pull-start {
+  /* Pull figure into page gutter padding area */
+  .Prose > .align-pull-start {
     margin-inline-start: calc(var(--gap) * -1);
   }
 }
 
-.photo-row {
+.Prose > .photo-row {
   display: grid;
   gap: var(--space-inline);
   /* Get --columns property from HTML to decide how many to display */
@@ -556,7 +504,7 @@ h1 + * {
   font-variant-numeric: lining-nums;
 }
 
-.BooksNotesGrid > *:first-child,
+.BooksNotesGrid > :first-child,
 .BooksNotesGrid > figcaption,
 .BooksGrid > h2,
 .BooksGrid > ul {
@@ -564,17 +512,18 @@ h1 + * {
 }
 
 .BooksNotesGrid > *:first-child {
-  /* Set minimum width of 200px */
+  /* Set minimum width of 250px */
   /* max-width: min(250px, 100%); */
   max-width: 250px;
 }
 
 .BooksGrid > h2:not(:first-child) {
-  margin-top: 2em;
+  margin-block-start: var(--size-5);
 }
 
 /* TODO: Can't use flow-space property... see appropriate spacing */
 .BooksGrid > ul {
+  /* margin-block-start: var(--size-0); */
   margin-block-start: 1em;
 }
 
@@ -585,6 +534,11 @@ h1 + * {
     gap: var(--gap-4) var(--gap);
   }
 
+  .BooksGrid > h2,
+  .BooksNotesGrid > *:first-child {
+    grid-column: 1;
+  }
+
   /* TODO: This sucks too! */
   .BooksGrid > h2:not(:first-child),
   .BooksGrid > ul {
@@ -593,13 +547,8 @@ h1 + * {
     margin-block-start: 0;
   }
 
-  .BooksGrid > h2,
   .BooksNotesGrid > *:first-child {
-    grid-column: 1;
-  }
-
-  .BooksNotesGrid > *:first-child {
-    /* Set minimum width of 200px */
+    /* Set minimum width of 250px */
     max-width: 100%;
   }
 
@@ -630,14 +579,19 @@ h1 + * {
   font-weight: bold;
 }
 
-/* Now
-   ========================================================================== */
+/* Specific pages
+  ========================================================================== */
 
 .Page--now figure:first-of-type {
-  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 54.4% 4.32%, 61.67% 20.64%, 62.48% 33.27%, 80.57% 38.79%, 96.81% 51.68%, 101.3% 69.24%, 86.82% 96.18%, 56.27% 100.91%, 46.6% 86.5%, 45.7% 76.51%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
+  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 51.4% 4.48%, 54.75% 18.87%, 56.48% 30.92%, 63.49% 35.99%, 75.58% 39.88%, 83.53% 48.24%, 88.44% 68.12%, 81.66% 83.25%, 70.37% 100.23%, 42.47% 102.61%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
   margin-block-start: -0.5em;
-  padding-inline-end: 1em;
-  /* width: 50%; */
+  padding-inline-end: var(--size-4);
+}
+
+/* Extra margin on first element following header on single article pages */
+.Page--article .Article__header + * {
+  /* --flow-space: var(--gap-2); */
+  margin-block-start: var(--gap-2);
 }
 
 .MusicGrid {
@@ -649,69 +603,4 @@ h1 + * {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-}
-
-
-
-
-
-/**
- * Maybe not
- */
-.Wide {
-  --linear-measure: auto;
-  display: grid;
-  grid-template-columns:
-    [bleed-start] minmax(0, var(--text-measure))
-    [measure] 1fr
-    [bleed-end];
-  margin-inline-start: calc(var(--gap) * -1);
-  margin-inline-end: calc(var(--gap) * -1);
-  border: 1px solid salmon;
-}
-
-.Flip {
-  /* Unset this width limitation from .Prose */
-  --linear-measure: auto;
-  display: grid;
-  grid-template-columns:
-    [bleed-start] 1fr
-    [measure] minmax(0, var(--text-measure))
-    [bleed-end];
-  /* margin-inline: calc(var(--gap) * -1); */
-}
-
-.Flip > * {
-  grid-column: measure;
-}
-
-
-
-
-
-/* Stuff from previous css file
-   ========================================================================== */
-
-/**
- * That second line is b/c of `script` tags from the lite-youtube-embed plugin
- */
-.Home .Article header + *,
-.Home .Article header + script + * {
-  margin-top: var(--size-4);
-}
-
-/* Specific pages
-  ========================================================================== */
-
-.AnotherGrid {
-  display: grid;
-  grid-column: wide;
-  /* [content] minmax(min(100%, 800px), 80vw) */
-  grid-template-columns: minmax(min(100%, 56ch), 2fr) minmax(0, 1fr);
-  /* grid-template-columns: minmax(auto, 56ch) minmax(0, 1fr); */
-  column-gap: var(--size-4);
-}
-
-.AnotherGrid > * {
-  grid-column: 1;
 }

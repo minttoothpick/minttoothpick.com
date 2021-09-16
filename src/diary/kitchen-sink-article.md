@@ -5,9 +5,11 @@ location: Asheville, NC, USA
 ---
 Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>isicing elit. Quam suscipit nu<span style="color:red;">\*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Welcome to the kitchen sink. It's a handy way to test prose styles and whatnot.
 
+{% image "align-full-bleed", "./src/images/may-gwens.jpg", "", "Full bleed image here." %}
+
 Lorem ipsum dolor sit amet, **bold consectetur adipiscing elit**, sed do eiusmod tempor incididunt ut [link labore et dolore magna](#0) aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris *italic nisi ut aliquip ex ea commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% image "", "./src/images/book.jpg", "Alt", "Shortcode generating a text-width figure" %}
+{% image "", "./src/images/book.jpg", "", "Shortcode generating a text-width figure, and let's make this wrap so we can get a look at what the line height on the figure caption is, etc." %}
 
 ## Heading level two with `some code` in it
 
@@ -20,6 +22,10 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 1. This is an ordered list.
 2. This is an ordered list.
 3. This is an ordered list.
+
+## Heading 2 hello
+
+{% image "align-pull-end", "./src/images/book.jpg", "", "Aligned to pull end" %}
 
 Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
@@ -62,13 +68,13 @@ var fun = function lang(l) {
 A nested list:
 
 1. level 1 item
-  - level 2 item
-  - level 2 item
+   - level 2 item
+   - level 2 item
 2. level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
+   - level 2 item
+   - level 2 item
+   - level 2 item
 3. level 1 item
-  - level 2 item
-  - level 2 item
+   - level 2 item
+   - level 2 item
 4. level 1 item
