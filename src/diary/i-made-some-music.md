@@ -1,5 +1,5 @@
 ---
-title: I made music!
+title: I made some music!
 date: 2021-09-10
 location: Daphne, AL, USA
 tags:
