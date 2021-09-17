@@ -5,7 +5,7 @@ location: Asheville, NC, USA
 ---
 Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>isicing elit. Quam suscipit nu<span style="color:red;">\*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Welcome to the kitchen sink. It's a handy way to test prose styles and whatnot.
 
-{% image "align-full-bleed", "./src/images/may-gwens.jpg", "", "Full bleed image here." %}
+{% image "align-full-bleed", "./src/images/many-may-gwens.jpg", "", "Full bleed image here." %}
 
 Lorem ipsum dolor sit amet, **bold consectetur adipiscing elit**, sed do eiusmod tempor incididunt ut [link labore et dolore magna](#0) aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris *italic nisi ut aliquip ex ea commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 

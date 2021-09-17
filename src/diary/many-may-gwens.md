@@ -6,4 +6,4 @@ tags:
   - drawing
   - things-i-made
 ---
-{% image "align-full-bleed", "./src/images/may-gwens.jpg", "A bunch of sloppy drawings of my daughter" %}
+{% image "align-full-bleed", "./src/images/many-may-gwens.jpg", "A bunch of sloppy drawings of my daughter" %}
