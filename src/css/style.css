@@ -195,6 +195,11 @@ a {
   text-decoration-skip-ink: auto;
 }
 
+a[aria-current],
+a.active {
+  font-weight: bold;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -279,10 +284,6 @@ hr {
   font-weight: bold;
   padding-inline-start: 0;
   padding-inline-end: 0;
-}
-
-.PageHeader__navLink[aria-current] {
-  font-weight: bold;
 }
 
 /**
@@ -588,10 +589,6 @@ hr {
 
 .BooksSubmenu li:first-of-type {
   padding-inline-end: calc(var(--space-inline) / 2);
-}
-
-.BooksSubmenu .active {
-  font-weight: bold;
 }
 
 .Book {

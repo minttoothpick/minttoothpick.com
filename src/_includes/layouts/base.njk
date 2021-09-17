@@ -33,9 +33,13 @@
     <a class="SkipNav hidden-til-focus" href="#main">Skip to main content</a>
     <nav class="PageHeader__nav">
       <ul class="PageHeader__navList list-unstyled" role="list">
-        <li class="PageHeader__navListItem"><a class="PageHeader__navLink" {% if (page.url === "/") or (fakeUrl === "home") %}aria-current="page" {% endif %}href="/">{{ site.title }}</a></li>
+        <li class="PageHeader__navListItem">
+          <a {{ 'aria-current="page" ' | safe if page.url === "/" }}class="PageHeader__navLink{{ " active" if fakeUrl === "home" }}" href="/">{{ site.title }}</a>
+        </li>
         {%- for item in site.navigation %}
-          <li class="PageHeader__navListItem"><a class="PageHeader__navLink" {% if (page.url === item.url) or (fakeUrl === item.url) %}aria-current="page" {% endif %}href="{{ item.url | url }}">{{ item.name }}</a></li>
+        <li class="PageHeader__navListItem">
+          <a {{ 'aria-current="page" ' | safe if page.url === item.url }}class="PageHeader__navLink{{ " active" if fakeUrl === item.url }}" href="{{ item.url | url }}">{{ item.name }}</a>
+        </li>
         {%- endfor %}
       </ul>
     </nav>
