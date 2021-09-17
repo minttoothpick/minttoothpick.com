@@ -227,8 +227,16 @@ hr {
   margin-inline-end: 0;
 }
 
-/* Pages
+/* Layouts
    ========================================================================== */
+
+@media (min-width: 700px) {
+  .GridThirds {
+    column-gap: var(--gap);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+}
 
 .PageGrid {
   margin-inline-start: auto;
@@ -511,123 +519,57 @@ hr {
 /* Reading/Books
    ========================================================================== */
 
-.Page--reading h2 {
+.Page--readingList h2 {
   font-variant-numeric: lining-nums;
 }
 
 /* Infini doesn't have bold italic, and we don't want some faux nonsense */
 .Page--readingNotes h2 {
   font-weight: normal;
-  margin-block-start: var(--size-5);
+  margin-block-start: var(--size-0);
 }
 
-.Page--reading .Grid1and2 {
-  column-gap: var(--gap);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+.Page--reading .GridThirds {
   margin-block-start: var(--gap-4);
 }
 
-/* TODO: Better naming, reusability */
-/* .BooksGrid,
-.BooksNotesGrid {
-  column-gap: var(--gap);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin-block-start: var(--gap-4);
-} */
-
-/* .BooksGrid h2,
-.BooksDrawingGrid h2 {
-  font-variant-numeric: lining-nums;
-} */
-
-.Page--reading .Grid1and2 > :first-child,
-.Page--reading .Grid1and2 > figcaption,
-.Page--reading .Grid1and2 > h2,
-.Page--reading .Grid1and2 > ul {
-  grid-column: span 2;
-}
-
-/* .BooksNotesGrid > :first-child,
-.BooksNotesGrid > figcaption,
-.BooksGrid > h2,
-.BooksGrid > ul {
-  grid-column: span 2;
-} */
-
-/* .BooksNotesGrid > *:first-child {
-  max-width: 250px;
-} */
-
-.Page--readingNotes .Grid1and2 > *:first-child {
+.Page--readingNotes .GridThirds > :first-child {
   max-width: 250px;
 }
 
-/* .BooksGrid > h2:not(:first-child) {
-  margin-block-start: var(--size-5);
-} */
-
-.Page--reading .Grid1and2 > h2:not(:first-child) {
+.Page--reading .GridThirds > h2:not(:first-child) {
   margin-block-start: var(--size-5);
 }
 
-/* TODO: Can't use flow-space property... see appropriate spacing */
-/* .BooksGrid > ul {
-  margin-block-start: 1em;
-} */
-
-.Page--reading .Grid1and2 > ul {
+.Page--reading .GridThirds > ul {
   margin-block-start: 1em;
 }
-
-/* @media (min-width: 700px) {
-  .BooksGrid {
-    gap: var(--gap-4) var(--gap);
-  }
-
-  .BooksGrid > h2,
-  .BooksNotesGrid > *:first-child {
-    grid-column: 1;
-  }
-
-  .BooksGrid > h2:not(:first-child),
-  .BooksGrid > ul {
-    margin-block-start: 0;
-  }
-
-  .BooksNotesGrid > *:first-child {
-    max-width: 100%;
-  }
-
-  .BooksGrid > ul,
-  .BooksNotesGrid > figcaption {
-    grid-column: 2;
-  }
-} */
 
 @media (min-width: 700px) {
-  .Page--reading .Grid1and2 {
+  .Page--readingNotes h2 {
+    margin-block-start: var(--size-4);
+  }
+
+  .Page--reading .GridThirds {
     gap: var(--gap-4) var(--gap);
   }
 
-  .Page--reading .Grid1and2 > h2,
-  .Page--reading .Grid1and2 > *:first-child {
+  .Page--reading .GridThirds > * {
+    grid-column: 2;
+  }
+
+  .Page--reading .GridThirds > h2,
+  .Page--reading .GridThirds > :first-child {
     grid-column: 1;
   }
 
-  .Page--reading .Grid1and2 > h2:not(:first-child),
-  .Page--reading .Grid1and2 > ul {
+  .Page--reading .GridThirds > h2:not(:first-child),
+  .Page--reading .GridThirds > ul {
     margin-block-start: 0;
   }
 
-  .Page--reading .Grid1and2 > *:first-child {
+  .Page--reading .GridThirds > :first-child {
     max-width: 100%;
-  }
-
-  .Page--reading .Grid1and2 > ul,
-  .Page--reading .Grid1and2 > figcaption {
-    grid-column: 2;
   }
 }
 

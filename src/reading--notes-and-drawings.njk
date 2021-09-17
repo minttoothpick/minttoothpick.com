@@ -20,7 +20,7 @@ fakeUrl: "/reading/"
   {%- set currentYear = "" -%}
   {% for book in collections.booksFinished %}
     {% if book.drawing %}
-    <figure class="Grid1and2 mt-10" style="max-width: 64rem;">
+    <figure class="GridThirds mt-10" style="max-width: 64rem;">
       {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
       {% set altText %}Drawing of “{{ book.title }}”{% endset %}
       {%- bookImg {
