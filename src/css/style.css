@@ -312,7 +312,7 @@ hr {
 }
 
 .Article__header > * + * {
-  margin-block-start: var(--size-05);
+  margin-block-start: var(--size-1);
 }
 
 .Article__title {
@@ -327,13 +327,16 @@ hr {
 }
 
 .Article__meta {
-  --flow-space: 0.5em;
   display: flex;
   flex-wrap: wrap;
   color: var(--text-muted);
   font-size: var(--size-0);
   font-size: var(--font-size-small);
   font-variant-numeric: lining-nums;
+}
+
+.Article__title + .Article__meta {
+  margin-block-start: var(--size-05);
 }
 
 /* If meta label is not `visually-hidden`, we need a space after it */
@@ -349,8 +352,6 @@ hr {
 }
 
 .Prose {
-  /* --flow-space: 1em; */
-  /* --list-display: list-item; */
   hanging-punctuation: first;
   hyphens: auto;
   line-height: inherit;
@@ -482,55 +483,105 @@ hr {
   grid-template-columns: repeat(var(--columns, 2), 1fr);
 }
 
+/* Specific pages
+  ========================================================================== */
+
+/* Extra margin on first element following header on single article pages */
+.Page--article .Article__header + * {
+  margin-block-start: var(--gap-2);
+}
+
+.Page--now figure:first-of-type {
+  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 51.4% 4.48%, 54.75% 18.87%, 56.48% 30.92%, 63.49% 35.99%, 75.58% 39.88%, 83.53% 48.24%, 88.44% 68.12%, 81.66% 83.25%, 70.37% 100.23%, 42.47% 102.61%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
+  margin-block-start: -0.5em;
+  padding-inline-end: var(--size-4);
+}
+
+.MusicGrid {
+  margin-block-start: 1em;
+}
+
+@media (min-width: 600px) {
+  .MusicGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Reading/Books
    ========================================================================== */
 
-/* Infini doesn't have bold italic, and we don't want some faux nonsense */
 .Page--reading h2 {
+  font-variant-numeric: lining-nums;
+}
+
+/* Infini doesn't have bold italic, and we don't want some faux nonsense */
+.Page--readingNotes h2 {
   font-weight: normal;
   margin-block-start: var(--size-5);
 }
 
-/* TODO: Better naming, reusability */
-.BooksGrid,
-.BooksNotesGrid {
+.Page--reading .Grid1and2 {
   column-gap: var(--gap);
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-block-start: var(--gap-4);
 }
 
-.BooksGrid h2,
+/* TODO: Better naming, reusability */
+/* .BooksGrid,
+.BooksNotesGrid {
+  column-gap: var(--gap);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-block-start: var(--gap-4);
+} */
+
+/* .BooksGrid h2,
 .BooksDrawingGrid h2 {
   font-variant-numeric: lining-nums;
+} */
+
+.Page--reading .Grid1and2 > :first-child,
+.Page--reading .Grid1and2 > figcaption,
+.Page--reading .Grid1and2 > h2,
+.Page--reading .Grid1and2 > ul {
+  grid-column: span 2;
 }
 
-.BooksNotesGrid > :first-child,
+/* .BooksNotesGrid > :first-child,
 .BooksNotesGrid > figcaption,
 .BooksGrid > h2,
 .BooksGrid > ul {
   grid-column: span 2;
-}
+} */
 
-.BooksNotesGrid > *:first-child {
-  /* Set minimum width of 250px */
-  /* max-width: min(250px, 100%); */
+/* .BooksNotesGrid > *:first-child {
+  max-width: 250px;
+} */
+
+.Page--readingNotes .Grid1and2 > *:first-child {
   max-width: 250px;
 }
 
-.BooksGrid > h2:not(:first-child) {
+/* .BooksGrid > h2:not(:first-child) {
+  margin-block-start: var(--size-5);
+} */
+
+.Page--reading .Grid1and2 > h2:not(:first-child) {
   margin-block-start: var(--size-5);
 }
 
 /* TODO: Can't use flow-space property... see appropriate spacing */
-.BooksGrid > ul {
-  /* margin-block-start: var(--size-0); */
+/* .BooksGrid > ul {
+  margin-block-start: 1em;
+} */
+
+.Page--reading .Grid1and2 > ul {
   margin-block-start: 1em;
 }
 
-/* TODO: Make this layout intrinsic... no media queries? */
-@media (min-width: 700px) {
-  /* Do we want to add top margins on both MQs, or use row gaps? */
+/* @media (min-width: 700px) {
   .BooksGrid {
     gap: var(--gap-4) var(--gap);
   }
@@ -540,21 +591,42 @@ hr {
     grid-column: 1;
   }
 
-  /* TODO: This sucks too! */
   .BooksGrid > h2:not(:first-child),
   .BooksGrid > ul {
-    /* margin-block-start: var(--gap-2); */
-    /* TODO: Incorrect */
     margin-block-start: 0;
   }
 
   .BooksNotesGrid > *:first-child {
-    /* Set minimum width of 250px */
     max-width: 100%;
   }
 
   .BooksGrid > ul,
   .BooksNotesGrid > figcaption {
+    grid-column: 2;
+  }
+} */
+
+@media (min-width: 700px) {
+  .Page--reading .Grid1and2 {
+    gap: var(--gap-4) var(--gap);
+  }
+
+  .Page--reading .Grid1and2 > h2,
+  .Page--reading .Grid1and2 > *:first-child {
+    grid-column: 1;
+  }
+
+  .Page--reading .Grid1and2 > h2:not(:first-child),
+  .Page--reading .Grid1and2 > ul {
+    margin-block-start: 0;
+  }
+
+  .Page--reading .Grid1and2 > *:first-child {
+    max-width: 100%;
+  }
+
+  .Page--reading .Grid1and2 > ul,
+  .Page--reading .Grid1and2 > figcaption {
     grid-column: 2;
   }
 }
@@ -580,28 +652,6 @@ hr {
   font-weight: bold;
 }
 
-/* Specific pages
-  ========================================================================== */
-
-.Page--now figure:first-of-type {
-  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 51.4% 4.48%, 54.75% 18.87%, 56.48% 30.92%, 63.49% 35.99%, 75.58% 39.88%, 83.53% 48.24%, 88.44% 68.12%, 81.66% 83.25%, 70.37% 100.23%, 42.47% 102.61%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
-  margin-block-start: -0.5em;
-  padding-inline-end: var(--size-4);
-}
-
-/* Extra margin on first element following header on single article pages */
-.Page--article .Article__header + * {
-  /* --flow-space: var(--gap-2); */
-  margin-block-start: var(--gap-2);
-}
-
-.MusicGrid {
-  margin-block-start: 1em;
-}
-
-@media (min-width: 600px) {
-  .MusicGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+.Book {
+  padding-inline-end: var(--size-0);
 }

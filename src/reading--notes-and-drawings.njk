@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: I like to read books
-pageClass: Page--reading
+pageClass: Page--reading Page--readingNotes
 permalink: "reading/brief-notes-and-drawings/"
 fakeUrl: "/reading/"
 ---
@@ -20,7 +20,7 @@ fakeUrl: "/reading/"
   {%- set currentYear = "" -%}
   {% for book in collections.booksFinished %}
     {% if book.drawing %}
-    <figure class="BooksNotesGrid mt-10" style="max-width: 64rem;">
+    <figure class="Grid1and2 mt-10" style="max-width: 64rem;">
       {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
       {% set altText %}Drawing of “{{ book.title }}”{% endset %}
       {%- bookImg {

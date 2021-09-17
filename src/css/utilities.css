@@ -70,10 +70,6 @@
   line-height: 1.5;
 }
 
-/* .flow > * + * {
-  margin-block-start: var(--flow-space, 1em);
-} */
-
 /**
  * The lobotomized owl
  * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
