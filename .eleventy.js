@@ -35,9 +35,9 @@ module.exports = function(eleventyConfig) {
    */
   eleventyConfig.addFilter("date", (dateObj, type) => {
     // ISO is like "2021-09-15"
-    if (type === "iso") return DateTime.fromJSDate(dateObj).toISODate();
+    if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toISODate();
     // DATE_FULL is like "September 15, 2021"
-    if (type === "nice") return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_FULL);
+    if (type === "nice") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
     // If no parameter is specified, just return unformatted date
     return dateObj;
   });
