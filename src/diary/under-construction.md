@@ -8,7 +8,7 @@ tags:
 ---
 In the spirit of that tendency to let one's personal website languish in a limbo of endless iteration: here is a hand-rendered version of that good old Geocities-era GIF.
 
-<figure>
+<figure class="align-none">
   <div class="ratio ratio--square">
     <iframe
         src="https://player.vimeo.com/video/543968889?loop=1&amp;autoplay=1&amp;muted=1"

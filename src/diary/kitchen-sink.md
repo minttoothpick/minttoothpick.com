@@ -5,7 +5,7 @@ location: Asheville, NC, USA
 ---
 Lorem, ipsum dolor sit amet consectetur adip<span style="color:red;">\*</span>isicing elit. Quam suscipit nu<span style="color:red;">\*</span>lla nesciunt sint vero, accusantium error ea quidem inventore nihil numquam quos cumque, earum corporis soluta. Possimus facere placeat quaerat. Welcome to the kitchen sink. It's a handy way to test prose styles and whatnot.
 
-<figure>
+<figure class="align-none">
 
 ![Close up of a medieval-era illustration of a hand holding a book](images/book.jpg)
 
@@ -21,7 +21,7 @@ Then we have a regular body paragraph underneath. With this, text can be **bold*
 
 There should be whitespace between paragraphs. What if we have a [link with some `code` in it?](nowhere)
 
-<figure class="full-width">
+<figure class="align-bleed">
 
 ![A creepy abandoned mall entrance](images/creepy-mall.jpg)
 
@@ -39,7 +39,7 @@ There should be whitespace between paragraphs. We recommend including a `README`
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-<figure class="text-width">
+<figure class="align-none">
 
 ![](images/ambulance.jpg)
 
