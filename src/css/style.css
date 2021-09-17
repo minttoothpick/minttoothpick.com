@@ -399,13 +399,13 @@ hr {
   margin-block-start: var(--size-05);
 }
 
-/* Add extra block margin on figures, blockquotes, hrules */
+/* Extra block margin on these elems */
 .Prose > blockquote,
 .Prose > figure,
 .Prose > hr,
 .Prose > blockquote + *,
-.Prose > figure + *,
-.Prose > hr + * {
+.Prose > hr + *,
+.Prose > figure + *:not(.Article__footer) { /* unless last fig in article */
   margin-block-start: var(--size-5);
 }
 
