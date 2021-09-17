@@ -399,7 +399,7 @@ hr {
   margin-block-start: var(--size-5);
 }
 
-.Prose figcaption {
+.Prose [class^="align-"] figcaption {
   color: var(--text-muted);
   font-size: var(--font-size-small);
   line-height: 1.5;
@@ -485,6 +485,12 @@ hr {
 /* Reading/Books
    ========================================================================== */
 
+/* Infini doesn't have bold italic, and we don't want some faux nonsense */
+.Page--reading h2 {
+  font-weight: normal;
+  margin-block-start: var(--size-5);
+}
+
 /* TODO: Better naming, reusability */
 .BooksGrid,
 .BooksNotesGrid {
@@ -493,11 +499,6 @@ hr {
   grid-template-columns: 1fr 2fr;
   margin-block-start: var(--gap-4);
 }
-
-/* .BooksGrid > h2,
-.BooksGrid > ul {
-  --flow-space: 2em;
-} */
 
 .BooksGrid h2,
 .BooksDrawingGrid h2 {

@@ -1,12 +1,12 @@
 ---
 layout: layouts/base.njk
 title: I like to read books
-pageClass: Page--readingNotes
+pageClass: Page--reading
 permalink: "reading/brief-notes-and-drawings/"
 fakeUrl: "/reading/"
 ---
-<article class="Article Prose">
-  <header class="Article__header Prose--contain">
+<article class="Article">
+  <header class="Article__header Prose Prose--contain">
     <h1 class="Article__title">{{ title }}</h1>
     <p>And here you can see a drawing and some brief notes on each book I’ve read. Most recently finished books are at the top.</p>
     {# <p><a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p> #}
@@ -32,8 +32,8 @@ fakeUrl: "/reading/"
                 calc(100vw-64px)"
         }
       -%}{%- endbookImg -%}
-      <figcaption class="flow">
-        <h2 style="font-weight: normal;">{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
+      <figcaption class="space-items-0">
+        <h2>{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
         <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
         {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
       </figcaption>
