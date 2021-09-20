@@ -7,6 +7,7 @@ const markdownOptions = {
   typographer: true,
 };
 const markdownItAnchor = require("markdown-it-anchor");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const yaml = require("js-yaml");
 
 // Import filters
@@ -155,6 +156,11 @@ module.exports = function(eleventyConfig) {
   .use(markdownItAnchor, {
     "level": [2, 3]
   }));
+
+  /* Plugins
+   ======================================================================== */
+
+  eleventyConfig.addPlugin(syntaxHighlight);
 
   /* Other options
    ======================================================================== */

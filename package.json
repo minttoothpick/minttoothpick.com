@@ -15,6 +15,7 @@
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-cache-assets": "^2.3.0",
     "@11ty/eleventy-img": "github:zeroby0/eleventy-img#cache",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
     "cross-env": "^7.0.3",
     "csv-parse": "^4.16.3",
     "dotenv": "^8.2.0",

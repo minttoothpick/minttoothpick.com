@@ -35,7 +35,7 @@
   --font-sans: "Infini", "Lato", serif, -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
 
   /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
-  --font-mono: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-mono: "Fira Code", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
 @media (min-width: 800px) {
@@ -141,7 +141,16 @@ img {
   height: auto;
 }
 
+/* Overriding Prism.js */
+code,
 pre {
+  font-family: var(--font-mono) !important;
+  font-size: var(--size-1) !important;
+}
+
+pre {
+  /* margin-inline: calc(var(--gap) * -1) !important; */
+  margin-inline: -1em !important;
   overflow-x: auto;
 }
 

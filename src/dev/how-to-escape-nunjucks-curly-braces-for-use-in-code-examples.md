@@ -4,7 +4,7 @@ title: How to escape Nunjucks curly braces for use in code examples
 Say you want to demonstrate a Nunjucks code snippet on your site without actually rendering that code in your template:
 
 ```jinja2
-// An example shortcode
+// An example filter
 {% raw %}{{ data | myFilter }}{% endraw %}
 ```
 
