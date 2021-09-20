@@ -414,15 +414,14 @@ hr {
 .Prose > hr,
 .Prose > blockquote + *,
 .Prose > hr + *,
-.Prose > figure + *:not(.Article__footer) { /* unless last fig in article */
+.Prose > figure + * {
   margin-block-start: var(--size-5);
 }
 
-.Prose [class^="align-"] figcaption {
-  color: var(--text-muted);
-  font-size: var(--font-size-small);
-  line-height: 1.5;
-  margin-block-start: var(--size-0);
+/* Overriding Prism.js */
+.Prose > pre,
+.Prose > pre + * {
+  margin-block-start: var(--size-5) !important;
 }
 
 /* Reset block margin on floated figs */
@@ -431,6 +430,17 @@ hr {
 .Prose > .align-pull-start,
 .Prose > .align-pull-start + * {
   margin-block-start: var(--size-2);
+}
+
+.Prose > figure + .Article__footer {
+  margin-block-start: var(--size-2);
+}
+
+.Prose [class^="align-"] figcaption {
+  color: var(--text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+  margin-block-start: var(--size-0);
 }
 
 /* TODO: Do we need a flow util on `figcaption`, in case of multi paras? */
