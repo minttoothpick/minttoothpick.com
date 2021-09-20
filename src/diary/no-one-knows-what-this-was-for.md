@@ -1,5 +1,5 @@
 ---
-title: An Impermanent Collage
+title: “No one knows what this was for”
 date: 2021-05-13
 location: Asheville, NC, USA
 tags:
