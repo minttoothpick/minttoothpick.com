@@ -4,7 +4,7 @@ module.exports = {
   description: "Jeremy Robert Jones’ personal website: art, music, musings",
   url: process.env.URL || "http://localhost:8080",
   authorName: "Jeremy Robert Jones",
-  authorEmail: "minttoothpick@protonmail.com",
+  authorEmail: "minttoothpick+hello@protonmail.com",
   twitterUsername: "minttoothpick",
   buildTime: new Date(),
   navigation: [
