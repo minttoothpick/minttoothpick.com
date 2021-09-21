@@ -245,10 +245,19 @@ hr {
    ========================================================================== */
 
 @media (min-width: 700px) {
-  .GridThirds {
+  .GridAlt {
     column-gap: var(--gap);
     display: grid;
+    gap: var(--gap-4) var(--gap);
     grid-template-columns: 1fr 2fr;
+  }
+
+  .GridAlt > section:nth-child(odd) {
+    grid-column: 1;
+  }
+
+  .GridAlt > section:nth-child(even) {
+    grid-column: 2;
   }
 }
 
@@ -549,19 +558,19 @@ hr {
   margin-block-start: var(--size-0);
 }
 
-.Page--reading .GridThirds {
+.Page--reading .GridAlt {
   margin-block-start: var(--gap-4);
 }
 
-.Page--readingNotes .GridThirds > :first-child {
+.Page--readingNotes .GridAlt > :first-child {
   max-width: 250px;
 }
 
-.Page--reading .GridThirds > h2:not(:first-child) {
+.Page--reading .GridAlt > h2:not(:first-child) {
   margin-block-start: var(--size-5);
 }
 
-.Page--reading .GridThirds > ul {
+.Page--reading .GridAlt > ul {
   margin-block-start: 1em;
 }
 
@@ -570,27 +579,14 @@ hr {
     margin-block-start: var(--size-4);
   }
 
-  .Page--reading .GridThirds {
-    gap: var(--gap-4) var(--gap);
-  }
-
-  .Page--reading .GridThirds > * {
-    grid-column: 2;
-  }
-
-  .Page--reading .GridThirds > h2,
-  .Page--reading .GridThirds > :first-child {
-    grid-column: 1;
-  }
-
-  .Page--reading .GridThirds > h2:not(:first-child),
-  .Page--reading .GridThirds > ul {
+  .GridAlt--reading h2:not(:first-child),
+  .GridAlt--reading ul {
     margin-block-start: 0;
   }
 
-  .Page--reading .GridThirds > :first-child {
+  /* .Page--reading .GridAlt > :first-child {
     max-width: 100%;
-  }
+  } */
 }
 
 .BooksSubmenu {

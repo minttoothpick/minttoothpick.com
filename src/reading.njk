@@ -12,12 +12,16 @@ pageClass: Page--reading Page--readingList
     {% include "snippets/books-submenu.njk" %}
   </header>
 
-  <div class="GridThirds">
+  <div class="GridAlt GridAlt--reading">
     {##
      # Books in progress
      #}
-    <h2>What I’m currently reading</h2>
-    {% include "snippets/books-reading-list.njk" %}
+    <section id="currently-reading">
+      <h2 class="sticky-top">What I’m currently reading</h2>
+    </section>
+    <section>
+      {% include "snippets/books-reading-list.njk" %}
+    </section>
 
     {##
      # Books read, sorted by year
@@ -26,8 +30,11 @@ pageClass: Page--reading Page--readingList
     {% for book in collections.booksFinished %}
       {% if currentYear != book.finish_date %}
         {% set currentYear = book.finish_date %}
-        {% if loop.first %}{% else %}</ul>{% endif %}
-        <h2>{{ book.finish_date }}</h2>
+        {% if loop.first %}{% else %}</ul></section>{% endif %}
+        <section id="{{ currentYear }}">
+          <h2 class="sticky-top">{{ book.finish_date }}</h2>
+        </section>
+        <section>
         <ul>
       {% endif %}
       <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<i>{{ book.title }}</i> by {{ book.author | formatAuthor }}</li>
