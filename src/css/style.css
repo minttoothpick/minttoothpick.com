@@ -276,20 +276,26 @@ hr {
 
 .PageHeader__navListItem:first-of-type {
   font-weight: bold;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
-}
-
-.PageHeader__navListItem:first-of-type::after {
-  content: "/";
-  color: var(--gray-light);
-  padding-inline-start: calc(var(--size-3) / 2);
-  padding-inline-end: calc(var(--size-3) / 2);
 }
 
 /* Padding on every item except for last */
 .PageHeader__navListItem:not(:last-of-type) {
   padding-inline-end: var(--size-3);
+}
+
+/* Hide dividing slash when screen's so small it wraps to own line */
+@media (min-width: 240px) {
+  .PageHeader__navListItem:first-of-type {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+
+  .PageHeader__navListItem:first-of-type::after {
+    content: "/";
+    color: var(--gray-light);
+    padding-inline-start: calc(var(--size-3) / 2);
+    padding-inline-end: calc(var(--size-3) / 2);
+  }
 }
 
 /**
