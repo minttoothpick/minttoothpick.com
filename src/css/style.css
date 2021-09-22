@@ -11,8 +11,6 @@
   --size-3: 1.5rem; /* 24px */
   --size-4: 2rem; /* 32px */
   --size-5: 3rem; /* 48px */
-  --space-block: var(--size-05);
-  --space-inline: 0.75rem;
   --gap: var(--size-4); /* 2rem = 32px */
   --gap-2: calc(var(--gap) * 1.5); /* 4rem = 64px */
   --gap-4: calc(var(--gap) * 2); /* 8rem = 128px */
@@ -58,8 +56,6 @@
     --size-3: 2rem; /* 32px */
     --size-4: 3rem; /* 48px */
     --size-5: 5rem; /* 80px */
-    --space-block: var(--size-05);
-    --space-inline: 0.75rem;
     --gap: var(--size-4); /* 3rem = 48px */
     --gap-2: calc(var(--gap) * 2); /* 6rem = 96px */
     --gap-4: calc(var(--gap) * 4); /* 12rem = 192px */
@@ -289,8 +285,8 @@ hr {
 .PageHeader__navListItem:first-of-type::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline-start: calc(var(--space-inline));
-  padding-inline-end: calc(var(--space-inline));
+  padding-inline-start: calc(var(--size-3) / 2);
+  padding-inline-end: calc(var(--size-3) / 2);
 }
 
 /* Padding on every item except for last */
@@ -374,8 +370,8 @@ hr {
 .Article__meta dd:not(:last-of-type)::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline-start: calc(var(--space-inline) / 2);
-  padding-inline-end: calc(var(--space-inline) / 2);
+  padding-inline-start: var(--size-05);
+  padding-inline-end: var(--size-05);
 }
 
 .Prose {
@@ -515,7 +511,7 @@ hr {
 
 .Prose > .photo-row {
   display: grid;
-  gap: var(--space-inline);
+  gap: var(--size-0);
   /* Get --columns property from HTML to decide how many to display */
   grid-template-columns: repeat(var(--columns, 2), 1fr);
 }
@@ -598,12 +594,12 @@ hr {
 .BooksSubmenu li:not(:last-of-type):not(:first-of-type)::after {
   content: "/";
   color: var(--gray-light);
-  padding-inline-start: calc(var(--space-inline) / 2);
-  padding-inline-end: calc(var(--space-inline) / 2);
+  padding-inline-start: var(--size-05);
+  padding-inline-end: var(--size-05);
 }
 
 .BooksSubmenu li:first-of-type {
-  padding-inline-end: calc(var(--space-inline) / 2);
+  padding-inline-end: var(--size-05);
 }
 
 .Book {
