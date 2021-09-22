@@ -278,7 +278,7 @@ hr {
   font-weight: bold;
 }
 
-/* Padding on every item except for last */
+/* Inline padding on every item except for last */
 .PageHeader__navListItem:not(:last-of-type) {
   padding-inline-end: var(--size-3);
 }
