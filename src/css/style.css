@@ -442,7 +442,12 @@ hr {
 .Prose > pre {
   margin-inline-start: -1em !important;
   margin-inline-end: -1em !important;
-  /* Add inline margin pull amount to max width */
+}
+
+.Prose--contain > pre {
+  /* TODO: ? */
+  width: calc(100vw - 1.25em);
+  /* Subtract inline margin pull amount to max width */
   max-width: calc(var(--linear-measure) + 2em);
 }
 
