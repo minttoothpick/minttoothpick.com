@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/page.njk
 pageClass: Page--tags Page--tagsSingle
 pagination:
   data: collections
@@ -7,11 +7,21 @@ pagination:
   alias: tag
 permalink: /tags/{{ tag }}/
 eleventyComputed:
-  title: "things tagged “{{ tag }}”"
+  title: "Stuff tagged “{{ tag }}”"
 ---
-<section>
-  {% set postsList = collections[tag] %}
-  {% include "snippets/posts-list.njk" %}
+{% for post in collections[tag] | reverse %}
+  {% if loop.first %}<ul class="PostsList">{% endif %}
+  <li>
+    <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
+    <dl class="Article__meta">
+      <dt class="visually-hidden">Published on</dt>
+      <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
+    </dl>
+    {% include "snippets/tags-list.njk" %}
+  </li>
+  {% if loop.last %}</ul>{% endif %}
+{% else %}
+  <p>Nothing here!</p>
+{% endfor %}
 
-  <a href="/tags/">View all tags</a>
-</section>
+<a href="/tags/">View all tags</a>

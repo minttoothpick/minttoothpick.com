@@ -26,6 +26,7 @@
    */
   --text-muted: rgba(0, 0, 0, 0.65);
   --gray-light: rgba(0, 0, 0, 0.25);
+  --gray-extralight: rgba(0, 0, 0, 0.1);
 
   /**
    * Fonts
@@ -403,6 +404,7 @@ hr {
   padding-inline-start: 1em;
 }
 
+/* TODO: First selector's kinda lame, requires !imp on TagsGrid (tags.css) */
 .Prose li:not(:first-child),
 .Prose li > ul,
 .Prose li > ol {

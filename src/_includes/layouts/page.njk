@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+pageClass: Page--page
+---
+<article class="Article Prose">
+  <header class="Article__header">
+    <h1 class="Article__title">{{ title }}</h1>
+  </header>
+  {{ content | safe }}
+</article>

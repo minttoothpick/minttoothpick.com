@@ -6,11 +6,12 @@ pageClass: Page--article
   <header class="Article__header">
     <h1 class="Article__title">{{ title | safe }}</h1>
     {# TODO: Don't display meta list if unnecessary #}
+    {# actually prob not necessary now we've got "page.njk" #}
     <dl class="Article__meta">
-    {% if hideDate !== true %}
+    {# {% if hideDate !== true %} #}
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
-    {% endif %}{# check whether to hide date #}
+    {# {% endif %}check whether to hide date #}
     {% if location %}
       <dt class="visually-hidden">Published in</dt>
       <dd>{{ location }}</dd>

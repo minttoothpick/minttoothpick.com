@@ -9,6 +9,7 @@
   {# Styles #}
   <link href="{{ '/css/style.css' | url }}" rel="stylesheet">
   <link href="{{ '/css/utilities.css' | url }}" rel="stylesheet">
+  <link href="{{ '/css/tags.css' | url }}" rel="stylesheet">
   <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css" rel="stylesheet">
   {# Primary meta #}
   <title>{{ pageTitle }}</title>
@@ -47,7 +48,9 @@
   </header>
 
   <main class="PageGrid mt-10" id="main">
+  {% block content %}
     {{ content | safe }}
+  {% endblock %}
   </main>
 
   <footer class="SiteFooter PageGrid">
