@@ -1,5 +1,5 @@
 ---
-title: "If <i>Powers of Ten</i> Started out 160× Smaller"
+title: "If <em>Powers of Ten</em> Started out 160× Smaller"
 displayTitle: false
 displayMeta:
 date: 2021-03-18

@@ -18,6 +18,6 @@ In the spirit of that tendency to let one's personal website languish in a limbo
         allowfullscreen></iframe>
   </div>
   <figcaption>
-    <p><i>Under Construction</i>. 2021. Digital animation from ten scanned pastels. 2000 px × 2000 px.</p>
+    <p><em>Under Construction</em>. 2021. Digital animation from ten scanned pastels. 2000 px × 2000 px.</p>
   </figcaption>
 </figure>

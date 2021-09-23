@@ -1,5 +1,5 @@
 {% for book in collections.booksReading %}
   {% if loop.first %}<ul>{% endif %}
-  <li><em>{{ book.title | removeSubtitle if noSubtitle else book.title }}</em> by {{ book.author | formatAuthor }}</li>
+  <li><em>{{ book.title | removeSubtitle if noSubtitle else book.title }}</em> <span class="text-small">by {{ book.author | formatAuthor }}</span></li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}

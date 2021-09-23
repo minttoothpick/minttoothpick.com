@@ -2,20 +2,16 @@
 layout: layouts/base.njk
 pageClass: Page--article
 ---
-<article class="Article Prose Prose--contain">
+<article class="Article Prose Prose--article Prose--contain">
   <header class="Article__header">
     <h1 class="Article__title">{{ title | safe }}</h1>
-    {# TODO: Don't display meta list if unnecessary #}
-    {# actually prob not necessary now we've got "page.njk" #}
     <dl class="Article__meta">
-    {# {% if hideDate !== true %} #}
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
-    {# {% endif %}check whether to hide date #}
-    {% if location %}
+      {% if location %}
       <dt class="visually-hidden">Published in</dt>
       <dd>{{ location }}</dd>
-    {% endif %}{# check for location #}
+      {% endif %}{# check for location #}
     </dl>
   </header>
   {{ content | safe }}

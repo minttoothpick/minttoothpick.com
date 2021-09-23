@@ -1,44 +1,40 @@
 ---
-layout: layouts/base.njk
+layout: layouts/page.njk
 title: I like to read books
 pageClass: Page--reading Page--readingNotes
 permalink: "reading/brief-notes-and-drawings/"
 fakeUrl: "/reading/"
 ---
-<article class="Article">
-  <header class="Article__header Prose Prose--contain">
-    <h1 class="Article__title">{{ title }}</h1>
-    <p>And here you can see a drawing and some brief notes on each book I’ve read. Most recently finished books are at the top.</p>
-    {# <p><a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p> #}
-    <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
-    {% include "snippets/books-submenu.njk" %}
-  </header>
+<div class="Prose Prose--contain">
+  <p>And here you can see a drawing and some brief notes on each book I’ve read. Most recently finished books are at the top.</p>
+  {# <p><a href="/reading/and-drawing-the-books/">You can see a huge grid of every drawing here.</a> Or if all these images are too much, there’s a <a href="/reading/">plain text list of them here</a>.</p> #}
+  <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
+  {% include "snippets/books-submenu.njk" %}
+</div>
 
-  {##
-   # Books read, w/ drawing, sorted by year
-   #}
-  {%- set currentYear = "" -%}
-  {% for book in collections.booksFinished %}
-    {% if book.drawing %}
-    <figure class="GridThirds mt-10" style="max-width: 64rem;">
-      {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
-      {% set altText %}Drawing of “{{ book.title }}”{% endset %}
-      {%- bookImg {
-        src: imgSrc,
-        alt: altText,
-        sizes: "(min-width: 1600px) 325px,
-                (min-width: 700px) calc(33vw - 96px),
-                (min-width: 314px) 250px,
-                calc(100vw-64px)"
-        }
-      -%}{%- endbookImg -%}
-      <figcaption class="space-items-0">
-        <h2>{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <i>{{ book.title }}</i></h2>
-        <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
-        {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
-      </figcaption>
-    </figure>
-    {% endif %}{# check for drawing #}
-  {% endfor %}
-
-</article>
+{##
+ # Books read, w/ drawing, sorted by year
+ #}
+{%- set currentYear = "" -%}
+{% for book in collections.booksFinished %}
+  {% if book.drawing %}
+  <figure class="GridThirds mt-10" style="max-width: 64rem;">
+    {% set imgSrc %}./src/images/books/{{ book.slug }}.png{% endset %}
+    {% set altText %}Drawing of “{{ book.title }}”{% endset %}
+    {%- bookImg {
+      src: imgSrc,
+      alt: altText,
+      sizes: "(min-width: 1600px) 325px,
+              (min-width: 700px) calc(33vw - 96px),
+              (min-width: 314px) 250px,
+              calc(100vw-64px)"
+      }
+    -%}{%- endbookImg -%}
+    <figcaption class="space-items-0">
+      <h2>{% if book.✔ %}<span style="color: var(--gray-light);">✺</span>{% endif %} <em>{{ book.title }}</em></h2>
+      <p class="mt-none" style="color: var(--text-muted);">{{ book.author | formatAuthor }}</p>
+      {% if book.desc %}{{ book.desc | markdown | safe }}{% endif %}
+    </figcaption>
+  </figure>
+  {% endif %}{# check for drawing #}
+{% endfor %}
