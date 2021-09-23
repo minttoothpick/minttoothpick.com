@@ -57,7 +57,7 @@
   font-style: normal;
   font-weight: normal;
   src: url('../fonts/infini/infini-regular.eot');
-  src: url('../fonts/infini/infini-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/infini/infini-regular.woff') format('woff'), url('wo../fonts/infini/infini-regular.woff2') format('woff2'), url('../fonts/infini/infini-regular.ttf') format('truetype'), url('../fonts/infini/infini-regular.svg#svgFontName') format('svg');
+  src: url('../fonts/infini/infini-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/infini/infini-regular.woff') format('woff'), url('../fonts/infini/infini-regular.woff2') format('woff2'), url('../fonts/infini/infini-regular.ttf') format('truetype'), url('../fonts/infini/infini-regular.svg#svgFontName') format('svg');
 }
 
 @font-face {
