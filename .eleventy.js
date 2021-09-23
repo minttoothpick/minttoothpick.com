@@ -14,6 +14,7 @@ const yaml = require("js-yaml");
 const formatAuthor = require("./_eleventy/filters/formatAuthor.js");
 
 // Import shortcodes
+// const respImg = require("./_eleventy/shortcodes/respImg.js");
 const imgShortcode = require("./_eleventy/shortcodes/imgShortcode.js");
 const bookImg = require("./_eleventy/shortcodes/bookImg.js");
 

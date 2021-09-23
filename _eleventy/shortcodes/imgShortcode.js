@@ -5,14 +5,24 @@ const path = require("path");
  * https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
  * Then added a wrapping `figure` element and whatever else.
  */
-module.exports = async function imgShortcode(figClass="", src, alt, figcaption="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)", style="") {
+module.exports = async function imgShortcode(figClass="", src, alt, figcaption="", sizes="", style="") {
   var widths = [];
-  // sizes is already defaulted in func param;
   if (figClass == "align-full-bleed") {
-    sizes = "(min-width: 1492px) 1444px, calc(100vw - 48px)";
-    widths = [600, 800, 1000, 1444, 1600, 1900, 2200, 2400];
+    /**
+     * align-full-bleed:
+     *  - 100vw
+     *  - (min-width: 1345px) 1344px
+     */
+    sizes = "(min-width: 1345px) 1344px, 100vw";
+    widths = [500, 800, 1100, 1344, 1920];
   } else {
-    widths = [600, 800, 1000, 1444, 1600, 1900];
+    /**
+     * align-none:
+     *  - calc(100vw - 64px [padding inline])
+     *  - (min-width: 705px) 640px
+     */
+    sizes = "(min-width: 705px) 640px, calc(100vw - 64px)"
+    widths = [500, 640, 1280];
   }
 
   if (!figClass) figClass = "align-none";
@@ -32,7 +42,7 @@ module.exports = async function imgShortcode(figClass="", src, alt, figcaption="
       return `${name}-${width}w.${format}`;
     },
     sharpJpegOptions: {
-      quality: 80
+      quality: 70
     }
   });
 

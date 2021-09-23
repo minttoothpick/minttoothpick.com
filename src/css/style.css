@@ -31,7 +31,7 @@
   /**
    * Fonts
    */
-  --font-sans: "Infini", "Lato", serif, -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-sans: "Infini", "Lato", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
 
   /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
   --font-mono: "Fira Code", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
@@ -39,29 +39,12 @@
 
 @media (min-width: 800px) {
   :root {
-    --gap: var(--size-4); /* 2rem = 32px */
+    /* --gap: var(--size-4); 2rem = 32px */
     --gap-2: calc(var(--gap) * 2); /* 4rem = 64px */
     --gap-4: calc(var(--gap) * 4); /* 8rem = 128px */
     --font-size-small: var(--size-1);
     --font-size-body: var(--size-2);
     --font-size-title: var(--size-5);
-  }
-}
-
-@media (min-width: 1600px) {
-  :root {
-    --size-05: 1rem; /* 16px */
-    --size-0: 1.25rem; /* 20px */
-    --size-1: 1.5rem; /* 24px */
-    --size-3: 2rem; /* 32px */
-    --size-4: 3rem; /* 48px */
-    --size-5: 5rem; /* 80px */
-    --gap: var(--size-4); /* 3rem = 48px */
-    --gap-2: calc(var(--gap) * 2); /* 6rem = 96px */
-    --gap-4: calc(var(--gap) * 4); /* 12rem = 192px */
-    --text-measure: 45rem; /* 720px */
-    --linear-measure: var(--text-measure); /* 45rem = 720px @ 16px base */
-    --container-max-width: 90rem; /* 1440px */
   }
 }
 
@@ -250,20 +233,24 @@ hr {
   }
 }
 
+/*
+ * Grid
+ * The content col will shrink and grow to a maximum of
+ * the `--text-measure` custom property (40rem).
+ * When that width is reached, the other column begins expanding (1fr).
+ * The max width on the entire grid element, along with `margin-inline: auto`,
+ * ensures that it never grows wider than 80rem, and stays centered.
+ */
 .PageGrid {
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  padding: var(--gap);
   display: grid;
-
-  /* Content = 100% until screen is px wide, then max at 80vw */
   grid-template-columns:
-    [content-start] minmax(0, var(--text-measure))
+    [content-start] minmax(0, var(--text-measure)) /* 40rem = 640px */
     [measure] 1fr
     [content-end];
-
-  /* Overall maximum width */
-  max-width: var(--container-max-width); /* 80rem = 1280px @ 16px base */
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: calc(var(--container-max-width) + (var(--gap) * 2)); /* 80rem = 1280px */
+  padding: var(--gap);
 }
 
 .PageGrid > * {
@@ -506,8 +493,7 @@ it was only being used to avoid issues on book drawings page. */
   padding-inline-end: var(--gap);
 }
 
-/* Screen at least 440px */
-@media (min-width: 27.5em) {
+@media (min-width: 440px) {
   .Prose > .align-end,
   .Prose > .align-pull-end {
     float: inline-end;
