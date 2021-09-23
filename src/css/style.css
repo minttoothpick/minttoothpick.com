@@ -470,7 +470,7 @@ it was only being used to avoid issues on book drawings page. */
   margin-block-start: 0;
 } */
 
-.Prose--article > .align-full-bleed {
+.Prose > .align-full-bleed {
   /* Unset this width limitation from .Prose */
   --linear-measure: auto;
   display: grid;
@@ -483,11 +483,11 @@ it was only being used to avoid issues on book drawings page. */
   margin-inline-end: calc(var(--gap) * -1);
 }
 
-.Prose--article > .align-full-bleed > :first-child {
+.Prose > .align-full-bleed > :first-child {
   grid-column: bleed;
 }
 
-.Prose--article > .align-full-bleed > figcaption {
+.Prose > .align-full-bleed > figcaption {
   /* Add side padding to offset being full-width */
   padding-inline-start: var(--gap);
   padding-inline-end: var(--gap);
