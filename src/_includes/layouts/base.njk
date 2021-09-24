@@ -15,7 +15,7 @@
   <title>{{ pageTitle }}</title>
   <meta name="description" content="{{ pageDescription }}">
   <meta name="author" content="{{ site.authorName }}">
-  <link rel="canonical" href="{{ site.url }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   {# Twitter #}
   <meta name="twitter:card" content="summary_large_image">
   {%- if site.twitterUsername %}
