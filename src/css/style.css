@@ -173,6 +173,8 @@ h2 {
 
 a {
   color: currentColor;
+  padding: 0.5rem;
+  margin: -0.5rem;
   text-decoration-skip-ink: auto;
 }
 
