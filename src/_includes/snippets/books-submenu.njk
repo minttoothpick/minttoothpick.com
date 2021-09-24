@@ -1,8 +1,8 @@
-<nav style="--linear-measure: auto;">
-  <ul class="BooksSubmenu list-unstyled">
-    <li>Or, view as:</li>
-    <li><a {{ 'aria-current="page" ' | safe if page.url === "/drawing-the-books-i-read/" }}href="/drawing-the-books-i-read/">a drawing of every book</a></li>
-    <li><a {{ 'aria-current="page" ' | safe if page.url === "/reading/brief-notes-and-drawings/" }}href="/reading/brief-notes-and-drawings/">brief notes and drawings</a></li>
-    <li><a {{ 'aria-current="page" ' | safe if page.url === "/reading/" }}href="/reading/">a plain text list</a></li>
+<nav class="NavInline" style="--linear-measure: auto;">
+  <ul class="NavInline__list list-unstyled">
+    <li class="NavInline__listItem">Or,&nbsp;view&nbsp;as:</li>
+    <li class="NavInline__listItem"><a class="NavInline__link" {{ 'aria-current="page" ' | safe if page.url === "/drawing-the-books-i-read/" }}href="/drawing-the-books-i-read/">a&nbsp;drawing&nbsp;of&nbsp;every&nbsp;book</a></li>
+    <li class="NavInline__listItem"><a class="NavInline__link" {{ 'aria-current="page" ' | safe if page.url === "/reading/brief-notes-and-drawings/" }}href="/reading/brief-notes-and-drawings/">brief&nbsp;notes&nbsp;and&nbsp;drawings</a></li>
+    <li class="NavInline__listItem"><a class="NavInline__link" {{ 'aria-current="page" ' | safe if page.url === "/reading/" }}href="/reading/">a&nbsp;plain&nbsp;text&nbsp;list</a></li>
   </ul>
 </nav>

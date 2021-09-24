@@ -70,11 +70,6 @@
   line-height: 1.5;
 }
 
-.sticky-top {
-  position: sticky;
-  inset-block-start: var(--size-0);
-}
-
 /**
  * The lobotomized owl
  * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/

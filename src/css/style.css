@@ -218,23 +218,6 @@ hr {
 /* Layouts
    ========================================================================== */
 
-@media (min-width: 700px) {
-  .GridAlt {
-    column-gap: var(--gap);
-    display: grid;
-    gap: var(--gap-4) var(--gap);
-    grid-template-columns: 1fr 2fr;
-  }
-
-  .GridAlt > section:nth-child(odd) {
-    grid-column: 1;
-  }
-
-  .GridAlt > section:nth-child(even) {
-    grid-column: 2;
-  }
-}
-
 /*
  * Grid
  * The content col will shrink and grow to a maximum of
@@ -548,9 +531,35 @@ it was only being used to avoid issues on book drawings page. */
 /* Reading/Books
    ========================================================================== */
 
-.Page--readingList h2 {
+/* .ReadingGrid:not(:first-of-type), */
+.ReadingGrid {
+  margin-block-start: var(--gap-4);
+}
+
+.ReadingGrid > h2 {
   font-variant-numeric: lining-nums;
 }
+
+.ReadingGrid li > * + * {
+  margin-top: 0;
+}
+
+@media (min-width: 700px) {
+  .ReadingGrid {
+    display: grid;
+    column-gap: var(--gap);
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .ReadingGrid > h2 {
+    align-self: start;
+    position: sticky;
+    inset-block-start: var(--size-0);
+  }
+}
+
+
+
 
 /* Infini doesn't have bold italic, and we don't want some faux nonsense */
 .Page--readingNotes h2 {
@@ -558,20 +567,9 @@ it was only being used to avoid issues on book drawings page. */
   margin-block-start: var(--size-0);
 }
 
-.Page--reading .GridAlt {
-  margin-block-start: var(--gap-4);
-}
-
-.Page--readingNotes .GridAlt > :first-child {
+/* I think this is for reading notes, actually */
+.GridAlt--reading:first-child {
   max-width: 250px;
-}
-
-.Page--reading .GridAlt > h2:not(:first-child) {
-  margin-block-start: var(--size-5);
-}
-
-.Page--reading .GridAlt > ul {
-  margin-block-start: 1em;
 }
 
 @media (min-width: 700px) {
@@ -589,20 +587,28 @@ it was only being used to avoid issues on book drawings page. */
   } */
 }
 
-.BooksSubmenu {
+.NavInline__list {
   align-items: baseline;
   display: flex;
   flex-wrap: wrap;
+  hyphens: none;
+  word-break: normal;
 }
 
-.BooksSubmenu li:not(:last-of-type):not(:first-of-type)::after {
-  content: "/";
-  color: var(--gray-light);
-  padding-inline-start: var(--size-05);
+.NavInline__listItem {
+  flex-basis: auto;
+  /* flex-grow: 1; */
+  margin-block-start: 0 !important;
+}
+
+.NavInline__listItem:first-of-type {
   padding-inline-end: var(--size-05);
 }
 
-.BooksSubmenu li:first-of-type {
+.NavInline__listItem:not(:last-of-type):not(:first-of-type)::after {
+  content: "/";
+  color: var(--gray-light);
+  padding-inline-start: var(--size-05);
   padding-inline-end: var(--size-05);
 }
 

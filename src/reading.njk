@@ -3,21 +3,19 @@ layout: layouts/page.njk
 title: I like to read books
 pageClass: Page--reading Page--readingList
 ---
-<div class="Prose Prose--contain">
+<section class="Prose Prose--contain">
   <p>And here is a list of them.</p>
   {# <p>And here is a list of what I’ve read. For the past couple years, I have been drawing all of them: <a href="/reading/and-drawing-the-books/">you can see a huge grid of them here</a>. I also have <a href="/reading/brief-notes-and-drawings/">a page with brief notes alongside the drawing</a> of each book.</p> #}
   <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
   {% include "snippets/books-submenu.njk" %}
-</div>
+</section>
 
-<div class="GridAlt GridAlt--reading">
+<div>
   {##
    # Books in progress
    #}
-  <section id="currently-reading">
-    <h2 class="sticky-top">What I’m currently reading</h2>
-  </section>
-  <section>
+  <section class="ReadingGrid" id="currently-reading">
+    <h2>What I’m currently reading</h2>
     {% include "snippets/books-reading-list.njk" %}
   </section>
 
@@ -29,11 +27,9 @@ pageClass: Page--reading Page--readingList
     {% if currentYear != book.finish_date %}
       {% set currentYear = book.finish_date %}
       {% if loop.first %}{% else %}</ul></section>{% endif %}
-      <section id="{{ currentYear }}">
-        <h2 class="sticky-top">{{ book.finish_date }}</h2>
-      </section>
-      <section>
-      <ul>
+      <section class="ReadingGrid" id="{{ currentYear }}">
+        <h2>{{ book.finish_date }}</h2>
+        <ul>
     {% endif %}
     <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<em>{{ book.title }}</em> <span class="text-small">by {{ book.author | formatAuthor }}</span></li>
     {% if loop.last %}</ul>{% endif %}
