@@ -383,7 +383,7 @@ hr {
   margin-block-start: var(--size-05);
 }
 
-.Prose li > * + * {
+.Prose--article li > * + * {
   margin-block-start: var(--size-05);
 }
 
@@ -538,10 +538,6 @@ it was only being used to avoid issues on book drawings page. */
 
 .ReadingGrid > h2 {
   font-variant-numeric: lining-nums;
-}
-
-.ReadingGrid li > * + * {
-  margin-top: 0;
 }
 
 @media (min-width: 700px) {
