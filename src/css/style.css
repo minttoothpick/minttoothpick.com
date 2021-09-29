@@ -161,11 +161,13 @@ body {
   line-height: 1.6;
 }
 
-h1 {
+h1,
+.h1 {
   font-weight: normal;
 }
 
-h2 {
+h2,
+.h2 {
   font-size: inherit;
   font-weight: bold;
   line-height: inherit;
@@ -299,6 +301,10 @@ hr {
 
 .SkipNav::after {
   content: " ↷";
+}
+
+.Intro + .Articles__list {
+  margin-block-start: var(--gap-4);
 }
 
 .Articles__list > * + * {

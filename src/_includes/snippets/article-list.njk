@@ -5,7 +5,7 @@
     {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
     <article class="Article Prose Prose--contain">
       <header class="Article__header">
-        <h1 class="Article__title"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h1>
+        <h2 class="Article__title h1"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h2>
         {# TODO: Don't display meta list if unnecessary #}
         <dl class="Article__meta">
         {% if hideDate !== true %}
@@ -13,8 +13,8 @@
           <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
         {% endif %}{# check whether to hide date #}
         {% if item.data.location %}
-            <dt class="visually-hidden">Published in</dt>
-            <dd>{{ item.data.location }}</dd>
+          <dt class="visually-hidden">Published in</dt>
+          <dd>{{ item.data.location }}</dd>
         {% endif %}{# check for location #}
         </dl>
       </header>
