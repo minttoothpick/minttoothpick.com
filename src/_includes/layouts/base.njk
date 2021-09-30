@@ -29,7 +29,7 @@
   <meta name="og:description" content="{{ pageDescription }}">
   {# <meta property="og:image" content="{{ pageSocialImg }}"> #}
 </head>
-<body class="Page{% if pageClass %} {{ pageClass }}{% endif %}">
+<body class="Page{% if pageClass %} {{ pageClass }}{% endif %} space-items-huge">
 
   <header class="PageHeader PageGrid">
     <a class="SkipNav hidden-til-focus" href="#main">Skip to main content</a>
@@ -47,7 +47,7 @@
     </nav>
   </header>
 
-  <main class="PageGrid mt-10" id="main">
+  <main class="PageGrid" id="main">
   {% block content %}
     {{ content | safe }}
   {% endblock %}

@@ -1,9 +1,9 @@
 {% if not collection %}{% set collection = collections.posts %}{% endif %}
-<div class="Articles__list">
+<div class="Articles__list space-items-huge">
   {% for item in collection | reverse %}
     {#- Show draft items when on dev environment #}
     {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
-    <article class="Article Prose Prose--contain">
+    <article class="Article Prose Prose--article Prose--contain">
       <header class="Article__header">
         <h2 class="Article__title h1"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h2>
         {# TODO: Don't display meta list if unnecessary #}

@@ -3,12 +3,12 @@ layout: layouts/base.njk
 pageClass: Page--home
 fakeUrl: home
 ---
-<article class="Article Prose Intro">
+{# <article class="Article Prose Intro">
   <header class="Article__header">
     <h1 class="Article__title">{{ title }}</h1>
   </header>
   <p>Hello! </p>
-</article>
+</article> #}
 
 {% set collection = collections.posts %}
 {% include "snippets/article-list.njk" %}

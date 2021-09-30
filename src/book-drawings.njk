@@ -10,7 +10,7 @@ permalink: "/book-drawings/"
   <p>You can also see <a href="/reading/">a plain text list of what I’ve read</a>.</p>
 </div>
 
-<section class="BooksDrawingGrid mt-5 space-items-1" style="display: flex; flex-wrap: wrap; align-items: flex-end;">
+<div class="BookDrawingsGrid space-items-base" style="display: flex; flex-wrap: wrap; align-items: flex-end;">
   {% set currentYear = "" %}
   {% for book in collections.booksFinished %}
     {% if book.finish_year != currentYear %}
@@ -77,4 +77,4 @@ permalink: "/book-drawings/"
 
     {% endif %}
   {% endfor %}
-</section>
+</div>

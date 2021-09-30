@@ -75,28 +75,29 @@
  * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
  */
 
-.space-items-0 > * + * {
-  margin-block-start: var(--size-0);
+.space-items-base > * + * {
+  margin-block-start: var(--size-base);
 }
 
-.space-items-1 > * + * {
-  margin-block-start: var(--size-1);
+.space-items-md > * + * {
+  margin-block-start: var(--size-md);
 }
 
-.space-items-2 > * + * {
-  margin-block-start: var(--size-2);
+.space-items-lg > * + * {
+  margin-block-start: var(--size-lg);
 }
 
-.space-items-3 > * + * {
-  margin-block-start: var(--size-3);
+.space-items-xl > * + * {
+  margin-block-start: var(--size-xl);
 }
 
-.space-items-4 > * + * {
-  margin-block-start: var(--size-4);
+.space-items-huge > * + * {
+  margin-block-start: var(--size-huge);
 }
 
-.space-items-5 > * + * {
-  margin-block-start: var(--size-5);
+/* Hack b/c of BrowserSync `script` tag on local */
+.space-items-huge > script + * {
+  margin-block-start: 0;
 }
 
 /**
@@ -104,27 +105,27 @@
  */
 
 .font-size-0 {
-  font-size: var(--size-0);
+  font-size: var(--size-base);
 }
 
 .font-size-1 {
-  font-size: var(--size-1);
+  font-size: var(--size-md);
 }
 
 .font-size-2 {
-  font-size: var(--size-2);
+  font-size: var(--size-md);
 }
 
 .font-size-3 {
-  font-size: var(--size-3);
+  font-size: var(--size-md);
 }
 
 .font-size-4 {
-  font-size: var(--size-4);
+  font-size: var(--size-lg);
 }
 
 .font-size-5 {
-  font-size: var(--size-5);
+  font-size: var(--size-lg);
 }
 
 /**
@@ -136,29 +137,29 @@
 }
 
 .mt-0 {
-  margin-block-start: var(--size-0) !important;
+  margin-block-start: var(--size-base) !important;
 }
 
 .mt-1 {
-  margin-block-start: var(--size-1) !important;
+  margin-block-start: var(--size-md) !important;
 }
 
 .mt-2 {
-  margin-block-start: var(--size-2) !important;
+  margin-block-start: var(--size-md) !important;
 }
 
 .mt-3 {
-  margin-block-start: var(--size-3) !important;
+  margin-block-start: var(--size-md) !important;
 }
 
 .mt-4 {
-  margin-block-start: var(--size-4) !important;
+  margin-block-start: var(--size-lg) !important;
 }
 
 .mt-5 {
-  margin-block-start: var(--size-5) !important;
+  margin-block-start: var(--size-lg) !important;
 }
 
 .mt-10 {
-  margin-block-start: var(--gap-4) !important;
+  margin-block-start: var(--size-xl) !important;
 }
