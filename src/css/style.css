@@ -302,7 +302,7 @@ hr {
 }
 
 .Intro + .Articles__list {
-  margin-block-start: var(--size-xl);
+  margin-block-start: var(--size-xxl);
 }
 
 .Article__header > * + * {
@@ -505,7 +505,7 @@ hr {
 
 /* Extra margin on first element following header on single article pages */
 .Layout--article .Article__header + * {
-  margin-block-start: var(--size-xl);
+  margin-block-start: var(--size-xxl);
 }
 
 .Page--now figure:first-of-type {

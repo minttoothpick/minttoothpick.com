@@ -91,6 +91,10 @@
   margin-block-start: var(--size-xl);
 }
 
+.space-items-xxl > * + * {
+  margin-block-start: var(--size-xxl);
+}
+
 .space-items-huge > * + * {
   margin-block-start: var(--size-huge);
 }
