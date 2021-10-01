@@ -11,17 +11,17 @@ module.exports = async function imgShortcode(figClass="", src, alt, figcaption="
     /**
      * align-full-bleed:
      *  - 100vw
-     *  - (min-width: 1345px) 1344px
+     *  - (min-width: 1376px) 1376px
      */
-    sizes = "(min-width: 1345px) 1344px, 100vw";
+    sizes = "(min-width: 1376px) 1376px, 100vw";
     widths = [500, 800, 1100, 1344, 1920];
   } else {
     /**
      * align-none:
-     *  - calc(100vw - 64px [padding inline])
-     *  - (min-width: 705px) 640px
+     *  - calc(100vw - 96px [padding inline])
+     *  - (min-width: 702px) 640px
      */
-    sizes = "(min-width: 705px) 640px, calc(100vw - 64px)"
+    sizes = "(min-width: 702px) 640px, calc(100vw - 96px)"
     widths = [500, 640, 1280];
   }
 

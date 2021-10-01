@@ -6,7 +6,7 @@ const path = require("path");
  * https://alexpeterhall.com/blog/2021/04/05/responsive-images-eleventy/
  * then I added a wrapping `figure` element and whatever else.
  */
- module.exports = async function respImg(figClass="", src, alt, figcaption="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)", style="") {
+module.exports = async function respImg(figClass="", src, alt, figcaption="", sizes="(min-width: 729px) 680px, calc(100vw - 48px)", style="") {
   var widths = [];
   // sizes is already defaulted in func param;
   if (figClass == "align-full-bleed") {
