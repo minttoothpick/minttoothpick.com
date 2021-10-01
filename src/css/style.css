@@ -503,10 +503,9 @@ hr {
 /* Specific pages
   ========================================================================== */
 
-/* TODO: Change this to Prose--article */
 /* Extra margin on first element following header on single article pages */
 .Layout--article .Article__header + * {
-  margin-block-start: var(--size-lg);
+  margin-block-start: var(--size-xl);
 }
 
 .Page--now figure:first-of-type {

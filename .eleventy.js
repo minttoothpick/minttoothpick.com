@@ -167,6 +167,15 @@ module.exports = function(eleventyConfig) {
    ======================================================================== */
 
   /**
+   * Layout aliases
+   *
+   * https://www.11ty.dev/docs/layouts/
+   */
+  eleventyConfig.addLayoutAlias("base", "layouts/base.njk");
+  eleventyConfig.addLayoutAlias("page", "layouts/page.njk");
+  eleventyConfig.addLayoutAlias("article", "layouts/article.njk");
+
+  /**
    * Merge all tags
    *
    * https://www.11ty.dev/docs/data-deep-merge/

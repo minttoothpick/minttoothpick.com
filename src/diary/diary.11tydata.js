@@ -1,5 +1,5 @@
 module.exports = {
-  layout: "layouts/article.njk",
+  layout: "article",
   tags: [ "posts" ],
   date: "Created",
   // permalink: "/{{ page.fileSlug }}/",
