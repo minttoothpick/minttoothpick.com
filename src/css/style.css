@@ -1,21 +1,7 @@
 :root {
   /**
    * Sizes
-   *
-   * TODO: Simplify things... do you really need `size` and `gap` properties?
    */
-  --size-05: 0.5rem;
-  --size-0: 1rem; /* 16px */
-  --size-1: 1.25rem; /* 20px */
-  --size-2: 1.375rem; /* 22px */
-  --size-3: 1.5rem; /* 24px */
-  --size-4: 2rem; /* 32px */
-  --size-5: 3rem; /* 48px */
-  --gap: var(--size-4); /* 2rem = 32px */
-  --gap-2: calc(var(--gap) * 1.5); /* 3rem = 48px */
-  --gap-4: calc(var(--gap) * 2); /* 4rem = 64px */
-
-  /* Trying some new properties... */
   --size-xs: 0.5rem; /* 8px */
   --size-base: 1rem; /* 16px */
   --size-md: 1.5rem; /* 24px */
@@ -24,29 +10,11 @@
   --size-xxl: 6rem; /* 96px */
   --size-huge: 12rem; /* 192px */
 
-  /* Test by assigning old props to new... */
-  --size-05: var(--size-xs);
-  --size-0: var(--size-base);
-  --size-1: var(--size-md);
-  --size-2: var(--size-md);
-  --size-3: var(--size-md);
-  --size-4: var(--size-lg);
-  --size-5: var(--size-lg);
-  --gap: var(--size-lg);
-  --gap-2: var(--size-lg);
-  --gap-4: var(--size-xl);
-
-  /* New functional names */
-  --gap: var(--size-lg);
-
   --text-measure: 40rem; /* 640px */
   --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
   --container-max-width: 80rem; /* 1280px */
-  /* --font-size-small: var(--size-0); */
   --font-size-small: 1rem;
-  /* --font-size-body: var(--size-1); */
   --font-size-body: 1.25rem;
-  /* --font-size-title: var(--size-4); */
   --font-size-title: 2rem;
 
   /**
@@ -69,14 +37,8 @@
 
 @media (min-width: 800px) {
   :root {
-    /* --gap: var(--size-4); 2rem = 32px */
-    /* --gap-2: calc(var(--gap) * 2); 4rem = 64px */
-    /* --gap-4: calc(var(--gap) * 4); 8rem = 128px */
-    /* --font-size-small: var(--size-1); */
     --font-size-small: 1.25rem;
-    /* --font-size-body: var(--size-2); */
-    --font-size-body: 1.375rem; /* TODO: try 1.5? */
-    /* --font-size-title: var(--size-5); */
+    --font-size-body: 1.375rem;
     --font-size-title: 3rem;
   }
 }
