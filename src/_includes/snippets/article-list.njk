@@ -6,7 +6,7 @@
     <article class="Article Prose Prose--article Prose--contain">
       <header class="Article__header">
         <h2 class="Article__title h1"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h2>
-        {# TODO: Don't display meta list if unnecessary #}
+        {# TODO: Don't display meta list altogether if unnecessary #}
         <dl class="Article__meta">
         {% if hideDate !== true %}
           <dt class="visually-hidden">Published on</dt>

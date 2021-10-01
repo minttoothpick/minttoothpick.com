@@ -24,6 +24,7 @@ title: I like to read books
    #}
   {% set currentYear = "" %}
   {% for book in collections.booksFinished %}
+
     {% if currentYear != book.finish_date %}
       {% set currentYear = book.finish_date %}
       {% if loop.first %}{% else %}</ul></section>{% endif %}
@@ -31,7 +32,15 @@ title: I like to read books
         <h2>{{ book.finish_date }}</h2>
         <ul>
     {% endif %}
-    <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>{% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}<em>{{ book.title }}</em> <span class="text-small">by {{ book.author | formatAuthor }}</span></li>
+
+    <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>
+      {% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}
+      <em>{{ book.title }}</em>
+      <span class="text-small">by {{ book.author | formatAuthor }}</span>
+    </li>
+
     {% if loop.last %}</ul>{% endif %}
-  {% endfor %}
+
+  {% endfor %}{# for book in collections.booksFinished #}
 </div>
+<!-- .space-items-xl -->
