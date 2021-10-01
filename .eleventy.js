@@ -11,12 +11,12 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const yaml = require("js-yaml");
 
 // Import filters
-const formatAuthor = require("./_eleventy/filters/formatAuthor.js");
+const formatAuthor = require("./src/filters/formatAuthor.js");
 
 // Import shortcodes
-// const respImg = require("./_eleventy/shortcodes/respImg.js");
-const imgShortcode = require("./_eleventy/shortcodes/imgShortcode.js");
-const bookImg = require("./_eleventy/shortcodes/bookImg.js");
+// const respImg = require("./src/shortcodes/respImg.js");
+const imgShortcode = require("./src/shortcodes/imgShortcode.js");
+const bookImg = require("./src/shortcodes/bookImg.js");
 
 module.exports = function(eleventyConfig) {
 
