@@ -119,7 +119,7 @@ img {
 code,
 pre {
   font-family: var(--font-mono) !important;
-  font-size: var(--size-md) !important;
+  font-size: 0.95em !important;
 }
 
 pre {
@@ -505,7 +505,7 @@ hr {
 
 /* TODO: Change this to Prose--article */
 /* Extra margin on first element following header on single article pages */
-.Page--article .Article__header + * {
+.Layout--article .Article__header + * {
   margin-block-start: var(--size-lg);
 }
 
@@ -536,35 +536,6 @@ hr {
   }
 }
 
-
-
-
-/* Infini doesn't have bold italic, and we don't want some faux nonsense */
-.Page--readingNotes h2 {
-  font-weight: normal;
-  margin-block-start: var(--size-base);
-}
-
-/* I think this is for reading notes, actually */
-.GridAlt--reading:first-child {
-  max-width: 250px;
-}
-
-@media (min-width: 700px) {
-  .Page--readingNotes h2 {
-    margin-block-start: var(--size-lg);
-  }
-
-  .GridAlt--reading h2:not(:first-child),
-  .GridAlt--reading ul {
-    margin-block-start: 0;
-  }
-
-  /* .Page--reading .GridAlt > :first-child {
-    max-width: 100%;
-  } */
-}
-
 .NavInline__list {
   align-items: baseline;
   display: flex;
@@ -588,8 +559,4 @@ hr {
   color: var(--gray-light);
   padding-inline-start: var(--size-xs);
   padding-inline-end: var(--size-xs);
-}
-
-.Book {
-  padding-inline-end: var(--size-base);
 }

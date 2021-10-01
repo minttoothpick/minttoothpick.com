@@ -1,7 +1,6 @@
 ---
 layout: layouts/page.njk
 title: I draw every book I read
-pageClass: Page--bookDrawings
 permalink: "/book-drawings/"
 ---
 <div class="Prose Prose--contain">
@@ -28,7 +27,9 @@ permalink: "/book-drawings/"
       {% set altText %}Drawing of “{{ book.title }}”{% endset %}
 
       <style>
-      .Book { padding-right: 0.5em; }
+      .Book {
+        padding-inline-end: var(--size-base);
+      }
       .Book--px.Book--{{ loop.index }} {
         width: calc({{ widthPx }} * 10px);
       }
