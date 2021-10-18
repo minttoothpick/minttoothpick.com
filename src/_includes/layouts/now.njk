@@ -2,26 +2,54 @@
 layout: base
 ---
 <style>
-.Page--now .clouds {
+.clouds {
   --max-width: 50%;
+  order: -1;
 }
-.NowGrid {
-  display: grid;
-  column-gap: var(--size-lg);
+
+.clouds {
+  margin-block-start: var(--size-lg);
 }
+
+.NowGrid--thirds h2 {
+  margin-block-start: var(--size-lg);
+}
+
+@media (min-width: 700px) {
+  .NowGrid {
+    display: grid;
+    column-gap: var(--size-lg);
+  }
+
+  .clouds {
+    margin-block-start: 0;
+  }
+
+  .NowGrid--thirds h2 {
+    margin-block-start: 0;
+  }
+}
+
 .NowGrid--halves {
   grid-template-columns: repeat(2, 1fr);
 }
+
 .NowGrid--thirds {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
+
+@media (min-width: 1200px) {
+  .NowGrid--thirds {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .NowGrid + .NowGrid {
   margin-block-start: var(--size-xl);
 }
 </style>
 <article class="Prose">
   <div class="NowGrid NowGrid--halves">
-    {% image "align-pull-end clouds", "./src/images/nice-suburban-sky.jpg", "An impressive cloud behind a suburban house", "I have been appreciating the vast and various southern skies. You don't see them like this in Asheville." %}
     <div class="NowGrid--section Prose">
       <header class="Article__header mt-none">
         <h1 class="Article__title">{{ title }}</h1>
@@ -36,9 +64,10 @@ layout: base
       </header>
       {{ content | safe }}
     </div>
+    {% image "align-pull-end clouds", "./src/images/nice-suburban-sky.jpg", "An impressive cloud behind a suburban house", "I have been appreciating the vast and various southern skies. You don't see them like this in Asheville." %}
   </div>
 
-  <div class="NowGrid NowGrid--thirds space-items-none">
+  <div class="NowGrid NowGrid--thirds">
     <section class="NowGrid-section Prose">
       <h2>I’m currently reading:</h2>
       {% set noSubtitle = "true" %}
