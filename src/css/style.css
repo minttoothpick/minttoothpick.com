@@ -371,10 +371,11 @@ hr {
   margin-block-start: var(--size-md);
 }
 
-.Prose > h2,
+/* irrelevant bc already on parent */
+/* .Prose > h2,
 .Prose > h3 {
   hanging-punctuation: first;
-}
+} */
 
 .Prose > h2 {
   margin-block-start: var(--size-lg);
@@ -476,12 +477,19 @@ hr {
 
 @media (min-width: 440px) {
   .Prose > .align-end,
+  .Prose > .align-pull-end,
+  .Prose > .align-pull-start,
+  .Prose > .align-start {
+    /* Set minimum width of 250px */
+    /* width: max(250px, 33%); */
+    min-width: var(--min-width, 250px);
+    max-width: var(--max-width, 33%);
+  }
+
+  .Prose > .align-end,
   .Prose > .align-pull-end {
     float: inline-end;
     margin-inline-start: var(--size-lg);
-    /* width: 33%; */
-    /* Set minimum width of 250px */
-    width: max(250px, 33%);
   }
 
   .Prose > .align-pull-end {
@@ -492,8 +500,6 @@ hr {
   .Prose > .align-pull-start {
     float: inline-start;
     margin-inline-end: var(--size-lg);
-    /* Set minimum width of 250px */
-    width: max(250px, 33%);
   }
 
   /* Pull figure into page gutter padding area */
@@ -515,12 +521,6 @@ hr {
 /* Extra margin on first element following header on single article pages */
 .Layout--article .Article__header + * {
   margin-block-start: var(--size-xxl);
-}
-
-.Page--now figure:first-of-type {
-  shape-outside: polygon(13.87% 1.9%, 36.42% -0.12%, 51.4% 4.48%, 54.75% 18.87%, 56.48% 30.92%, 63.49% 35.99%, 75.58% 39.88%, 83.53% 48.24%, 88.44% 68.12%, 81.66% 83.25%, 70.37% 100.23%, 42.47% 102.61%, 21% 74.49%, 36px 66.87%, 8.6% 54%, -0.89% 28.81%);
-  margin-block-start: -0.5em;
-  padding-inline-end: var(--size-lg);
 }
 
 /* Reading/Books
