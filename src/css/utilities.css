@@ -75,6 +75,10 @@
  * https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
  */
 
+.space-items-none > * + * {
+  margin-block-start: 0;
+}
+
 .space-items-base > * + * {
   margin-block-start: var(--size-base);
 }

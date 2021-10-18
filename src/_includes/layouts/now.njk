@@ -1,0 +1,64 @@
+---
+layout: base
+---
+<style>
+.Page--now .clouds {
+  --max-width: 50%;
+}
+.NowGrid {
+  display: grid;
+  column-gap: var(--size-lg);
+}
+.NowGrid--halves {
+  grid-template-columns: repeat(2, 1fr);
+}
+.NowGrid--thirds {
+  grid-template-columns: repeat(3, 1fr);
+}
+.NowGrid + .NowGrid {
+  margin-block-start: var(--size-xl);
+}
+</style>
+<article class="Prose">
+  <div class="NowGrid NowGrid--halves">
+    {% image "align-pull-end clouds", "./src/images/nice-suburban-sky.jpg", "An impressive cloud behind a suburban house", "I have been appreciating the vast and various southern skies. You don't see them like this in Asheville." %}
+    <div class="NowGrid--section Prose">
+      <header class="Article__header mt-none">
+        <h1 class="Article__title">{{ title }}</h1>
+        <dl class="Article__meta">
+          <dt>Updated on</dt>
+          <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
+          {% if location %}
+            <dt class="visually-hidden">Published in</dt>
+            <dd>{{ location }}</dd>
+          {% endif %}
+        </dl>
+      </header>
+      {{ content | safe }}
+    </div>
+  </div>
+
+  <div class="NowGrid NowGrid--thirds space-items-none">
+    <section class="NowGrid-section Prose">
+      <h2>I’m currently reading:</h2>
+      {% set noSubtitle = "true" %}
+      {% include "snippets/books-reading-list.njk" %}
+    </section>
+
+    <section class="NowGrid-section Prose">
+      <h2>A quote I like</h2>
+      <figure>
+        <blockquote cite="{{ quoteUrl }}">
+          {{ quoteText | markdown | safe }}
+        </blockquote>
+        <figcaption>
+          {{ quoteCite | markdown | safe }}
+        </figcaption>
+      </figure>
+    </section>
+
+    {# <section class="NowGrid-section">
+      <p>Another section Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab iure in temporibus tempore mollitia deserunt at sequi non asperiores et ratione quam, eius deleniti quas minus, expedita iste perferendis fugiat!</p>
+    </section> #}
+  </div>
+</article>

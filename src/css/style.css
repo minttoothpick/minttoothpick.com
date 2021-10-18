@@ -377,7 +377,9 @@ hr {
   hanging-punctuation: first;
 } */
 
-.Prose > h2 {
+/* Extra margin on h2, unless it's the first item in a container */
+/* TODO: Or maybe encapsulating in `--article` will suffice */
+.Prose--article > h2/*:not(:first-child)*/ {
   margin-block-start: var(--size-lg);
 }
 
@@ -398,20 +400,25 @@ hr {
 }
 
 /* Extra block margin on these elems */
-.Prose > blockquote,
-.Prose > figure,
-.Prose > hr,
-.Prose > blockquote + *,
-.Prose > hr + *,
-.Prose > figure + * {
+.Prose--article> blockquote,
+.Prose--article > figure,
+.Prose--article > hr,
+.Prose--article > blockquote + *,
+.Prose--article > hr + *,
+.Prose--article > figure + * {
   margin-block-start: var(--size-lg);
 }
 
 .Prose figcaption {
+  margin-block-start: var(--size-base);
+}
+
+/* TODO: Test... only want these styles when captioning
+an image or video or maybe iframe, but not a blockquote */
+.Prose :not(blockquote) + figcaption {
   color: var(--text-muted);
   font-size: var(--font-size-small);
   line-height: 1.5;
-  margin-block-start: var(--size-base);
 }
 
 /* `!important` b/c it overrides Prism.js */

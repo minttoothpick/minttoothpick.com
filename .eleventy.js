@@ -174,6 +174,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias("base", "layouts/base.njk");
   eleventyConfig.addLayoutAlias("page", "layouts/page.njk");
   eleventyConfig.addLayoutAlias("article", "layouts/article.njk");
+  eleventyConfig.addLayoutAlias("now", "layouts/now.njk");
 
   /**
    * Merge all tags
