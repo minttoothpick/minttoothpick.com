@@ -52,9 +52,9 @@ layout: base
   }
 }
 
-{# .NowGrid + .NowGrid {
+.NowGrid + .NowGrid {
   margin-block-start: var(--size-xl);
-} #}
+}
 </style>
 <article class="Prose">
   <div class="NowGrid NowGrid--halves">
@@ -72,7 +72,7 @@ layout: base
       </header>
       {{ content | safe }}
     </div>
-    {% image "align-pull-end clouds", "./src/images/nice-suburban-sky.jpg", "An impressive cloud behind a suburban house", "I have been appreciating the vast and various southern skies. You don't see them like this in Asheville." %}
+    {% image imgClass, imgSrc, imgAlt, imgCaption %}
   </div>
 
   <div class="NowGrid NowGrid--thirds">
