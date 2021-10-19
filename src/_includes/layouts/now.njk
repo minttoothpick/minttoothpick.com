@@ -38,19 +38,27 @@ layout: base
   grid-template-columns: repeat(2, 1fr);
 }
 
+.NowGrid-section {
+  margin-block-start: var(--size-xl);
+}
+
 @media (min-width: 1200px) {
   .NowGrid--thirds {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .NowGrid-section {
+    margin-block-start: 0;
+  }
 }
 
-.NowGrid + .NowGrid {
+{# .NowGrid + .NowGrid {
   margin-block-start: var(--size-xl);
-}
+} #}
 </style>
 <article class="Prose">
   <div class="NowGrid NowGrid--halves">
-    <div class="NowGrid--section Prose">
+    <div class="Prose">
       <header class="Article__header mt-none">
         <h1 class="Article__title">{{ title }}</h1>
         <dl class="Article__meta">
@@ -69,7 +77,7 @@ layout: base
 
   <div class="NowGrid NowGrid--thirds">
     <section class="NowGrid-section Prose">
-      <h2>I’m currently reading:</h2>
+      <h2>I’m currently reading</h2>
       {% set noSubtitle = "true" %}
       {% include "snippets/books-reading-list.njk" %}
     </section>
@@ -86,8 +94,8 @@ layout: base
       </figure>
     </section>
 
-    {# <section class="NowGrid-section">
-      <p>Another section Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab iure in temporibus tempore mollitia deserunt at sequi non asperiores et ratione quam, eius deleniti quas minus, expedita iste perferendis fugiat!</p>
-    </section> #}
+    <section class="NowGrid-section Prose">
+      {{ somethingElse | safe }}
+    </section>
   </div>
 </article>
