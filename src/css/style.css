@@ -10,6 +10,9 @@
   --size-xxl: 6rem; /* 96px */
   --size-huge: 12rem; /* 192px */
 
+  --block-space-base: 2rem;
+  --block-space-lg: 4rem;
+
   --text-measure: 40rem; /* 640px */
   --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
   --container-max-width: 80rem; /* 1280px */
@@ -99,16 +102,17 @@ html:focus-within {
 }
 
 body,
+blockquote,
+dd,
+dl,
+figure,
 h1,
 h2,
 h3,
 h4,
-p,
-figure,
-blockquote,
-dl,
-dd,
+hr,
 ol,
+p,
 ul {
   margin: 0;
 }
@@ -217,8 +221,6 @@ blockquote {
 hr {
   background-color: var(--gray-light);
   border: none;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
   width: 100%;
   height: 2px;
 }
@@ -310,9 +312,9 @@ hr {
   content: " ↷";
 }
 
-.Intro + .Articles__list {
+/* .Intro + .Articles__list {
   margin-block-start: var(--size-xxl);
-}
+} */
 
 .Article__header > * + * {
   margin-block-start: var(--size-md);
@@ -368,14 +370,9 @@ hr {
 }
 
 .Prose > * + * {
-  margin-block-start: var(--size-md);
+  /* margin-block-start: var(--size-md); */
+  margin-block-start: var(--block-space-base);
 }
-
-/* irrelevant bc already on parent */
-/* .Prose > h2,
-.Prose > h3 {
-  hanging-punctuation: first;
-} */
 
 /* Extra margin on h2, unless it's the first item in a container */
 /* TODO: Or maybe encapsulating in `--article` will suffice */
@@ -389,24 +386,31 @@ hr {
 }
 
 /* TODO: First selector's kinda lame, requires !imp on TagsGrid (tags.css) */
-.Prose li:not(:first-child),
+/* Or maybe unecessary b/c of margin collapse */
+/* .Prose li:not(:first-child), */
+.Prose li,
 .Prose li > ul,
 .Prose li > ol {
-  margin-block-start: var(--size-xs);
+  /* margin-block-start: var(--size-xs); */
+  margin-block-start: var(--size-base);
+  margin-block-start: var(--block-space-base);
 }
 
-.Prose--article li > * + * {
-  margin-block-start: var(--size-xs);
+.Prose li > * + * {
+  /* margin-block-start: var(--size-xs); */
+  margin-block-start: var(--size-base);
+  margin-block-start: var(--block-space-base);
 }
 
 /* Extra block margin on these elems */
-.Prose--article> blockquote,
+.Prose--article > blockquote,
 .Prose--article > figure,
 .Prose--article > hr,
 .Prose--article > blockquote + *,
 .Prose--article > hr + *,
 .Prose--article > figure + * {
   margin-block-start: var(--size-lg);
+  margin-block-start: var(--block-space-lg);
 }
 
 .Prose figcaption {
