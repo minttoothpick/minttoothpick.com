@@ -12,7 +12,7 @@ eleventyComputed:
   {% if loop.first %}<ul class="PostsList">{% endif %}
   <li>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
-    <dl class="Article__meta">
+    <dl class="Content__meta">
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
     </dl>

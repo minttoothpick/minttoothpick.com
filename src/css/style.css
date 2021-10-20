@@ -12,9 +12,10 @@
 
   --block-space-base: 2rem;
   --block-space-lg: 4rem;
+  --block-space-xl: 6rem;
 
-  --text-measure: 40rem; /* 640px */
-  --linear-measure: var(--text-measure); /* 40rem = 640px @ 16px base */
+  --text-measure: 50rem; /* 800px */
+  --linear-measure: var(--text-measure);
   --container-max-width: 80rem; /* 1280px */
   --font-size-small: 1rem;
   --font-size-body: 1.25rem;
@@ -316,22 +317,22 @@ hr {
   margin-block-start: var(--size-xxl);
 } */
 
-.Article__header > * + * {
+.Content__header > * + * {
   margin-block-start: var(--size-md);
 }
 
-.Article__title {
+.Content__title {
   font-feature-settings: "case" on;
   font-size: var(--font-size-title);
   hanging-punctuation: first;
   line-height: 1.2;
 }
 
-.Article__title > a {
+.Content__title > a {
   text-decoration: none;
 }
 
-.Article__meta {
+.Content__meta {
   display: flex;
   flex-wrap: wrap;
   color: var(--text-muted);
@@ -339,20 +340,33 @@ hr {
   font-variant-numeric: lining-nums;
 }
 
-.Article__title + .Article__meta {
+.Content__title + .Content__meta {
   margin-block-start: var(--size-xs);
 }
 
 /* If meta label is not `visually-hidden`, we need a space after it */
-.Article__meta dt:not([class="visually-hidden"])::after {
+.Content__meta dt:not([class="visually-hidden"])::after {
   content: "\00a0";
 }
 
-.Article__meta dd:not(:last-of-type)::after {
+.Content__meta dd:not(:last-of-type)::after {
   content: "/";
   color: var(--gray-light);
   padding-inline-start: var(--size-xs);
   padding-inline-end: var(--size-xs);
+}
+
+.Contain--prose > * {
+  max-width: var(--linear-measure);
+}
+
+.Contain--prose > pre {
+  margin-inline-start: -1em !important;
+  margin-inline-end: -1em !important;
+  /* TODO: !? */
+  width: calc(100vw - 3.05em);
+  /* Subtract inline margin pull amount to max width */
+  max-width: calc(var(--linear-measure) + 2em);
 }
 
 /* Prose
@@ -365,10 +379,6 @@ hr {
   word-break: break-word;
 }
 
-.Prose--contain > * {
-  max-width: var(--linear-measure);
-}
-
 .Prose > * + * {
   /* margin-block-start: var(--size-md); */
   margin-block-start: var(--block-space-base);
@@ -378,6 +388,7 @@ hr {
 /* TODO: Or maybe encapsulating in `--article` will suffice */
 .Prose--article > h2/*:not(:first-child)*/ {
   margin-block-start: var(--size-lg);
+  margin-block-start: var(--size-xxl);
 }
 
 .Prose ol,
@@ -385,15 +396,20 @@ hr {
   padding-inline-start: 1em;
 }
 
-/* TODO: First selector's kinda lame, requires !imp on TagsGrid (tags.css) */
-/* Or maybe unecessary b/c of margin collapse */
-/* .Prose li:not(:first-child), */
-.Prose li,
-.Prose li > ul,
-.Prose li > ol {
+/* Initially, list items are vertically compressed */
+.Prose li:not(:first-child) {
+  margin-block-start: var(--size-base);
+  /* border: 2px solid red !important; */
+}
+
+/* List items in articles are vertically expanded */
+.Prose--article li:not(:first-child),
+.Prose--article li > ul,
+.Prose--article li > ol {
   /* margin-block-start: var(--size-xs); */
   margin-block-start: var(--size-base);
   margin-block-start: var(--block-space-base);
+  /* border: 2px solid rebeccapurple !important; */
 }
 
 .Prose li > * + * {
@@ -406,9 +422,9 @@ hr {
 .Prose--article > blockquote,
 .Prose--article > figure,
 .Prose--article > hr,
-.Prose--article > blockquote + *,
+.Prose--article > blockquote + :not(h2),
 .Prose--article > hr + *,
-.Prose--article > figure + * {
+.Prose--article > figure + :not(h2) {
   margin-block-start: var(--size-lg);
   margin-block-start: var(--block-space-lg);
 }
@@ -431,19 +447,6 @@ an image or video or maybe iframe, but not a blockquote */
   margin-block-start: var(--size-lg) !important;
 }
 
-/* `!important` b/c it overrides Prism.js */
-.Prose > pre {
-  margin-inline-start: -1em !important;
-  margin-inline-end: -1em !important;
-}
-
-.Prose--contain > pre {
-  /* TODO: !? */
-  width: calc(100vw - 3.05em);
-  /* Subtract inline margin pull amount to max width */
-  max-width: calc(var(--linear-measure) + 2em);
-}
-
 /* Reset block margin on floated figs */
 .Prose--article > .align-pull-end,
 .Prose--article > .align-pull-end + *,
@@ -452,7 +455,7 @@ an image or video or maybe iframe, but not a blockquote */
   margin-block-start: var(--size-md);
 }
 
-.Prose--article > figure + .Article__footer {
+.Prose--article > figure + .Content__footer {
   margin-block-start: var(--size-md);
 }
 
@@ -530,7 +533,7 @@ an image or video or maybe iframe, but not a blockquote */
   ========================================================================== */
 
 /* Extra margin on first element following header on single article pages */
-.Layout--article .Article__header + * {
+.Layout--article .Content__header + * {
   margin-block-start: var(--size-xxl);
 }
 

@@ -2,6 +2,31 @@
 title: Tags
 layout: page
 ---
+<style>
+/* TODO: Make intrinsic (i.e., no media queries) */
+.TagsGrid {
+  gap: var(--size-xs);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.TagsGrid__listItem {
+  margin-block-start: 0 !important;
+}
+
+.TagsGrid__listLink {
+  background-color: var(--gray-extralight);
+  display: block;
+  padding: var(--size-base);
+  text-decoration: none;
+  /* Reset tap target increase on anchor tags */
+  margin: 0;
+}
+
+.TagsGrid__listLink:hover {
+  background-color: var(--gray-light);
+}
+</style>
 <ul class="TagsGrid list-unstyled" role="list">
 {%- for tag in collections.tagList %}
   <li class="TagsGrid__listItem">

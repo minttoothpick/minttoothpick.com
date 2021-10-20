@@ -59,9 +59,9 @@ layout: base
 <article class="Prose">
   <div class="NowGrid NowGrid--halves">
     <div class="Prose">
-      <header class="Article__header mt-none">
-        <h1 class="Article__title">{{ title }}</h1>
-        <dl class="Article__meta">
+      <header class="Content__header mt-none">
+        <h1 class="Content__title">{{ title }}</h1>
+        <dl class="Content__meta">
           <dt>Updated on</dt>
           <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
           {% if location %}
