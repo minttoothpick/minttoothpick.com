@@ -8,7 +8,7 @@ imgSrc: "./src/images/nice-suburban-sky.jpg"
 imgAlt: "An impressive cloud behind a suburban house"
 imgCaption: "I have been appreciating the vast and various southern skies. You don't see them like this in Asheville."
 quoteText: |
-  You have to actively invite experiences into your life that will interrupt the smallness of your story and the calcifying generalizations you make about the world based on your own private universe.
+  Here is the hardest thing for many people about adulthood: Staying awake. That is, resisting the somnambulance that will grow like weeds over any state of habitual life. You have to actively invite experiences into your life that will interrupt the smallness of your story and the calcifying generalizations you make about the world based on your own private universe.
 quoteUrl: https://sarahendren.com/2018/03/06/not-in-any-particular-order-and-not-a-gospel-but/
 quoteCite: |
   <cite>— Sarah Hendren, “[not in any particular order, and not exactly a gospel, but](https://sarahendren.com/2018/03/06/not-in-any-particular-order-and-not-a-gospel-but/)”</cite>
