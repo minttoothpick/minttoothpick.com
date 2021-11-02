@@ -1,0 +1,28 @@
+{##
+ # Can't figure out how to use this in the context of:
+ # 1. an articles list loop, where we have `item.data.title`, and
+ # 2. a single article template, with just `title`
+ #}
+{%- macro article(post) -%}
+  <article class="Prose Prose--article Contain--prose">
+    <header class="Content__header">
+      <h2 class="Content__title h1"><a href="{{ post.url | url }}">{{ post.data.title | safe }}</a></h2>
+      {# TODO: Don't display meta list altogether if unnecessary #}
+      <dl class="Content__meta">
+      {% if hideDate !== true %}
+        <dt class="visually-hidden">Published on</dt>
+        <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
+      {% endif %}{# check whether to hide date #}
+      {% if post.data.location %}
+        <dt class="visually-hidden">Published in</dt>
+        <dd>{{ post.data.location }}</dd>
+      {% endif %}{# check for location #}
+      </dl>
+    </header>
+    {{ post.templateContent | safe }}
+    <footer class="Content__footer">
+      {% set tags = post.data.tags %}
+      {% include "snippets/tags-list.njk" %}
+    </footer>
+  </article>
+{%- endmacro -%}

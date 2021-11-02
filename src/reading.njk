@@ -15,6 +15,8 @@ title: I like to read books
    # Books in progress
    #}
   <section class="ReadingGrid" id="currently-reading">
+    {% from "macros/booksReadingList.njk" import booksReadingList with context %}
+    {# {{ booksReadingList() }} #}
     <h2>What I’m currently reading</h2>
     {% include "snippets/books-reading-list.njk" %}
   </section>

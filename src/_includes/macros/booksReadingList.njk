@@ -1,0 +1,11 @@
+{%- macro booksReadingList(title="What I’m currently reading") -%}
+  {% for book in collections.booksReading %}
+    {% if loop.first %}
+    <h2>{{ title }}</h2>
+    {# <h2>{{ booksListTitle if booksListTitle else "What I’m currently reading" }}</h2> #}
+    <ul>
+    {% endif %}
+    <li><em>{{ book.title | removeSubtitle if noSubtitle else book.title }}</em> <span class="text-small">by {{ book.author | formatAuthor }}</span></li>
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
+{%- endmacro -%}
