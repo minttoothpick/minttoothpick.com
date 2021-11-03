@@ -3,8 +3,31 @@
   {% for item in collection | reverse %}
     {#- Show draft items when on dev environment #}
     {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
-      {%- from "macros/article.njk" import article -%}
-      {{ article(item) }}
+    <article class="Prose Prose--article Contain--prose">
+
+      <header class="Content__header">
+        <h2 class="Content__title h1"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h2>
+        <dl class="Content__meta">
+
+          <dt class="visually-hidden">Published on</dt>
+          <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
+
+          {% if item.data.location %}
+          <dt class="visually-hidden">Published in</dt>
+          <dd>{{ item.data.location }}</dd>
+          {% endif %}{# check for location #}
+
+        </dl>
+      </header>
+
+      {{ item.templateContent | safe }}
+
+      <footer class="Content__footer">
+        {% set tags = item.data.tags %}
+        {% include "snippets/tags-list.njk" %}
+      </footer>
+
+    </article>
     {% endif %}
   {% endfor %}
 </div>

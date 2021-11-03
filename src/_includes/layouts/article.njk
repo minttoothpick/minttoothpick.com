@@ -3,19 +3,26 @@ layout: base
 pageClass: Page--article
 ---
 <article class="Prose Prose--article Contain--prose">
+
   <header class="Content__header">
     <h1 class="Content__title">{{ title | safe }}</h1>
     <dl class="Content__meta">
+
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
+
       {% if location %}
       <dt class="visually-hidden">Published in</dt>
       <dd>{{ location }}</dd>
       {% endif %}{# check for location #}
+
     </dl>
   </header>
+
   {{ content | safe }}
+
   <footer class="Content__footer">
     {% include "snippets/tags-list.njk" %}
   </footer>
+
 </article>
