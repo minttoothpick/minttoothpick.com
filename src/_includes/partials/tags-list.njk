@@ -1,6 +1,10 @@
 {#
  # Loop through a post's tags and check against anything
  # excluded in the `tagList` collection.
+ #
+ # We default to the local `tags` collection, but it can be
+ # changed before the file is included. See `partials/article-list.njk`,
+ # where we have to `set tags = item.data.tags`.
  #}
 {% for tag in tags %}
   {% if collections.tagList.indexOf(tag) != -1 %}
