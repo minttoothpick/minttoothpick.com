@@ -20,7 +20,7 @@ There are two ways to achieve this:
 
     `{{ '{% verbatim %}{% endverbatim %}' }}` works as well.
 
-2. But there's a simpler way for shorter code snippets:
+2. But there's a simpler way for shorter code pieces:
 
     {% verbatim %}`{{ '{{ variable }}' }}`{% endverbatim %}
 

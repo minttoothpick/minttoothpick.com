@@ -14,6 +14,8 @@
   --block-space-lg: 4rem;
   --block-space-xl: 6rem;
 
+  --container-inline-space: var(--size-xl);
+
   --text-measure: 50rem; /* 800px */
   --linear-measure: var(--text-measure);
   --container-max-width: 80rem; /* 1280px */
@@ -237,7 +239,7 @@ hr {
  * The max width on the entire grid element, along with `margin-inline: auto`,
  * ensures that it never grows wider than 80rem, and stays centered.
  */
-.PageGrid {
+.PageGrid--BOOOOOOOOOO {
   display: grid;
   grid-template-columns:
     [content-start] minmax(0, var(--text-measure)) /* 40rem = 640px */
@@ -250,7 +252,17 @@ hr {
   padding-inline-end: var(--size-lg);
 }
 
-.PageGrid > * {
+.PageGrid {
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  max-width: 1200px;
+  padding-inline-end: var(--container-inline-space);
+  padding-inline-start: var(--container-inline-space);
+
+  background-color: rgba(0,0,0,0.1);
+}
+
+.PageGrid--out > * {
   grid-column: content;
 }
 
@@ -466,7 +478,7 @@ an image or video or maybe iframe, but not a blockquote */
   margin-block-start: 0;
 } */
 
-.Prose > .align-full-bleed {
+.Prose > .align-full-bleed--BOOOOOOOOOO {
   /* Unset this width limitation from .Prose */
   --linear-measure: auto;
   display: grid;
@@ -479,14 +491,22 @@ an image or video or maybe iframe, but not a blockquote */
   margin-inline-end: calc(var(--size-lg) * -1);
 }
 
+.Prose > .align-full-bleed {
+  /* Allow this to span full width of container */
+  --linear-measure: auto;
+  /* Pull inline margin to bleed with container padding */
+  margin-inline-start: calc(var(--container-inline-space) * -1);
+  margin-inline-end: calc(var(--container-inline-space) * -1);
+}
+
 .Prose > .align-full-bleed > :first-child {
   grid-column: bleed;
 }
 
 .Prose > .align-full-bleed > figcaption {
-  /* Add side padding to offset being full-width */
-  padding-inline-start: var(--size-lg);
-  padding-inline-end: var(--size-lg);
+  /* Add inline padding to offset container padding */
+  padding-inline-end: var(--container-inline-space);
+  padding-inline-start: var(--container-inline-space);
 }
 
 @media (min-width: 440px) {
@@ -506,8 +526,12 @@ an image or video or maybe iframe, but not a blockquote */
     margin-inline-start: var(--size-lg);
   }
 
-  .Prose > .align-pull-end {
+  .Prose > .align-pull-end--BOOOOOOOOOO {
     margin-inline-end: calc(var(--size-lg) * -1);
+  }
+
+  .Prose > .align-pull-end {
+    margin-inline-end: calc(var(--container-inline-space) * -1);
   }
 
   .Prose > .align-start,
@@ -518,7 +542,7 @@ an image or video or maybe iframe, but not a blockquote */
 
   /* Pull figure into page gutter padding area */
   .Prose > .align-pull-start {
-    margin-inline-start: calc(var(--size-lg) * -1);
+    margin-inline-start: calc(var(--container-inline-space) * -1);
   }
 }
 

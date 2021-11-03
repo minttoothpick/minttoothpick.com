@@ -7,7 +7,7 @@
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
     </dl>
-    {% include "snippets/tags-list.njk" %}
+    {% include "partials/tags-list.njk" %}
   </li>
   {% if loop.last %}</ul>{% endif %}
 {% else %}

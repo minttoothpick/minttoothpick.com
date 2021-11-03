@@ -26,7 +26,7 @@ layout: page
   <li class="gridli">
     <time class="text-small" datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
-    {% include "snippets/tags-list.njk" %}
+    {% include "partials/tags-list.njk" %}
   </li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}
