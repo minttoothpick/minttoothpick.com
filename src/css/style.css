@@ -258,8 +258,6 @@ hr {
   max-width: 1200px;
   padding-inline-end: var(--container-inline-space);
   padding-inline-start: var(--container-inline-space);
-
-  background-color: rgba(0,0,0,0.1);
 }
 
 .PageGrid--out > * {

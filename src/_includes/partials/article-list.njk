@@ -1,7 +1,7 @@
 {% if not collection %}{% set collection = collections.posts %}{% endif %}
 <div class="Articles__list space-items-huge">
   {% for item in collection | reverse %}
-    {#- Show draft items when on dev environment #}
+    {# Show draft items when on dev environment #}
     {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
     <article class="Prose Prose--article Contain--prose">
 
@@ -15,7 +15,7 @@
           {% if item.data.location %}
           <dt class="visually-hidden">Published in</dt>
           <dd>{{ item.data.location }}</dd>
-          {% endif %}{# check for location #}
+          {% endif %}{# Check for location #}
 
         </dl>
       </header>
@@ -28,6 +28,6 @@
       </footer>
 
     </article>
-    {% endif %}
+    {% endif %}{# Check whether we're on dev environment #}
   {% endfor %}
 </div>
