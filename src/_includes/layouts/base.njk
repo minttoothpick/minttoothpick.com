@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en-us">
-{%- set pageTitle %}{% if title %}{{ title }} / {% endif %}{{ site.title }}{% endset -%}
-{%- set pageDescription %}{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}{% endset -%}
-{# {%- set pageSocialImg %}{{ meta.url }}/previews/{% if title %}{{ title | slug }}{% else %}home{% endif %}.png{% endset -%} #}
+{% set pageTitle = [title, " / ", site.title] | join if title else site.title %}
+{% set pageDescription = description if description else site.description %}
+{# {%- set pageSocialImage %}{{ meta.url }}/previews/{% if title %}{{ title | slug }}{% else %}home{% endif %}.png{% endset -%} #}
+{# {% set pageSocialImage = [meta.url, "/previews/", title | slug] | join if title else "home.png" %} #}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {# Styles #}
   <link href="{{ '/css/style.css' | url }}" rel="stylesheet">
-  <link href="{{ '/css/utilities.css' | url }}" rel="stylesheet">
+  {# <link href="{{ '/css/utilities.css' | url }}" rel="stylesheet"> #}
   <link href="{{ '/css/prism-tomorrow.css' | url }}" rel="stylesheet">
   {# Primary meta #}
   <title>{{ pageTitle }}</title>
@@ -22,15 +23,16 @@
   {%- endif %}
   <meta name="twitter:title" content="{{ pageTitle }}">
   <meta name="twitter:description" content="{{ pageDescription }}">
-  {# <meta name="twitter:image" content="{{ pageSocialImg }}"> #}
+  {# <meta name="twitter:image" content="{{ pageSocialImage }}"> #}
   {# Open Graph #}
   <meta name="og:title" content="{{ pageTitle }}">
   <meta name="og:description" content="{{ pageDescription }}">
-  {# <meta property="og:image" content="{{ pageSocialImg }}"> #}
+  {# <meta property="og:image" content="{{ pageSocialImage }}"> #}
 </head>
-<body class="Page Page--{% if page.fileSlug %}{{ page.fileSlug }}{% else %}home{% endif %} Layout--{{ layout}} space-items-huge">
+{# <body class="Page Page--{% if page.fileSlug %}{{ page.fileSlug }}{% else %}home{% endif %} Layout--{{ layout}} flow-super"> #}
+<body class="page__{{ page.fileSlug if page.fileSlug else "home" }} layout__{{ layout }} flow-super">
 
-  <header class="PageHeader PageGrid">
+  {# <header class="PageHeader PageGrid">
     <a class="SkipNav hidden-til-focus" href="#main">Skip to main content</a>
     <nav class="PageHeader__nav">
       <ul class="PageHeader__navList list-unstyled" role="list">
@@ -44,16 +46,41 @@
         {%- endfor %}
       </ul>
     </nav>
+  </header> #}
+
+  <header class="site-header wrapper">
+    <a class="skip-nav hidden-til-focus" href="#main">Skip to main content</a>
+    <nav class="site-nav">
+      <ul class="site-nav__list" role="list">
+        <li class="site-nav__item">
+          <a {{ 'aria-current="page" data-state="active"' | safe if page.url === "/" }} href="/">{{ site.title }}</a>
+        </li>
+        {%- for item in site.navigation %}
+        <li class="site-nav__item">
+          <a {{ 'aria-current="page" data-state="active"' | safe if page.url === item.url }} href="{{ item.url | url }}">{{ item.name }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
   </header>
 
-  <main class="PageGrid" id="main">
+  {# <main class="PageGrid" id="main">
   {% block content %}
     {{ content | safe }}
   {% endblock %}
+  </main> #}
+
+  {# Add `mainClass` to any front matter to populate this class #}
+  <main{{ [' class="', mainClass, '"'] | join | safe if mainClass }} id="main">
+    {{ content | safe }}
   </main>
 
-  <footer class="SiteFooter PageGrid">
+  {# <footer class="SiteFooter PageGrid">
     <p class="border-top" style="padding-top: 64px;">©&nbsp;2021. &nbsp; &nbsp;⟢&nbsp;Thanks for visiting! &nbsp; &nbsp;⟢&nbsp;<a href="mailto:{{ site.authorEmail }}">Feel free to email me.</a></p>
+  </footer> #}
+
+  <footer class="site-footer wrapper">
+    <p>©&nbsp;2021. &nbsp; &nbsp;⟢&nbsp;Thanks for visiting. <a href="mailto:{{ site.authorEmail }}">Email me!</a></p>
   </footer>
 
 </body>

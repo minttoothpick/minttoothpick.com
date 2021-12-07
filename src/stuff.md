@@ -2,4 +2,4 @@
 title: Stuff
 layout: page
 ---
-- [I like to read books]("/reading/")
+<!-- - [I like to read books]("/reading/") -->

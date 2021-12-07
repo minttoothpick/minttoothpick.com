@@ -2,31 +2,5 @@
 title: Dev Journal
 layout: page
 ---
-<style>
-.gridli {
-  column-gap: var(--gap);
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-.gridli > a {
-  grid-column: 2;
-  margin-top: 0;
-}
-.gridli > time {
-  grid-column: 1;
-  text-align: right;
-  {# align-self: end;
-  margin-block-end: 3px; #}
-  align-self: center;
-}
-</style>
 {% set postsList = collections.dev %}
-{% for post in postsList | reverse %}
-  {% if loop.first %}<ul>{% endif %}
-  <li class="gridli">
-    <time class="text-small" datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time>
-    <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
-    {% include "partials/tags-list.njk" %}
-  </li>
-  {% if loop.last %}</ul>{% endif %}
-{% endfor %}
+{% include "partials/posts-list.njk" %}

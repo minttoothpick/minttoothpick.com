@@ -1,25 +1,36 @@
 ---
 title: Music
 layout: page
+contentOutsideWrapper: true
+intro: |
+  <p>↓ This is the first collection of music I’ve released. It’s about procrastinatory malaise, failures of ego transcendence, and home. About a third of it is full-on noise, but there are some actual song-songs in there too!</p>
 ---
 <style>
-.MusicGrid {
-  margin-block-start: 1em;
+.music-grid {
+  margin-block-start: var(--s1);
 }
 
 @media (min-width: 600px) {
-  .MusicGrid {
+  .music-grid {
+    --max-width: var(--width-full);
+
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
+  .music-grid figcaption p {
+    margin-inline-start: var(--s0);
+  }
 }
 </style>
-<section class="MusicGrid">
+
+<section class="music-grid wrapper">
+
   {% image "align-none", "./src/images/returner-commence-album-cover.jpg", "" %}
 
-  <div>
+  <figure>
     {# No album art #}
-    <iframe style="border: 0; width: 100%; height: 406px;" src="https://bandcamp.com/EmbeddedPlayer/album=2538551780/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/" seamless><a href="https://minttoothpick.bandcamp.com/album/returner-commence">Returner, Commence by minttoothpick</a></iframe>
-    <p style="margin-left: 1em; margin-top: 1em;">This is my first collection of songs. It's about procrastinatory malaise, failures of ego transcendence, and home.</p>
-  </div>
+    <iframe style="border: 0; width: 100%; height: 406px;" src="https://bandcamp.com/EmbeddedPlayer/album=2538551780/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/" seamless tabindex="-1"><a href="https://minttoothpick.bandcamp.com/album/returner-commence">Returner, Commence by minttoothpick</a></iframe>
+  </figure>
+
 </section>

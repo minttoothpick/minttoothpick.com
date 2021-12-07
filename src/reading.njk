@@ -1,46 +1,45 @@
 ---
-layout: page
 title: I like to read books
+layout: page
+intro: |
+  <p>And here is a list of them.</p>
+  <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
+  <!--{% include "partials/books-submenu.njk" %}-->
+  <p>I also draw every book I read; <a href="/book-drawings/">you can see those here</a>.</p>
 ---
-<div class="space-items-xxl">
-  <div class="Prose Contain--prose">
-    <p>And here is a list of them.</p>
-    {# <p>And here is a list of what I’ve read. For the past couple years, I have been drawing all of them: <a href="/reading/and-drawing-the-books/">you can see a huge grid of them here</a>. I also have <a href="/reading/brief-notes-and-drawings/">a page with brief notes alongside the drawing</a> of each book.</p> #}
-    <p>A ✺ denotes a book that I highly recommend—I either really enjoyed it, or felt that I got something valuable from it (or both!).</p>
-    {# {% include "partials/books-submenu.njk" %} #}
-    <p>I also draw every book I read; <a href="/book-drawings/">you can see those here</a>.</p>
-  </div>
+<style>
+.grid-sticky-thirds + .grid-sticky-thirds {
+  --flow-space: var(--flow-expanded);
+}
+</style>
 
-  {##
-   # Books in progress
-   #}
-  <section class="ReadingGrid" id="currently-reading">
-    <h2>What I’m currently reading</h2>
-    {% include "partials/books-reading-list.njk" %}
-  </section>
+{##
+ # Books in progress
+ #}
+<section class="grid-sticky-thirds" id="currently-reading" style="--text-width: 100%;">
+  {% include "partials/books-reading-list.njk" %}
+</section>
 
-  {##
-   # Books read, sorted by year
-   #}
-  {% set currentYear = "" %}
-  {% for book in collections.booksFinished %}
+{##
+ # Books read, sorted by year
+ #}
+{% set currentYear = "" %}
+{% for book in collections.booksFinished %}
 
-    {% if currentYear != book.finish_date %}
-      {% set currentYear = book.finish_date %}
-      {% if loop.first %}{% else %}</ul></section>{% endif %}
-      <section class="ReadingGrid" id="{{ currentYear }}">
-        <h2>{{ book.finish_date }}</h2>
-        <ul>
-    {% endif %}
+  {% if currentYear != book.finish_date %}
+    {% set currentYear = book.finish_date %}
+    {% if loop.first %}{% else %}</ul></section>{% endif %}
+    <section class="grid-sticky-thirds" id="{{ currentYear }}" style="--text-width: 100%;">
+      <h2>{{ book.finish_date }}</h2>
+      <ul class="list-condensed">
+  {% endif %}
 
-    <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>
-      {% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}
-      <em>{{ book.title }}</em>
-      <span class="text-small">by {{ book.author | formatAuthor }}</span>
-    </li>
+  <li{% if book.✔ %} style="--list-marker-content: '✺ ';"{% endif %}>
+    {% if book.✔ %}<span class="visually-hidden">Highly recommended: </span>{% endif %}
+    <em>{{ book.title }}</em>
+    <span class="text-small">by {{ book.author | formatAuthor }}</span>
+  </li>
 
-    {% if loop.last %}</ul>{% endif %}
+  {% if loop.last %}</ul>{% endif %}
 
-  {% endfor %}{# for book in collections.booksFinished #}
-</div>
-<!-- .space-items-xl -->
+{% endfor %}{# for book in collections.booksFinished #}

@@ -1,10 +1,18 @@
 ---
 layout: base
-pageClass: Page--page
 ---
-<article class="Prose">
-  <header class="Content__header">
-    <h1 class="Content__title">{{ title }}</h1>
+<article class="post wrapper flow">
+  <header class="post__header">
+    <h1 class="post__title">{{ title | safe }}</h1>
   </header>
-  {{ content | safe }}
+
+  {# TODO: Add check for either `contentOutsideWrapper` or `intro` before outputting this container #}
+  <div class="prose-width prose-flow flow">
+    {{ intro | safe if intro }}
+
+    {{ "" if contentOutsideWrapper else content | safe }}
+  </div>
+
 </article>
+
+{{ content | safe if contentOutsideWrapper }}

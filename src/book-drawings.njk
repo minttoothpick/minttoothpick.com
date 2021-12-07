@@ -1,15 +1,26 @@
 ---
-title: I draw every book I read
+title: Book drawings
 layout: page
-permalink: "/book-drawings/"
+mainClass: flow
+contentOutsideWrapper: true
+intro: |
+  <p>I've been drawing every book I read or listen to since 2020.</p>
+  <!--{# {% include "partials/books-submenu.njk" %} #}-->
+  <p>You can also see <a href="/reading/">a plain text list of what I’ve read each year</a>.</p>
 ---
-<div class="Prose Contain--prose">
-  <p>I've been doing this for the past couple years. Here they are.</p>
-  {# {% include "partials/books-submenu.njk" %} #}
-  <p>You can also see <a href="/reading/">a plain text list of what I’ve read</a>.</p>
-</div>
+<style>
+.book-drawings {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s0);
+}
 
-<div class="BookDrawingsGrid space-items-base" style="display: flex; flex-wrap: wrap; align-items: flex-end;">
+.book-drawings ::selection {
+  background: rgba(0, 0, 0, 0.25);
+}
+</style>
+<div class="book-drawings wrapper" style="--max-width: var(--width-full);">
   {% set currentYear = "" %}
   {% for book in collections.booksFinished %}
     {% if book.finish_year != currentYear %}
@@ -27,30 +38,30 @@ permalink: "/book-drawings/"
       {% set altText %}Drawing of “{{ book.title }}”{% endset %}
 
       <style>
-      .Book {
+      {# .book {
         padding-inline-end: var(--size-base);
-      }
-      .Book--px.Book--{{ loop.index }} {
+      } #}
+      .book--px.book--{{ loop.index }} {
         width: calc({{ widthPx }} * 10px);
       }
-      .Book--percent.Book--{{ loop.index }} {
+      .book--percent.book--{{ loop.index }} {
         width: calc({{ widthPercent }} * 4%);
         {% set width1 = widthPercent * 4 %}
       }
       @media (min-width: 300px) {
-        .Book--percent.Book--{{ loop.index }} {
+        .book--percent.book--{{ loop.index }} {
           width: calc({{ widthPercent }} * 3%);
           {% set width2 = widthPercent * 3 %}
         }
       }
       @media (min-width: 500px) {
-        .Book--percent.Book--{{ loop.index }} {
+        .book--percent.book--{{ loop.index }} {
           width: calc({{ widthPercent }} * 2%);
           {% set width3 = widthPercent * 2 %}
         }
       }
       @media (min-width: 750px) {
-        .Book--percent.Book--{{ loop.index }} {
+        .book--percent.book--{{ loop.index }} {
           {#- width: calc({{ widthPercent }} * 1%); #}
           {# width: calc(({{ widthPercent }} + 3) * 1%); #}
           width: calc({{ widthPercent }} * 1.5%);
@@ -58,11 +69,11 @@ permalink: "/book-drawings/"
         }
       }
       @media (min-width: 1000px) {
-        .Book { padding-right: 1em; }
-        .Book--px.Book--{{ loop.index }} {
+        {# .book { padding-right: 1em; } #}
+        .book--px.book--{{ loop.index }} {
           width: calc({{ widthPx }} * 17px);
         }
-        .Book--percent.Book--{{ loop.index }} {
+        .book--percent.book--{{ loop.index }} {
           width: calc(({{ widthPercent }} + 3) * 1%);
           {% set width5 = (widthPercent + 3) * 1 %}
         }
@@ -72,7 +83,7 @@ permalink: "/book-drawings/"
       {# TODO: This is no good #}
       {% set imgSizes %}(min-width: 1000px) calc({{ width5 }}vw - 64px), (min-width: 750px) calc({{ width4 }}vw - 64px), (min-width: 500px) calc({{ width3 }}vw - 64px), (min-width: 300px) calc({{ width2 }}vw - 64px), calc({{ width1 }}vw - 64px){% endset %}
 
-      <figure class="Book Book--percent Book--{{ loop.index }}">
+      <figure class="book book--percent book--{{ loop.index }}">
         {% bookImg { src: imgSrc, alt: altText, sizes: imgSizes } %}{% endbookImg %}
       </figure>
 

@@ -8,81 +8,89 @@ layout: base
 }
 
 .clouds {
-  margin-block-start: var(--size-lg);
+  margin-block-start: var(--container-space);
 }
 
-.NowGrid--thirds h2 {
-  margin-block-start: var(--size-lg);
+.now-grid--thirds h2 {
+  margin-block-start: var(--container-space);
 }
 
 @media (min-width: 700px) {
-  .NowGrid {
+  .now-grid {
     display: grid;
-    column-gap: var(--size-lg);
+    column-gap: var(--container-space);
   }
 
   .clouds {
     margin-block-start: 0;
   }
 
-  .NowGrid--thirds h2 {
+  .now-grid--thirds h2 {
     margin-block-start: 0;
   }
 }
 
-.NowGrid--halves {
+.now-grid--halves {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.NowGrid--thirds {
+.now-grid--thirds {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.NowGrid-section {
-  margin-block-start: var(--size-xl);
+.now-grid-section {
+  margin-block-start: var(--flow-expanded);
 }
 
 @media (min-width: 1200px) {
-  .NowGrid--thirds {
+  .now-grid--thirds {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .NowGrid-section {
+  .now-grid-section {
     margin-block-start: 0;
   }
 }
 
-.NowGrid + .NowGrid {
-  margin-block-start: var(--size-xl);
+.now-grid + .now-grid {
+  margin-block-start: var(--flow-expanded);
 }
 </style>
-<article class="Prose">
-  <div class="NowGrid NowGrid--halves">
-    <div class="Prose">
-      <header class="Content__header mt-none">
-        <h1 class="Content__title">{{ title }}</h1>
-        <dl class="Content__meta">
+<article class="wrapper" style="--max-width: var(--width-full);">
+  <div class="now-grid now-grid--halves">
+    <div class="">
+      <header class="post__header">
+        <h1 class="post__title">{{ title }}</h1>
+        <dl class="post__meta">
+
           <dt>Updated on</dt>
           <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
+
           {% if location %}
             <dt class="visually-hidden">Published in</dt>
             <dd>{{ location }}</dd>
           {% endif %}
+
         </dl>
       </header>
-      {{ content | safe }}
+
+      <div class="prose-flow flow" style="margin-block-start: var(--s0);">
+        {{ content | safe }}
+      </div>
+
     </div>
+
     {% image imgClass, imgSrc, imgAlt, imgCaption %}
   </div>
 
-  <div class="NowGrid NowGrid--thirds">
-    <section class="NowGrid-section Prose">
+  <div class="now-grid now-grid--thirds">
+    <section class="now-grid-section flow prose-flow">
       {% set booksListTitle = "Books I’m reading" %}
       {% set noSubtitle = true %}
       {% include "partials/books-reading-list.njk" %}
     </section>
 
-    <section class="NowGrid-section Prose">
+    <section class="now-grid-section flow prose-flow">
       <h2>A quote I like</h2>
       <figure>
         <blockquote cite="{{ quoteUrl }}">
@@ -94,11 +102,11 @@ layout: base
       </figure>
     </section>
 
-    <section class="NowGrid-section Prose">
+    <section class="now-grid-section flow prose-flow">
       {{ somethingElse | safe }}
     </section>
   </div>
-  <div class="NowGrid">
-    <p>This is a “now page.” <a href="https://nownownow.com/about">What's that?</a></p>
+  <div class="now-grid">
+    <p>This is a “now page.” (<a href="https://nownownow.com/about">…what's that?</a>)</p>
   </div>
 </article>

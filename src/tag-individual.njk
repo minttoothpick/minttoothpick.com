@@ -8,11 +8,14 @@ permalink: /tags/{{ tag }}/
 eleventyComputed:
   title: "Stuff tagged “{{ tag }}”"
 ---
-{% for post in collections[tag] | reverse %}
+{% set postsList = collections[tag] %}
+{% include "partials/posts-list.njk" %}
+
+{# {% for post in collections[tag] | reverse %}
   {% if loop.first %}<ul class="PostsList">{% endif %}
   <li>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
-    <dl class="Content__meta">
+    <dl class="post__meta">
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
     </dl>
@@ -21,6 +24,6 @@ eleventyComputed:
   {% if loop.last %}</ul>{% endif %}
 {% else %}
   <p>Nothing here!</p>
-{% endfor %}
+{% endfor %} #}
 
-<a href="/tags/">View all tags</a>
+<p><a href="/tags/">View all tags</a></p>

@@ -1,59 +1,88 @@
+/* stylelint-disable no-descending-specificity */
+
 :root {
   /**
-   * Sizes
+   * Modular scale
+   * https://every-layout.dev/rudiments/modular-scale/
    */
-  --size-xs: 0.5rem; /* 8px */
-  --size-base: 1rem; /* 16px */
-  --size-md: 1.5rem; /* 24px */
-  --size-lg: 3rem; /* 48px */
-  --size-xl: 4.5rem; /* 72px */
-  --size-xxl: 6rem; /* 96px */
-  --size-huge: 12rem; /* 192px */
+  --ratio: var(--line-height);
+  --s05: calc(var(--s04) / var(--ratio));
+  --s04: calc(var(--s03) / var(--ratio));
+  --s03: calc(var(--s02) / var(--ratio));
+  --s02: calc(var(--s01) / var(--ratio));
+  --s01: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
 
-  --block-space-base: 2rem;
-  --block-space-lg: 4rem;
-  --block-space-xl: 6rem;
+  /**
+   * Named values from modular scale
+   *
+   * These values change based on media queries.
+   */
+  --container-space: var(--s1);
+  --flow-space: var(--container-space);
+  --flow-condensed: var(--s0);
+  --flow-expanded: var(--s2);
+  --flow-super: var(--s3);
 
-  --container-inline-space: var(--size-xl);
+  --font-regular: "Infini", "Lato", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
+  --font-mono: "Fira Code", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --line-height: 1.7;
 
-  --text-measure: 50rem; /* 800px */
-  --linear-measure: var(--text-measure);
-  --container-max-width: 80rem; /* 1280px */
-  --font-size-small: 1rem;
-  --font-size-body: 1.25rem;
-  --font-size-title: 2rem;
+  --text-width: 60ch;
+  --container-width: calc(var(--text-width) * 1.5);
+  --width-full: calc(var(--text-width) * 2);
+
+  --font-main: var(--font-regular);
+  --font-secondary: var(--font-regular);
+
+  --font-size: 1.2rem;
+  --font-size-small: 85%;
 
   /**
    * Colors
    */
-  --text-muted: rgba(0, 0, 0, 0.65);
-  --gray-light: rgba(0, 0, 0, 0.25);
-  --gray-extralight: rgba(0, 0, 0, 0.1);
-  --bg-color: white;
-  --text-color: black;
+  --color-dark: #050505;
+  --color-darkish: #404040;
+  --color-mid: grey;
+  --color-lightish: #b3b3b3;
+  --color-light: #d6d6d6;
+
+  --color-accent: salmon;
+  --color-text: var(--color-dark);
+  --color-text-muted: var(--color-mid);
+  --color-bg: white;
+
+  --border-thin: var(--s04);
+  --border-thick: var(--s02);
 
   /**
-   * Fonts
+   * Root styles
+   * Same as `html`, but weightier specificity.
    */
-  --font-sans: "Infini", "Lato", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
-
-  /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
-  --font-mono: "Fira Code", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  /* 0.4% of screen width, but never below 1rem */
+  /* font-size: calc(0.4vw + 1rem); */
+  /* 1.5% of screen width, but never below 1.1rem or over 2rem */
+  /* font-size: clamp(1.1rem, 1.5vw, 2rem); */
+  font-size: var(--font-size, 1rem);
+  line-height: var(--line-height);
 }
 
-/* Less vertical spacing on articles on small screens */
-@media (max-width: 350px) {
+@media (min-width: 700px) {
   :root {
-    --size-xxl: 3rem;
-    --size-huge: 6rem;
-  }
-}
-
-@media (min-width: 800px) {
-  :root {
-    --font-size-small: 1.25rem;
-    --font-size-body: 1.375rem;
-    --font-size-title: 3rem;
+    --container-space: var(--s2);
+    --flow-expanded: var(--s3);
+    --flow-condensed: var(--s0);
+    --flow-super: var(--s4);
+    --font-size: 1.4rem;
   }
 }
 
@@ -88,63 +117,152 @@
 }
 
 /* Reset
+ * https://piccalil.li/blog/a-modern-css-reset/
    ========================================================================== */
-
-html {
-  box-sizing: border-box;
-}
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
+  /* TODO: What's the diff btwn overflow-wrap and word-break? */
+  /* overflow-wrap: break-word; */
+  /* word-break: break-word; */
+  /* TODO: Would I want to set this here? */
+  /* hyphens: auto; */
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default margin */
+/* Well, now this is being done to *everything* */
+/* body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+} */
+
+body {
+  min-height: 100vh;
+  padding-block: var(--container-space);
+}
+
+/**
+ * Text measure
+ * https://every-layout.dev/rudiments/axioms/#measure
+ */
+/* * {
+  --max-width: var(--text-width);
+
+  max-width: var(--max-width);
+}
+
+html,
+body,
+div,
+main,
+article,
+header,
+nav,
+footer {
+  --max-width: none;
+}
+
+h1 {
+  --max-width: 20ch;
+} */
+
+[hidden] {
+  display: none;
+}
+
+/* Don't want flow space taking effect here. */
+[hidden] + *,
+/* This is b/c of injected Browsersync script. */
+script + * {
+  margin-block-start: 0 !important;
 }
 
 html:focus-within {
   scroll-behavior: smooth;
 }
 
-body,
-blockquote,
-dd,
-dl,
-figure,
-h1,
-h2,
-h3,
-h4,
-hr,
-ol,
-p,
-ul {
-  margin: 0;
+:focus {
+  /* outline: 2px dashed;
+  outline-offset: 0.25rem; */
+  outline: var(--border-thin) dashed var(--color-accent);
+  outline-offset: var(--border-thin);
 }
 
-picture,
-img {
-  display: block;
+/* Would this be the same difference? */
+/* main:focus { */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Make images easier to work with */
+img,
+picture {
   max-width: 100%;
+  display: block;
 }
 
 img {
   height: auto;
 }
 
-/* `!important` b/c it overrides Prism.js */
-code,
-pre {
-  font-family: var(--font-mono) !important;
-  font-size: 0.95em !important;
-  margin-block-end: 0 !important;
+/* Inherit fonts for inputs and buttons */
+/* Instead, we inherit family only on `*` */
+/* input,
+button,
+textarea,
+select {
+  font: inherit;
+} */
+
+iframe {
+  width: 100%;
+  /* Does having a hardcoded fallback affect Bandcamp embeds? */
+  /* aspect-ratio: var(--aspect-ratio, 16 / 9); */
+  aspect-ratio: var(--aspect-ratio);
 }
 
-pre {
-  overflow-x: auto;
+/* Allow regular lists to nest properly */
+ol:not([role="list"]),
+ul:not([role="list"]) {
+  padding-inline-start: 1em;
 }
 
+ol:not([role="list"]) li::marker {
+  color: var(--color-text-muted);
+}
+
+ul:not([role="list"]) li::marker {
+  color: var(--color-lightish);
+  content: var(--list-marker-content, "– ");
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ol[role="list"],
+ul[role="list"] {
+  list-style: none;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.99);
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-    scroll-behavior: auto;
+   scroll-behavior: auto;
   }
 
   *,
@@ -160,447 +278,340 @@ pre {
 /* Base
    ========================================================================== */
 
-:focus {
-  outline: 2px dashed;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-body);
-  line-height: 1.6;
-  padding-block-start: var(--size-lg);
-  padding-block-end: var(--size-lg);
-}
-
 h1,
-.h1 {
-  font-weight: normal;
+h2,
+h3,
+h4 {
+  font-family: var(--font-secondary);
+  font-variant-numeric: lining-nums;
 }
 
-h2,
-.h2 {
+/* stylelint-disable no-duplicate-selectors */
+h1 {
+  font-size: var(--s2);
+  font-weight: normal;
+  line-height: 1.1;
+}
+/* stylelint-enable no-duplicate-selectors */
+
+h2 {
   font-size: inherit;
   font-weight: bold;
   line-height: inherit;
 }
 
-a {
-  color: currentColor;
-  padding: 0.5rem;
-  margin: -0.5rem;
-  text-decoration-skip-ink: auto;
+h3 {
+  color: var(--color-mid);
+  font-size: inherit;
+  font-weight: bold;
+  line-height: inherit;
 }
 
-a[aria-current],
-a.active {
-  font-weight: bold;
+/* Maybe change to a:not(class) or whatever, b/c it messes up inline flex lists */
+/* Increase tap target size */
+/* a {
+  margin: -0.25rem;
+  padding: 0.25rem;
+} */
+
+/* `a` elements that don't have a class get default styles */
+a:not([class]) {
+  color: currentColor;
+  text-decoration-skip-ink: auto;
 }
 
 a:hover {
   text-decoration: none;
 }
 
-ol li::marker {
-  color: var(--text-muted);
+/* `!important` to override Prism.js */
+code,
+pre {
+  font-family: var(--font-mono) !important;
+  font-size: 0.95em !important;
+  margin-block-end: 0 !important;
 }
 
-ul li {
-  list-style-type: var(--list-marker-content, "– ");
-}
-
-ul li::marker {
-  color: var(--gray-light);
-  content: var(--list-marker-content, "– ");
+pre {
+  overflow-x: auto;
 }
 
 blockquote {
   border-inline-start: 4px solid var(--gray-light);
-  margin-inline-start: var(--size-base);
-  padding-inline-start: var(--size-base);
+  margin-inline-start: var(--s0);
+  padding-inline-start: var(--s0);
 }
 
-hr {
-  background-color: var(--gray-light);
-  border: none;
-  width: 100%;
-  height: 2px;
+figcaption {
+  margin-top: var(--s0);
 }
 
-/* Layouts
+/* Site/page-level blocks
    ========================================================================== */
 
-/*
- * Grid
- * The content col will shrink and grow to a maximum of
- * the `--text-measure` custom property (40rem).
- * When that width is reached, the other column begins expanding (1fr).
- * The max width on the entire grid element, along with `margin-inline: auto`,
- * ensures that it never grows wider than 80rem, and stays centered.
- */
-.PageGrid--BOOOOOOOOOO {
-  display: grid;
-  grid-template-columns:
-    [content-start] minmax(0, var(--text-measure)) /* 40rem = 640px */
-    [measure] 1fr
-    [content-end];
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  max-width: calc(var(--container-max-width) + (var(--size-lg) * 2)); /* 80rem = 1280px */
-  padding-inline-start: var(--size-lg);
-  padding-inline-end: var(--size-lg);
-}
+.site-nav__list {
+  --max-width: none;
 
-.PageGrid {
-  margin-inline-end: auto;
-  margin-inline-start: auto;
-  max-width: 1200px;
-  padding-inline-end: var(--container-inline-space);
-  padding-inline-start: var(--container-inline-space);
-}
-
-.PageGrid--out > * {
-  grid-column: content;
-}
-
-.PageHeader__navList {
+  column-gap: var(--s1);
   display: flex;
   flex-wrap: wrap;
 }
 
-.PageHeader__navListItem:first-of-type {
+.site-nav__item > a[aria-current="page"],
+.site-nav__item > a[data-state="active"] {
   font-weight: bold;
 }
 
-/* Inline padding on every item except for last */
-.PageHeader__navListItem:not(:last-of-type) {
-  padding-inline-end: var(--size-md);
+/* Post/article block
+   ========================================================================== */
+
+.post {
+  /* --flow-space: var(--s2); */
+
+  hanging-punctuation: first;
 }
 
-/* Hide dividing slash when screen's so small it wraps to own line */
-@media (min-width: 240px) {
-  .PageHeader__navListItem:first-of-type {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-  }
-
-  .PageHeader__navListItem:first-of-type::after {
-    content: "/";
-    color: var(--gray-light);
-    padding-inline-start: calc(var(--size-md) / 2);
-    padding-inline-end: calc(var(--size-md) / 2);
-  }
-}
-
-/**
- * TODO: Make this not need a media query
- */
-@media (min-width: 600px) {
-  .PageHeader__navList {
-    justify-content: flex-end;
-  }
-
-  .PageHeader__navListItem:first-of-type {
-    margin-inline-end: auto;
-    padding-block-end: 0;
-  }
-
-  .PageHeader__navListItem:first-of-type::after {
-    content: none;
-  }
-}
-
-.SkipNav {
-  text-decoration: underline;
-}
-
-.SkipNav:hover {
-  text-decoration: none;
-}
-
-.SkipNav::after {
-  content: " ↷";
-}
-
-/* .Intro + .Articles__list {
-  margin-block-start: var(--size-xxl);
+/* .post > * + * {
+  margin-top: var(--flow-space, var(--s2));
 } */
 
-.Content__header > * + * {
-  margin-block-start: var(--size-md);
+/* Extra block space surrounding figures */
+.prose-flow > figure,
+.prose-flow > figure + * {
+  --flow-space: var(--flow-expanded);
 }
 
-.Content__title {
-  font-feature-settings: "case" on;
-  font-size: var(--font-size-title);
-  hanging-punctuation: first;
-  line-height: 1.2;
+/* Extra block start space on headings */
+.prose-flow > :is(h2, h3) {
+  --flow-space: var(--flow-expanded);
 }
 
-.Content__title > a {
-  text-decoration: none;
+/* Less block start space on elems following headings */
+.prose-flow > :is(h2, h3) + * {
+  --flow-space: var(--s0);
 }
 
-.Content__meta {
+/* Less flow space between sibling paragraphs */
+.prose-flow > p + p {
+  --flow-space: var(--s0);
+}
+
+/* Add flow space to things inside of list items */
+.prose-flow :not([role="list"]) li > ol,
+.prose-flow :not([role="list"]) li > ul,
+.prose-flow :not([role="list"]) li > * + *,
+.prose-flow ol:not(.list-condensed, [role="list"]) > * + *,
+.prose-flow ul:not(.list-condensed, [role="list"]) > * + * {
+/* .post ol > * + *,
+.post ul > * + * { */
+  margin-block-start: var(--s0);
+}
+
+.list-condensed > * + * {
+  margin-block-start: var(--s01);
+}
+
+.post__meta {
+  color: var(--color-text-muted);
   display: flex;
   flex-wrap: wrap;
-  color: var(--text-muted);
   font-size: var(--font-size-small);
-  font-variant-numeric: lining-nums;
-}
-
-.Content__title + .Content__meta {
-  margin-block-start: var(--size-xs);
+  margin-block-start: var(--s01);
 }
 
 /* If meta label is not `visually-hidden`, we need a space after it */
-.Content__meta dt:not([class="visually-hidden"])::after {
+/* .post__meta dt:not([.visually-hidden])::after { */
+.post__meta dt::after {
   content: "\00a0";
 }
 
-.Content__meta dd:not(:last-of-type)::after {
+.post__meta dd:not(:last-of-type)::after {
   content: "/";
-  color: var(--gray-light);
-  padding-inline-start: var(--size-xs);
-  padding-inline-end: var(--size-xs);
+  padding-inline-start: var(--s02);
+  padding-inline-end: var(--s02);
+  padding-inline: var(--s02);
 }
 
-.Contain--prose > * {
-  max-width: var(--linear-measure);
+.post figcaption {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
 }
 
-.Contain--prose > pre {
-  margin-inline-start: -1em !important;
-  margin-inline-end: -1em !important;
-  /* TODO: !? */
-  width: calc(100vw - 3.05em);
-  /* Subtract inline margin pull amount to max width */
-  max-width: calc(var(--linear-measure) + 2em);
+.grid-sticky-thirds {
+  display: grid;
+  gap: var(--s0) var(--s1);
+  /* margin-block-start: var(--s4); */
 }
 
-/* Prose
-   ========================================================================== */
+/* .grid-thirds + .grid-thirds {
+  margin-block-start: var(--s4);
+} */
 
-.Prose {
-  hanging-punctuation: first;
-  hyphens: auto;
-  line-height: inherit;
-  word-break: break-word;
+@media (min-width: 700px) {
+  .grid-sticky-thirds {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .grid-sticky-thirds > h2 {
+    align-self: start;
+    position: sticky;
+    inset-block-start: var(--s0);
+  }
 }
 
-.Prose > * + * {
-  /* margin-block-start: var(--size-md); */
-  margin-block-start: var(--block-space-base);
+.wrapper {
+  /* --max-width: var(--max-width, var(--container-width)); */
+
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  margin-inline: auto;
+  max-width: var(--max-width, var(--container-width));
+  padding-inline-end: var(--container-space);
+  padding-inline-start: var(--container-space);
+  padding-inline: var(--container-space);
 }
 
-/* Extra margin on h2, unless it's the first item in a container */
-/* TODO: Or maybe encapsulating in `--article` will suffice */
-.Prose--article > h2/*:not(:first-child)*/ {
-  margin-block-start: var(--size-lg);
-  margin-block-start: var(--size-xxl);
+/* .wrapper > * {
+  --max-width: var(--text-width);
+
+  max-width: var(--max-width);
+} */
+
+.prose-width > * {
+  /* max-width: var(--prose-width, var(--text-width)); */
+  max-width: var(--text-width);
 }
 
-.Prose ol,
-.Prose ul {
-  padding-inline-start: 1em;
+/* .grid-thirds__heading {
 }
 
-/* Initially, list items are vertically compressed */
-.Prose li:not(:first-child) {
-  margin-block-start: var(--size-base);
-  /* border: 2px solid red !important; */
+.grid-thirds {
+} */
+
+.image-row {
+  display: flex;
+  gap: var(--s01);
 }
 
-/* List items in articles are vertically expanded */
-.Prose--article li:not(:first-child),
-.Prose--article li > ul,
-.Prose--article li > ol {
-  /* margin-block-start: var(--size-xs); */
-  margin-block-start: var(--size-base);
-  margin-block-start: var(--block-space-base);
-  /* border: 2px solid rebeccapurple !important; */
+.align-full-bleed {
+  /* --prose-width: none; */
+  max-width: none;
+  margin-inline-end: calc(var(--container-space) * -1);
+  margin-inline-start: calc(var(--container-space) * -1);
+  margin-inline: calc(var(--container-space) * -1);
 }
 
-.Prose li > * + * {
-  /* margin-block-start: var(--size-xs); */
-  margin-block-start: var(--size-base);
-  margin-block-start: var(--block-space-base);
+.align-full-bleed > figcaption {
+  max-width: var(--text-width);
+  /* Add inline padding to offset pulled inline margins on `figure`. */
+  padding-inline-end: var(--container-space);
+  padding-inline-start: var(--container-space);
+  padding-inline: var(--container-space);
 }
 
-/* Extra block margin on these elems */
-.Prose--article > blockquote,
-.Prose--article > figure,
-.Prose--article > hr,
-.Prose--article > blockquote + :not(h2),
-.Prose--article > hr + *,
-.Prose--article > figure + :not(h2) {
-  margin-block-start: var(--size-lg);
-  margin-block-start: var(--block-space-lg);
+.site-footer::before {
+  border-top: 2px solid var(--color-lightish);
+  content: "";
+  width: 100%;
+  display: inline-block;
 }
 
-.Prose figcaption {
-  margin-block-start: var(--size-base);
+.site-footer > :first-child {
+  padding-block-start: var(--flow-space);
 }
 
-/* TODO: Test... only want these styles when captioning
-an image or video or maybe iframe, but not a blockquote */
-.Prose :not(blockquote) + figcaption {
-  color: var(--text-muted);
+/**
+ * Flow space
+ * https://every-layout.dev/layouts/stack/
+ * https://piccalil.li/quick-tip/flow-utility/
+ */
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+/**
+ * Use these for nested flow, like on the body; can't set `--flow-space`
+ * on `articles-list` *and* `post`, b/c it'll be overridden.
+ */
+.flow-condensed > * + * {
+  margin-block-start: var(--flow-condensed);
+}
+
+.flow-expanded > * + * {
+  margin-block-start: var(--flow-expanded);
+}
+
+.flow-super > * + * {
+  margin-block-start: var(--flow-super);
+}
+
+/* Use this to increase flow space around an individual element */
+.flow-item-expanded,
+.flow-item-expanded + * {
+  --flow-space: var(--flow-expanded);
+}
+
+/* https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.list-inline {
+  /* --max-width: none; */
+
+  display: flex;
+  column-gap: var(--s1);
+}
+
+.text-small {
+  color: var(--color-text-muted);
   font-size: var(--font-size-small);
   line-height: 1.5;
 }
 
-/* `!important` b/c it overrides Prism.js */
-.Prose > pre,
-.Prose > pre + * {
-  margin-block-start: var(--size-lg) !important;
+/**
+ * Nicked from Cloud Four
+ * https://cloudfour-patterns.netlify.app/patterns/utilities.html
+ */
+
+.hidden-til-focus:not(:focus) {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
 }
 
-/* Reset block margin on floated figs */
-.Prose--article > .align-pull-end,
-.Prose--article > .align-pull-end + *,
-.Prose--article > .align-pull-start,
-.Prose--article > .align-pull-start + * {
-  margin-block-start: var(--size-md);
-}
-
-.Prose--article > figure + .Content__footer {
-  margin-block-start: var(--size-md);
-}
-
-/* TODO: Implement multi image rows */
-
-/* Avoid margin staggering on side-by-side photos */
-/* .Prose img {
-  margin-block-start: 0;
-} */
-
-.Prose > .align-full-bleed--BOOOOOOOOOO {
-  /* Unset this width limitation from .Prose */
-  --linear-measure: auto;
-  display: grid;
-  grid-template-columns:
-    /* Add padding gap to align end right w/ .Prose text */
-    [bleed-start] minmax(0, calc(var(--text-measure) + var(--size-lg)))
-    [measure] 1fr
-    [bleed-end];
-  margin-inline-start: calc(var(--size-lg) * -1);
-  margin-inline-end: calc(var(--size-lg) * -1);
-}
-
-.Prose > .align-full-bleed {
-  /* Allow this to span full width of container */
-  --linear-measure: auto;
-  /* Pull inline margin to bleed with container padding */
-  margin-inline-start: calc(var(--container-inline-space) * -1);
-  margin-inline-end: calc(var(--container-inline-space) * -1);
-}
-
-.Prose > .align-full-bleed > :first-child {
-  grid-column: bleed;
-}
-
-.Prose > .align-full-bleed > figcaption {
-  /* Add inline padding to offset container padding */
-  padding-inline-end: var(--container-inline-space);
-  padding-inline-start: var(--container-inline-space);
-}
-
-@media (min-width: 440px) {
-  .Prose > .align-end,
-  .Prose > .align-pull-end,
-  .Prose > .align-pull-start,
-  .Prose > .align-start {
-    /* Set minimum width of 250px */
-    /* width: max(250px, 33%); */
-    min-width: var(--min-width, 250px);
-    max-width: var(--max-width, 33%);
-  }
-
-  .Prose > .align-end,
-  .Prose > .align-pull-end {
-    float: inline-end;
-    margin-inline-start: var(--size-lg);
-  }
-
-  .Prose > .align-pull-end--BOOOOOOOOOO {
-    margin-inline-end: calc(var(--size-lg) * -1);
-  }
-
-  .Prose > .align-pull-end {
-    margin-inline-end: calc(var(--container-inline-space) * -1);
-  }
-
-  .Prose > .align-start,
-  .Prose > .align-pull-start {
-    float: inline-start;
-    margin-inline-end: var(--size-lg);
-  }
-
-  /* Pull figure into page gutter padding area */
-  .Prose > .align-pull-start {
-    margin-inline-start: calc(var(--container-inline-space) * -1);
-  }
-}
-
-.Prose--article > .photo-row {
-  display: grid;
-  gap: var(--size-base);
-  /* Get --columns property from HTML to decide how many to display */
-  grid-template-columns: repeat(var(--columns, 2), 1fr);
-}
-
-/* Specific pages/layouts
-  ========================================================================== */
-
-/* Extra margin on first element following header on single article pages */
-.Layout--article .Content__header + * {
-  margin-block-start: var(--size-xxl);
-}
-
-/* Reading/Books
-   ========================================================================== */
-
-.ReadingGrid > h2 {
-  font-variant-numeric: lining-nums;
-}
-
-@media (min-width: 700px) {
-  .ReadingGrid {
+/* If we end up using this elsewhere, we'll put it in an external file */
+@media (min-width: 600px) {
+  .title-date-inline {
     display: grid;
-    column-gap: var(--size-lg);
-    grid-template-columns: 1fr 2fr;
   }
 
-  .ReadingGrid > h2 {
-    align-self: start;
-    position: sticky;
-    inset-block-start: var(--size-lg);
+  .title-date-inline span {
+    display: initial;
   }
 }
 
-.NavInline__list {
-  align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  hyphens: none;
-  word-break: normal;
+.title-date-inline {
+  color: currentColor;
+  grid-template-columns: 1fr max-content;
+  text-decoration: none;
 }
 
-.NavInline__listItem {
-  flex-basis: auto;
-  /* flex-grow: 1; */
-  margin-block-start: 0 !important;
+.title-date-inline span {
+  text-decoration: underline;
+  display: block;
 }
 
-.NavInline__listItem:first-of-type {
-  padding-inline-end: var(--size-xs);
-}
-
-.NavInline__listItem:not(:last-of-type):not(:first-of-type)::after {
-  content: "/";
-  color: var(--gray-light);
-  padding-inline-start: var(--size-xs);
-  padding-inline-end: var(--size-xs);
+.title-date-inline:hover span {
+  text-decoration: none;
 }

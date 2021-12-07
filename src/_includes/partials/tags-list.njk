@@ -3,12 +3,14 @@
  # excluded in the `tagList` collection.
  #
  # We default to the local `tags` collection, but it can be
- # changed before the file is included. See `partials/article-list.njk`,
+ # changed before the file is included. See `partials/articles-list.njk`,
  # where we have to `set tags = item.data.tags`.
  #}
+<ul class="list-inline" role="list">
 {% for tag in tags %}
   {% if collections.tagList.indexOf(tag) != -1 %}
-    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-    <a href="{{ tagUrl | url }}" class="Tag"><span style="color: var(--gray-light);">#</span>{{ tag }}</a>&nbsp;&nbsp;
+    {% set tagUrl = ["/tags/", tag, "/"] | join %}
+    <li><a href="{{ tagUrl | url }}"><span style="color: var(--color-lightish);">#</span>{{ tag }}</a></li>
   {% endif %}
 {% endfor %}
+</ul>

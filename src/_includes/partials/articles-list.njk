@@ -1,13 +1,13 @@
 {% if not collection %}{% set collection = collections.posts %}{% endif %}
-<div class="Articles__list space-items-huge">
+<div class="articles-list flow-super">
   {% for item in collection | reverse %}
     {# Show draft items when on dev environment #}
     {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %}
-    <article class="Prose Prose--article Contain--prose">
+    <article class="post grid wrapper flow">
 
-      <header class="Content__header">
-        <h2 class="Content__title h1"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h2>
-        <dl class="Content__meta">
+      <header class="post__header">
+        <h1 class="post__title"><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h1>
+        <dl class="post__meta">
 
           <dt class="visually-hidden">Published on</dt>
           <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
@@ -20,9 +20,11 @@
         </dl>
       </header>
 
-      {{ item.templateContent | safe }}
+      <div class="prose-width prose-flow flow">
+        {{ item.templateContent | safe }}
+      </div>
 
-      <footer class="Content__footer">
+      <footer class="post__footer">
         {% set tags = item.data.tags %}
         {% include "partials/tags-list.njk" %}
       </footer>
@@ -31,3 +33,4 @@
     {% endif %}{# Check whether we're on dev environment #}
   {% endfor %}
 </div>
+<!-- .articles-list -->

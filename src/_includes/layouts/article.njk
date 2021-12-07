@@ -1,12 +1,10 @@
 ---
 layout: base
-pageClass: Page--article
 ---
-<article class="Prose Prose--article Contain--prose">
-
-  <header class="Content__header">
-    <h1 class="Content__title">{{ title | safe }}</h1>
-    <dl class="Content__meta">
+<article class="post wrapper flow">
+  <header class="post__header">
+    <h1 class="post__title">{{ title | safe }}</h1>
+    <dl class="post__meta">
 
       <dt class="visually-hidden">Published on</dt>
       <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
@@ -14,14 +12,16 @@ pageClass: Page--article
       {% if location %}
       <dt class="visually-hidden">Published in</dt>
       <dd>{{ location }}</dd>
-      {% endif %}{# check for location #}
+      {% endif %}{# Check for location #}
 
     </dl>
   </header>
 
-  {{ content | safe }}
+  <div class="prose-width prose-flow flow">
+    {{ content | safe }}
+  </div>
 
-  <footer class="Content__footer">
+  <footer class="post__footer">
     {% include "partials/tags-list.njk" %}
   </footer>
 

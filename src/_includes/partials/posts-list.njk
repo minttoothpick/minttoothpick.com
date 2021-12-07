@@ -1,5 +1,17 @@
 {# postsList is a collection that is set in the file that includes this one. #}
 {% for post in postsList | reverse %}
+  {% if loop.first %}<ul class="flow-condensed" role="list" style="--text-width: 100%;">{% endif %}
+  <li>
+    <a class="title-date-inline" href="{{ post.url | url }}">
+      <span>{{ post.data.title | safe if post.data.title else post.fileSlug }}</span>
+      <time class="text-small" datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time>
+    </a>
+  </li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+{#
+{% for post in postsList | reverse %}
   {% if loop.first %}<ul class="PostsList">{% endif %}
   <li>
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
@@ -13,3 +25,4 @@
 {% else %}
   <p>Nothing here!</p>
 {% endfor %}
+#}
