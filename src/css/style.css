@@ -403,8 +403,8 @@ figcaption {
 
 .post__meta dd:not(:last-of-type)::after {
   content: "/";
-  padding-inline-start: var(--s02);
   padding-inline-end: var(--s02);
+  padding-inline-start: var(--s02);
   padding-inline: var(--s02);
 }
 
