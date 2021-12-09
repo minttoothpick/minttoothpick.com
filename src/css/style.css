@@ -373,9 +373,40 @@ figcaption {
   hanging-punctuation: first;
 }
 
-/* .post > * + * {
-  margin-top: var(--flow-space, var(--s2));
-} */
+/* Switch link underline behavior on post title links... is this a good idea? */
+.post__title a {
+  text-decoration: none;
+}
+
+.post__title a:hover {
+  text-decoration: underline;
+}
+
+.post__meta {
+  color: var(--color-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  margin-block-start: var(--s01);
+}
+
+/* If meta label is not `visually-hidden`, we need a space after it */
+/* .post__meta dt:not([.visually-hidden])::after { */
+.post__meta dt::after {
+  content: "\00a0";
+}
+
+.post__meta dd:not(:last-of-type)::after {
+  content: "/";
+  padding-inline-start: var(--s02);
+  padding-inline-end: var(--s02);
+  padding-inline: var(--s02);
+}
+
+.post figcaption {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
 
 /* Extra block space surrounding figures */
 .prose-flow > figure,
@@ -411,32 +442,6 @@ figcaption {
 
 .list-condensed > * + * {
   margin-block-start: var(--s01);
-}
-
-.post__meta {
-  color: var(--color-text-muted);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: var(--font-size-small);
-  margin-block-start: var(--s01);
-}
-
-/* If meta label is not `visually-hidden`, we need a space after it */
-/* .post__meta dt:not([.visually-hidden])::after { */
-.post__meta dt::after {
-  content: "\00a0";
-}
-
-.post__meta dd:not(:last-of-type)::after {
-  content: "/";
-  padding-inline-start: var(--s02);
-  padding-inline-end: var(--s02);
-  padding-inline: var(--s02);
-}
-
-.post figcaption {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-small);
 }
 
 .grid-sticky-thirds {
