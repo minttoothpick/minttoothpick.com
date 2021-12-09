@@ -8,12 +8,13 @@ tags:
   - things-i-made
 ---
 <figure class="align-none">
-  <div class="ratio ratio--16x9">
+  <!-- <div class="ratio ratio--16x9"> -->
     <iframe 
         src="https://player.vimeo.com/video/493421979?loop=1&amp;autoplay=1&amp;muted=1"
         loading="lazy"
         frameborder="0"
         allow="autoplay; fullscreen"
-        allowfullscreen></iframe>
-  </div>
+        allowfullscreen
+        style="aspect-ratio: 16 / 9;"></iframe>
+  <!-- </div> -->
 </figure>
