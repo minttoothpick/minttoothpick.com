@@ -521,11 +521,24 @@ figcaption {
   padding-inline: var(--container-space);
 }
 
-.site-footer::before {
+/* .site-footer::before {
   border-top: 2px solid var(--color-lightish);
   content: "";
   width: 100%;
   display: inline-block;
+} */
+
+.back-to-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-to-top__link {
+  color: currentColor;
+}
+
+.back-to-top__link::before {
+  content: "↑ ";
 }
 
 .site-footer > :first-child {
