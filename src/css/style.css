@@ -245,6 +245,11 @@ ol:not([role="list"]) li::marker {
   color: var(--color-text-muted);
 }
 
+/* Fallback for currently less-than-universal `::marker` support. */
+ul:not([role="list"]) li {
+  list-style-type: var(--list-marker-content, "– ");
+}
+
 ul:not([role="list"]) li::marker {
   color: var(--color-lightish);
   content: var(--list-marker-content, "– ");
