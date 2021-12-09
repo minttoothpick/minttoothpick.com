@@ -150,6 +150,8 @@ dd {
 
 body {
   min-height: 100vh;
+  padding-block-end: var(--container-space);
+  padding-block-start: var(--container-space);
   padding-block: var(--container-space);
 }
 
