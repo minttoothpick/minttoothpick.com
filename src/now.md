@@ -4,4 +4,4 @@ layout: now
 date: 2022-01-11
 location: Asheville, NC, USA
 ---
-I'm home!
+I'm home yay!
