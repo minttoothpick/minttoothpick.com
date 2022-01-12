@@ -4,4 +4,4 @@ layout: now
 date: 2022-01-11
 location: Asheville, NC, USA
 ---
-I'm home yay!
+Pretty much just parenting and working.
