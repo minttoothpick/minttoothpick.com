@@ -30,7 +30,7 @@ module.exports = function(eleventyConfig) {
    ======================================================================== */
 
   /**
-   * Format Dates and Times with Luxon
+   * Format dates and times with Luxon
    *
    * https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
    * https://moment.github.io/luxon/#/formatting
@@ -40,6 +40,20 @@ module.exports = function(eleventyConfig) {
     if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toISODate();
     // DATE_FULL is like "September 15, 2021"
     if (type === "nice") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
+    // If no parameter is specified, just return unformatted date
+    return dateObj;
+  });
+
+  /**
+   * Parse date from Unix timestamp in seconds
+   *
+   * https://moment.github.io/luxon/#/parsing?id=unix-timestamps
+   */
+  eleventyConfig.addFilter("dateFromUnix", (dateObj, type) => {
+    // ISO is like "2021-09-15"
+    if (type === "iso") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toISODate();
+    // DATE_FULL is like "September 15, 2021"
+    if (type === "nice") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
     // If no parameter is specified, just return unformatted date
     return dateObj;
   });

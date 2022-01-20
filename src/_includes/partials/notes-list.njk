@@ -1,0 +1,36 @@
+{# {% if not collection %}{% set collection = collections.posts %}{% endif %} #}
+<div class="articles-list flow-super">
+  {% for item in collection | reverse %}
+    {# Show draft items when on dev environment #}
+    {# {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %} #}
+    <article class="post grid wrapper flow">
+
+      <header class="post__header">
+        <h1 class="post__title visually-hidden"><a href="{{ item.url | url }}">{{ item.data.title | dateFromUnix('nice') }}</a></h1>
+        <dl class="post__meta">
+
+          <dt class="visually-hidden">Published on</dt>
+          <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
+
+          {% if item.data.location %}
+          <dt class="visually-hidden">Published in</dt>
+          <dd>{{ item.data.location }}</dd>
+          {% endif %}{# Check for location #}
+
+        </dl>
+      </header>
+
+      <div class="prose-width prose-flow flow">
+        {{ item.templateContent | safe }}
+      </div>
+
+      {# <footer class="post__footer">
+        {% set tags = item.data.tags %}
+        {% include "partials/tags-list.njk" %}
+      </footer> #}
+
+    </article>
+    {# {% endif %} #}{# Check whether we're on dev environment #}
+  {% endfor %}
+</div>
+<!-- .articles-list -->
