@@ -40,6 +40,8 @@ module.exports = function(eleventyConfig) {
     if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toISODate();
     // DATE_FULL is like "September 15, 2021"
     if (type === "nice") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
+    // DATETIME_FULL is like "October 14, 1983, 1:30 PM EDT"
+    if (type === "niceWithTime") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATETIME_FULL);
     // If no parameter is specified, just return unformatted date
     return dateObj;
   });
@@ -49,11 +51,9 @@ module.exports = function(eleventyConfig) {
    *
    * https://moment.github.io/luxon/#/parsing?id=unix-timestamps
    */
-  eleventyConfig.addFilter("dateFromUnix", (dateObj, type) => {
-    // ISO is like "2021-09-15"
-    if (type === "iso") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toISODate();
-    // DATE_FULL is like "September 15, 2021"
-    if (type === "nice") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
+  eleventyConfig.addFilter("dateFromUnix", (dateObj, format) => {
+    if (format === "date") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+    if (format === "time") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.TIME_24_SIMPLE);
     // If no parameter is specified, just return unformatted date
     return dateObj;
   });

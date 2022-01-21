@@ -2,5 +2,10 @@
 title: Notes
 layout: base
 ---
+<div class="post wrapper flow">
+  <header class="post__header">
+    <h1 class="post__title">{{ title | safe }}</h1>
+  </header>
+</div>
 {% set collection = collections.notes %}
 {% include "partials/notes-list.njk" %}
