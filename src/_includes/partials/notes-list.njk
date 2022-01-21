@@ -12,7 +12,7 @@
 </style>
 
 {# {% if not collection %}{% set collection = collections.posts %}{% endif %} #}
-<div class="articles-list flow-super">
+<div class="articles-list flow-expanded">
   {% for item in collection | reverse %}
     {# Show draft items when on dev environment #}
     {# {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %} #}
