@@ -17,10 +17,13 @@
     {# Show draft items when on dev environment #}
     {# {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %} #}
     <article class="note post grid wrapper">
-      <time class="note__meta text-small" datetime="{{ item.date | date('iso') }}">
-        {{ item.data.title | dateFromUnix('date') }}
+      <time class="note__meta text-small" datetime="{{ item.date | date2('iso') }}">
+        {{ item.date | date2('DATE_MED_WITH_WEEKDAY') }}
         <br>
-        {{ item.data.title | dateFromUnix('time') }}
+        {{ item.date | date2('TIME_24_SIMPLE') }}
+        {# {{ item.data.title | dateFromUnix('date') }}
+        <br>
+        {{ item.data.title | dateFromUnix('time') }} #}
       </time>
 
       <div class="prose-width prose-flow flow">
