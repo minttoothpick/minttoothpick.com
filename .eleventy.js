@@ -52,7 +52,7 @@ module.exports = function(eleventyConfig) {
   //   return dateObj;
   // });
 
-  eleventyConfig.addFilter("date", (dateObj, type="DATE_MED", zone="UTC") => {
+  eleventyConfig.addFilter("date", (dateObj, type="DATE_MED_WITH_WEEKDAY", zone="UTC") => {
     // Check for ISO ("2017-04-20T11:32:00.000-04:00")
     if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: zone }).toISO();
     // Check for ISO date ("2017-04-20")

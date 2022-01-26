@@ -18,7 +18,7 @@
     {# {% if (item.data.status !== "draft") or ((item.data.status === "draft") and (site.env === "dev")) %} #}
     <article class="note post grid wrapper">
       <time class="note__meta text-small" datetime="{{ item.date | date('iso') }}">
-        {{ item.date | date('DATE_MED_WITH_WEEKDAY') }}
+        {{ item.date | date }}
         <br>
         {{ item.date | date('TIME_24_SIMPLE', 'America/New_York') }}
         {# {{ item.data.title | dateFromUnix('date') }}
