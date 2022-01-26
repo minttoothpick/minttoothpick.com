@@ -10,7 +10,7 @@
         <dl class="post__meta">
 
           <dt class="visually-hidden">Published on</dt>
-          <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date('nice') }}</time></dd>
+          <dd><time datetime="{{ item.date | date('iso') }}">{{ item.date | date }}</time></dd>
 
           {% if item.data.location %}
           <dt class="visually-hidden">Published in</dt>

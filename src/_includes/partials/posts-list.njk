@@ -4,7 +4,7 @@
   <li>
     <a class="title-date-inline" href="{{ post.url | url }}">
       <span>{{ post.data.title | safe if post.data.title else post.fileSlug }}</span>
-      <time class="text-small" datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time>
+      <time class="text-small" datetime="{{ post.date | date('iso') }}">{{ post.date | date }}</time>
     </a>
   </li>
   {% if loop.last %}</ul>{% endif %}
@@ -17,7 +17,7 @@
     <a href="{{ post.url | url }}">{{ post.data.title | safe if post.data.title else post.fileSlug }}</a>
     <dl class="Content__meta">
       <dt class="visually-hidden">Published on</dt>
-      <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date('nice') }}</time></dd>
+      <dd><time datetime="{{ post.date | date('iso') }}">{{ post.date | date }}</time></dd>
     </dl>
     {% include "partials/tags-list.njk" %}
   </li>

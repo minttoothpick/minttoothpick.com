@@ -64,7 +64,7 @@ layout: base
         <dl class="post__meta">
 
           <dt>Updated on</dt>
-          <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date('nice') }}</time></dd>
+          <dd><time datetime="{{ page.date | date('iso') }}">{{ page.date | date }}</time></dd>
 
           {% if location %}
             <dt class="visually-hidden">Published in</dt>

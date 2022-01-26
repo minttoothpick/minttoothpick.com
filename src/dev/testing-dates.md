@@ -10,7 +10,7 @@ tags:
 
 - `page.date.toUTCString()`: {{ page.date.toUTCString() }}
 - `page.date | date('iso')`: {{ page.date | date('iso') }}
-- `page.date | date('nice')`: {{ page.date | date('nice') }}
+- `page.date | date('DATE_MED')`: {{ page.date | date('DATE_MED') }}
 - `page.date | date`: {{ page.date | date }}
 
 See [Luxon's docs on `toLocaleString`](https://moment.github.io/luxon/#/formatting?id=tolocalestring-strings-for-humans) for some formatting presets.

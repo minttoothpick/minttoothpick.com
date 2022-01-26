@@ -37,28 +37,28 @@ module.exports = function(eleventyConfig) {
    * https://moment.github.io/luxon/#/formatting
    * https://moment.github.io/luxon/#/formatting?id=presets
    */
-  eleventyConfig.addFilter("date", (dateObj, type) => {
-    // ISO is like "2021-09-15"
-    if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toISODate();
-    // DATE_FULL is like "September 15, 2021"
-    if (type === "nice") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
-    // DATETIME_FULL is like "October 14, 1983, 1:30 PM EDT"
-    if (type === "niceWithTime") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.DATETIME_FULL);
-    // Output date with weekday
-    if (type === "DATE_MED_WITH_WEEKDAY") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
-    // Output time in 24 hour format
-    if (type === "TIME_24_SIMPLE") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.TIME_24_SIMPLE);
-    // If no parameter is specified, just return unformatted date
-    return dateObj;
-  });
+  // eleventyConfig.addFilter("date", (dateObj, type) => {
+  //   // ISO is like "2021-09-15"
+  //   if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toISODate();
+  //   // DATE_FULL is like "September 15, 2021"
+  //   if (type === "nice") return DateTime.fromJSDate(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_FULL);
+  //   // DATETIME_FULL is like "October 14, 1983, 1:30 PM EDT"
+  //   if (type === "niceWithTime") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.DATETIME_FULL);
+  //   // Output date with weekday
+  //   if (type === "DATE_MED_WITH_WEEKDAY") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+  //   // Output time in 24 hour format
+  //   if (type === "TIME_24_SIMPLE") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime.TIME_24_SIMPLE);
+  //   // If no parameter is specified, just return unformatted date
+  //   return dateObj;
+  // });
 
-  eleventyConfig.addFilter("date2", (dateObj, type) => {
+  eleventyConfig.addFilter("date", (dateObj, type="DATE_MED", zone="UTC") => {
     // Check for ISO ("2017-04-20T11:32:00.000-04:00")
-    if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toISO();
+    if (type === "iso") return DateTime.fromJSDate(dateObj, { zone: zone }).toISO();
     // Check for ISO date ("2017-04-20")
-    if (type === "isoDate") return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toISO();
+    if (type === "isoDate") return DateTime.fromJSDate(dateObj, { zone: zone }).toISO();
     // Otherwise pass `type` format to Luxon
-    return DateTime.fromJSDate(dateObj, { zone: "America/New_York" }).toLocaleString(DateTime[type]);
+    return DateTime.fromJSDate(dateObj, { zone: zone }).toLocaleString(DateTime[type]);
   });
 
   /**
@@ -66,12 +66,12 @@ module.exports = function(eleventyConfig) {
    *
    * https://moment.github.io/luxon/#/parsing?id=unix-timestamps
    */
-  eleventyConfig.addFilter("dateFromUnix", (dateObj, format) => {
-    if (format === "date") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
-    if (format === "time") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.TIME_24_SIMPLE);
-    // If no parameter is specified, just return unformatted date
-    return dateObj;
-  });
+  // eleventyConfig.addFilter("dateFromUnix", (dateObj, format) => {
+  //   if (format === "date") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+  //   if (format === "time") return DateTime.fromSeconds(dateObj, { zone: "UTC" }).toLocaleString(DateTime.TIME_24_SIMPLE);
+  //   // If no parameter is specified, just return unformatted date
+  //   return dateObj;
+  // });
 
   eleventyConfig.addFilter("simpleDateToSeconds", (dateObj) => {
     return DateTime.fromISO(dateObj, { zone: "utc" }).toSeconds();
