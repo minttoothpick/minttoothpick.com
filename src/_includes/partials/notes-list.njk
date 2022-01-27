@@ -20,7 +20,7 @@
       <time class="note__meta text-small" datetime="{{ item.date | date('iso') }}">
         {{ item.date | date }}
         <br>
-        {{ item.date | date('TIME_24_SIMPLE') }}
+        {{ item.date | date('TIME_24_SIMPLE', 'America/New_York') }}
         {# {{ item.data.title | dateFromUnix('date') }}
         <br>
         {{ item.data.title | dateFromUnix('time') }} #}
