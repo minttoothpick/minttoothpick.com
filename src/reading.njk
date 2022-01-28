@@ -40,6 +40,8 @@ intro: |
     <span class="text-small">by {{ book.author | formatAuthor }}</span>
   </li>
 
-  {% if loop.last %}</ul>{% endif %}
+  {% if loop.last %}</ul></section>{% endif %}
 
 {% endfor %}{# for book in collections.booksFinished #}
+
+<p class="back-to-top" style="--text-width: 100%;"><a class="back-to-top__link" href="#main">Back to top</a></p>
