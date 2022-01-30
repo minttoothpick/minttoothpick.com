@@ -12,11 +12,11 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.0",
     "@11ty/eleventy-cache-assets": "^2.3.0",
     "@11ty/eleventy-img": "github:zeroby0/eleventy-img#cache",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "cross-env": "^7.0.3",
     "csv-parse": "^4.16.3",
     "dotenv": "^8.2.0",
