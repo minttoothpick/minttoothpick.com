@@ -530,7 +530,7 @@ figcaption {
 
 .back-to-top {
   /* --flow-space: calc(var(--container-space) * 2); */
-  --flow-space: var(--flow-expanded);
+  --flow-space: var(--flow-expanded) !important;
   display: flex;
   justify-content: flex-end;
 }
