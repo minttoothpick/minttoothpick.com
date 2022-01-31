@@ -150,9 +150,9 @@ dd {
 
 body {
   min-height: 100vh;
+  padding-block: var(--container-space);
   padding-block-end: var(--container-space);
   padding-block-start: var(--container-space);
-  padding-block: var(--container-space);
 }
 
 /**
@@ -403,9 +403,9 @@ figcaption {
 
 .post__meta dd:not(:last-of-type)::after {
   content: "/";
+  padding-inline: var(--s02);
   padding-inline-end: var(--s02);
   padding-inline-start: var(--s02);
-  padding-inline: var(--s02);
 }
 
 .post figcaption {
@@ -474,13 +474,13 @@ figcaption {
 .wrapper {
   /* --max-width: var(--max-width, var(--container-width)); */
 
+  margin-inline: auto;
   margin-inline-end: auto;
   margin-inline-start: auto;
-  margin-inline: auto;
   max-width: var(--max-width, var(--container-width));
+  padding-inline: var(--container-space);
   padding-inline-end: var(--container-space);
   padding-inline-start: var(--container-space);
-  padding-inline: var(--container-space);
 }
 
 /* .wrapper > * {
@@ -508,17 +508,17 @@ figcaption {
 .align-full-bleed {
   /* --prose-width: none; */
   max-width: none;
+  margin-inline: calc(var(--container-space) * -1);
   margin-inline-end: calc(var(--container-space) * -1);
   margin-inline-start: calc(var(--container-space) * -1);
-  margin-inline: calc(var(--container-space) * -1);
 }
 
 .align-full-bleed > figcaption {
   max-width: var(--text-width);
   /* Add inline padding to offset pulled inline margins on `figure`. */
+  padding-inline: var(--container-space);
   padding-inline-end: var(--container-space);
   padding-inline-start: var(--container-space);
-  padding-inline: var(--container-space);
 }
 
 /* .site-footer::before {
@@ -529,6 +529,8 @@ figcaption {
 } */
 
 .back-to-top {
+  /* --flow-space: calc(var(--container-space) * 2); */
+  --flow-space: var(--flow-expanded);
   display: flex;
   justify-content: flex-end;
 }
@@ -541,9 +543,9 @@ figcaption {
   content: "↑ ";
 }
 
-.site-footer > :first-child {
+/* .site-footer > :first-child {
   padding-block-start: var(--flow-space);
-}
+} */
 
 /**
  * Flow space
