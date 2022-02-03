@@ -35,7 +35,7 @@
     <id>{{ absolutePostUrl }}</id>
     <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
     {% if post.data.postImage %}
-    <enclosure url="{{ site.url }}{{ post.data.postImage }}" length="1024" type="image/jpeg" />
+    {# <enclosure url="{{ site.url }}{{ post.data.postImage }}" length="1024" type="image/jpeg" /> #}
     {# <description><img alt="" src="{{ site.url }}{{ post.data.postImage }}"></description> #}
     {% endif %}
   </entry>
