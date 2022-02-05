@@ -1,12 +1,12 @@
 ---json
 {
-  "permalink": "feed-notes.xml",
+  "permalink": "feed-notes-text.xml",
   "eleventyExcludeFromCollections": true,
   "metadata": {
     "title": "minttoothpick - Notes",
     "subtitle": "Brief posts that get syndicated to Twitter.",
     "url": "https://minttoothpick.com/",
-    "feedUrl": "https://minttoothpick.com/feed-notes.xml",
+    "feedUrl": "https://minttoothpick.com/feed-notes-text.xml",
     "author": {
       "name": "Jeremy Robert Jones",
       "email": "minttoothpick+hello@protonmail.com"
@@ -27,6 +27,7 @@
     <email>{{ metadata.author.email }}</email>
   </author>
   {%- for post in collections.notes %}
+  {%- if post.data.type === "text" %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
   <entry>
     <title>{{ post.date }}</title>
@@ -35,5 +36,6 @@
     <id>{{ absolutePostUrl }}</id>
     <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
+  {%- endif %}
   {%- endfor %}
 </feed>
