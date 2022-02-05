@@ -33,22 +33,7 @@
     <link href="{{ absolutePostUrl }}"/>
     <updated>{{ post.date | dateToRfc3339 }}</updated>
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">
-      {{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
-      {##
-       # These comments are used for string matching on IFTTT to determine
-       # whether to post to Twitter with an image or plain text.
-       #}
-      {%- if post.data.type === "image" %}
-        &lt;!-- type:image --&gt;
-      {%- else %}
-        &lt;!-- type:text --&gt;
-      {%- endif %}
-    </content>
-    {# {% if post.data.postImage %} #}
-    {# <enclosure url="{{ site.url }}{{ post.data.postImage }}" length="1024" type="image/jpeg" /> #}
-    {# <description><img alt="" src="{{ site.url }}{{ post.data.postImage }}"></description> #}
-    {# {% endif %} #}
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
   {%- endfor %}
 </feed>
