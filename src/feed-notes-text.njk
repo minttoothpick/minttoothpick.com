@@ -27,7 +27,7 @@
     <email>{{ metadata.author.email }}</email>
   </author>
   {%- for post in collections.notes %}
-  {%- if post.data.type === "text" %}
+  {%- if post.data.type !== "image" and post.data.syndicate !== "false" %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
   <entry>
     <title>{{ post.date }}</title>
