@@ -32,10 +32,9 @@
   <entry>
     <title>{{ post.date }}</title>
     <link href="{{ absolutePostUrl }}"/>
-    <enclosure type="image/jpeg" length="1024" url="{{ metadata.url }}{{ post.data.image }}"/>
     <updated>{{ post.date | dateToRfc3339 }}</updated>
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }} <img alt="{{ post.data.image_alt }}" src="{{ post.data.image_src }}"/></content>
   </entry>
   {%- endif %}
   {%- endfor %}

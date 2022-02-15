@@ -28,6 +28,9 @@
 
       <div class="prose-width prose-flow flow">
         {{ item.templateContent | safe }}
+        {%- if item.data.type === "image" %}
+          {% image item.data.image_alt, item.data.image_src, "" %}
+        {%- endif %}{# Check for notes type == image #}
       </div>
     </article>
     {# {% endif %} #}{# Check whether we're on dev environment #}
