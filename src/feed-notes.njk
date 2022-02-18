@@ -37,7 +37,9 @@
       {{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
       {%- if post.data.type === "image" %}
         &lt;!-- type:image --&gt;
-      {%- elif post.data.type === "text" %}
+      {%- elif post.data.type === "link" %}
+        &lt;!-- type:text --&gt;
+      {%- else %}
         &lt;!-- type:text --&gt;
       {%- endif %}
     </content>
