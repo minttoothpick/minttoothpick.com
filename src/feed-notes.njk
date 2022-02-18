@@ -39,9 +39,9 @@
         &lt;img alt="{{ post.data.image_alt }}" src="{{ metadata.url }}{{ post.data.image_src }}"/&gt;
         &lt;!-- type:image --&gt;
       {%- elif post.data.type === "link" %}
-        &lt;!-- type:text --&gt;
-      {%- else %}
         &lt;!-- type:link --&gt;
+      {%- else %}
+        &lt;!-- type:text --&gt;
       {%- endif %}
     </content>
   </entry>
