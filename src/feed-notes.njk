@@ -6,7 +6,7 @@
     "title": "minttoothpick - All Notes",
     "subtitle": "Brief posts that get syndicated to Twitter.",
     "url": "https://minttoothpick.com/",
-    "feedUrl": "https://minttoothpick.com/feed-notes.xml",
+    "feedUrl": "https://minttoothpick.com/feed-notes2.xml",
     "author": {
       "name": "Jeremy Robert Jones",
       "email": "minttoothpick+hello@protonmail.com"
@@ -36,11 +36,12 @@
     <content type="html">
       {{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
       {%- if post.data.type === "image" %}
+        &lt;img alt="{{ post.data.image_alt }}" src="{{ metadata.url }}{{ post.data.image_src }}"/&gt;
         &lt;!-- type:image --&gt;
       {%- elif post.data.type === "link" %}
         &lt;!-- type:text --&gt;
       {%- else %}
-        &lt;!-- type:text --&gt;
+        &lt;!-- type:link --&gt;
       {%- endif %}
     </content>
   </entry>
